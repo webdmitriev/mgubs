@@ -1,0 +1,66 @@
+.mgu-main {
+  position: relative;
+  display: block;
+  width: 100%;
+  container: main-container / inline-size;
+  .mgu-main__bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1920px;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .container {
+    position: relative;
+    min-height: 690px;
+    padding-block: 64px;
+    z-index: 10;
+  }
+  .mgu-main__content {
+    display: block;
+    width: 100%;
+    max-width: calc(100% - 620px);
+    .h1,
+    .sub_title,
+    .descr {
+      color: var(--white-color);
+    }
+    .h1 {
+      margin-bottom: 8px;
+    }
+    .sub_title {
+      margin-bottom: 24px;
+    }
+    .divider {
+      margin-block: 24px;
+    }
+  }
+  .wpcf7 {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    padding: 34px 24px;
+    background-color: var(--form-bg);
+    border-radius: 16px;
+  }
+}
+
+@container main-container (max-width: 1100px) {
+  .mgu-main .mgu-main__content {
+    max-width: calc(100% - 480px);
+  }
+}
+
+@container main-container (max-width: 900px) {
+  .mgu-main .container {
+    justify-content: center;
+    padding-top: 280px;
+  }
+  .mgu-main .mgu-main__content {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+}

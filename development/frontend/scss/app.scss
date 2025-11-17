@@ -1,0 +1,53 @@
+@use "./data/reset";
+@use "../fonts/stylesheet.css";
+
+@use "./data/function";
+
+@use "./data/global";
+
+// data
+@use "./data/header";
+@use "./data/footer";
+@use "./data/popup";
+@use "./data/wpcf7";
+
+// components
+// @use "components/block-title";
+@use "./components/h1";
+@use "./components/h2";
+@use "./components/sub_title";
+@use "./components/descr";
+@use "./components/divider";
+// @use "components/sect-title";
+// @use "components/btn";
+// @use "components/link";
+// @use "components/breadcrumbs";
+
+// MGU blocks
+@use "./mgu-blocks/mgu-main";
+@use "./mgu-blocks/mgu-advantages";
+
+// animations
+@use "./data/animations";
+@use "./data/not-found";
+@use "./data/thank-you";
+
+// hover
+@use "./data/hover";
+
+@media (max-width: 1680px) {
+}
+@media (max-width: 1366px) {
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

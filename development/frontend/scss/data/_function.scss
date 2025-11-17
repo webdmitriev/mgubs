@@ -1,0 +1,53 @@
+// Variables
+:root {
+  --dark-color: #000000;
+  --white-color: #ffffff;
+
+  --accent-color: #fe6d35;
+  --black-color: #171717;
+  --gray-color: #808080;
+  --bg-color: #eff1f3;
+  --form-bg: #f0f0f0;
+
+  --gradient-color: linear-gradient(45deg, #4481eb 0%, #04befe 100%);
+
+  --underline-intrinsic-width: 8;
+  --underline-width: 12;
+  --underline-color: #fe6d35;
+  --underline-cap-width: 4px;
+  --underline-offset-y: 5px;
+  --underline-padding-x: 0.12em;
+
+  --container: 1310px;
+  --indent: 10px;
+
+  --font-family: "Montserrat", sans-serif;
+  --font-weight: 400;
+  --font-size: 16px;
+  --font-height: 1.5;
+}
+
+body {
+  margin-bottom: 0 !important;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  line-height: var(--font-height);
+  color: var(--black-color);
+  background-color: var(--bg-color);
+}
+
+#app {
+  position: relative;
+  max-width: 1920px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--indent);
+}

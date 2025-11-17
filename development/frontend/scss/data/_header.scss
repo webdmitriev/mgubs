@@ -1,0 +1,12 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 100%;
+  max-width: 1920px;
+  padding-block: 24px;
+  transform: translateX(-50%);
+  transition: all 0.4s ease;
+  z-index: 90;
+}

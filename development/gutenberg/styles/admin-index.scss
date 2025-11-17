@@ -1,0 +1,205 @@
+// Главный файл стилей
+@use "./admin/reset";
+@use "./admin/global";
+@use "./admin/h2";
+@use "./blocks/mgu-main";
+@use "./blocks/mgu-advantages";
+
+.development {
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &.is-selected {
+    border-color: #007cba;
+    background-color: rgba(0, 124, 186, 0.05);
+  }
+  .advanced-block {
+    display: block;
+    width: 100%;
+    .block-info {
+      display: block;
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 4px 12px;
+      background-color: rgba(0, 124, 186, 0.25);
+      border-radius: 8px;
+      box-sizing: border-box;
+      .block-info-title {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+      }
+      .components-radio-control {
+        display: block;
+        width: 100%;
+        max-width: calc(100% - 320px);
+        .components-base-control__label {
+          display: none;
+        }
+        .components-flex {
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          align-items: center;
+          flex-direction: row;
+          width: 100%;
+          .components-radio-control__option {
+            max-width: max-content;
+          }
+        }
+      }
+    }
+    .rich-text {
+      span {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+    [role="textbox"],
+    textarea {
+      margin-top: 0;
+      padding: 4px 12px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(0, 124, 186, 0.25);
+      border-radius: 8px;
+    }
+    .advanced-block-images {
+      display: block;
+      max-width: 54%;
+      width: 100%;
+      margin-top: 0px;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      text-align: center;
+      border: 2px dashed #ccc;
+      .advanced-block-image {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        img {
+          width: 100%;
+          max-width: 100%;
+          height: inherit;
+          object-fit: cover;
+        }
+        img ~ div {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: flex-start;
+          width: 100%;
+          .components-button {
+          }
+        }
+      }
+      .components-button {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 4px 16px;
+        color: #222222;
+        background-color: rgba(0, 124, 186, 0.25);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        box-shadow: none;
+      }
+    }
+    .advanced-block-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 8px;
+      width: 100%;
+      margin-top: 30px;
+      .repeater-item {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: calc(25% - 8px);
+        padding: 8px 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+        color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 124, 186, 0.25);
+        border-radius: 16px;
+        .components-button {
+          position: absolute;
+          top: 4px;
+          right: 8px;
+          padding: 0;
+          z-index: 12;
+        }
+        textarea {
+          width: 100%;
+          margin-top: 40px;
+          padding: 4px 12px;
+          border: 1px solid rgba(0, 124, 186, 0.25);
+          border-radius: 8px;
+        }
+      }
+      .repeater-footer {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        text-align: center;
+        border: 2px dashed #ccc;
+        .components-button {
+          color: #222222;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .custom-list {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 3px 0;
+    padding-left: 24px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 5px;
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: #222222;
+      border-radius: 12px;
+    }
+    + br {
+      display: none;
+    }
+  }
+}
+
+.help-video-modal {
+  width: 980px;
+}
+
+.block-editor-block-list__block {
+  margin-block: 0 !important;
+}

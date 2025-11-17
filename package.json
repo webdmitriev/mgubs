@@ -1,0 +1,48 @@
+{
+  "name": "theme-blocks",
+  "version": "1.0.0",
+  "description": "Custom Gutenberg blocks + frontend styles",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run fonts && wp-scripts build development/gutenberg/index.js --output-path=build",
+    "start": "wp-scripts start development/gutenberg/index.js --output-path=build",
+    "dev": "wp-scripts start development/gutenberg/index.js --output-path=build",
+    "scss-admin": "sass development/gutenberg/styles:admin/assets/css-js --watch --no-source-map --style=compressed",
+    "scss": "sass development/frontend/scss:assets/css-js --no-source-map --style=compressed",
+    "scss:watch": "sass development/frontend/scss:assets/css-js --watch --no-source-map --style=compressed",
+    "js": "node build-js.js",
+    "js:watch": "nodemon --watch development/frontend/js --ext js --exec \"npm run js\"",
+    "images": "node compress-images.js",
+    "images:watch": "node compress-images.js",
+    "fonts": "node copy-fonts.js",
+    "fonts:watch": "nodemon --watch development/frontend/fonts --exec \"npm run fonts\"",
+    "frontend": "npm-run-all --parallel scss:watch js:watch",
+    "frontend:live": "npm-run-all --parallel scss:watch js:watch fonts:watch images:watch browser-sync",
+    "browser-sync": "node browser-sync.js"
+  },
+  "devDependencies": {
+    "@wordpress/icons": "^11.2.0",
+    "@wordpress/scripts": "^24.0.0",
+    "ajv": "^8.12.0",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "chokidar": "^4.0.3",
+    "css-loader": "^7.1.2",
+    "dotenv": "^17.2.3",
+    "fs-extra": "^11.3.2",
+    "mini-css-extract-plugin": "^2.9.4",
+    "nodemon": "^3.0.2",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.66.0",
+    "sass-loader": "^16.0.6",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1"
+  }
+}

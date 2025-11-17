@@ -1,0 +1,26 @@
+.request {
+  margin: 20px 0;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &.is-selected {
+    border-color: #007cba;
+    background-color: rgba(0, 124, 186, 0.05);
+  }
+
+  .block-title textarea {
+    padding: 4px 12px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 124, 186, 0.25);
+    border-radius: 8px;
+  }
+}
+
+.help-video-modal {
+  width: 980px;
+}

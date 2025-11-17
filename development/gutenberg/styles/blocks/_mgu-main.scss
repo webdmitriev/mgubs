@@ -1,0 +1,88 @@
+.advanced-block-preview {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  padding: 40px 24px;
+  container: main-container / inline-size;
+  .mgu-main__bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1920px;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .preview-content {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: calc(100% - 340px);
+    z-index: 10;
+    .h1 {
+      display: block;
+      width: 100%;
+      margin: 0 0 8px 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+    p {
+      display: block;
+      width: 100%;
+      margin: 0 0 24px 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+    .sub_title {
+      margin-bottom: 24px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+    .divider {
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-block: 24px;
+      background-color: #ffffff;
+    }
+    .descr {
+      font-size: 15px;
+    }
+  }
+  .wpcf7 {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 310px;
+    padding: 24px;
+    background-color: #eff1f3;
+    border-radius: 16px;
+    z-index: 10;
+  }
+}
+
+@container main-container (max-width: 700px) {
+  .advanced-block-preview {
+    max-width: 100%;
+    margin-bottom: 40px;
+    .preview-content {
+      max-width: calc(100% - 280px);
+    }
+    .wpcf7 {
+      max-width: 260px;
+    }
+  }
+}
