@@ -39,19 +39,15 @@ if (!defined('ABSPATH')) exit;
     <hr />
 
     <h2>Дополнительные данные</h2>
-    <table class="form-table">
-      <tr>
-        <th scope="row"><label for="footer_description">Краткое описание (для футера)</label></th>
-        <td>
-          <textarea
-            name="theme_settings[footer_description]"
-            id="footer_description"
-            rows="8"
-            style="width:100%; max-width:600px;"
-          ><?php echo esc_textarea(get_option('theme_settings')['footer_description'] ?? ''); ?></textarea>
-        </td>
-      </tr>
-    </table>
+    <div class="block-full">
+      <p>Краткое описание (для футера)</p>
+      <textarea
+        name="theme_settings[footer_description]"
+        id="footer_description"
+        rows="8"
+        style="width:100%; max-width:600px;"
+      ><?php echo esc_textarea(get_option('theme_settings')['footer_description'] ?? ''); ?></textarea>
+    </div>
 
     <?php submit_button(); ?>
   </form>

@@ -1,17 +1,21 @@
 <?php
-// admin/theme-settings/sanitize.php
 defined('ABSPATH') || exit;
 
-// Регистрация и санитизация
 function theme_settings_init() {
+
+  // Основные настройки темы
   register_setting('theme_settings_group', 'theme_settings', 'theme_settings_sanitize');
+
+  // Выбранные новости
+  register_setting('theme_featured_posts_group', 'theme_featured_posts', 'theme_featured_posts_sanitize');
 }
 add_action('admin_init', 'theme_settings_init');
+
 
 function theme_settings_sanitize($input) {
   $sanitized_input = [];
 
-  // 🧩 Социальные сети
+  // Соцсети
   if (isset($input['social'])) {
     $sanitized_input['social'] = [];
     foreach ($input['social'] as $social) {
@@ -24,17 +28,12 @@ function theme_settings_sanitize($input) {
     }
   }
 
-  // Санитизация текстовых полей (footer_description)
+  // Описание футера
   if (isset($input['footer_description'])) {
     $sanitized_input['footer_description'] = sanitize_textarea_field($input['footer_description']);
   }
 
-  // Featured posts selection
-  if (isset($input['featured_posts'])) {
-    $sanitized_input['featured_posts'] = array_map('intval', $input['featured_posts']);
-  }
-
-  // Санитизация Яндекс.Метрики
+  // Яндекс.Метрика
   if (isset($input['yandex_metric'])) {
     $sanitized_input['yandex_metric'] = wp_kses($input['yandex_metric'], [
       'script' => [
@@ -65,7 +64,14 @@ function theme_settings_sanitize($input) {
 }
 
 
-// Добавление Яндекс.Метрики перед закрывающим тегом </head>
+// Санитизация списка новостей
+function theme_featured_posts_sanitize($input) {
+  if (!is_array($input)) return [];
+  return array_map('intval', $input);
+}
+
+
+// Вывод Метрики в <head>
 function add_yandex_metric_to_head() {
   $options = get_option('theme_settings');
   if (!empty($options['yandex_metric'])) {
@@ -74,5 +80,4 @@ function add_yandex_metric_to_head() {
     echo "\n<!-- /Яндекс.Метрика -->\n";
   }
 }
-// Используем хук wp_head с низким приоритетом, чтобы вывести в конце
 add_action('wp_head', 'add_yandex_metric_to_head');

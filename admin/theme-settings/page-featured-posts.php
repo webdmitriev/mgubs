@@ -2,8 +2,8 @@
 if (!defined('ABSPATH')) exit;
 
 function theme_featured_posts_page_content() {
-  $options = get_option('theme_settings', []);
-  $selected = $options['featured_posts'] ?? [];
+  $selected = get_option('theme_featured_posts', []);
+
 
   // Получаем все посты
   $all_posts = get_posts([
@@ -17,7 +17,7 @@ function theme_featured_posts_page_content() {
   <h1>Новостные посты</h1>
 
   <form method="post" action="options.php">
-    <?php settings_fields('theme_settings_group'); ?>
+    <?php settings_fields('theme_featured_posts_group'); ?>
 
     <div class="columns-wrapper">
       <!-- Left Column -->
@@ -51,7 +51,7 @@ function theme_featured_posts_page_content() {
               <span class="move-btn" data-dir="up"></span>
               <span class="move-btn" data-dir="down"></span>
               <span class="remove-btn"></span>
-              <input type="hidden" name="theme_settings[featured_posts][]" value="<?php echo $id; ?>">
+              <input type="hidden" name="theme_featured_posts[]" value="<?php echo $id; ?>">
             </div>
           <?php endforeach; ?>
         </div>
@@ -77,7 +77,7 @@ function theme_featured_posts_page_content() {
         <span class="move-btn" data-dir="up"></span>
         <span class="move-btn" data-dir="down"></span>
         <span class="remove-btn"></span>
-        <input type="hidden" name="theme_settings[featured_posts][]" value="${id}">
+        <input type="hidden" name="theme_featured_posts[]" value="${id}">
       `;
 
       return div;
