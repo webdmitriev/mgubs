@@ -1,133 +1,193 @@
 <?php
-
 defined('ABSPATH') || exit;
 
 /**
- * Конвертируем загружаемые изображения в WebP и адаптивные JPG
+ * 1. Отключаем стандартные размеры WordPress
  */
-add_filter('wp_generate_attachment_metadata', function ($metadata, $attachment_id) {
-    $file = get_attached_file($attachment_id);
-    $filetype = wp_check_filetype($file);
-    $mime = $filetype['type'];
+add_filter('intermediate_image_sizes_advanced', function () {
+  return [];
+});
 
-    // Только изображения
-    if (strpos($mime, 'image/') !== 0) {
-        return $metadata;
+add_filter('big_image_size_threshold', '__return_false');
+
+/**
+ * 2. Добавляем только свои размеры
+ */
+add_action('after_setup_theme', function () {
+  add_image_size('img-480', 480, 0, false);
+  add_image_size('img-768', 768, 0, false);
+  add_image_size('img-1280', 1280, 0, false);
+  add_image_size('img-1920', 1920, 0, false);
+});
+
+/**
+ * 3. Убираем стандартные размеры из выбора в админке
+ */
+add_filter('image_size_names_choose', function () {
+  return [];
+});
+
+/**
+ * 4. Генерируем JPG + WebP для нужных разрешений
+ */
+add_filter('wp_generate_attachment_metadata', function ($meta, $attachment_id) {
+
+  $file = get_attached_file($attachment_id);
+  if (!file_exists($file)) return $meta;
+
+  $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+  if (!in_array($ext, ['jpg', 'jpeg', 'png'])) return $meta; // только изображения
+
+  $sizes = [480, 768, 1280, 1920];
+
+  foreach ($sizes as $size) {
+    // JPG
+    $jpg = wp_get_image_editor($file);
+    if (!is_wp_error($jpg)) {
+      $jpg->resize($size, null);
+      $jpg->save(str_replace(".{$ext}", "-{$size}.{$ext}", $file));
     }
 
-    $sizes = [480, 768, 1280, 1920]; // адаптивные размеры
-    $upload_dir = wp_get_upload_dir();
-    $info = pathinfo($file);
-    $dir = $info['dirname'];
-    $name = $info['filename'];
-    $ext = $info['extension'];
-
-    foreach ($sizes as $size) {
-        $dest_jpg = "{$dir}/{$name}-{$size}.{$ext}";
-        $dest_webp = "{$dir}/{$name}-{$size}.webp";
-
-        // Проверяем оригинал
-        if (!file_exists($file)) continue;
-
-        // Создаём JPG ресайз
-        $image_jpg = wp_get_image_editor($file);
-        if (!is_wp_error($image_jpg)) {
-            $image_jpg->resize($size, null);
-            $image_jpg->save($dest_jpg);
-        }
-
-        // Создаём WebP ресайз
-        $image_webp = wp_get_image_editor($file);
-        if (!is_wp_error($image_webp)) {
-            $image_webp->resize($size, null);
-            $image_webp->save($dest_webp, 'image/webp');
-        }
+    // WebP
+    $webp = wp_get_image_editor($file);
+    if (!is_wp_error($webp)) {
+      $webp->resize($size, null);
+      $webp->save(str_replace(".{$ext}", "-{$size}.webp", $file), 'image/webp');
     }
+  }
 
-    return $metadata;
+  return $meta;
 }, 20, 2);
 
 /**
- * Скрываем WebP из медиатеки
+ * 5. responsive-данные для Gutenberg
  */
-add_filter('wp_prepare_attachment_for_js', function ($response, $attachment, $meta) {
-    if (!empty($response['url']) && substr($response['url'], -5) === '.webp') {
-        return false;
+add_filter('wp_prepare_attachment_for_js', function ($response, $attachment) {
+
+  if (!isset($response['url'])) return $response;
+
+  $file = get_attached_file($attachment->ID);
+  $upload = wp_get_upload_dir();
+  $dir = pathinfo($file, PATHINFO_DIRNAME);
+  $name = pathinfo($file, PATHINFO_FILENAME);
+  $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+  $sizes = [480, 768, 1280, 1920];
+  $webp = [];
+  $jpg = [];
+
+  foreach ($sizes as $s) {
+    $jpg_file = "{$dir}/{$name}-{$s}.{$ext}";
+    $webp_file = "{$dir}/{$name}-{$s}.webp";
+
+    if (file_exists($jpg_file)) {
+      $jpg[] = str_replace($upload['basedir'], $upload['baseurl'], $jpg_file) . " {$s}w";
     }
-
-    $file_path = get_attached_file($attachment->ID);
-    $upload_dir = wp_get_upload_dir();
-    $base_url = $upload_dir['baseurl'];
-
-    $info = pathinfo($file_path);
-    $dir = $info['dirname'];
-    $name = $info['filename'];
-    $ext = $info['extension'];
-
-    $sizes = [480, 768, 1280, 1920];
-    $webp_sources = [];
-    $jpg_sources = [];
-
-    foreach ($sizes as $size) {
-        $webp_file = "{$dir}/{$name}-{$size}.webp";
-        $jpg_file = "{$dir}/{$name}-{$size}.{$ext}";
-
-        if (file_exists($webp_file)) {
-            $webp_sources[] = str_replace($upload_dir['basedir'], $base_url, $webp_file) . " {$size}w";
-        }
-        if (file_exists($jpg_file)) {
-            $jpg_sources[] = str_replace($upload_dir['basedir'], $base_url, $jpg_file) . " {$size}w";
-        }
+    if (file_exists($webp_file)) {
+      $webp[] = str_replace($upload['basedir'], $upload['baseurl'], $webp_file) . " {$s}w";
     }
+  }
 
-    $default_file = "{$dir}/{$name}-1920.{$ext}";
-    $default_url = file_exists($default_file)
-        ? str_replace($upload_dir['basedir'], $base_url, $default_file)
-        : wp_get_attachment_url($attachment->ID);
+  $response['responsive'] = [
+    'webp'    => implode(', ', $webp),
+    'jpg'     => implode(', ', $jpg),
+    'default' => $response['url'],
+  ];
 
-    $response['responsive'] = [
-        'webp' => implode(', ', $webp_sources),
-        'jpg' => implode(', ', $jpg_sources),
-        'default' => $default_url,
-    ];
-
-    return $response;
-}, 20, 3);
+  return $response;
+}, 20, 2);
 
 /**
- * REST API — добавляем webp_url
+ * 6. REST API → добавляем .webp URL
  */
-add_filter('rest_prepare_attachment', function ($response, $post, $request) {
-    $file_path = get_attached_file($post->ID);
-    $webp_file = pathinfo($file_path, PATHINFO_DIRNAME) . '/' . pathinfo($file_path, PATHINFO_FILENAME) . '.webp';
+add_filter('rest_prepare_attachment', function ($response, $post) {
 
-    $upload_dir = wp_get_upload_dir();
+  $file = get_attached_file($post->ID);
+  $upload = wp_get_upload_dir();
 
-    $response->data['webp_url'] = file_exists($webp_file)
-        ? str_replace($upload_dir['basedir'], $upload_dir['baseurl'], $webp_file)
-        : '';
+  $webp = pathinfo($file, PATHINFO_DIRNAME) . '/' . pathinfo($file, PATHINFO_FILENAME) . '.webp';
 
-    return $response;
-}, 10, 3);
+  $response->data['webp_url'] = file_exists($webp)
+    ? str_replace($upload['basedir'], $upload['baseurl'], $webp)
+    : '';
+
+  return $response;
+}, 10, 2);
 
 /**
- * Получаем данные для блока Gutenberg
+ * 7. Функция для блоков → получаем все данные
  */
-function theme_get_block_image_data($image_id) {
-    if (!$image_id) return null;
+function theme_get_block_image_data($id) {
+  if (!$id) return null;
 
-    $image_url = wp_get_attachment_url($image_id);
-    $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+  $response = wp_prepare_attachment_for_js(get_post($id));
 
-    $response = wp_prepare_attachment_for_js(get_post($image_id));
+  return [
+    'url'        => wp_get_attachment_url($id),
+    'alt'        => get_post_meta($id, '_wp_attachment_image_alt', true),
+    'responsive' => $response['responsive'] ?? [
+      'webp'    => '',
+      'jpg'     => '',
+      'default' => wp_get_attachment_url($id),
+    ]
+  ];
+}
 
-    return [
-        'url' => $image_url,
-        'alt' => $image_alt,
-        'responsive' => $response['responsive'] ?? [
-            'webp' => '',
-            'jpg' => '',
-            'default' => $image_url,
-        ],
-    ];
+
+// 1. Сохраняем оригинальное базовое имя при загрузке (до подмены на -1920)
+add_filter('wp_generate_attachment_metadata', function ($metadata, $attachment_id) {
+  $file = get_attached_file($attachment_id);
+  if ($file) {
+    $basename = pathinfo($file, PATHINFO_FILENAME);
+    // Убираем возможный -scaled, если он уже есть
+    $basename = preg_replace('/-scaled$/', '', $basename);
+    update_post_meta($attachment_id, '_original_basename', $basename);
+  }
+  return $metadata;
+}, 5, 2);
+
+// 2. Удаляем ВСЁ при удалении изображения
+add_action('delete_attachment', 'delete_all_my_custom_image_versions', 1);
+function delete_all_my_custom_image_versions($attachment_id) {
+  // Получаем оригинальное базовое имя (до всех преобразований)
+  $basename = get_post_meta($attachment_id, '_original_basename', true);
+
+  // Если по какой-то причине нет — попробуем вытащить из текущего файла
+  if (!$basename) {
+    $file = get_attached_file($attachment_id);
+    if ($file) {
+      $basename = pathinfo($file, PATHINFO_FILENAME);
+      // Убираем -1920, -1280 и т.д. в конце
+      $basename = preg_replace('/-(\d+|scaled)$/', '', $basename);
+    }
+  }
+
+  if (!$basename) return;
+
+  $upload_dir = wp_upload_dir();
+  $dir = dirname(get_attached_file($attachment_id));
+
+  // Удаляем ВСЁ, что начинается с оригинального имени + дефис
+  // Это ловит: photo-480.jpg, photo-1920.webp, photo-1280.jpeg и т.д.
+  $pattern = $dir . '/' . $basename . '-*';
+  foreach (glob($pattern) as $file) {
+    if (is_file($file)) {
+      wp_delete_file($file);
+    }
+  }
+
+  // Дополнительно: удаляем основной файл (может быть photo-1920.jpg)
+  $main_file = get_attached_file($attachment_id);
+  if ($main_file && file_exists($main_file)) {
+    wp_delete_file($main_file);
+  }
+
+  // И на всякий случай — удаляем оригинал, если он где-то остался (редко)
+  $original_path = wp_get_original_image_path($attachment_id);
+  if ($original_path && file_exists($original_path) && $original_path !== $main_file) {
+    wp_delete_file($original_path);
+  }
+
+  // Чистим мету
+  delete_post_meta($attachment_id, '_original_basename');
 }
