@@ -19,7 +19,10 @@ require get_template_directory() . '/admin/helpers/post-types/teachers/post-teac
 require get_template_directory() . '/admin/helpers/post-types/teachers/meta-fields.php';
 
 require get_template_directory() . '/admin/helpers/post-types/success/post-success.php';
+
 require get_template_directory() . '/admin/helpers/post-types/schoolhistory/post-schoolhistory.php';
+require get_template_directory() . '/admin/helpers/post-types/schoolhistory/meta-fields.php';
+
 require get_template_directory() . '/admin/helpers/post-types/manager/post-manager.php';
 require get_template_directory() . '/admin/helpers/post-types/thanks/post-thanks.php';
 require get_template_directory() . '/admin/helpers/post-types/admissions/post-admissions.php';
