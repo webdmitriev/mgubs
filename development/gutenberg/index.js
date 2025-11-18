@@ -1,5 +1,6 @@
 // add sidebar
 import './post-types/allevents-sidebar.js';
+import './post-types/teachers-sidebar.js';
 
 // add CEO
 import './seo-panel.js';

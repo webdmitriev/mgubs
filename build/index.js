@@ -2034,6 +2034,88 @@ const AllEventsSidebar = () => {
 
 /***/ }),
 
+/***/ "./development/gutenberg/post-types/teachers-sidebar.js":
+/*!**************************************************************!*\
+  !*** ./development/gutenberg/post-types/teachers-sidebar.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+const TeachersSidebar = () => {
+  const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getCurrentPostType(), []);
+  if (postType !== 'teachers') return null;
+  const postMeta = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getEditedPostAttribute('meta') || {}, []);
+  const {
+    editPost
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)('core/editor');
+  const updateMeta = (key, value) => {
+    editPost({
+      meta: {
+        ...postMeta,
+        [key]: value
+      }
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
+    target: "allevents-sidebar",
+    icon: "admin-post"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u0440\u0435\u043F\u043E\u0434."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
+    name: "allevents-sidebar",
+    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u043E\u0431\u044B\u0442\u0438\u044F",
+    icon: "admin-post"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: "\u041A\u0442\u043E \u044F?",
+    placeholder: "\u041A\u0442\u043E \u044F?",
+    value: postMeta.position,
+    onChange: val => updateMeta('position', val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    label: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    value: postMeta.custom_excerpt || '',
+    onChange: val => updateMeta('custom_excerpt', val),
+    rows: 12
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: "\u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u043D\u043E\u043F\u043A\u0443?",
+    checked: !!postMeta.is_button_off,
+    onChange: val => updateMeta('is_button_off', val)
+  }))));
+};
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('teachers-sidebar', {
+  render: TeachersSidebar
+});
+
+/***/ }),
+
 /***/ "./development/gutenberg/seo-panel.js":
 /*!********************************************!*\
   !*** ./development/gutenberg/seo-panel.js ***!
@@ -4371,13 +4453,15 @@ var __webpack_exports__ = {};
   \****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_types_allevents_sidebar_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post-types/allevents-sidebar.js */ "./development/gutenberg/post-types/allevents-sidebar.js");
-/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
-/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
-/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
+/* harmony import */ var _post_types_teachers_sidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post-types/teachers-sidebar.js */ "./development/gutenberg/post-types/teachers-sidebar.js");
+/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
+/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
+/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
 // add sidebar
+
 
 
 // add CEO
