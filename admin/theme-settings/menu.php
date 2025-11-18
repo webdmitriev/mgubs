@@ -40,15 +40,6 @@ function theme_settings_menu() {
     'theme_instructions_page_content'
   );
 
-  add_submenu_page(
-    'theme-settings',
-    'Color Settings',
-    'Color Settings',
-    'manage_options',
-    'theme-color-settings',
-    'theme_color_settings_page_content'
-  );
-
   // Главный пункт меню — хаб
   add_menu_page(
     'MGUBS',
@@ -98,14 +89,3 @@ add_action('admin_menu', function () {
   remove_menu_page('edit.php?post_type=thanks');
   remove_menu_page('edit.php?post_type=admissions');
 }, 999);
-
-
-// template for color-settings page
-function theme_color_settings_page_content() {
-  $template = get_template_directory() . '/admin/theme-settings/render-color/color-settings.php';
-  if (file_exists($template)) {
-    include $template;
-  } else {
-    echo '<div class="notice notice-error"><p>Template not found: ' . esc_html($template) . '</p></div>';
-  }
-}

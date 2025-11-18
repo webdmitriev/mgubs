@@ -1,9 +1,6 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-require_once get_template_directory() . '/admin/theme-settings/render-color/render-color.php';
-require_once get_template_directory() . '/admin/theme-settings/render-color/color-settings-register.php';
-
 require_once get_template_directory() . '/admin/theme-settings/menu.php';
 require_once get_template_directory() . '/admin/theme-settings/sanitize.php';
 
