@@ -27,7 +27,9 @@ require get_template_directory() . '/admin/helpers/post-types/manager/post-manag
 require get_template_directory() . '/admin/helpers/post-types/manager/meta-fields.php';
 
 require get_template_directory() . '/admin/helpers/post-types/thanks/post-thanks.php';
+
 require get_template_directory() . '/admin/helpers/post-types/admissions/post-admissions.php';
+require get_template_directory() . '/admin/helpers/post-types/admissions/meta-fields.php';
 
 /**
  * Add for head something

@@ -3,6 +3,7 @@ import './post-types/allevents-sidebar.js';
 import './post-types/teachers-sidebar.js';
 import './post-types/schoolhistory-sidebar.js';
 import './post-types/manager-sidebar.js';
+import './post-types/admissions-sidebar.js';
 
 // add CEO
 import './seo-panel.js';

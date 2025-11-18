@@ -1880,6 +1880,148 @@ registerFormatType('theme/li-format', {
 
 /***/ }),
 
+/***/ "./development/gutenberg/post-types/admissions-sidebar.js":
+/*!****************************************************************!*\
+  !*** ./development/gutenberg/post-types/admissions-sidebar.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+const AdmissionsSidebar = () => {
+  const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getCurrentPostType(), []);
+  if (postType !== 'admissions') return null;
+  const postMeta = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getEditedPostAttribute('meta') || {}, []);
+  const {
+    editPost
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)('core/editor');
+  const updateMeta = (key, value) => {
+    editPost({
+      meta: {
+        ...postMeta,
+        [key]: value
+      }
+    });
+  };
+  const fileId = postMeta.admission_file || 0;
+  const [isUploading, setIsUploading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+
+  // Получаем данные файла (если он загружен)
+  const fileData = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => fileId ? select('core').getMedia(fileId) : null, [fileId]);
+
+  // Функция загрузки файла
+  const handleUpload = () => {
+    const frame = wp.media({
+      title: 'Выберите файл',
+      button: {
+        text: 'Использовать этот файл'
+      },
+      multiple: false,
+      library: {
+        type: ['application/pdf', 'image', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'] // можно расширить
+      }
+    });
+    frame.on('select', () => {
+      const attachment = frame.state().get('selection').first().toJSON();
+      updateMeta('admission_file', attachment.id);
+    });
+    frame.open();
+  };
+
+  // Удаление файла
+  const handleRemove = () => {
+    updateMeta('admission_file', 0);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
+    target: "allevents-sidebar",
+    icon: "admin-post"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043A\u043E\u043C\u0438\u0441\u0441\u0438\u0438"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
+    name: "allevents-sidebar",
+    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u043E\u0431\u044B\u0442\u0438\u044F",
+    icon: "admin-post"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    label: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    value: postMeta.custom_excerpt || '',
+    onChange: val => updateMeta('custom_excerpt', val),
+    rows: 12
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: 24
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "\u0424\u0430\u0439\u043B (\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0430, \u0434\u043E\u0433\u043E\u0432\u043E\u0440 \u0438 \u0442.\u0434.)"), isUploading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), !fileId && !fileData && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    variant: "secondary",
+    onClick: handleUpload,
+    style: {
+      marginTop: 8
+    },
+    isBusy: isUploading
+  }, "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0444\u0430\u0439\u043B"), fileData && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: 8,
+      padding: 8,
+      border: '1px solid #e2e4e7',
+      borderRadius: 4,
+      background: '#fff'
+    }
+  }, fileData.media_type === 'image' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: fileData.source_url,
+    alt: fileData.alt_text || fileData.title?.rendered || 'Изображение',
+    style: {
+      maxWidth: '100%',
+      height: 'auto',
+      display: 'block',
+      borderRadius: 4,
+      marginBottom: 12
+    }
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      margin: '0 0 12px 0'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, console.log(fileData)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: fileData.url,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, fileData.title?.rendered || '—')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("small", {
+    style: {
+      color: '#555'
+    }
+  }, "PDF file \u2022 ", fileData.slug || '—')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: handleRemove
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0444\u0430\u0439\u043B"))))));
+};
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('admissions-sidebar', {
+  render: AdmissionsSidebar
+});
+
+/***/ }),
+
 /***/ "./development/gutenberg/post-types/allevents-sidebar.js":
 /*!***************************************************************!*\
   !*** ./development/gutenberg/post-types/allevents-sidebar.js ***!
@@ -4699,13 +4841,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_types_teachers_sidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post-types/teachers-sidebar.js */ "./development/gutenberg/post-types/teachers-sidebar.js");
 /* harmony import */ var _post_types_schoolhistory_sidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post-types/schoolhistory-sidebar.js */ "./development/gutenberg/post-types/schoolhistory-sidebar.js");
 /* harmony import */ var _post_types_manager_sidebar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post-types/manager-sidebar.js */ "./development/gutenberg/post-types/manager-sidebar.js");
-/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
-/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
-/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
+/* harmony import */ var _post_types_admissions_sidebar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./post-types/admissions-sidebar.js */ "./development/gutenberg/post-types/admissions-sidebar.js");
+/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
+/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
+/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
 // add sidebar
+
 
 
 

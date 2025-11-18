@@ -2,7 +2,6 @@
 
 // === Кастомные категории ===
 add_filter( 'block_categories_all', 'theme_register_block_categories', 10, 2 );
-add_filter( 'block_categories', 'theme_register_block_categories', 10, 2 );
 function theme_register_block_categories( $categories, $context ) {
   // не дублируем, если уже добавлены
   $has_custom = wp_list_filter( $categories, [ 'slug' => 'webdmitriev' ] );
