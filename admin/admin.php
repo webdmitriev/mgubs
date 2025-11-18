@@ -65,6 +65,12 @@ require get_template_directory() . '/admin/helpers/sitemap.php';
 
 
 /**
+ * Mediateka
+ */
+require_once get_template_directory() . '/admin/mediateka/mediateka.php';
+
+
+/**
  * Convert webp
  */
 require_once get_template_directory() . '/admin/helpers/convert-webp.php';
