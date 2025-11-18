@@ -1,4 +1,5 @@
 // add sidebar
+import './post-types/page-sidebar.js';
 import './post-types/post-sidebar.js';
 import './post-types/allevents-sidebar.js';
 import './post-types/teachers-sidebar.js';
