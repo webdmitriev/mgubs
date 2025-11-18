@@ -22,7 +22,7 @@ const SchoolHistorySidebar = () => {
   return (
     <Fragment>
       <PluginSidebarMoreMenuItem target="allevents-sidebar" icon="admin-post">
-        Настройки препод.
+        Настройки истории
       </PluginSidebarMoreMenuItem>
 
       <PluginSidebar name="allevents-sidebar" title="Настройки события" icon="admin-post">
