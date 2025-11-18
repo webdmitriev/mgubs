@@ -4,8 +4,8 @@ defined('ABSPATH') || exit;
 // Меню и подменю
 function theme_settings_menu() {
   add_menu_page(
-    'Theme Settings',
-    'Theme Settings',
+    'Настройки сайта',
+    'Настройки сайта',
     'manage_options',
     'theme-settings',
     'theme_settings_page_content',
@@ -15,11 +15,11 @@ function theme_settings_menu() {
 
   add_submenu_page(
     'theme-settings',
-    'Theme Settings',
-    'Settings',
+    'Избранные новости',
+    'Избранные новости',
     'manage_options',
-    'theme-settings',
-    'theme_settings_page_content'
+    'theme-featured-posts',
+    'theme_featured_posts_page_content'
   );
 
   add_submenu_page(
@@ -33,8 +33,8 @@ function theme_settings_menu() {
 
   add_submenu_page(
     'theme-settings',
-    'Video Instructions',
-    'Video Instructions',
+    'Инструкции',
+    'Инструкции',
     'manage_options',
     'theme-instructions',
     'theme_instructions_page_content'

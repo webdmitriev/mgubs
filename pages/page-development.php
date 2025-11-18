@@ -84,5 +84,7 @@ $image_base64 = 'data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAA
   </div>
 </section>
 
+<?php echo do_shortcode('[featured_posts]'); ?>
+
 <?php
 get_footer();

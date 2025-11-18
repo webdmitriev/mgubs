@@ -29,6 +29,11 @@ function theme_settings_sanitize($input) {
     $sanitized_input['footer_description'] = sanitize_textarea_field($input['footer_description']);
   }
 
+  // Featured posts selection
+  if (isset($input['featured_posts'])) {
+    $sanitized_input['featured_posts'] = array_map('intval', $input['featured_posts']);
+  }
+
   // Санитизация Яндекс.Метрики
   if (isset($input['yandex_metric'])) {
     $sanitized_input['yandex_metric'] = wp_kses($input['yandex_metric'], [
