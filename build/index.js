@@ -2034,6 +2034,177 @@ const AllEventsSidebar = () => {
 
 /***/ }),
 
+/***/ "./development/gutenberg/post-types/manager-sidebar.js":
+/*!*************************************************************!*\
+  !*** ./development/gutenberg/post-types/manager-sidebar.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+const ManagerSidebar = () => {
+  const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getCurrentPostType(), []);
+  if (postType !== 'manager') return null;
+  const postMeta = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getEditedPostAttribute('meta') || {}, []);
+  const {
+    editPost
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)('core/editor');
+  const updateMeta = (key, value) => {
+    editPost({
+      meta: {
+        ...postMeta,
+        [key]: value
+      }
+    });
+  };
+
+  // Функции для работы с повторяющимся полем - phone
+  const addPhoneItem = () => {
+    const currentPhone = postMeta.phone || [];
+    updateMeta('phone', [...currentPhone, '']);
+  };
+  const updatePhoneItem = (index, value) => {
+    const currentPhone = postMeta.phone || [];
+    const newPhone = [...currentPhone];
+    newPhone[index] = value;
+    updateMeta('phone', newPhone);
+  };
+  const removePhoneItem = index => {
+    const currentPhone = postMeta.phone || [];
+    const newPhone = currentPhone.filter((_, i) => i !== index);
+    updateMeta('phone', newPhone);
+  };
+  const phoneItems = postMeta.phone || [];
+
+  // Функции для работы с повторяющимся полем - email
+  const addEmailItem = () => {
+    const currentEmail = postMeta.email || [];
+    updateMeta('email', [...currentEmail, '']);
+  };
+  const updateEmailItem = (index, value) => {
+    const currentEmail = postMeta.email || [];
+    const newEmail = [...currentEmail];
+    newEmail[index] = value;
+    updateMeta('email', newEmail);
+  };
+  const removeEmailItem = index => {
+    const currentEmail = postMeta.email || [];
+    const newEmail = currentEmail.filter((_, i) => i !== index);
+    updateMeta('email', newEmail);
+  };
+  const emailItems = postMeta.email || [];
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
+    target: "manager-sidebar",
+    icon: "admin-post"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
+    name: "manager-sidebar",
+    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440",
+    icon: "admin-post"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: "\u0414\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C",
+    placeholder: "\u0414\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C",
+    value: postMeta.role,
+    onChange: val => updateMeta('role', val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      marginBottom: '16px'
+    }
+  }, "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 \u0442\u0435\u043B\u0435\u0444\u043E\u043D(\u044B)"), phoneItems.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+    key: index,
+    direction: "column",
+    style: {
+      marginBottom: '8px',
+      padding: '12px',
+      border: '1px solid #ddd',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: `Телефон: ${index + 1}`,
+    value: item,
+    onChange: val => updatePhoneItem(index, val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isDestructive: true,
+    variant: "secondary",
+    onClick: () => removePhoneItem(index)
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    variant: "primary",
+    onClick: addPhoneItem,
+    style: {
+      width: '100%'
+    }
+  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0443\u043D\u043A\u0442")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "Email",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      marginBottom: '16px'
+    }
+  }, "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 emails"), emailItems.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+    key: index,
+    direction: "column",
+    style: {
+      marginBottom: '8px',
+      padding: '12px',
+      border: '1px solid #ddd',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: `Email: ${index + 1}`,
+    value: item,
+    onChange: val => updateEmailItem(index, val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isDestructive: true,
+    variant: "secondary",
+    onClick: () => removeEmailItem(index)
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    variant: "primary",
+    onClick: addEmailItem,
+    style: {
+      width: '100%'
+    }
+  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0443\u043D\u043A\u0442"))));
+};
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('manager-sidebar', {
+  render: ManagerSidebar
+});
+
+/***/ }),
+
 /***/ "./development/gutenberg/post-types/schoolhistory-sidebar.js":
 /*!*******************************************************************!*\
   !*** ./development/gutenberg/post-types/schoolhistory-sidebar.js ***!
@@ -4527,13 +4698,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_types_allevents_sidebar_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post-types/allevents-sidebar.js */ "./development/gutenberg/post-types/allevents-sidebar.js");
 /* harmony import */ var _post_types_teachers_sidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post-types/teachers-sidebar.js */ "./development/gutenberg/post-types/teachers-sidebar.js");
 /* harmony import */ var _post_types_schoolhistory_sidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post-types/schoolhistory-sidebar.js */ "./development/gutenberg/post-types/schoolhistory-sidebar.js");
-/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
-/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
-/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
+/* harmony import */ var _post_types_manager_sidebar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post-types/manager-sidebar.js */ "./development/gutenberg/post-types/manager-sidebar.js");
+/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
+/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
+/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
 // add sidebar
+
 
 
 
