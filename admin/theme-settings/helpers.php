@@ -2,18 +2,13 @@
 
 defined('ABSPATH') || exit;
 
-// Получение данных из опций
-function get_theme_phone() {
+// Получение данных социальных сетей из опций
+function get_theme_social() {
   $settings = get_option('theme_settings', []);
-  return $settings['contact_info']['phone'] ?? '';
+  return $settings['social'] ?? [];
 }
 
-function get_theme_email() {
-  $settings = get_option('theme_settings', []);
-  return $settings['contact_info']['email'] ?? '';
-}
-
-function get_theme_partners() {
-  $settings = get_option('theme_settings', []);
-  return $settings['partners'] ?? [];
+function get_footer_description() {
+  $options = get_option('theme_settings');
+  return $options['footer_description'] ?? '';
 }

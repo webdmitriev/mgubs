@@ -1,5 +1,5 @@
 <?php
-
+// admin/theme-settings/sanitize.php
 defined('ABSPATH') || exit;
 
 // Регистрация и санитизация
@@ -11,25 +11,22 @@ add_action('admin_init', 'theme_settings_init');
 function theme_settings_sanitize($input) {
   $sanitized_input = [];
 
-  // Санитизация контактной информации
-  if (isset($input['contact_info'])) {
-    $sanitized_input['contact_info'] = [
-      'phone' => sanitize_text_field($input['contact_info']['phone']),
-      'email' => sanitize_email($input['contact_info']['email']),
-    ];
-  }
-
-  // Санитизация партнеров
-  if (isset($input['partners'])) {
-    $sanitized_input['partners'] = [];
-    foreach ($input['partners'] as $partner) {
-      if (!empty($partner['text'])) {
-        $sanitized_input['partners'][] = [
-          'text' => sanitize_text_field($partner['text']),
-          'link' => esc_url_raw($partner['link']),
+  // 🧩 Социальные сети
+  if (isset($input['social'])) {
+    $sanitized_input['social'] = [];
+    foreach ($input['social'] as $social) {
+      if (!empty($social['icon']) && !empty($social['link'])) {
+        $sanitized_input['social'][] = [
+          'icon' => sanitize_text_field($social['icon']),
+          'link' => esc_url_raw($social['link']),
         ];
       }
     }
+  }
+
+  // Санитизация текстовых полей (footer_description)
+  if (isset($input['footer_description'])) {
+    $sanitized_input['footer_description'] = sanitize_textarea_field($input['footer_description']);
   }
 
   // Санитизация Яндекс.Метрики
