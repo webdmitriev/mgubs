@@ -10,6 +10,8 @@ add_filter('show_admin_bar', '__return_false');
 /**
  * Post types
  */
+require get_template_directory() . '/admin/helpers/post-types/post/meta-fields.php';
+
 require get_template_directory() . '/admin/helpers/post-types/allevents/post-allevents.php';
 require get_template_directory() . '/admin/helpers/post-types/allevents/post-taxonomy.php';
 require get_template_directory() . '/admin/helpers/post-types/allevents/meta-fields.php';

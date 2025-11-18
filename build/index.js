@@ -2347,6 +2347,93 @@ const ManagerSidebar = () => {
 
 /***/ }),
 
+/***/ "./development/gutenberg/post-types/post-sidebar.js":
+/*!**********************************************************!*\
+  !*** ./development/gutenberg/post-types/post-sidebar.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/DateTimePicker.js */ "./development/gutenberg/components/DateTimePicker.js");
+
+
+
+
+
+
+
+const PostSidebar = () => {
+  const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getCurrentPostType(), []);
+  if (postType !== 'post') return null;
+  const postMeta = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getEditedPostAttribute('meta') || {}, []);
+  const {
+    editPost
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)('core/editor');
+  const updateMeta = (key, value) => {
+    editPost({
+      meta: {
+        ...postMeta,
+        [key]: value
+      }
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
+    target: "post-sidebar",
+    icon: "admin-post"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u043E\u0441\u0442\u0430"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
+    name: "post-sidebar",
+    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u043E\u0441\u0442\u0430",
+    icon: "admin-post"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_6__.DateOnlyPicker, {
+    label: "\u0414\u0430\u0442\u0430",
+    value: postMeta.date_start,
+    onChange: d => updateMeta('date_start', d)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    label: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    value: postMeta.custom_excerpt || '',
+    onChange: val => updateMeta('custom_excerpt', val),
+    rows: 12
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: "\u041B\u043E\u0433\u043E\u0442\u0438\u043F \u043F\u043E\u0432\u0435\u0440\u0445 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0438?",
+    checked: !!postMeta.is_logotype,
+    onChange: val => updateMeta('is_logotype', val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: "\u0421\u043F\u0435\u0446 \u043B\u043E\u0433\u043E\u0442\u0438\u043F \u043F\u043E\u0432\u0435\u0440\u0445 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0438?",
+    checked: !!postMeta.is_logotype_special,
+    onChange: val => updateMeta('is_logotype_special', val)
+  }))));
+};
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('post-sidebar', {
+  render: PostSidebar
+});
+
+/***/ }),
+
 /***/ "./development/gutenberg/post-types/schoolhistory-sidebar.js":
 /*!*******************************************************************!*\
   !*** ./development/gutenberg/post-types/schoolhistory-sidebar.js ***!
@@ -4837,18 +4924,20 @@ var __webpack_exports__ = {};
   !*** ./development/gutenberg/index.js ***!
   \****************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _post_types_allevents_sidebar_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post-types/allevents-sidebar.js */ "./development/gutenberg/post-types/allevents-sidebar.js");
-/* harmony import */ var _post_types_teachers_sidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post-types/teachers-sidebar.js */ "./development/gutenberg/post-types/teachers-sidebar.js");
-/* harmony import */ var _post_types_schoolhistory_sidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post-types/schoolhistory-sidebar.js */ "./development/gutenberg/post-types/schoolhistory-sidebar.js");
-/* harmony import */ var _post_types_manager_sidebar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post-types/manager-sidebar.js */ "./development/gutenberg/post-types/manager-sidebar.js");
-/* harmony import */ var _post_types_admissions_sidebar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./post-types/admissions-sidebar.js */ "./development/gutenberg/post-types/admissions-sidebar.js");
-/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
-/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
-/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
+/* harmony import */ var _post_types_post_sidebar_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post-types/post-sidebar.js */ "./development/gutenberg/post-types/post-sidebar.js");
+/* harmony import */ var _post_types_allevents_sidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post-types/allevents-sidebar.js */ "./development/gutenberg/post-types/allevents-sidebar.js");
+/* harmony import */ var _post_types_teachers_sidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post-types/teachers-sidebar.js */ "./development/gutenberg/post-types/teachers-sidebar.js");
+/* harmony import */ var _post_types_schoolhistory_sidebar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post-types/schoolhistory-sidebar.js */ "./development/gutenberg/post-types/schoolhistory-sidebar.js");
+/* harmony import */ var _post_types_manager_sidebar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./post-types/manager-sidebar.js */ "./development/gutenberg/post-types/manager-sidebar.js");
+/* harmony import */ var _post_types_admissions_sidebar_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./post-types/admissions-sidebar.js */ "./development/gutenberg/post-types/admissions-sidebar.js");
+/* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
+/* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
+/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _blocks_mgu_main_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/mgu-main/index.js */ "./development/gutenberg/blocks/mgu-main/index.js");
+/* harmony import */ var _blocks_mgu_advantages_index_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./blocks/mgu-advantages/index.js */ "./development/gutenberg/blocks/mgu-advantages/index.js");
 // add sidebar
+
 
 
 
