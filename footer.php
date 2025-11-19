@@ -12,7 +12,7 @@
 $url = get_template_directory_uri();
 
 ?>
-<div style="display: block; width: 100%; height: 400px;"></div>
+		<div style="display: block; width: 100%; height: 400px;"></div>
 
 		<footer class="footer" style="display: none;">
 			<div class="container">

@@ -149,7 +149,7 @@ function webdmitriev_scripts() {
   wp_register_script('jquery', get_template_directory_uri() . '/assets/css-js/jquery-3.6.1.min.js', false, null, false);
   wp_enqueue_script('jquery');
 
-	wp_enqueue_script( 'webdmitriev-js', get_template_directory_uri() . '/assets/css-js/app.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'webdmitriev-js', get_template_directory_uri() . '/assets/css-js/app.js', array(), _S_VERSION, false );
 
 	wp_enqueue_script( 'webdmitriev-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 

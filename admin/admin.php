@@ -42,8 +42,10 @@ require_once get_template_directory() . '/admin/helpers/add-to-head.php';
 
 /**
  * Shortcode cf7
+ * [honeypot spamcheck]
  */
 require_once get_template_directory() . '/admin/helpers/cf7.php';
+require_once get_template_directory() . '/admin/helpers/cf7/cf7-honeypot.php';
 
 
 /**
