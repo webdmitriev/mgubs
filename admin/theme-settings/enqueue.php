@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 
 // Стили админки
 function theme_settings_enqueue_admin_styles($hook) {
-  if ($hook !== 'toplevel_page_theme-settings') return;
+  // if ($hook !== 'toplevel_page_theme-settings') return;
 
   wp_enqueue_style(
     'theme-settings-css',
