@@ -1,7 +1,7 @@
 
 /* app.js */
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('start');
+  console.log('webdmitriev');
 
   // ******
   // header
@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   // Находим все honeypot поля
-  console.log('www');
-  const honeypots = document.querySelectorAll('.cf7-honeypot-field');
-  console.log(honeypots);
+  // console.log('www');
+  // const honeypots = document.querySelectorAll('.cf7-honeypot-field');
+  // console.log(honeypots);
 
-  honeypots.forEach(field => {
-    // Устанавливаем тестовое значение
-    field.value = "TEST_BOT";
+  // honeypots.forEach(field => {
+  //   // Устанавливаем тестовое значение
+  //   field.value = "TEST_BOT";
 
-    // Логируем в консоль для проверки
-    console.log("Honeypot field filled for test:", field.name, "value:", field.value);
-  });
+  //   // Логируем в консоль для проверки
+  //   console.log("Honeypot field filled for test:", field.name, "value:", field.value);
+  // });
 })
 
