@@ -1,13 +1,13 @@
 // Variables
 :root {
-  --dark-color: #000000;
-  --white-color: #ffffff;
+  // --dark-color: #000000;
+  // --white-color: #ffffff;
 
-  --accent-color: #fe6d35;
-  --black-color: #171717;
-  --gray-color: #808080;
-  --bg-color: #eff1f3;
-  --form-bg: #f0f0f0;
+  // --accent-color: #fe6d35;
+  // --black-color: #171717;
+  // --gray-color: #808080;
+  // --bg-color: #eff1f3;
+  // --form-bg: #f0f0f0;
 
   --gradient-color: linear-gradient(45deg, #4481eb 0%, #04befe 100%);
 
@@ -33,8 +33,8 @@ body {
   font-weight: var(--font-weight);
   font-size: var(--font-size);
   line-height: var(--font-height);
-  color: var(--black-color);
-  background-color: var(--bg-color);
+  color: var(--accent-color);
+  background-color: var(--bgc-color);
 }
 
 #app {

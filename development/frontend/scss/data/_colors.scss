@@ -1,0 +1,68 @@
+body {
+  --accent-color: #fe6d35;
+  --bgc-color: #f8efea;
+
+  --black-color: #222222;
+  --white-color: #ffffff;
+  --gray-color: #c4c4c4;
+}
+
+body.masters-degree:not(.theme-dark) {
+  --accent-color: #002b2a;
+  --bgc-color: #f1f1f1;
+}
+
+body.bachelors-degree:not(.theme-dark) {
+  --accent-color: #26a3d1;
+  --bgc-color: #eaf1f4;
+}
+
+body.universiade:not(.theme-dark) {
+  --accent-color: #cf8500;
+  --bgc-color: #f6f2ea;
+}
+body.emba:not(.theme-dark) {
+  --accent-color: #6d0916;
+  --bgc-color: #ffebeb;
+}
+body.vertical:not(.theme-dark) {
+  --accent-color: #ff5f21;
+  --bgc-color: #f9efea;
+}
+body.association:not(.theme-dark) {
+  --accent-color: #b50035;
+  --bgc-color: #f3e8ee;
+}
+body.school-of-moderators:not(.theme-dark) {
+  --accent-color: #01a781;
+  --bgc-color: #f0faf8;
+}
+body.chines:not(.theme-dark) {
+  --accent-color: #006023;
+  --bgc-color: #edfff4;
+}
+body.corporate-training:not(.theme-dark) {
+  --accent-color: #4f2299;
+  --bgc-color: #f6f4fa;
+}
+body.mba:not(.theme-dark) {
+  --accent-color: #003760;
+  --bgc-color: #edf1f4;
+}
+body.doing-busines:not(.theme-dark) {
+  --accent-color: #006e99;
+  --bgc-color: #edeff0;
+}
+body.negotiation:not(.theme-dark) {
+  --accent-color: #bf8ba1;
+  --bgc-color: #f6edef;
+}
+body.humanitarian-track:not(.theme-dark) {
+  --accent-color: #ab8dc1;
+  --bgc-color: #f6edef;
+}
+
+body.theme-dark {
+  --accent-color: #333333;
+  --bgc-color: #ffffff;
+}
