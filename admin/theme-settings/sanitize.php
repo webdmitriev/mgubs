@@ -33,6 +33,11 @@ function theme_settings_sanitize($input) {
     $sanitized_input['footer_description'] = sanitize_textarea_field($input['footer_description']);
   }
 
+  // Образовательная программа для футера
+  if (isset($input['footer_edu_program'])) {
+    $sanitized_input['footer_edu_program'] = sanitize_text_field($input['footer_edu_program']);
+  }
+
   // Яндекс.Метрика
   if (isset($input['yandex_metric'])) {
     $sanitized_input['yandex_metric'] = wp_kses($input['yandex_metric'], [

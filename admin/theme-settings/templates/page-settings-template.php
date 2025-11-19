@@ -49,6 +49,30 @@ if (!defined('ABSPATH')) exit;
       ><?php echo esc_textarea(get_option('theme_settings')['footer_description'] ?? ''); ?></textarea>
     </div>
 
+    <h2>Образовательные программы для footer</h2>
+    <div class="block-full">
+      <?php
+        $options = get_option('theme_settings');
+        $selected_program = $options['footer_edu_program'] ?? '';
+      ?>
+      <select name="theme_settings[footer_edu_program]">
+        <option value="">Выберите программу</option>
+        <option value="all" <?php selected($selected_program, 'all'); ?>>Все</option>
+        <option value="main" <?php selected($selected_program, 'main'); ?>>Главная</option>
+        <option value="magistrature" <?php selected($selected_program, 'magistrature'); ?>>Магистратура</option>
+        <option value="bachelor" <?php selected($selected_program, 'bachelor'); ?>>Бакалавриат</option>
+        <option value="students" <?php selected($selected_program, 'students'); ?>>Студентам</option>
+        <option value="international" <?php selected($selected_program, 'international'); ?>>Международный отдел</option>
+        <option value="dpo" <?php selected($selected_program, 'dpo'); ?>>ДПО</option>
+        <option value="db" <?php selected($selected_program, 'db'); ?>>DB</option>
+      </select>
+    </div>
+
+    <!--
+      $options = get_option('theme_settings');
+      $program = $options['footer_edu_program'] ?? '';
+    -->
+
     <?php submit_button(); ?>
   </form>
 </div>
