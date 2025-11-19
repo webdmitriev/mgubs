@@ -12,10 +12,10 @@
   --gradient-color: linear-gradient(45deg, #4481eb 0%, #04befe 100%);
 
   --underline-intrinsic-width: 8;
-  --underline-width: 12;
+  --underline-width: 8;
   --underline-color: #fe6d35;
   --underline-cap-width: 4px;
-  --underline-offset-y: 5px;
+  --underline-offset-y: -3px;
   --underline-padding-x: 0.12em;
 
   --container: 1268px;
@@ -33,7 +33,7 @@ body {
   font-weight: var(--font-weight);
   font-size: var(--font-size);
   line-height: var(--font-height);
-  color: var(--accent-color);
+  color: var(--black-color);
   background-color: var(--bgc-color);
 }
 

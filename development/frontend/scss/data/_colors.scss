@@ -5,64 +5,104 @@ body {
   --black-color: #222222;
   --white-color: #ffffff;
   --gray-color: #c4c4c4;
+
+  --theme-dark-bg: transparent;
+
+  --underline-color: #fe6d35;
 }
 
 body.masters-degree:not(.theme-dark) {
   --accent-color: #002b2a;
   --bgc-color: #f1f1f1;
+
+  --underline-color: #002b2a;
 }
 
 body.bachelors-degree:not(.theme-dark) {
   --accent-color: #26a3d1;
   --bgc-color: #eaf1f4;
+
+  --underline-color: #26a3d1;
 }
 
 body.universiade:not(.theme-dark) {
   --accent-color: #cf8500;
   --bgc-color: #f6f2ea;
+
+  --underline-color: #cf8500;
 }
 body.emba:not(.theme-dark) {
   --accent-color: #6d0916;
   --bgc-color: #ffebeb;
+
+  --underline-color: #6d0916;
 }
 body.vertical:not(.theme-dark) {
   --accent-color: #ff5f21;
   --bgc-color: #f9efea;
+
+  --underline-color: #ff5f21;
 }
 body.association:not(.theme-dark) {
   --accent-color: #b50035;
   --bgc-color: #f3e8ee;
+
+  --underline-color: #b50035;
 }
 body.school-of-moderators:not(.theme-dark) {
   --accent-color: #01a781;
   --bgc-color: #f0faf8;
+
+  --underline-color: #01a781;
 }
 body.chines:not(.theme-dark) {
   --accent-color: #006023;
   --bgc-color: #edfff4;
+
+  --underline-color: #006023;
 }
 body.corporate-training:not(.theme-dark) {
   --accent-color: #4f2299;
   --bgc-color: #f6f4fa;
+
+  --underline-color: #4f2299;
 }
 body.mba:not(.theme-dark) {
   --accent-color: #003760;
   --bgc-color: #edf1f4;
+
+  --underline-color: #003760;
 }
 body.doing-busines:not(.theme-dark) {
   --accent-color: #006e99;
   --bgc-color: #edeff0;
+
+  --underline-color: #006e99;
 }
 body.negotiation:not(.theme-dark) {
   --accent-color: #bf8ba1;
   --bgc-color: #f6edef;
+
+  --underline-color: #bf8ba1;
 }
 body.humanitarian-track:not(.theme-dark) {
   --accent-color: #ab8dc1;
   --bgc-color: #f6edef;
+
+  --underline-color: #ab8dc1;
 }
 
 body.theme-dark {
   --accent-color: #333333;
   --bgc-color: #ffffff;
+
+  --theme-dark-bg: #c4c4c4;
+
+  --underline-color: #333333;
+}
+
+body.theme-dark {
+  img {
+    opacity: 0;
+  }
 }

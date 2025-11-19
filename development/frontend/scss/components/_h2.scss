@@ -10,6 +10,7 @@
   font-weight: 700;
   font-size: 28px;
   line-height: 1.4;
+  color: var(--black-color);
 
   --underline-width-scale: calc(var(--underline-width) / var(--underline-intrinsic-width));
   padding: 0 calc(var(--underline-padding-x) + calc(var(--underline-cap-width) * var(--underline-width-scale)));
