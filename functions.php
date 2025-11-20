@@ -47,13 +47,15 @@ function webdmitriev_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'webdmitriev' ),
-			'lang-menu' => esc_html__( 'En menu', 'webdmitriev' ),
-			'footer-menu' => esc_html__( 'Footer menu', 'webdmitriev' ),
-		)
-	);
+		register_nav_menus(
+			array(
+				'header-menu-01' => esc_html__( 'Header menu 1', 'webdmitriev' ),
+				'header-menu-02' => esc_html__( 'Header menu 2', 'webdmitriev' ),
+				'header-menu-03' => esc_html__( 'Header menu 3', 'webdmitriev' ),
+				'navigation-menu' => esc_html__( 'Navigation menu', 'webdmitriev' ),
+				'educational-programs-menu' => esc_html__( 'Educational programs menu', 'webdmitriev' ),
+			)
+		);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -149,7 +151,19 @@ function webdmitriev_scripts() {
   wp_register_script('jquery', get_template_directory_uri() . '/assets/css-js/jquery-3.6.1.min.js', false, null, false);
   wp_enqueue_script('jquery');
 
-	wp_enqueue_script( 'webdmitriev-js', get_template_directory_uri() . '/assets/css-js/app.js', array(), _S_VERSION, false );
+	// wp_enqueue_script( 'webdmitriev-js', get_template_directory_uri() . '/assets/css-js/app.js', array(), _S_VERSION, true );
+
+	wp_enqueue_script(
+			'search-form',
+			get_template_directory_uri() . '/assets/css-js/app.js',
+			[], _S_VERSION, true
+	);
+
+	wp_localize_script('search-form', 'NewsSearchData', [
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('news_search_nonce')
+	]);
+
 
 	wp_enqueue_script( 'webdmitriev-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 

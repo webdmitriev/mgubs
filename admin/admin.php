@@ -49,6 +49,12 @@ require_once get_template_directory() . '/admin/helpers/cf7/cf7-honeypot.php';
 
 
 /**
+ * Search form
+ */
+require get_template_directory() . '/admin/helpers/search-form.php';
+
+
+/**
  * SEO
  */
 require get_template_directory() . '/admin/helpers/seo-meta.php';

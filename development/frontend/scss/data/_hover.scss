@@ -1,6 +1,20 @@
 @media (hover: hover) and (pointer: fine) {
   // ******
   // header
+  .header-popup .header-popup__content .header-menu .menu-item a:hover {
+    color: var(--accent-color);
+    &:before,
+    &:after {
+      background-color: var(--accent-color);
+    }
+  }
+  .header-popup .header-popup__content .header-menu .sub-menu .menu-item:hover {
+    border-left-color: var(--accent-color);
+  }
+
+  .header-popup .header-popup__content .header-popup__content-top .ajax-search .search-result-item:hover {
+    border-left-color: var(--accent-color);
+  }
 
   // **********
   // components

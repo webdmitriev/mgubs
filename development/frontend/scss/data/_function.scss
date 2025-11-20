@@ -35,6 +35,9 @@ body {
   line-height: var(--font-height);
   color: var(--black-color);
   background-color: var(--bgc-color);
+  &.overflow {
+    overflow: hidden;
+  }
 }
 
 #app {

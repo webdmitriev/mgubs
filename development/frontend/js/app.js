@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('webdmitriev');
 
-  // ******
-  // header
-  $(".header").on("click", ".burger", function () {
-    $(this).toggleClass("active")
-  })
-
   // Находим все honeypot поля
   // console.log('www');
   // const honeypots = document.querySelectorAll('.cf7-honeypot-field');
