@@ -40,7 +40,7 @@ $url = get_template_directory_uri();
 
 		<header class="header">
 			<div class="container df-sp-ce">
-				<a href="<?php echo get_home_url( null, '/' ); ?>" class="logotype"><img width="200" src="https://mgubs.ru/wp-content/themes/webdmitriev-mgu/assets/img/mgu-logotype.svg" alt="MGU" /></a>
+				<a href="<?php echo get_home_url( null, '/' ); ?>" class="logotype"><img width="200" src="<?= get_theme_logo() ? get_theme_logo() : 'data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='; ?>" alt="MGU" /></a>
 				<button class="burger"><span></span></button>
 			</div>
 		</header>

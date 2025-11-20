@@ -49,6 +49,8 @@ if (!defined('ABSPATH')) exit;
       ><?php echo esc_textarea(get_option('theme_settings')['footer_description'] ?? ''); ?></textarea>
     </div>
 
+    <hr />
+
     <h2>Образовательные программы для footer</h2>
     <div class="block-full">
       <?php
@@ -72,6 +74,37 @@ if (!defined('ABSPATH')) exit;
       $options = get_option('theme_settings');
       $program = $options['footer_edu_program'] ?? '';
     -->
+
+    <hr />
+
+    <h2>Логотип сайта</h2>
+    <div class="block-full">
+      <?php
+        $options = get_option('theme_settings');
+        $logo_id = $options['site_logo'] ?? '';
+        $logo_url = $logo_id ? wp_get_attachment_url($logo_id) : '';
+      ?>
+
+      <div style="margin-bottom: 10px;">
+        <?php if ($logo_url): ?>
+          <img id="logo_preview" src="<?php echo esc_url($logo_url); ?>" alt="Логотип" style="width:180px;height:40px;">
+        <?php else: ?>
+          <img id="logo_preview" src="" alt="Логотип" style="width:180px;height:40px;display:none;">
+        <?php endif; ?>
+      </div>
+
+      <input type="hidden" name="theme_settings[site_logo]" id="site_logo" value="<?php echo esc_attr($logo_id); ?>">
+
+      <button type="button" class="button" id="upload_logo_button">Загрузить логотип</button>
+      <button type="button" class="button" id="remove_logo_button">Удалить</button>
+
+      <script>
+
+      </script>
+    </div>
+
+    <hr />
+
 
     <?php submit_button(); ?>
   </form>

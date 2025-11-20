@@ -38,6 +38,12 @@ function theme_settings_sanitize($input) {
     $sanitized_input['footer_edu_program'] = sanitize_text_field($input['footer_edu_program']);
   }
 
+  // Логотип
+  if (isset($input['site_logo'])) {
+    $sanitized_input['site_logo'] = intval($input['site_logo']);
+  }
+
+
   // Яндекс.Метрика
   if (isset($input['yandex_metric'])) {
     $sanitized_input['yandex_metric'] = wp_kses($input['yandex_metric'], [
