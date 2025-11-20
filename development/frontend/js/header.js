@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  $('body').on('click', '.close-popup', function () {
+  $('body').on('click', '.close-popup, .overlay', function () {
     $('body').removeClass('overflow')
 
     $('.overlay').removeClass('active')
