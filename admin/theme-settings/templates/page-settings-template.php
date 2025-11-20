@@ -70,11 +70,6 @@ if (!defined('ABSPATH')) exit;
       </select>
     </div>
 
-    <!--
-      $options = get_option('theme_settings');
-      $program = $options['footer_edu_program'] ?? '';
-    -->
-
     <hr />
 
     <h2>Логотип сайта</h2>
@@ -97,10 +92,6 @@ if (!defined('ABSPATH')) exit;
 
       <button type="button" class="button" id="upload_logo_button">Загрузить логотип</button>
       <button type="button" class="button" id="remove_logo_button">Удалить</button>
-
-      <script>
-
-      </script>
     </div>
 
     <hr />
