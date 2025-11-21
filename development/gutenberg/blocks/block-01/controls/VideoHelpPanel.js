@@ -8,7 +8,7 @@ const VideoHelpPanel = () => {
 
   return (
     <>
-      <PanelBody title={__('Instructions', 'theme')} initialOpen={true}>
+      <PanelBody title={__('Instructions', 'theme')} initialOpen={false}>
         <p>
           {__('Video instructions.', 'theme')}
         </p>

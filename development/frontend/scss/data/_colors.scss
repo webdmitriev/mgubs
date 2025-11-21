@@ -99,4 +99,9 @@ html.theme-dark {
   --theme-dark-bg: #c4c4c4;
 
   --underline-color: #333333;
+
+  img {
+    transition: all 0.4s ease;
+    filter: grayscale(1);
+  }
 }

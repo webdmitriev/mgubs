@@ -13,7 +13,7 @@ import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, second_title, description, imageUrl, imageId, bgUrl, bgId } = attributes;
+  const { title, isBlockLine, second_title, description, imageData, imageId, bgData, bgId } = attributes;
 
   const [isPreview, setIsPreview] = useState(true);
 
@@ -28,25 +28,63 @@ const Edit = ({ attributes, setAttributes }) => {
   // Handler - image
   const onSelectImage = (media) => {
     setAttributes({
-      imageUrl: media.url,
       imageId: media.id,
+      imageData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        }
+      }
     });
   };
 
   const onRemoveImage = () => {
-    setAttributes({ imageUrl: '', imageId: 0 });
+    setAttributes({
+      imageId: 0,
+      imageData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        }
+      }
+    });
   };
 
   // Handler - bg
   const onSelectBg = (media) => {
     setAttributes({
-      bgUrl: media.url,
       bgId: media.id,
+      bgData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        }
+      }
     });
   };
 
   const onRemoveBg = () => {
-    setAttributes({ bgUrl: '', bgId: 0 });
+    setAttributes({
+      bgId: 0,
+      bgData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        }
+      }
+    });
   };
 
   return (
@@ -88,6 +126,15 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
 
                 <>
+                  <label htmlFor="rich-title" className="my-rich-text__label">Линия между блоками</label>
+                  <ToggleControl
+                    label={isBlockLine ? __('Убрать линию ❌', 'theme') : __('Добавить линию ✅', 'theme')}
+                    checked={isBlockLine}
+                    onChange={(value) => setAttributes({ isBlockLine: value })}
+                  />
+                </>
+
+                <>
                   <label htmlFor="rich-second_title" className="my-rich-text__label">Второй заголовок</label>
                   <RichText
                     id="rich-second_title"
@@ -121,10 +168,10 @@ const Edit = ({ attributes, setAttributes }) => {
                   render={({ open }) => (
                     <div className="advanced-block-image advanced-block-image-48">
                       <div className="label-image">Картинка (куб)</div>
-                      {imageUrl ? (
+                      {imageData.url ? (
                         <>
                           <img
-                            src={imageUrl}
+                            src={imageData.url}
                             className="advanced-image-preview"
                             alt=""
                             style={{ borderRadius: '8px' }}
@@ -161,10 +208,10 @@ const Edit = ({ attributes, setAttributes }) => {
                   render={({ open }) => (
                     <div className="advanced-block-image advanced-block-image-48">
                       <div className="label-image">Картинка (фон)</div>
-                      {bgUrl ? (
+                      {bgData.url ? (
                         <>
                           <img
-                            src={bgUrl}
+                            src={bgData.url}
                             className="advanced-image-preview"
                             alt=""
                             style={{ borderRadius: '8px' }}

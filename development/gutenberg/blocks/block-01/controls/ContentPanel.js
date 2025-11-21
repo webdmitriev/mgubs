@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { useTypograf } from '../../../utils/useTypograf';
 
 const ContentPanel = ({ attributes, setAttributes }) => {
-  const { title, second_title, description, imageUrl, imageId, bgUrl, bgId } = attributes;
+  const { title, second_title, description } = attributes;
 
   const { typographField, typographAllFields } = useTypograf(attributes, setAttributes, [
     'title',
@@ -14,7 +14,7 @@ const ContentPanel = ({ attributes, setAttributes }) => {
   const hasTextToTypograph = title || second_title || description;
 
   return (
-    <PanelBody title={__('Типограф', 'theme')} initialOpen={true}>
+    <PanelBody title={__('Типограф', 'theme')} initialOpen={false}>
       {hasTextToTypograph && (
         <div style={{ marginBottom: '20px', padding: '10px', background: '#f6f7f7', borderRadius: '4px' }}>
           <Flex direction="column" gap="10px">
