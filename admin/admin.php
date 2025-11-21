@@ -17,6 +17,7 @@ require get_template_directory() . '/admin/helpers/post-types/allevents/post-all
 require get_template_directory() . '/admin/helpers/post-types/allevents/post-taxonomy.php';
 require get_template_directory() . '/admin/helpers/post-types/allevents/meta-fields.php';
 require get_template_directory() . '/admin/helpers/post-types/allevents/thumbnail-column.php';
+require get_template_directory() . '/admin/helpers/post-types/allevents/post-helper.php';
 
 require get_template_directory() . '/admin/helpers/post-types/teachers/post-teachers.php';
 require get_template_directory() . '/admin/helpers/post-types/teachers/meta-fields.php';
@@ -33,6 +34,13 @@ require get_template_directory() . '/admin/helpers/post-types/thanks/post-thanks
 
 require get_template_directory() . '/admin/helpers/post-types/admissions/post-admissions.php';
 require get_template_directory() . '/admin/helpers/post-types/admissions/meta-fields.php';
+
+
+/**
+ * Format date Russian
+ */
+require_once get_template_directory() . '/admin/helpers/format-date-russian.php';
+
 
 /**
  * Add for head something

@@ -16,6 +16,16 @@
     border-left-color: var(--accent-color);
   }
 
+  // ******
+  // footer
+  .footer .footer-menu .menu-item a:hover,
+  .footer .footer-block .program-item:hover .program-item__content .program-item__title {
+    text-decoration: underline;
+  }
+  .footer .footer-socials .footer-social:hover {
+    box-shadow: 0px 0px 14px 0px rgba(255, 255, 255, 0.7);
+  }
+
   // **********
   // components
 }
