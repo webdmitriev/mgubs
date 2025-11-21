@@ -31,8 +31,7 @@ add_filter( 'allowed_block_types_all', 'theme_allowed_blocks', 10, 2 );
 function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
   // перечисли только свои блоки по namespace
   return [
-    'theme/main-block',
-    'theme/mgu-advantages',
+    'theme/block-01',
     'core/paragraph',
     'core/list',
     'core/list-item',

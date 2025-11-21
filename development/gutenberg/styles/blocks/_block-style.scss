@@ -1,0 +1,91 @@
+.block-style {
+  padding: 12px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &.is-selected {
+    border-color: #222222;
+    background-color: rgba(0, 124, 186, 0.05);
+  }
+
+  .advanced-block {
+    display: block;
+    width: 100%;
+    .block-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 4px 12px;
+      background-color: rgba(0, 124, 186, 0.25);
+      border-radius: 8px;
+      box-sizing: border-box;
+      .block-info-title {
+        display: block;
+        width: 100%;
+        max-width: calc(100% - 250px);
+      }
+      .components-base-control.components-toggle-control {
+        display: block;
+        width: 100%;
+        max-width: 240px;
+        margin-bottom: 0;
+        [data-wp-component="HStack"] {
+          justify-content: flex-end;
+          label {
+            max-width: max-content;
+          }
+        }
+      }
+    }
+    .my-rich-text__label {
+      display: block;
+      width: 100%;
+      margin-bottom: 3px;
+      font-weight: 400;
+      font-size: 14px;
+      color: gray;
+    }
+    [role="textbox"] {
+      padding: 4px;
+      border-radius: 4px;
+      border: 1px dashed #222222;
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .advanced-block-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px 0;
+    width: 100%;
+  }
+
+  .advanced-block-image {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px dashed #222222;
+    .label-image {
+      display: block;
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 4px 12px;
+      background-color: rgba(0, 124, 186, 0.25);
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    &.advanced-block-image-48 {
+      max-width: 49%;
+    }
+  }
+}

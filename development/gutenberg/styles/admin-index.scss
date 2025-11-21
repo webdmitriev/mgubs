@@ -1,14 +1,12 @@
 // Главный файл стилей
 @use "./admin/reset";
 @use "./admin/global";
-@use "./admin/h2";
-@use "./blocks/mgu-main";
-@use "./blocks/mgu-advantages";
+@use "./blocks/block-style";
 
 .development {
-  padding: 20px;
+  padding: 16px;
   border: 2px dashed #ccc;
-  border-radius: 12px;
+  border-radius: 4px;
   transition: all 0.3s ease;
 
   &.is-selected {
