@@ -1,0 +1,37 @@
+.btn {
+  display: block;
+  width: 240px;
+  max-width: 100%;
+  padding: 11px 24px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  color: var(--black-color);
+  border-radius: 100px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  &.btn-white {
+    color: var(--accent-color);
+    background-color: var(--white-color);
+    border: 2px solid var(--white-color);
+  }
+}
+
+// @container block-www (max-width: 1680px) {
+// }
+// @container block-www (max-width: 1366px) {
+// }
+// @container block-www (max-width: 1199px) {
+// }
+// @container block-www (max-width: 991px) {
+// }
+// @container block-www (max-width: 768px) {
+// }
+// @container block-www (max-width: 576px) {
+// }
+// @container block-www (max-width: 460px) {
+// }
+// @container block-www (max-width: 400px) {
+// }

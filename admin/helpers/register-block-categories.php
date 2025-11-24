@@ -32,6 +32,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
   // перечисли только свои блоки по namespace
   return [
     'theme/block-01',
+    'theme/block-02',
     'core/paragraph',
     'core/list',
     'core/list-item',

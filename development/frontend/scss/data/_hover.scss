@@ -28,4 +28,18 @@
 
   // **********
   // components
+  .btn.btn-white:hover {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+
+  // ******
+  // blocks
+  .block-02 .event-item:hover {
+    box-shadow: 0px 0px 14px 0px rgba(255, 255, 255, 0.7);
+    .event-item__image img {
+      transform: scale(1.05);
+    }
+  }
 }

@@ -20,6 +20,8 @@
 @use "./components/sub_title";
 @use "./components/descr";
 @use "./components/divider";
+@use "./components/btn";
+@use "./components/link";
 // @use "components/sect-title";
 // @use "components/btn";
 // @use "components/link";
@@ -27,6 +29,7 @@
 
 // MGU blocks
 @use "./mgu-blocks/block-01";
+@use "./mgu-blocks/block-02";
 
 // animations
 @use "./data/animations";
@@ -36,19 +39,19 @@
 // hover
 @use "./data/hover";
 
-@media (max-width: 1680px) {
-}
-@media (max-width: 1366px) {
-}
-@media (max-width: 1199px) {
-}
-@media (max-width: 991px) {
-}
-@media (max-width: 768px) {
-}
-@media (max-width: 576px) {
-}
-@media (max-width: 460px) {
-}
-@media (max-width: 400px) {
-}
+// @container block-www (max-width: 1680px) {
+// }
+// @container block-www (max-width: 1366px) {
+// }
+// @container block-www (max-width: 1199px) {
+// }
+// @container block-www (max-width: 991px) {
+// }
+// @container block-www (max-width: 768px) {
+// }
+// @container block-www (max-width: 576px) {
+// }
+// @container block-www (max-width: 460px) {
+// }
+// @container block-www (max-width: 400px) {
+// }

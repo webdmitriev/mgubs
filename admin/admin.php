@@ -93,6 +93,12 @@ require_once get_template_directory() . '/admin/helpers/convert-webp.php';
 
 
 /**
+ * Get responsive thumbnail
+ */
+require_once get_template_directory() . '/admin/helpers/get-responsive-thumbnail.php';
+
+
+/**
  * Register categories for Gutenberg blocks
  */
 require_once get_template_directory() . '/admin/helpers/register-block-categories.php';
