@@ -1,7 +1,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { title, selectedProgram } = attributes;
+  const { title, selectedProgram, buttonText, buttonLink } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-02',
@@ -25,7 +25,7 @@ const Save = ({ attributes }) => {
           data-limit="5"
         />
 
-        <div className="btn btn-white">Кнопка</div>
+        {buttonText && (<a href={buttonLink} className="btn btn-white">{buttonText}</a>)}
       </div>
     </div>
   );

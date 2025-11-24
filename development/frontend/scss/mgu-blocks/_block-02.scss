@@ -1,3 +1,7 @@
+.theme-dark .block-02 .event-item {
+  box-shadow: 0px 0px 4px 0px hsla(0, 0, 0, 0.4);
+}
+
 .block-02 {
   padding-block: 24px 40px;
   container: block-02 / inline-size;
@@ -56,9 +60,10 @@
       }
     }
     .event-item__content {
+      position: relative;
       display: block;
       width: calc(100% - 128px - 305px);
-      padding: 24px;
+      padding: 24px 24px 48px 24px;
       .event-item__title {
         margin-bottom: 4px;
         font-weight: 700;
@@ -71,7 +76,9 @@
         -webkit-line-clamp: 2;
       }
       .link {
-        margin: 0 0 0 auto;
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
       }
     }
     .event-item__date-day,
@@ -147,6 +154,10 @@
   }
   .block-02 .event-item .event-item__content {
     max-width: calc(100% - 117px);
-    padding: 16px;
+    padding: 16px 16px 48px 16px;
+  }
+  .block-02 .event-item .event-item__content .link {
+    right: 16px;
+    bottom: 16px;
   }
 }

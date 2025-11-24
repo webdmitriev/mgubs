@@ -58,6 +58,8 @@ function get_footer_posts_by_program($program_slug, $limit = 5) {
 function render_popular_events_block($attributes, $content) {
     $program_slug = $attributes['selectedProgram'] ?? '';
     $title = $attributes['title'] ?? '';
+    $buttonText = $attributes['buttonText'] ?? '';
+    $buttonLink = $attributes['buttonLink'] ?? '';
     $limit = 5; // фиксированный лимит или можно сделать атрибутом
     
     // Если программа не выбрана, возвращаем сохраненный контент
@@ -107,7 +109,7 @@ function render_popular_events_block($attributes, $content) {
         <?php endif; ?>
         <?php wp_reset_postdata(); ?>
       </div>
-      <div class="btn btn-white">Кнопка</div>
+      <?php if($buttonText): ?><a href="<?php echo esc_url($buttonLink); ?>" class="btn btn-white"><?php echo esc_html($buttonText); ?></a><?php endif; ?>
     </div>
     <?php
     return ob_get_clean();

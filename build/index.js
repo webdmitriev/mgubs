@@ -564,6 +564,14 @@ __webpack_require__.r(__webpack_exports__);
   selectedProgram: {
     type: 'string',
     default: ''
+  },
+  buttonText: {
+    type: 'string',
+    default: ''
+  },
+  buttonLink: {
+    type: 'string',
+    default: ''
   }
 });
 
@@ -736,7 +744,9 @@ const Edit = ({
 }) => {
   const {
     title,
-    selectedProgram
+    selectedProgram,
+    buttonText,
+    buttonLink
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
   const togglePreview = () => {
@@ -750,7 +760,7 @@ const Edit = ({
     setAttributes: setAttributes
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Программы', 'theme'),
-    initialOpen: false
+    initialOpen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443",
     value: selectedProgram,
@@ -789,7 +799,31 @@ const Edit = ({
     allowedFormats: []
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "popular-events-preview"
-  }, selectedProgram ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0411\u0443\u0434\u0443\u0442 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u0441\u043E\u0431\u044B\u0442\u0438\u044F \u0434\u043B\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, _utils_default_programs__WEBPACK_IMPORTED_MODULE_5__["default"].find(p => p.value === selectedProgram)?.label)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443 \u0432 \u043F\u0430\u043D\u0435\u043B\u0438 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A")))))));
+  }, selectedProgram ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0411\u0443\u0434\u0443\u0442 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u0441\u043E\u0431\u044B\u0442\u0438\u044F \u0434\u043B\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, _utils_default_programs__WEBPACK_IMPORTED_MODULE_5__["default"].find(p => p.value === selectedProgram)?.label)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443 \u0432 \u043F\u0430\u043D\u0435\u043B\u0438 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-buttons"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-button"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u041A\u043D\u043E\u043F\u043A\u0430 - \u0442\u0435\u043A\u0441\u0442"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    value: buttonText,
+    onChange: value => setAttributes({
+      buttonText: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст...', 'theme'),
+    allowedFormats: []
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-button"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u041A\u043D\u043E\u043F\u043A\u0430 - \u0441\u0441\u044B\u043B\u043A\u0430"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.URLInput, {
+    value: buttonLink,
+    onChange: value => setAttributes({
+      buttonLink: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Введите название страницы или url', 'theme')
+  }))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -847,7 +881,9 @@ const Save = ({
 }) => {
   const {
     title,
-    selectedProgram
+    selectedProgram,
+    buttonText,
+    buttonLink
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: 'block-standard block-02'
@@ -866,9 +902,10 @@ const Save = ({
     className: "popular-events-content",
     "data-program": selectedProgram,
     "data-limit": "5"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), buttonText && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: buttonLink,
     className: "btn btn-white"
-  }, "\u041A\u043D\u043E\u043F\u043A\u0430")));
+  }, buttonText)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
