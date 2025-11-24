@@ -1,0 +1,23 @@
+.block-03 {
+  display: flex;
+  min-height: 200px;
+  padding-bottom: 42px;
+  .block-bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 1920px;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .container {
+    position: relative;
+    z-index: 5;
+  }
+  .h2 {
+    color: var(--white-color);
+  }
+}
