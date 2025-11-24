@@ -35,93 +35,63 @@ add_shortcode('theme_partners', 'theme_partners_shortcode');
 
 // Шорткод: выводит избранные посты из theme_settings[featured_posts]
 function theme_featured_posts_shortcode($atts) {
-    $options = get_option('theme_settings', []);
-    $selected = $options['featured_posts'] ?? [];
+  $selected = get_option('theme_featured_posts', []);
 
-    if (empty($selected)) {
-        return '<div class="featured-posts">Нет выбранных новостей.</div>';
-    }
+  if (empty($selected)) {
+    return '<div class="featured-posts">Нет выбранных новостей.</div>';
+  }
 
-    // Настройки шорткода (опционально)
-    $atts = shortcode_atts([
-        'show_thumb' => 'yes',
-        'limit' => 0,
-    ], $atts);
+  // Настройки шорткода (опционально)
+  $atts = shortcode_atts([
+    'show_thumb' => 'yes',
+    'limit' => 0,
+  ], $atts);
 
-    $posts = [];
+  $posts = [];
 
-    foreach ($selected as $id) {
-        $post = get_post($id);
-        if ($post) {
-            $posts[] = $post;
-        }
-    }
+  foreach ($selected as $id) {
+    $post = get_post($id);
+    if ($post) { $posts[] = $post; }
+  }
 
-    // Применяем limit
-    if ($atts['limit'] && is_numeric($atts['limit'])) {
-        $posts = array_slice($posts, 0, intval($atts['limit']));
-    }
+  // Применяем limit
+  if ($atts['limit'] && is_numeric($atts['limit'])) {
+    $posts = array_slice($posts, 0, intval($atts['limit']));
+  }
 
-    ob_start();
-    ?>
+  ob_start();
+  ?>
 
-    <div class="featured-posts">
-        <?php foreach ($posts as $post):
-            $thumb = get_the_post_thumbnail_url($post->ID, 'medium');
-            if (!$thumb) {
-                $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg';
-            }
+  <div class="article-posts">
+    <?php foreach ($posts as $post):
+      $thumb = get_the_post_thumbnail_url($post->ID, 'medium');
+      $descr = get_post_meta($post->ID, 'custom_excerpt', true);
+      $date_info = format_date_russian(get_post_meta($post->ID, 'date_start', true));
+      ?>
+      <a href="<?php echo get_permalink($post->ID); ?>" class="article-post">
+        <?php
+          if (!$thumb) {
+            $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg';
+            echo '<img src="' . esc_url($thumb) . '" alt="" class="article-news__img" />';
+          } else {
+            echo theme_get_responsive_thumbnail($post->ID, 'full', [
+              'class' => 'article-news__img'
+            ]);
+          }
         ?>
-            <article class="featured-post-item">
-                <?php if ($atts['show_thumb'] === 'yes'): ?>
-                    <a href="<?php echo get_permalink($post->ID); ?>" class="featured-post-thumb">
-                        <img src="<?php echo esc_url($thumb); ?>" alt="">
-                    </a>
-                <?php endif; ?>
 
-                <div class="featured-post-content">
-                    <h3 class="featured-post-title">
-                        <a href="<?php echo get_permalink($post->ID); ?>">
-                            <?php echo esc_html($post->post_title); ?>
-                        </a>
-                    </h3>
+        <?php if ($descr): ?>
+          <p class="descr article-news__descr"><?php echo esc_html(wp_trim_words($descr, 60)); ?></p>
+        <?php endif; ?>
 
-                    <p class="featured-post-excerpt">
-                        <?php echo esc_html(wp_trim_words($post->post_content, 20)); ?>
-                    </p>
-                </div>
-            </article>
-        <?php endforeach; ?>
-    </div>
+        <?php if ($date_info): ?>
+          <p class="descr article-news__date"><?php echo esc_html($date_info['day']); ?> <?php echo esc_html($date_info['month_russian']); ?> <?php echo esc_html($date_info['year']); ?></p>
+        <?php endif; ?>
+      </a>
+    <?php endforeach; ?>
+  </div>
 
-    <style>
-        .featured-posts {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .featured-post-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        .featured-post-thumb img {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-        .featured-post-title {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-        .featured-post-title a {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
-
-    <?php
-    return ob_get_clean();
+  <?php
+  return ob_get_clean();
 }
 add_shortcode('featured_posts', 'theme_featured_posts_shortcode');

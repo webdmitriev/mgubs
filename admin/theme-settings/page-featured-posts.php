@@ -4,7 +4,6 @@ if (!defined('ABSPATH')) exit;
 function theme_featured_posts_page_content() {
   $selected = get_option('theme_featured_posts', []);
 
-
   // Получаем все посты
   $all_posts = get_posts([
     'post_type' => 'post',
@@ -82,7 +81,6 @@ function theme_featured_posts_page_content() {
 
       return div;
     }
-
 
     // Клик по посту в левом списке → перенос в правый
     document.querySelectorAll('.columns-wrapper .posts-column:first-child .post-item')

@@ -22,7 +22,8 @@
 @use "./components/divider";
 @use "./components/btn";
 @use "./components/link";
-// @use "components/sect-title";
+
+@use "components/article-post";
 // @use "components/btn";
 // @use "components/link";
 // @use "components/breadcrumbs";
@@ -31,6 +32,7 @@
 @use "./mgu-blocks/block-01";
 @use "./mgu-blocks/block-02";
 @use "./mgu-blocks/block-03";
+@use "./mgu-blocks/block-04";
 
 // animations
 @use "./data/animations";
