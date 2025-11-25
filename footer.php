@@ -17,8 +17,6 @@ $footer_program = $options['footer_edu_program'] ?? '';
 ?>
 		<!-- <div style="display: block; width: 100%; height: 400px;"></div> -->
 
-		<?php echo do_shortcode('[featured_posts]'); ?>
-
 		<footer class="footer">
 			<div class="container">
 				<div class="footer-blocks">

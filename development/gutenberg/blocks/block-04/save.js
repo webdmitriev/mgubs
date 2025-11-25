@@ -1,22 +1,37 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import Picture from '../../components/picture';
+import { RawHTML } from '@wordpress/element';
 
 const Save = ({ attributes }) => {
-  const { title, bgData } = attributes;
+  const { buttonText, buttonLink, title } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: 'block-standard block-03 df-fs-fe',
+    className: 'block-standard block-04',
   });
 
   return (
     <div {...blockProps}>
-      <Picture data={bgData} className="block-bg" />
       <div className="container">
-        <RichText.Content
-          tagName="h2"
-          value={title}
-          className="h2"
-        />
+        {/* Заголовок блока (если есть в атрибутах) */}
+        {title && (
+          <RichText.Content
+            tagName="h2"
+            value={title}
+            className="block-title"
+          />
+        )}
+
+        <div className="popular-news">
+          <RawHTML>
+            {`[featured_posts]`}
+          </RawHTML>
+        </div>
+
+        {/* Кнопка */}
+        {buttonText && (
+          <a href={buttonLink} className="btn btn-white">
+            {buttonText}
+          </a>
+        )}
       </div>
     </div>
   );

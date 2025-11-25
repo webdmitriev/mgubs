@@ -33,7 +33,7 @@ function theme_partners_shortcode() {
 }
 add_shortcode('theme_partners', 'theme_partners_shortcode');
 
-// Шорткод: выводит избранные посты из theme_settings[featured_posts]
+// Шорткод: выводит избранные посты
 function theme_featured_posts_shortcode($atts) {
   $selected = get_option('theme_featured_posts', []);
 
@@ -81,7 +81,7 @@ function theme_featured_posts_shortcode($atts) {
         ?>
 
         <?php if ($descr): ?>
-          <p class="descr article-news__descr"><?php echo esc_html(wp_trim_words($descr, 60)); ?></p>
+          <p class="descr article-news__descr"><?php echo esc_html(wp_trim_words($descr, 40)); ?></p>
         <?php endif; ?>
 
         <?php if ($date_info): ?>

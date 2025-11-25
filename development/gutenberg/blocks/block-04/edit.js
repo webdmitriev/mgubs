@@ -2,16 +2,16 @@ import { useState } from '@wordpress/element';
 import {
   useBlockProps,
   RichText,
+  URLInput,
   InspectorControls
 } from '@wordpress/block-editor';
-import { Button, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title } = attributes;
+  const { buttonText, buttonLink } = attributes;
 
   const [isPreview, setIsPreview] = useState(true);
 
@@ -27,7 +27,6 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
-        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -47,18 +46,26 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="advanced-block-text">
-                <>
-                  <label className="my-rich-text__label">Заголовок</label>
+              <div className="advanced-block-buttons">
+                <div className="advanced-block-button">
+                  <label className="my-rich-text__label">Кнопка - текст</label>
                   <RichText
                     tagName="div"
-                    label="Заголовок"
-                    value={title}
-                    onChange={(value) => setAttributes({ title: value })}
-                    placeholder={__('Заголовок...', 'theme')}
+                    value={buttonText}
+                    onChange={(value) => setAttributes({ buttonText: value })}
+                    placeholder={__('Текст...', 'theme')}
                     allowedFormats={[]}
                   />
-                </>
+                </div>
+
+                <div className="advanced-block-button">
+                  <label className="my-rich-text__label">Кнопка - ссылка</label>
+                  <URLInput
+                    value={buttonLink}
+                    onChange={(value) => setAttributes({ buttonLink: value })}
+                    placeholder={__('Введите название страницы или url', 'theme')}
+                  />
+                </div>
               </div>
             </div>
           )}
