@@ -1,14 +1,96 @@
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import {
   useBlockProps,
-  URLInput,
   InspectorControls
 } from '@wordpress/block-editor';
-import { Button, SelectControl, TextControl } from '@wordpress/components';
+import { Button, SelectControl, ToggleControl, Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
+import { __ } from '@wordpress/i18n';
+
+import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { programs } = attributes;
+  const [isPreview, setIsPreview] = useState(true);
+  const [pages, setPages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingItems, setLoadingItems] = useState({});
+
+  // Загрузка списка страниц при монтировании компонента
+  useEffect(() => {
+    const fetchPages = async () => {
+      setIsLoading(true);
+      try {
+        const fetchedPages = await apiFetch({
+          path: '/wp/v2/pages?per_page=100&status=publish'
+        });
+        setPages(fetchedPages);
+      } catch (error) {
+        console.error('Ошибка загрузки страниц:', error);
+      }
+      setIsLoading(false);
+    };
+
+    fetchPages();
+  }, []);
+
+  // Функция для загрузки данных страницы по ID
+  const fetchPageData = async (pageId, index) => {
+    if (!pageId) return;
+
+    setLoadingItems(prev => ({ ...prev, [index]: true }));
+
+    try {
+      const page = await apiFetch({
+        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt`
+      });
+
+      // Получаем URL изображения
+      let imageUrl = '';
+      if (page.featured_media) {
+        try {
+          const media = await apiFetch({
+            path: `/wp/v2/media/${page.featured_media}`
+          });
+          imageUrl = media.source_url;
+        } catch (error) {
+          console.error('Ошибка загрузки изображения:', error);
+        }
+      }
+
+      let metaField = '';
+      try {
+        const meta = await apiFetch({
+          path: `/wp/v2/pages/${pageId}?context=edit`
+        });
+        metaField = meta.meta.custom_excerpt || '';
+      } catch (error) {
+        console.error('Ошибка загрузки мета-поля:', error);
+      }
+
+      // Обновляем атрибуты - только один раз!
+      const newItems = [...programs];
+      newItems[index] = {
+        ...newItems[index],
+        pageId: parseInt(pageId),
+        title: page.title.rendered,
+        excerpt: page.excerpt.rendered,
+        image: imageUrl,
+        metaField: metaField
+      };
+
+      setAttributes({ programs: newItems });
+
+    } catch (error) {
+      console.error('Ошибка загрузки данных страницы:', error);
+    } finally {
+      setLoadingItems(prev => ({ ...prev, [index]: false }));
+    }
+  };
+
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
 
   const updateItem = (index, key, value) => {
     const newItems = programs.map((item, i) =>
@@ -17,23 +99,26 @@ const Edit = ({ attributes, setAttributes }) => {
     setAttributes({ programs: newItems });
   };
 
-  // Загрузка страницы по ID
-  const fetchPageData = async (index, { url, postId }) => {
-    updateItem(index, "url", url);
-    updateItem(index, "pageId", postId);
+  const handlePageSelect = (selectedPageId, index) => {
+    const pageId = selectedPageId ? parseInt(selectedPageId) : 0;
 
-    if (!postId) return;
+    // Сначала обновляем только pageId
+    updateItem(index, 'pageId', pageId);
 
-    // 1. Загружаем страницу
-    const page = await apiFetch({ path: `/wp/v2/pages/${postId}` });
-
-    updateItem(index, "title", page.title?.rendered || "");
-    updateItem(index, "excerpt", page.meta?.custom_excerpt || "");
-
-    // 2. Загружаем картинку, если есть
-    if (page.featured_media) {
-      const media = await apiFetch({ path: `/wp/v2/media/${page.featured_media}` });
-      updateItem(index, "image", media.source_url);
+    // Затем загружаем данные страницы, если страница выбрана
+    if (pageId) {
+      fetchPageData(pageId, index);
+    } else {
+      // Если страница не выбрана, очищаем данные
+      const newItems = [...programs];
+      newItems[index] = {
+        ...newItems[index],
+        title: '',
+        excerpt: '',
+        image: '',
+        metaField: ''
+      };
+      setAttributes({ programs: newItems });
     }
   };
 
@@ -42,11 +127,11 @@ const Edit = ({ attributes, setAttributes }) => {
       programs: [
         ...programs,
         {
-          url: '',
           pageId: 0,
           title: '',
           excerpt: '',
           image: '',
+          metaField: '',
           width: 'w-32',
         }
       ]
@@ -63,64 +148,106 @@ const Edit = ({ attributes, setAttributes }) => {
     className: "block-style",
   });
 
+  // Подготовка опций для SelectControl
+  const pageOptions = [
+    { label: __('Выберите страницу', 'theme'), value: '' },
+    ...pages.map(page => ({
+      label: page.title.rendered,
+      value: page.id.toString()
+    }))
+  ];
+
   return (
-    <div {...blockProps}>
-      <div className="advanced-block-content">
-        {programs.map((item, index) => (
-          <div key={index} className="repeater-item">
+    <>
+      <InspectorControls>
+        <VideoHelpPanel />
+      </InspectorControls>
 
-            {/* URLInput теперь отдаёт объект: { url, postId } */}
-            <URLInput
-              label="Выберите страницу"
-              value={item.url}
-              onChange={(value) => fetchPageData(index, value)}
+      <div {...blockProps}>
+        <div className="advanced-block">
+          <div className="block-info">
+            <span className="block-info-title">🎨 Block 05 - Программы</span>
+            <ToggleControl
+              label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
+              checked={isPreview}
+              onChange={togglePreview}
             />
-
-            <SelectControl
-              label="Ширина блока"
-              value={item.width}
-              options={[
-                { label: 'w-32', value: 'w-32' },
-                { label: 'w-50', value: 'w-50' },
-                { label: 'w-100', value: 'w-100' }
-              ]}
-              onChange={(value) => updateItem(index, 'width', value)}
-            />
-
-            {item.image && (
-              <img
-                src={item.image}
-                style={{ width: "120px", marginTop: "10px" }}
-                alt=""
-              />
-            )}
-
-            <TextControl
-              label="Заголовок (редактируемый)"
-              value={item.title}
-              onChange={(value) => updateItem(index, "title", value)}
-            />
-
-            <TextControl
-              label="Описание"
-              value={item.excerpt}
-              onChange={(value) => updateItem(index, "excerpt", value)}
-            />
-
-            <Button
-              isDestructive
-              onClick={() => removeItem(index)}
-            >
-              Удалить
-            </Button>
           </div>
-        ))}
 
-        <Button onClick={addItem}>
-          + Добавить элемент
-        </Button>
+          {!isPreview && (
+            <div>Картинка</div>
+          )}
+
+          {isPreview && (
+            <div className="advanced-block-content">
+              {programs.map((item, index) => (
+                <div key={index} className={`programs-item ${item.width}`}>
+                  <div style={{ position: 'relative' }}>
+                    <SelectControl
+                      label="Выберите страницу"
+                      value={item.pageId ? item.pageId.toString() : ''}
+                      options={pageOptions}
+                      onChange={(value) => handlePageSelect(value, index)}
+                      disabled={isLoading}
+                    />
+                    {loadingItems[index] && (
+                      <div style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '50%',
+                        transform: 'translateY(-50%)'
+                      }}>
+                        <Spinner />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Отображение загруженных данных */}
+                  {item.title && (
+                    <div className="page-data-preview" style={{
+                      padding: '12px',
+                      border: '1px solid #ddd',
+                      margin: '10px 0',
+                      borderRadius: '4px'
+                    }}>
+                      <p className="preview-title">{item.title}</p>
+                      {item.image && (
+                        <img src={item.image} alt={item.title} style={{ display: 'block' }} />
+                      )}
+                      {item.metaField && (
+                        <p className="preview-descr">{item.metaField}</p>
+                      )}
+                    </div>
+                  )}
+
+                  <SelectControl
+                    label="Ширина блока"
+                    value={item.width}
+                    options={[
+                      { label: 'w-32', value: 'w-32' },
+                      { label: 'w-50', value: 'w-50' },
+                      { label: 'w-100', value: 'w-100' }
+                    ]}
+                    onChange={(value) => updateItem(index, 'width', value)}
+                  />
+
+                  <Button
+                    isDestructive
+                    onClick={() => removeItem(index)}
+                  >
+                    Удалить
+                  </Button>
+                </div>
+              ))}
+
+              <Button onClick={addItem}>
+                + Добавить элемент
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

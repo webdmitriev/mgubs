@@ -1580,6 +1580,66 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./development/gutenberg/blocks/block-05/controls/VideoHelpPanel.js":
+/*!**************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-05/controls/VideoHelpPanel.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const VideoHelpPanel = () => {
+  const [isVideoOpen, setIsVideoOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const videoPath = `${themeData.uploadUrl}/default.mov`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Instructions', 'theme'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video instructions.', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => setIsVideoOpen(true),
+    icon: "video-alt3"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Play', 'theme'))), isVideoOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video instruction', 'theme'),
+    onRequestClose: () => setIsVideoOpen(false),
+    className: "help-video-modal"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'relative',
+      paddingBottom: '56.25%',
+      height: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    src: videoPath,
+    controls: true,
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '8px'
+    }
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoHelpPanel);
+
+/***/ }),
+
 /***/ "./development/gutenberg/blocks/block-05/edit.js":
 /*!*******************************************************!*\
   !*** ./development/gutenberg/blocks/block-05/edit.js ***!
@@ -1601,6 +1661,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-05/controls/VideoHelpPanel.js");
+
+
 
 
 
@@ -1613,6 +1678,87 @@ const Edit = ({
   const {
     programs
   } = attributes;
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const [pages, setPages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const [loadingItems, setLoadingItems] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)({});
+
+  // Загрузка списка страниц при монтировании компонента
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const fetchPages = async () => {
+      setIsLoading(true);
+      try {
+        const fetchedPages = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+          path: '/wp/v2/pages?per_page=100&status=publish'
+        });
+        setPages(fetchedPages);
+      } catch (error) {
+        console.error('Ошибка загрузки страниц:', error);
+      }
+      setIsLoading(false);
+    };
+    fetchPages();
+  }, []);
+
+  // Функция для загрузки данных страницы по ID
+  const fetchPageData = async (pageId, index) => {
+    if (!pageId) return;
+    setLoadingItems(prev => ({
+      ...prev,
+      [index]: true
+    }));
+    try {
+      const page = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt`
+      });
+
+      // Получаем URL изображения
+      let imageUrl = '';
+      if (page.featured_media) {
+        try {
+          const media = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+            path: `/wp/v2/media/${page.featured_media}`
+          });
+          imageUrl = media.source_url;
+        } catch (error) {
+          console.error('Ошибка загрузки изображения:', error);
+        }
+      }
+      let metaField = '';
+      try {
+        const meta = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+          path: `/wp/v2/pages/${pageId}?context=edit`
+        });
+        metaField = meta.meta.custom_excerpt || '';
+      } catch (error) {
+        console.error('Ошибка загрузки мета-поля:', error);
+      }
+
+      // Обновляем атрибуты - только один раз!
+      const newItems = [...programs];
+      newItems[index] = {
+        ...newItems[index],
+        pageId: parseInt(pageId),
+        title: page.title.rendered,
+        excerpt: page.excerpt.rendered,
+        image: imageUrl,
+        metaField: metaField
+      };
+      setAttributes({
+        programs: newItems
+      });
+    } catch (error) {
+      console.error('Ошибка загрузки данных страницы:', error);
+    } finally {
+      setLoadingItems(prev => ({
+        ...prev,
+        [index]: false
+      }));
+    }
+  };
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
   const updateItem = (index, key, value) => {
     const newItems = programs.map((item, i) => i === index ? {
       ...item,
@@ -1622,39 +1768,38 @@ const Edit = ({
       programs: newItems
     });
   };
+  const handlePageSelect = (selectedPageId, index) => {
+    const pageId = selectedPageId ? parseInt(selectedPageId) : 0;
 
-  // Загрузка страницы по ID
-  const fetchPageData = async (index, {
-    url,
-    postId
-  }) => {
-    updateItem(index, "url", url);
-    updateItem(index, "pageId", postId);
-    if (!postId) return;
+    // Сначала обновляем только pageId
+    updateItem(index, 'pageId', pageId);
 
-    // 1. Загружаем страницу
-    const page = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-      path: `/wp/v2/pages/${postId}`
-    });
-    updateItem(index, "title", page.title?.rendered || "");
-    updateItem(index, "excerpt", page.meta?.custom_excerpt || "");
-
-    // 2. Загружаем картинку, если есть
-    if (page.featured_media) {
-      const media = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-        path: `/wp/v2/media/${page.featured_media}`
+    // Затем загружаем данные страницы, если страница выбрана
+    if (pageId) {
+      fetchPageData(pageId, index);
+    } else {
+      // Если страница не выбрана, очищаем данные
+      const newItems = [...programs];
+      newItems[index] = {
+        ...newItems[index],
+        title: '',
+        excerpt: '',
+        image: '',
+        metaField: ''
+      };
+      setAttributes({
+        programs: newItems
       });
-      updateItem(index, "image", media.source_url);
     }
   };
   const addItem = () => {
     setAttributes({
       programs: [...programs, {
-        url: '',
         pageId: 0,
         title: '',
         excerpt: '',
         image: '',
+        metaField: '',
         width: 'w-32'
       }]
     });
@@ -1667,18 +1812,68 @@ const Edit = ({
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: "block-style"
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+
+  // Подготовка опций для SelectControl
+  const pageOptions = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Выберите страницу', 'theme'),
+    value: ''
+  }, ...pages.map(page => ({
+    label: page.title.rendered,
+    value: page.id.toString()
+  }))];
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 05 - \u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430"), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
   }, programs.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
-    className: "repeater-item"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.URLInput, {
+    className: `programs-item ${item.width}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'relative'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443",
-    value: item.url,
-    onChange: value => fetchPageData(index, value)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    value: item.pageId ? item.pageId.toString() : '',
+    options: pageOptions,
+    onChange: value => handlePageSelect(value, index),
+    disabled: isLoading
+  }), loadingItems[index] && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'absolute',
+      right: '10px',
+      top: '50%',
+      transform: 'translateY(-50%)'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null))), item.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "page-data-preview",
+    style: {
+      padding: '12px',
+      border: '1px solid #ddd',
+      margin: '10px 0',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "preview-title"
+  }, item.title), item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: item.image,
+    alt: item.title,
+    style: {
+      display: 'block'
+    }
+  }), item.metaField && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "preview-descr"
+  }, item.metaField)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u0428\u0438\u0440\u0438\u043D\u0430 \u0431\u043B\u043E\u043A\u0430",
     value: item.width,
     options: [{
@@ -1692,27 +1887,12 @@ const Edit = ({
       value: 'w-100'
     }],
     onChange: value => updateItem(index, 'width', value)
-  }), item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: item.image,
-    style: {
-      width: "120px",
-      marginTop: "10px"
-    },
-    alt: ""
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A (\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u0443\u0435\u043C\u044B\u0439)",
-    value: item.title,
-    onChange: value => updateItem(index, "title", value)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
-    value: item.excerpt,
-    onChange: value => updateItem(index, "excerpt", value)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     isDestructive: true,
     onClick: () => removeItem(index)
   }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: addItem
-  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442")));
+  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -2854,6 +3034,16 @@ const PageSidebar = () => {
     label: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C Jivo chat?",
     checked: !!postMeta.is_jivo_chat,
     onChange: val => updateMeta('is_jivo_chat', val)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    label: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+    value: postMeta.custom_excerpt || '',
+    onChange: val => updateMeta('custom_excerpt', val),
+    rows: 8
   }))));
 };
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('page-sidebar', {

@@ -1,8 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
-import {
-  PanelBody, ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, ToggleControl, TextareaControl } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 
@@ -34,6 +32,16 @@ const PageSidebar = () => {
             label="Подключить Jivo chat?"
             checked={!!postMeta.is_jivo_chat}
             onChange={(val) => updateMeta('is_jivo_chat', val)}
+          />
+
+          <div style={{ height: '24px' }} />
+
+          <TextareaControl
+            label="Краткое описание"
+            placeholder="Краткое описание"
+            value={postMeta.custom_excerpt || ''}
+            onChange={(val) => updateMeta('custom_excerpt', val)}
+            rows={8}
           />
 
         </PanelBody>
