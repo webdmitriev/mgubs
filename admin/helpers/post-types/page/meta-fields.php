@@ -22,13 +22,19 @@ function register_page_meta_fields() {
 
   // Строковые поля
   $string_fields = [
+    'custom_title',
     'custom_excerpt',
   ];
   foreach ($string_fields as $field) {
     register_post_meta($post_type, $field, [
       'type' => 'string',
       'single' => true,
-      'sanitize_callback' => 'sanitize_text_field',
+      'sanitize_callback' => function($value) {
+        // Разрешаем только <br />
+        return wp_kses($value, [
+          'br' => []
+        ]);
+      },
       'show_in_rest' => true,
     ]);
   }

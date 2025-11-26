@@ -58,12 +58,14 @@ const Edit = ({ attributes, setAttributes }) => {
         }
       }
 
-      let metaField = '';
+      let custom_title = '';
+      let custom_excerpt = '';
       try {
         const meta = await apiFetch({
           path: `/wp/v2/pages/${pageId}?context=edit`
         });
-        metaField = meta.meta.custom_excerpt || '';
+        custom_title = meta.meta.custom_title || '';
+        custom_excerpt = meta.meta.custom_excerpt || '';
       } catch (error) {
         console.error('Ошибка загрузки мета-поля:', error);
       }
@@ -73,10 +75,10 @@ const Edit = ({ attributes, setAttributes }) => {
       newItems[index] = {
         ...newItems[index],
         pageId: parseInt(pageId),
-        title: page.title.rendered,
+        title: custom_title || page.title.rendered,
         excerpt: page.excerpt.rendered,
         image: imageUrl,
-        metaField: metaField
+        metaField: custom_excerpt
       };
 
       setAttributes({ programs: newItems });
@@ -210,12 +212,16 @@ const Edit = ({ attributes, setAttributes }) => {
                       margin: '10px 0',
                       borderRadius: '4px'
                     }}>
-                      <p className="preview-title">{item.title}</p>
+                      <div className="preview-title" dangerouslySetInnerHTML={{
+                        __html: item.title.replace(/\n/g, '<br/>')
+                      }} />
                       {item.image && (
                         <img src={item.image} alt={item.title} style={{ display: 'block' }} />
                       )}
                       {item.metaField && (
-                        <p className="preview-descr">{item.metaField}</p>
+                        <div className="preview-descr" dangerouslySetInnerHTML={{
+                          __html: item.metaField.replace(/\n/g, '<br/>')
+                        }} />
                       )}
                     </div>
                   )}

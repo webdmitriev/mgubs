@@ -1724,12 +1724,14 @@ const Edit = ({
           console.error('Ошибка загрузки изображения:', error);
         }
       }
-      let metaField = '';
+      let custom_title = '';
+      let custom_excerpt = '';
       try {
         const meta = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
           path: `/wp/v2/pages/${pageId}?context=edit`
         });
-        metaField = meta.meta.custom_excerpt || '';
+        custom_title = meta.meta.custom_title || '';
+        custom_excerpt = meta.meta.custom_excerpt || '';
       } catch (error) {
         console.error('Ошибка загрузки мета-поля:', error);
       }
@@ -1739,10 +1741,10 @@ const Edit = ({
       newItems[index] = {
         ...newItems[index],
         pageId: parseInt(pageId),
-        title: page.title.rendered,
+        title: custom_title || page.title.rendered,
         excerpt: page.excerpt.rendered,
         image: imageUrl,
-        metaField: metaField
+        metaField: custom_excerpt
       };
       setAttributes({
         programs: newItems
@@ -1863,17 +1865,23 @@ const Edit = ({
       margin: '10px 0',
       borderRadius: '4px'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "preview-title"
-  }, item.title), item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "preview-title",
+    dangerouslySetInnerHTML: {
+      __html: item.title.replace(/\n/g, '<br/>')
+    }
+  }), item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: item.image,
     alt: item.title,
     style: {
       display: 'block'
     }
-  }), item.metaField && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "preview-descr"
-  }, item.metaField)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+  }), item.metaField && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "preview-descr",
+    dangerouslySetInnerHTML: {
+      __html: item.metaField.replace(/\n/g, '<br/>')
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u0428\u0438\u0440\u0438\u043D\u0430 \u0431\u043B\u043E\u043A\u0430",
     value: item.width,
     options: [{
@@ -3020,6 +3028,20 @@ const PageSidebar = () => {
       }
     });
   };
+
+  // Функция для обработки текста с <br/> тегами
+  const handleTextareaChange = value => {
+    // Заменяем <br/> на \n для отображения в textarea
+    const textareaValue = value.replace(/<br\s*\/?>/gi, '\n');
+    updateMeta('custom_excerpt', textareaValue);
+  };
+
+  // Функция для получения значения textarea
+  const getTextareaValue = () => {
+    const value = postMeta.custom_excerpt || '';
+    // Заменяем \n на <br/> для хранения в базе
+    return value.replace(/\n/g, '<br/>');
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
     target: "page-sidebar",
     icon: "admin-post"
@@ -3039,11 +3061,23 @@ const PageSidebar = () => {
       height: '24px'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    label: "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0434\u043B\u044F \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F",
+    placeholder: "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A",
+    value: postMeta.custom_title || '',
+    onChange: val => updateMeta('custom_title', val),
+    rows: 3,
+    help: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 Enter \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0430 \u0441\u0442\u0440\u043E\u043A\u0438."
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '12px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
     label: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
     placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
     value: postMeta.custom_excerpt || '',
     onChange: val => updateMeta('custom_excerpt', val),
-    rows: 8
+    rows: 8,
+    help: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 Enter \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0430 \u0441\u0442\u0440\u043E\u043A\u0438."
   }))));
 };
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('page-sidebar', {
