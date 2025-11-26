@@ -42,7 +42,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
     try {
       const page = await apiFetch({
-        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt`
+        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt,link`
       });
 
       // Получаем URL изображения
@@ -60,12 +60,14 @@ const Edit = ({ attributes, setAttributes }) => {
 
       let custom_title = '';
       let custom_excerpt = '';
+      let shadow_image = '';
       try {
         const meta = await apiFetch({
           path: `/wp/v2/pages/${pageId}?context=edit`
         });
         custom_title = meta.meta.custom_title || '';
         custom_excerpt = meta.meta.custom_excerpt || '';
+        shadow_image = meta.meta.shadow_image || '';
       } catch (error) {
         console.error('Ошибка загрузки мета-поля:', error);
       }
@@ -75,10 +77,12 @@ const Edit = ({ attributes, setAttributes }) => {
       newItems[index] = {
         ...newItems[index],
         pageId: parseInt(pageId),
-        title: custom_title || page.title.rendered,
-        excerpt: page.excerpt.rendered,
+        title: custom_title.replace(/\n/g, '<br/>') || page.title.rendered,
+        excerpt: page.excerpt.rendered.replace(/\n/g, '<br/>'),
         image: imageUrl,
-        metaField: custom_excerpt
+        metaField: custom_excerpt.replace(/\n/g, '<br/>'),
+        shadow: shadow_image,
+        link: page.link,
       };
 
       setAttributes({ programs: newItems });
@@ -118,7 +122,9 @@ const Edit = ({ attributes, setAttributes }) => {
         title: '',
         excerpt: '',
         image: '',
-        metaField: ''
+        metaField: '',
+        shadow: '',
+        link: '',
       };
       setAttributes({ programs: newItems });
     }
@@ -134,6 +140,8 @@ const Edit = ({ attributes, setAttributes }) => {
           excerpt: '',
           image: '',
           metaField: '',
+          shadow: '',
+          link: '',
           width: 'w-32',
         }
       ]
@@ -203,6 +211,7 @@ const Edit = ({ attributes, setAttributes }) => {
                       </div>
                     )}
                   </div>
+                  {console.log('metaField:', item.metaField)}
 
                   {/* Отображение загруженных данных */}
                   {item.title && (
@@ -246,9 +255,11 @@ const Edit = ({ attributes, setAttributes }) => {
                 </div>
               ))}
 
-              <Button onClick={addItem}>
-                + Добавить элемент
-              </Button>
+              <div style={{ display: 'block', width: '100%' }}>
+                <Button onClick={addItem} style={{ display: 'block', marginInline: 'auto', border: '1px solid rgba(0,124,186,.5)' }}>
+                  + Добавить элемент
+                </Button>
+              </div>
             </div>
           )}
         </div>

@@ -38,5 +38,17 @@ function register_page_meta_fields() {
       'show_in_rest' => true,
     ]);
   }
+
+  $str_fields = [
+    'shadow_image',
+  ];
+  foreach ($str_fields as $field) {
+    register_post_meta($post_type, $field, [
+      'type' => 'string',
+      'single' => true,
+      'sanitize_callback' => 'sanitize_text_field',
+      'show_in_rest' => true,
+    ]);
+  }
 }
 add_action('init', 'register_page_meta_fields');

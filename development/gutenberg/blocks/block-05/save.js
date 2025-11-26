@@ -11,8 +11,7 @@ const Save = ({ attributes }) => {
     <div {...blockProps}>
       <div className="container df-fs-st">
         {programs.map((item, index) => (
-          <div key={index} className={`block-program ${item.width}`}>
-
+          <a key={index} href={item.link} className={`block-program ${item.width}`}>
             {item.image && (
               <img
                 src={item.image}
@@ -21,15 +20,21 @@ const Save = ({ attributes }) => {
               />
             )}
 
-            <div className="block-program__shadow" style={{ backgroundColor: 'rgba(0,0,0,0.2)' }} />
+            <div
+              className="block-program__shadow"
+              style={{ backgroundColor: `rgba(0,0,0,0.${Math.floor(item.shadow)})` }}
+            />
 
-            <h4 className="h4">{item.title}</h4>
-            <p className="descr">{item.excerpt}</p>
+            <h4
+              className="h4"
+              dangerouslySetInnerHTML={{ __html: item.title }}
+            />
 
-            {item.url && (
-              <a href={item.url} className="program-link"></a>
-            )}
-          </div>
+            <p
+              className="descr"
+              dangerouslySetInnerHTML={{ __html: item.metaField }}
+            />
+          </a>
         ))}
       </div>
     </div>

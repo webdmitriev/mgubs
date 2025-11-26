@@ -1,6 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
-import { PanelBody, ToggleControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, TextareaControl, RangeControl, Flex } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 
@@ -17,20 +17,6 @@ const PageSidebar = () => {
 
   const updateMeta = (key, value) => {
     editPost({ meta: { ...postMeta, [key]: value } });
-  };
-
-  // Функция для обработки текста с <br/> тегами
-  const handleTextareaChange = (value) => {
-    // Заменяем <br/> на \n для отображения в textarea
-    const textareaValue = value.replace(/<br\s*\/?>/gi, '\n');
-    updateMeta('custom_excerpt', textareaValue);
-  };
-
-  // Функция для получения значения textarea
-  const getTextareaValue = () => {
-    const value = postMeta.custom_excerpt || '';
-    // Заменяем \n на <br/> для хранения в базе
-    return value.replace(/\n/g, '<br/>');
   };
 
   return (
@@ -69,6 +55,24 @@ const PageSidebar = () => {
             rows={8}
             help="Используйте Enter для переноса строки."
           />
+
+          <div style={{ height: '24px' }} />
+
+          <Flex direction="column" gap="8">
+            <RangeControl
+              label={
+                <div>Затемнение картинки (0-10): <strong style={{ paddingBlock: '2px', paddingInline: '4px', color: '#fff', backgroundColor: '#000' }}>{parseFloat(postMeta.shadow_image) || 0}</strong></div>
+              }
+              value={parseFloat(postMeta.shadow_image) || 0}
+              onChange={(val) => {
+                updateMeta('shadow_image', val.toFixed(1));
+              }}
+              min={0}
+              max={10}
+              step={1}
+              withInputField={false}
+            />
+          </Flex>
 
         </PanelBody>
       </PluginSidebar>

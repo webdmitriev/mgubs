@@ -1709,7 +1709,7 @@ const Edit = ({
     }));
     try {
       const page = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt`
+        path: `/wp/v2/pages/${pageId}?_fields=id,title,featured_media,excerpt,link`
       });
 
       // Получаем URL изображения
@@ -1726,12 +1726,14 @@ const Edit = ({
       }
       let custom_title = '';
       let custom_excerpt = '';
+      let shadow_image = '';
       try {
         const meta = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
           path: `/wp/v2/pages/${pageId}?context=edit`
         });
         custom_title = meta.meta.custom_title || '';
         custom_excerpt = meta.meta.custom_excerpt || '';
+        shadow_image = meta.meta.shadow_image || '';
       } catch (error) {
         console.error('Ошибка загрузки мета-поля:', error);
       }
@@ -1741,10 +1743,12 @@ const Edit = ({
       newItems[index] = {
         ...newItems[index],
         pageId: parseInt(pageId),
-        title: custom_title || page.title.rendered,
-        excerpt: page.excerpt.rendered,
+        title: custom_title.replace(/\n/g, '<br/>') || page.title.rendered,
+        excerpt: page.excerpt.rendered.replace(/\n/g, '<br/>'),
         image: imageUrl,
-        metaField: custom_excerpt
+        metaField: custom_excerpt.replace(/\n/g, '<br/>'),
+        shadow: shadow_image,
+        link: page.link
       };
       setAttributes({
         programs: newItems
@@ -1787,7 +1791,9 @@ const Edit = ({
         title: '',
         excerpt: '',
         image: '',
-        metaField: ''
+        metaField: '',
+        shadow: '',
+        link: ''
       };
       setAttributes({
         programs: newItems
@@ -1802,6 +1808,8 @@ const Edit = ({
         excerpt: '',
         image: '',
         metaField: '',
+        shadow: '',
+        link: '',
         width: 'w-32'
       }]
     });
@@ -1857,7 +1865,7 @@ const Edit = ({
       top: '50%',
       transform: 'translateY(-50%)'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null))), item.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null))), console.log('metaField:', item.metaField), item.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "page-data-preview",
     style: {
       padding: '12px',
@@ -1898,9 +1906,19 @@ const Edit = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     isDestructive: true,
     onClick: () => removeItem(index)
-  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: addItem
-  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442")))));
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: addItem,
+    style: {
+      display: 'block',
+      marginInline: 'auto',
+      border: '1px solid rgba(0,124,186,.5)'
+    }
+  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -1966,8 +1984,9 @@ const Save = ({
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container df-fs-st"
-  }, programs.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, programs.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     key: index,
+    href: item.link,
     className: `block-program ${item.width}`
   }, item.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: item.image,
@@ -1976,15 +1995,18 @@ const Save = ({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block-program__shadow",
     style: {
-      backgroundColor: 'rgba(0,0,0,0.2)'
+      backgroundColor: `rgba(0,0,0,0.${Math.floor(item.shadow)})`
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
-    className: "h4"
-  }, item.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "descr"
-  }, item.excerpt), item.url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: item.url,
-    className: "program-link"
+    className: "h4",
+    dangerouslySetInnerHTML: {
+      __html: item.title
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "descr",
+    dangerouslySetInnerHTML: {
+      __html: item.metaField
+    }
   })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
@@ -3028,20 +3050,6 @@ const PageSidebar = () => {
       }
     });
   };
-
-  // Функция для обработки текста с <br/> тегами
-  const handleTextareaChange = value => {
-    // Заменяем <br/> на \n для отображения в textarea
-    const textareaValue = value.replace(/<br\s*\/?>/gi, '\n');
-    updateMeta('custom_excerpt', textareaValue);
-  };
-
-  // Функция для получения значения textarea
-  const getTextareaValue = () => {
-    const value = postMeta.custom_excerpt || '';
-    // Заменяем \n на <br/> для хранения в базе
-    return value.replace(/\n/g, '<br/>');
-  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
     target: "page-sidebar",
     icon: "admin-post"
@@ -3078,7 +3086,31 @@ const PageSidebar = () => {
     onChange: val => updateMeta('custom_excerpt', val),
     rows: 8,
     help: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 Enter \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0430 \u0441\u0442\u0440\u043E\u043A\u0438."
-  }))));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: '24px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+    direction: "column",
+    gap: "8"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u0417\u0430\u0442\u0435\u043C\u043D\u0435\u043D\u0438\u0435 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0438 (0-10): ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
+      style: {
+        paddingBlock: '2px',
+        paddingInline: '4px',
+        color: '#fff',
+        backgroundColor: '#000'
+      }
+    }, parseFloat(postMeta.shadow_image) || 0)),
+    value: parseFloat(postMeta.shadow_image) || 0,
+    onChange: val => {
+      updateMeta('shadow_image', val.toFixed(1));
+    },
+    min: 0,
+    max: 10,
+    step: 1,
+    withInputField: false
+  })))));
 };
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('page-sidebar', {
   render: PageSidebar
