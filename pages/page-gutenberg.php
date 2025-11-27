@@ -108,5 +108,21 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-10">
+  <div class="container df-sp-st">
+    <h2 class="h2">Высшая школа бизнеса МГУ</h2>
+    <p class="descr">Адрес: Москва, Ленинские горы, дом 1, строение 52</p>
+    <img src="https://mgubs.ru/wp-content/uploads/2024/05/school_main_basement.jpg" alt="alto" />
+    <img src="https://mgubs.ru/wp-content/uploads/2024/05/basement2.svg" alt="alto" />
+    <div class="contacts-items">
+      <div class="contacts-item">
+        <div class="contacts-item__label">label</div>
+        <a href="mailto:www">www</a>
+        <a href="tel:www">www</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();
