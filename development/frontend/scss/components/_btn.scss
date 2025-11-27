@@ -21,6 +21,11 @@
     background-color: var(--white-color);
     border: 2px solid var(--white-color);
   }
+  &.btn-orange {
+    color: var(--accent-color);
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+  }
 }
 
 // @container block-www (max-width: 1680px) {
