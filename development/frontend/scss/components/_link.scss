@@ -25,4 +25,11 @@
     top: calc(50% + 2.5px);
     transform: translateY(-50%) rotate(45deg);
   }
+  &.link-white {
+    color: var(--white-color);
+    &:before,
+    &:after {
+      background-color: var(--white-color);
+    }
+  }
 }

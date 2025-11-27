@@ -1,0 +1,112 @@
+.block-07 {
+  padding-block: 60px 40px;
+  background-color: var(--accent-color);
+  .block-content,
+  .block-widgets {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .block-content {
+    max-width: calc(100% - 420px);
+    .h2,
+    .descr {
+      margin-bottom: 24px;
+      color: var(--white-color);
+    }
+    .link {
+      margin: 0 0 0 auto;
+    }
+  }
+  .block-widgets {
+    max-width: 390px;
+    .block-widget {
+      width: 100%;
+      padding: 24px;
+      background-color: var(--white-color);
+      border-radius: 16px;
+      .h2 {
+        width: 100%;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--black-color);
+      }
+      a {
+        display: block;
+        width: 44px;
+        height: 40px;
+        margin-inline: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+    .block-widget-image {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 40px;
+      margin-inline: auto;
+    }
+  }
+  .block-articles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 33px;
+    row-gap: 33px;
+    width: 100%;
+    .block-article {
+      position: relative;
+      .h3 {
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--white-color);
+      }
+      .link {
+        margin: 18px 0 0 auto;
+      }
+      &:nth-child(1),
+      &:nth-child(2) {
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: -16px;
+          display: block;
+          width: 1px;
+          height: 100%;
+          background-color: var(--white-color);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .block-07 .block-content,
+  .block-07 .block-widgets {
+    max-width: 100%;
+  }
+  .block-07 .block-articles {
+    grid-template-columns: 1fr;
+  }
+  .block-07 .block-articles .block-article:nth-child(1):after,
+  .block-07 .block-articles .block-article:nth-child(2):after {
+    top: auto;
+    right: 0;
+    bottom: -16px;
+    width: 100%;
+    height: 1px;
+  }
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}
