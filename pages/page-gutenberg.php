@@ -79,5 +79,34 @@ the_content();
   <a href="//192.168.1.86:3000/mgubs/" class="btn btn-white">Все новости</a>
 </div>
 
+<div class="block-standard block-09">
+  <div class="container">
+    <div class="program-article">
+      <div class="program-article__image df-fs-fe">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/07/ba-585x.jpg" alt="alto" />
+        <h3 class="h3">title</h3>
+      </div>
+      <div class="program-article__date">1 сентября 2025 года</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="program-article">
+      <div class="program-article__image df-fs-fe">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/07/ba-585x.jpg" alt="alto" />
+        <h3 class="h3">title</h3>
+      </div>
+      <div class="program-article__date">1 сентября 2025 года</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="program-article">
+      <div class="program-article__image df-fs-fe">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/07/ba-585x.jpg" alt="alto" />
+        <h3 class="h3">title</h3>
+      </div>
+      <div class="program-article__date">1 сентября 2025 года</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();
