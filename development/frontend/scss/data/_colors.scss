@@ -108,8 +108,11 @@ html.theme-dark {
   }
 }
 
-.theme-dark .article-post,
-.theme-dark .block-02 .event-item,
-.theme-dark .block-06 .container:before {
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+.theme-dark {
+  .article-post,
+  .block-02 .event-item,
+  .block-06 .container:before,
+  .block-09 .program-article {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+  }
 }

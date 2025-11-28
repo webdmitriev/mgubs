@@ -116,9 +116,60 @@ the_content();
     <img src="https://mgubs.ru/wp-content/uploads/2024/05/basement2.svg" alt="alto" />
     <div class="contacts-items">
       <div class="contacts-item">
-        <div class="contacts-item__label">label</div>
-        <a href="mailto:www">www</a>
-        <a href="tel:www">www</a>
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
+      </div>
+      <div class="contacts-item">
+        <div class="contacts-item__label">Приёмная декана</div>
+        <a href="tel:+7 (495) 939 22 02" class="contacts-item__link icon-phone-contacts">+7 (495) 939 22 02</a>
+        <!-- <a href="tel:www" class="contacts-item__link icon-phone-contacts">www</a> -->
+        <a href="mailto:mail@edu.mgubs.ru" class="contacts-item__link icon-mail-contacts">mail@edu.mgubs.ru</a>
+        <!-- <a href="mailto:www" class="contacts-item__link icon-mail-contacts">www</a> -->
       </div>
     </div>
   </div>

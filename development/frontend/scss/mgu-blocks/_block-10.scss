@@ -20,21 +20,82 @@
     object-fit: cover;
     margin-bottom: 40px;
   }
+  .contacts-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 32px;
+    width: 100%;
+    .contacts-item {
+      .contacts-item__label,
+      .contacts-item__link {
+        display: block;
+        width: 100%;
+        font-family: var(--font-family);
+        color: var(--white-color);
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+      }
+      .contacts-item__label {
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .contacts-item__link {
+        position: relative;
+        padding-left: 32px;
+        font-size: var(--font-size);
+        &.icon-phone-contacts:before,
+        &.icon-mail-contacts:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          display: block;
+          width: 18px;
+          height: 18px;
+          transform: translateY(-50%);
+        }
+        &.icon-phone-contacts:before {
+          background: url("../img/icons/icon-phone-contacts.svg") center / contain no-repeat;
+        }
+        &.icon-mail-contacts:before {
+          background: url("../img/icons/icon-mail-contacts.svg") center / contain no-repeat;
+        }
+      }
+    }
+  }
 }
 
-// @media (max-width: 1680px) {
-// }
-// @media (max-width: 1366px) {
-// }
-// @media (max-width: 1199px) {
-// }
-// @media (max-width: 991px) {
-// }
-// @media (max-width: 768px) {
-// }
-// @media (max-width: 576px) {
-// }
-// @media (max-width: 460px) {
-// }
-// @media (max-width: 400px) {
-// }
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+  .block-10 img {
+    max-width: 70%;
+    margin-inline: auto;
+  }
+  .block-10 .contacts-items {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .block-10 img {
+    max-width: 80%;
+  }
+  .block-10 .contacts-items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 576px) {
+  .block-10 img {
+    max-width: 100%;
+  }
+  .block-10 .contacts-items {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}
