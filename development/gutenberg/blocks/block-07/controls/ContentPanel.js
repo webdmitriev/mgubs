@@ -3,13 +3,13 @@ import { __ } from '@wordpress/i18n';
 import { useTypograf } from '../../../utils/useTypograf';
 
 const ContentPanel = ({ attributes, setAttributes }) => {
-  const { title, subTitle, buttonText } = attributes;
+  const { title, descr, widgetTitle, posts } = attributes;
 
   const { typographField, typographAllFields } = useTypograf(attributes, setAttributes, [
-    'title', 'subTitle', 'buttonText'
+    'title', 'descr', 'buttonText', 'posts[].text'
   ]);
 
-  const hasTextToTypograph = title || subTitle || buttonText
+  const hasTextToTypograph = title || descr || widgetTitle || (posts && posts.some(post => post.text && post.text.trim() !== ''));
 
   return (
     <PanelBody title={__('Типограф', 'theme')} initialOpen={false}>

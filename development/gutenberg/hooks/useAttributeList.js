@@ -57,8 +57,9 @@ export function useAttributeList(attributes, setAttributes, key) {
     return (
       <>
         <SelectControl
-          value={item[imageName]}
+          value={item[imageName] || ''}
           options={[
+            { label: 'Выберите соцсеть', value: '' },
             { label: 'Telegram', value: 'telegram' },
             { label: 'Vk', value: 'vk' },
             { label: 'Youtube', value: 'youtube' },

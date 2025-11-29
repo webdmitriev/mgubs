@@ -1,5 +1,8 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls, URLInput } from '@wordpress/block-editor';
+import {
+  useBlockProps, RichText, InspectorControls, URLInput,
+  MediaUpload, MediaUploadCheck
+} from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, TextareaControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -10,7 +13,7 @@ import VideoHelpPanel from './controls/VideoHelpPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { anchor, bgc, title, descr, buttonText, buttonLink, widgetTitle, widgetSocials, posts } = attributes;
+  const { anchor, bgc, title, descr, buttonText, buttonLink, widgetTitle, widgetSocials, widgetImageId, widgetImageData, posts } = attributes;
 
   const [isPreview, setIsPreview] = useState(true);
 
@@ -21,6 +24,37 @@ const Edit = ({ attributes, setAttributes }) => {
   // Используем хук для widgetSocials
   const widgetSocialsList = useAttributeList(attributes, setAttributes, 'widgetSocials');
   const postsList = useAttributeList(attributes, setAttributes, 'posts');
+
+  // Handler - widgetImage
+  const onSelectImage = (media) => {
+    setAttributes({
+      widgetImageId: media.id,
+      widgetImageData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        }
+      }
+    });
+  };
+
+  const onRemoveImage = () => {
+    setAttributes({
+      widgetImageId: 0,
+      widgetImageData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        }
+      }
+    });
+  };
 
   const blockProps = useBlockProps({
     className: 'block-style'
@@ -69,6 +103,47 @@ const Edit = ({ attributes, setAttributes }) => {
             >
               {__('+ Добавить элемент', 'theme')}
             </Button>
+
+            {/*  */}
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={onSelectImage}
+                allowedTypes={['image']}
+                value={widgetImageId}
+                render={({ open }) => (
+                  <div className="advanced-block-image" style={{ display: 'block', marginTop: 24 }}>
+                    <div className="label-image" style={{ display: 'block', marginBottom: 8 }}>Картинка (куб)</div>
+                    {widgetImageData.url ? (
+                      <>
+                        <img
+                          src={widgetImageData.url}
+                          className="advanced-image-preview"
+                          alt=""
+                          style={{ borderRadius: '8px' }}
+                        />
+                        <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                          <Button onClick={open} variant="secondary" size="small">
+                            ✏️ {__('Изменить', 'theme')}
+                          </Button>
+                          <Button
+                            onClick={onRemoveImage}
+                            variant="tertiary"
+                            size="small"
+                            isDestructive
+                          >
+                            🗑 {__('Удалить', 'theme')}
+                          </Button>
+                        </div>
+                      </>
+                    ) : (
+                      <Button onClick={open} variant="primary">
+                        📷 {__('Добавить картинку', 'theme')}
+                      </Button>
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
           </div>
         </PanelBody>
         <PanelBody title={__('Посты', 'theme')} initialOpen={false}>

@@ -9,6 +9,11 @@ registerBlockType('theme/block-07', {
   icon: 'admin-customizer',
   description: ' ',
   attributes,
+  supports: {
+    reusable: true,   // ❗ позволяет сохранять как повторно используемый блок
+    multiple: true,   // позволяет вставлять больше одного раза
+    inserter: true,   // показывает блок в списке
+  },
   edit,
   save,
 });

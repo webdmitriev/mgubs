@@ -2421,6 +2421,22 @@ __webpack_require__.r(__webpack_exports__);
     type: 'array',
     default: []
   },
+  widgetImageId: {
+    type: 'number',
+    default: 0
+  },
+  widgetImageData: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: ''
+      }
+    }
+  },
   posts: {
     type: 'array',
     default: []
@@ -2513,14 +2529,15 @@ const ContentPanel = ({
 }) => {
   const {
     title,
-    subTitle,
-    buttonText
+    descr,
+    widgetTitle,
+    posts
   } = attributes;
   const {
     typographField,
     typographAllFields
-  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title', 'subTitle', 'buttonText']);
-  const hasTextToTypograph = title || subTitle || buttonText;
+  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title', 'descr', 'buttonText', 'posts[].text']);
+  const hasTextToTypograph = title || descr || widgetTitle || posts && posts.some(post => post.text && post.text.trim() !== '');
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типограф', 'theme'),
     initialOpen: false
@@ -2661,6 +2678,8 @@ const Edit = ({
     buttonLink,
     widgetTitle,
     widgetSocials,
+    widgetImageId,
+    widgetImageData,
     posts
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
@@ -2671,6 +2690,36 @@ const Edit = ({
   // Используем хук для widgetSocials
   const widgetSocialsList = (0,_hooks_useAttributeList__WEBPACK_IMPORTED_MODULE_5__.useAttributeList)(attributes, setAttributes, 'widgetSocials');
   const postsList = (0,_hooks_useAttributeList__WEBPACK_IMPORTED_MODULE_5__.useAttributeList)(attributes, setAttributes, 'posts');
+
+  // Handler - widgetImage
+  const onSelectImage = media => {
+    setAttributes({
+      widgetImageId: media.id,
+      widgetImageData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url
+        }
+      }
+    });
+  };
+  const onRemoveImage = () => {
+    setAttributes({
+      widgetImageId: 0,
+      widgetImageData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: ''
+        }
+      }
+    });
+  };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'block-style'
   });
@@ -2746,7 +2795,51 @@ const Edit = ({
       textAlign: 'center',
       border: '1px solid rgba(0, 124, 186, 0.5)'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectImage,
+    allowedTypes: ['image'],
+    value: widgetImageId,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "advanced-block-image",
+      style: {
+        display: 'block',
+        marginTop: 24
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "label-image",
+      style: {
+        display: 'block',
+        marginBottom: 8
+      }
+    }, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430 (\u043A\u0443\u0431)"), widgetImageData.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: widgetImageData.url,
+      className: "advanced-image-preview",
+      alt: "",
+      style: {
+        borderRadius: '8px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        display: 'flex',
+        gap: '6px',
+        marginTop: '4px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "secondary",
+      size: "small"
+    }, "\u270F\uFE0F ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Изменить', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: onRemoveImage,
+      variant: "tertiary",
+      size: "small",
+      isDestructive: true
+    }, "\uD83D\uDDD1 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Удалить', 'theme')))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "primary"
+    }, "\uD83D\uDCF7 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить картинку', 'theme')))
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Посты', 'theme'),
     initialOpen: false
   }, posts.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2878,6 +2971,13 @@ __webpack_require__.r(__webpack_exports__);
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
+  supports: {
+    reusable: true,
+    // ❗ позволяет сохранять как повторно используемый блок
+    multiple: true,
+    // позволяет вставлять больше одного раза
+    inserter: true // показывает блок в списке
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
@@ -2900,29 +3000,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_picture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/picture */ "./development/gutenberg/components/picture.js");
+
 
 
 const Save = ({
   attributes
 }) => {
   const {
+    anchor,
+    bgc,
     title,
-    subTitle,
+    descr,
     buttonText,
-    buttonOption
+    buttonLink,
+    widgetTitle,
+    widgetSocials,
+    widgetImageId,
+    widgetImageData,
+    posts
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'block-standard block-07'
+    className: 'block-standard block-07',
+    style: {
+      backgroundColor: bgc || 'transparent'
+    },
+    id: anchor || ''
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "h3",
+    className: "container df-sp-fs"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-content"
+  }, title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "h2",
     value: title,
+    className: "h2"
+  }), descr && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "p",
+    value: descr,
+    className: "descr"
+  }), buttonLink && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: buttonLink,
+    className: "link link-white"
+  }, buttonText)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-widgets"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-widget df-ce-fs"
+  }, widgetTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "h2",
+    value: widgetTitle,
+    className: "h2"
+  }), widgetSocials?.map((social, index) => {
+    return social.link && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      key: index,
+      href: social.link,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, social.imageName === 'telegram' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: "www",
+      alt: social.imageName
+    }), social.imageName === 'vk' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: "www",
+      alt: social.imageName
+    }), social.imageName === 'youtube' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: "www",
+      alt: social.imageName
+    }), social.imageName === 'whatsapp' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: "www",
+      alt: social.imageName
+    }));
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    data: widgetImageData,
+    className: "block-widget-image"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-articles"
+  }, posts.map((post, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
+    className: "block-article"
+  }, post.text && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "h3",
+    value: post.text,
     className: "h3"
-  })));
+  }), post.link && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: post.link,
+    className: "link link-white"
+  }, "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435")))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
@@ -3571,8 +3735,11 @@ function useAttributeList(attributes, setAttributes, key) {
     const imageName = `imageName`;
     const link = `link`;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-      value: item[imageName],
+      value: item[imageName] || '',
       options: [{
+        label: 'Выберите соцсеть',
+        value: ''
+      }, {
         label: 'Telegram',
         value: 'telegram'
       }, {

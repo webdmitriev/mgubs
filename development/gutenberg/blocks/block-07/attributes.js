@@ -11,6 +11,19 @@ export default {
     type: 'array',
     default: []
   },
+  widgetImageId: { type: 'number', default: 0 },
+  widgetImageData: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: '',
+      }
+    }
+  },
 
   posts: {
     type: 'array',
