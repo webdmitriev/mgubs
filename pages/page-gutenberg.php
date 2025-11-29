@@ -8,14 +8,6 @@ get_header();
 the_content();
 ?>
 
-<div class="block-standard block-06">
-  <div class="container">
-    <h3 class="h3">Не увидели подходящую программу?</h3>
-    <p class="descr">Свяжитесь с нашим менеджером, чтобы получить дополнительную информацию по программам</p>
-    <button class="btn btn-orange">Свяжитесь с нами</button>
-  </div>
-</div>
-
 <div class="block-standard block-07">
   <div class="container df-sp-fs">
     <div class="block-content">
@@ -108,7 +100,7 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-10">
+<div class="block-standard block-10" id="contacts-block-id">
   <div class="container df-sp-st">
     <h2 class="h2">Высшая школа бизнеса МГУ</h2>
     <p class="descr">Адрес: Москва, Ленинские горы, дом 1, строение 52</p>

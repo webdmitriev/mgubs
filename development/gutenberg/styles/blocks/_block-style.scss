@@ -113,6 +113,24 @@
     }
   }
 
+  .richtext-to-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 40px;
+    .richtext-to-select__item {
+      display: block;
+      width: 100%;
+      max-width: calc(50% - 12px);
+      select {
+        min-height: 37px;
+        border-radius: 4px;
+      }
+    }
+  }
+
   .programs-item {
     display: block;
     width: 100%;
