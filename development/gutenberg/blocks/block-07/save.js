@@ -1,4 +1,11 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+
+// import telegramIcon from '../assets/img/icons/icon-telegram-black.svg';
+import telegramIcon from '../../../../assets/img/icons/icon-telegram-black.svg';
+import vkIcon from '../../../../assets/img/icons/icon-vk-black.svg';
+import youtubeIcon from '../../../../assets/img/icons/icon-youtube-black.svg';
+import whatsappIcon from '../../../../assets/img/icons/icon-whatsapp-black.svg';
+
 import Picture from '../../components/picture';
 
 const Save = ({ attributes }) => {
@@ -46,10 +53,10 @@ const Save = ({ attributes }) => {
               return (
                 social.link && (
                   <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
-                    {social.imageName === 'telegram' && <img src="www" alt={social.imageName} />}
-                    {social.imageName === 'vk' && <img src="www" alt={social.imageName} />}
-                    {social.imageName === 'youtube' && <img src="www" alt={social.imageName} />}
-                    {social.imageName === 'whatsapp' && <img src="www" alt={social.imageName} />}
+                    {social.imageName === 'telegram' && <img src={telegramIcon} alt={social.imageName} />}
+                    {social.imageName === 'vk' && <img src={vkIcon} alt={social.imageName} />}
+                    {social.imageName === 'youtube' && <img src={youtubeIcon} alt={social.imageName} />}
+                    {social.imageName === 'whatsapp' && <img src={whatsappIcon} alt={social.imageName} />}
                   </a>
                 )
               )

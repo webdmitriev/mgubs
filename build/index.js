@@ -1,6 +1,180 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./assets/img/icons/icon-telegram-black.svg":
+/*!**************************************************!*\
+  !*** ./assets/img/icons/icon-telegram-black.svg ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReactComponent: () => (/* binding */ SvgIconTelegramBlack),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _g, _defs;
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+var SvgIconTelegramBlack = function SvgIconTelegramBlack(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    width: 24,
+    height: 24,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _g || (_g = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", {
+    clipPath: "url(#icon-telegram-black_svg__a)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12Z",
+    fill: "#313135"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M5.159 11.67c3.69-1.604 6.149-2.66 7.38-3.171 3.513-1.458 4.243-1.711 4.72-1.72.104-.001.338.026.49.147a.53.53 0 0 1 .18.342c.025.164.033.331.02.497-.19 1.995-1.013 6.84-1.433 9.074-.177.945-.526 1.262-.864 1.294-.734.067-1.293-.485-2.005-.95-1.114-.728-1.743-1.182-2.824-1.892-1.25-.821-.44-1.273.273-2.01.186-.193 3.424-3.13 3.486-3.397.008-.033.015-.157-.059-.223s-.183-.043-.262-.025c-.111.025-1.89 1.198-5.337 3.518-.505.346-.962.514-1.372.505-.452-.01-1.321-.255-1.967-.464-.793-.257-1.422-.393-1.367-.83.028-.226.342-.458.94-.696Z",
+    fill: "#fff"
+  }))), _defs || (_defs = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("clipPath", {
+    id: "icon-telegram-black_svg__a"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "#fff",
+    d: "M0 0h24v24H0z"
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMTIgMjRjNi42MjcgMCAxMi01LjM3MyAxMi0xMlMxOC42MjcgMCAxMiAwIDAgNS4zNzMgMCAxMnM1LjM3MyAxMiAxMiAxMloiIGZpbGw9IiMzMTMxMzUiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTUuMTU5IDExLjY3YzMuNjktMS42MDQgNi4xNDktMi42NiA3LjM4LTMuMTcxIDMuNTEzLTEuNDU4IDQuMjQzLTEuNzExIDQuNzItMS43Mi4xMDQtLjAwMS4zMzguMDI2LjQ5LjE0N2EuNTMuNTMgMCAwIDEgLjE4LjM0MmMuMDI1LjE2NC4wMzMuMzMxLjAyLjQ5Ny0uMTkgMS45OTUtMS4wMTMgNi44NC0xLjQzMyA5LjA3NC0uMTc3Ljk0NS0uNTI2IDEuMjYyLS44NjQgMS4yOTQtLjczNC4wNjctMS4yOTMtLjQ4NS0yLjAwNS0uOTUtMS4xMTQtLjcyOC0xLjc0My0xLjE4Mi0yLjgyNC0xLjg5Mi0xLjI1LS44MjEtLjQ0LTEuMjczLjI3My0yLjAxLjE4Ni0uMTkzIDMuNDI0LTMuMTMgMy40ODYtMy4zOTcuMDA4LS4wMzMuMDE1LS4xNTctLjA1OS0uMjIzcy0uMTgzLS4wNDMtLjI2Mi0uMDI1Yy0uMTExLjAyNS0xLjg5IDEuMTk4LTUuMzM3IDMuNTE4LS41MDUuMzQ2LS45NjIuNTE0LTEuMzcyLjUwNS0uNDUyLS4wMS0xLjMyMS0uMjU1LTEuOTY3LS40NjQtLjc5My0uMjU3LTEuNDIyLS4zOTMtMS4zNjctLjgzLjAyOC0uMjI2LjM0Mi0uNDU4Ljk0LS42OTZaIiBmaWxsPSIjZmZmIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgyNHYyNEgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==");
+
+/***/ }),
+
+/***/ "./assets/img/icons/icon-vk-black.svg":
+/*!********************************************!*\
+  !*** ./assets/img/icons/icon-vk-black.svg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReactComponent: () => (/* binding */ SvgIconVkBlack),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _g, _defs;
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+var SvgIconVkBlack = function SvgIconVkBlack(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    width: 24,
+    height: 24,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _g || (_g = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", {
+    clipPath: "url(#icon-vk-black_svg__a)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12Z",
+    fill: "#313135"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M12.607 17.395c-5.38 0-8.448-3.706-8.576-9.883h2.695c.089 4.526 2.075 6.424 3.649 6.839V7.52h2.537v3.904c1.554-.168 3.187-1.947 3.738-3.903h2.537a7.552 7.552 0 0 1-1.207 2.832 7.51 7.51 0 0 1-2.235 2.11 7.773 7.773 0 0 1 2.548 2.035 7.815 7.815 0 0 1 1.494 2.906h-2.803a4.88 4.88 0 0 0-1.505-2.383 4.842 4.842 0 0 0-2.567-1.146v3.529l-.305-.01Z",
+    fill: "#fff"
+  }))), _defs || (_defs = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("clipPath", {
+    id: "icon-vk-black_svg__a"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "#fff",
+    d: "M0 0h24v24H0z"
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMTIgMjRjNi42MjcgMCAxMi01LjM3MyAxMi0xMlMxOC42MjcgMCAxMiAwIDAgNS4zNzMgMCAxMnM1LjM3MyAxMiAxMiAxMloiIGZpbGw9IiMzMTMxMzUiLz48cGF0aCBkPSJNMTIuNjA3IDE3LjM5NWMtNS4zOCAwLTguNDQ4LTMuNzA2LTguNTc2LTkuODgzaDIuNjk1Yy4wODkgNC41MjYgMi4wNzUgNi40MjQgMy42NDkgNi44MzlWNy41MmgyLjUzN3YzLjkwNGMxLjU1NC0uMTY4IDMuMTg3LTEuOTQ3IDMuNzM4LTMuOTAzaDIuNTM3YTcuNTUyIDcuNTUyIDAgMCAxLTEuMjA3IDIuODMyIDcuNTEgNy41MSAwIDAgMS0yLjIzNSAyLjExIDcuNzczIDcuNzczIDAgMCAxIDIuNTQ4IDIuMDM1IDcuODE1IDcuODE1IDAgMCAxIDEuNDk0IDIuOTA2aC0yLjgwM2E0Ljg4IDQuODggMCAwIDAtMS41MDUtMi4zODMgNC44NDIgNC44NDIgMCAwIDAtMi41NjctMS4xNDZ2My41MjlsLS4zMDUtLjAxWiIgZmlsbD0iI2ZmZiIvPjwvZz48ZGVmcz48Y2xpcFBhdGggaWQ9ImEiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48L3N2Zz4=");
+
+/***/ }),
+
+/***/ "./assets/img/icons/icon-whatsapp-black.svg":
+/*!**************************************************!*\
+  !*** ./assets/img/icons/icon-whatsapp-black.svg ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReactComponent: () => (/* binding */ SvgIconWhatsappBlack),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _g, _defs;
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+var SvgIconWhatsappBlack = function SvgIconWhatsappBlack(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    width: 24,
+    height: 24,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _g || (_g = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", {
+    clipPath: "url(#icon-whatsapp-black_svg__a)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M24 12c0-6.627-5.373-12-12-12S0 5.373 0 12s5.373 12 12 12 12-5.373 12-12Z",
+    fill: "#313135"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M16.7 7.274a6.547 6.547 0 0 0-4.673-1.94c-3.64 0-6.606 2.967-6.606 6.607 0 1.166.306 2.3.88 3.3l-.934 3.426 3.5-.92a6.609 6.609 0 0 0 3.16.807c3.64 0 6.607-2.967 6.607-6.607A6.565 6.565 0 0 0 16.7 7.274Zm-4.673 10.16a5.508 5.508 0 0 1-2.8-.767l-.2-.12-2.08.547.554-2.027-.134-.206a5.507 5.507 0 0 1-.84-2.92 5.503 5.503 0 0 1 5.494-5.494c1.466 0 2.846.574 3.88 1.614a5.452 5.452 0 0 1 1.606 3.886c.013 3.027-2.453 5.487-5.48 5.487Zm3.014-4.107c-.167-.08-.98-.48-1.127-.54-.153-.053-.26-.08-.373.08-.114.167-.427.54-.52.647-.094.113-.194.127-.36.04-.167-.08-.7-.26-1.327-.82-.493-.44-.82-.98-.92-1.147-.094-.166-.014-.253.073-.34.073-.073.167-.193.247-.286.08-.094.113-.167.166-.274.054-.113.027-.206-.013-.286-.04-.08-.373-.894-.507-1.227-.133-.32-.273-.28-.373-.287h-.32a.599.599 0 0 0-.44.207c-.146.167-.573.567-.573 1.38s.593 1.6.673 1.707c.08.113 1.167 1.78 2.82 2.493.393.173.7.273.94.347.394.126.754.106 1.04.066.32-.046.98-.4 1.114-.786.14-.387.14-.714.093-.787-.047-.073-.147-.107-.313-.187Z",
+    fill: "#fff"
+  }))), _defs || (_defs = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("clipPath", {
+    id: "icon-whatsapp-black_svg__a"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "#fff",
+    d: "M0 0h24v24H0z"
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMjQgMTJjMC02LjYyNy01LjM3My0xMi0xMi0xMlMwIDUuMzczIDAgMTJzNS4zNzMgMTIgMTIgMTIgMTItNS4zNzMgMTItMTJaIiBmaWxsPSIjMzEzMTM1Ii8+PHBhdGggZD0iTTE2LjcgNy4yNzRhNi41NDcgNi41NDcgMCAwIDAtNC42NzMtMS45NGMtMy42NCAwLTYuNjA2IDIuOTY3LTYuNjA2IDYuNjA3IDAgMS4xNjYuMzA2IDIuMy44OCAzLjNsLS45MzQgMy40MjYgMy41LS45MmE2LjYwOSA2LjYwOSAwIDAgMCAzLjE2LjgwN2MzLjY0IDAgNi42MDctMi45NjcgNi42MDctNi42MDdBNi41NjUgNi41NjUgMCAwIDAgMTYuNyA3LjI3NFptLTQuNjczIDEwLjE2YTUuNTA4IDUuNTA4IDAgMCAxLTIuOC0uNzY3bC0uMi0uMTItMi4wOC41NDcuNTU0LTIuMDI3LS4xMzQtLjIwNmE1LjUwNyA1LjUwNyAwIDAgMS0uODQtMi45MiA1LjUwMyA1LjUwMyAwIDAgMSA1LjQ5NC01LjQ5NGMxLjQ2NiAwIDIuODQ2LjU3NCAzLjg4IDEuNjE0YTUuNDUyIDUuNDUyIDAgMCAxIDEuNjA2IDMuODg2Yy4wMTMgMy4wMjctMi40NTMgNS40ODctNS40OCA1LjQ4N1ptMy4wMTQtNC4xMDdjLS4xNjctLjA4LS45OC0uNDgtMS4xMjctLjU0LS4xNTMtLjA1My0uMjYtLjA4LS4zNzMuMDgtLjExNC4xNjctLjQyNy41NC0uNTIuNjQ3LS4wOTQuMTEzLS4xOTQuMTI3LS4zNi4wNC0uMTY3LS4wOC0uNy0uMjYtMS4zMjctLjgyLS40OTMtLjQ0LS44Mi0uOTgtLjkyLTEuMTQ3LS4wOTQtLjE2Ni0uMDE0LS4yNTMuMDczLS4zNC4wNzMtLjA3My4xNjctLjE5My4yNDctLjI4Ni4wOC0uMDk0LjExMy0uMTY3LjE2Ni0uMjc0LjA1NC0uMTEzLjAyNy0uMjA2LS4wMTMtLjI4Ni0uMDQtLjA4LS4zNzMtLjg5NC0uNTA3LTEuMjI3LS4xMzMtLjMyLS4yNzMtLjI4LS4zNzMtLjI4N2gtLjMyYS41OTkuNTk5IDAgMCAwLS40NC4yMDdjLS4xNDYuMTY3LS41NzMuNTY3LS41NzMgMS4zOHMuNTkzIDEuNi42NzMgMS43MDdjLjA4LjExMyAxLjE2NyAxLjc4IDIuODIgMi40OTMuMzkzLjE3My43LjI3My45NC4zNDcuMzk0LjEyNi43NTQuMTA2IDEuMDQuMDY2LjMyLS4wNDYuOTgtLjQgMS4xMTQtLjc4Ni4xNC0uMzg3LjE0LS43MTQuMDkzLS43ODctLjA0Ny0uMDczLS4xNDctLjEwNy0uMzEzLS4xODdaIiBmaWxsPSIjZmZmIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgyNHYyNEgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==");
+
+/***/ }),
+
+/***/ "./assets/img/icons/icon-youtube-black.svg":
+/*!*************************************************!*\
+  !*** ./assets/img/icons/icon-youtube-black.svg ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReactComponent: () => (/* binding */ SvgIconYoutubeBlack),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _g, _defs;
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+var SvgIconYoutubeBlack = function SvgIconYoutubeBlack(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    width: 24,
+    height: 24,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _g || (_g = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", {
+    clipPath: "url(#icon-youtube-black_svg__a)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12Z",
+    fill: "#313135"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M19.266 8.596a1.895 1.895 0 0 0-1.345-1.32c-1.18-.315-5.928-.315-5.928-.315s-4.747.01-5.927.325a1.895 1.895 0 0 0-1.345 1.32c-.361 2.056-.498 5.192.01 7.162a1.894 1.894 0 0 0 1.345 1.32c1.18.316 5.927.316 5.927.316s4.748 0 5.927-.316a1.895 1.895 0 0 0 1.346-1.32c.38-2.056.497-5.192-.01-7.172Zm-8.784 5.824V9.945l3.939 2.237-3.939 2.238Z",
+    fill: "#fff"
+  }))), _defs || (_defs = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("defs", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("clipPath", {
+    id: "icon-youtube-black_svg__a"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "#fff",
+    d: "M0 0h24v24H0z"
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMTIgMjRjNi42MjcgMCAxMi01LjM3MyAxMi0xMlMxOC42MjcgMCAxMiAwIDAgNS4zNzMgMCAxMnM1LjM3MyAxMiAxMiAxMloiIGZpbGw9IiMzMTMxMzUiLz48cGF0aCBkPSJNMTkuMjY2IDguNTk2YTEuODk1IDEuODk1IDAgMCAwLTEuMzQ1LTEuMzJjLTEuMTgtLjMxNS01LjkyOC0uMzE1LTUuOTI4LS4zMTVzLTQuNzQ3LjAxLTUuOTI3LjMyNWExLjg5NSAxLjg5NSAwIDAgMC0xLjM0NSAxLjMyYy0uMzYxIDIuMDU2LS40OTggNS4xOTIuMDEgNy4xNjJhMS44OTQgMS44OTQgMCAwIDAgMS4zNDUgMS4zMmMxLjE4LjMxNiA1LjkyNy4zMTYgNS45MjcuMzE2czQuNzQ4IDAgNS45MjctLjMxNmExLjg5NSAxLjg5NSAwIDAgMCAxLjM0Ni0xLjMyYy4zOC0yLjA1Ni40OTctNS4xOTItLjAxLTcuMTcyWm0tOC43ODQgNS44MjRWOS45NDVsMy45MzkgMi4yMzctMy45MzkgMi4yMzhaIiBmaWxsPSIjZmZmIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgyNHYyNEgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==");
+
+/***/ }),
+
 /***/ "./development/gutenberg/blocks/block-01/attributes.js":
 /*!*************************************************************!*\
   !*** ./development/gutenberg/blocks/block-01/attributes.js ***!
@@ -3000,7 +3174,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_picture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/picture */ "./development/gutenberg/components/picture.js");
+/* harmony import */ var _assets_img_icons_icon_telegram_black_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../assets/img/icons/icon-telegram-black.svg */ "./assets/img/icons/icon-telegram-black.svg");
+/* harmony import */ var _assets_img_icons_icon_vk_black_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../assets/img/icons/icon-vk-black.svg */ "./assets/img/icons/icon-vk-black.svg");
+/* harmony import */ var _assets_img_icons_icon_youtube_black_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../assets/img/icons/icon-youtube-black.svg */ "./assets/img/icons/icon-youtube-black.svg");
+/* harmony import */ var _assets_img_icons_icon_whatsapp_black_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../assets/img/icons/icon-whatsapp-black.svg */ "./assets/img/icons/icon-whatsapp-black.svg");
+/* harmony import */ var _components_picture__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/picture */ "./development/gutenberg/components/picture.js");
+
+
+
+// import telegramIcon from '../assets/img/icons/icon-telegram-black.svg';
+
+
 
 
 
@@ -3059,19 +3243,19 @@ const Save = ({
       target: "_blank",
       rel: "noopener noreferrer"
     }, social.imageName === 'telegram' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: "www",
+      src: _assets_img_icons_icon_telegram_black_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
       alt: social.imageName
     }), social.imageName === 'vk' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: "www",
+      src: _assets_img_icons_icon_vk_black_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
       alt: social.imageName
     }), social.imageName === 'youtube' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: "www",
+      src: _assets_img_icons_icon_youtube_black_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
       alt: social.imageName
     }), social.imageName === 'whatsapp' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: "www",
+      src: _assets_img_icons_icon_whatsapp_black_svg__WEBPACK_IMPORTED_MODULE_5__["default"],
       alt: social.imageName
     }));
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_6__["default"], {
     data: widgetImageData,
     className: "block-widget-image"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4777,7 +4961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const colors = [{
   name: 'ВШБ',
-  color: '#FE6D35'
+  color: '#ff762f'
 }, {
   name: 'ВШБ Фон',
   color: '#F8EFEA'

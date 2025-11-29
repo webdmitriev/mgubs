@@ -1,5 +1,5 @@
 const colors = [
-  { name: 'ВШБ', color: '#FE6D35' },
+  { name: 'ВШБ', color: '#ff762f' },
   { name: 'ВШБ Фон', color: '#F8EFEA' },
 
   { name: 'Магистратура', color: '#002B2A' },
