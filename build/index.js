@@ -2039,7 +2039,7 @@ const Edit = ({
       top: '50%',
       transform: 'translateY(-50%)'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null))), console.log('metaField:', item.metaField), item.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null))), item.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "page-data-preview",
     style: {
       padding: '12px',
@@ -3273,6 +3273,563 @@ const Save = ({
   }, "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435")))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/attributes.js":
+/*!*************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/attributes.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  teachers: {
+    type: 'array',
+    default: []
+  },
+  teachersOrder: {
+    type: 'array',
+    default: []
+  }
+});
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/controls/ContentPanel.js":
+/*!************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/controls/ContentPanel.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/useTypograf */ "./development/gutenberg/utils/useTypograf.js");
+
+
+
+
+const ContentPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    title,
+    second_title,
+    description
+  } = attributes;
+  const {
+    typographField,
+    typographAllFields
+  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title']);
+  const hasTextToTypograph = title;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типограф', 'theme'),
+    initialOpen: false
+  }, hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: '20px',
+      padding: '10px',
+      background: '#f6f7f7',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+    direction: "column",
+    gap: "10px"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    variant: "primary",
+    onClick: typographAllFields,
+    style: {
+      display: 'block',
+      width: '100%',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типографировать все поля', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Расставит кавычки, тире и неразрывные пробелы', 'theme')))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/controls/VideoHelpPanel.js":
+/*!**************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/controls/VideoHelpPanel.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const VideoHelpPanel = () => {
+  const [isVideoOpen, setIsVideoOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const videoPath = `${themeData.uploadUrl}/default.mov`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Instructions', 'theme'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video instructions.', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => setIsVideoOpen(true),
+    icon: "video-alt3"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Play', 'theme'))), isVideoOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video instruction', 'theme'),
+    onRequestClose: () => setIsVideoOpen(false),
+    className: "help-video-modal"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'relative',
+      paddingBottom: '56.25%',
+      height: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    src: videoPath,
+    controls: true,
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '8px'
+    }
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoHelpPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/edit.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/edit.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-08/controls/ContentPanel.js");
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-08/controls/VideoHelpPanel.js");
+
+
+
+
+
+
+
+
+const Edit = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    teachers: selectedTeacherIds,
+    teachersOrder = []
+  } = attributes;
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
+
+  // Загружаем всех преподавателей с обработкой состояний
+  const {
+    teachersPosts,
+    isLoading,
+    hasError
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    const query = {
+      per_page: -1,
+      _fields: 'id,title,status,slug,meta,featured_media',
+      status: ['publish']
+    };
+    try {
+      const posts = select('core').getEntityRecords('postType', 'teachers', query);
+      const resolving = select('core').isResolving('getEntityRecords', ['postType', 'teachers', query]);
+      const hasResolved = select('core').hasFinishedResolution('getEntityRecords', ['postType', 'teachers', query]);
+      return {
+        teachersPosts: posts,
+        isLoading: resolving && !hasResolved,
+        hasError: !resolving && !hasResolved && !posts,
+        isResolved: hasResolved
+      };
+    } catch (error) {
+      return {
+        teachersPosts: null,
+        isLoading: false,
+        hasError: true,
+        errorMessage: error.message
+      };
+    }
+  }, []);
+
+  // Добавляем искусственную задержку для демонстрации
+  const [showLoading, setShowLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(() => {
+    const timer = setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Обработчик выбора преподавателя
+  const handleTeacherSelect = teacherId => {
+    const newSelectedTeachers = selectedTeacherIds || [];
+    let newTeachersOrder = teachersOrder || [];
+    if (newSelectedTeachers.includes(teacherId)) {
+      // Удаляем если уже выбран
+      const updatedTeachers = newSelectedTeachers.filter(id => id !== teacherId);
+      const updatedOrder = newTeachersOrder.filter(id => id !== teacherId);
+      setAttributes({
+        teachers: updatedTeachers,
+        teachersOrder: updatedOrder
+      });
+    } else {
+      // Добавляем если не выбран
+      const updatedTeachers = [...newSelectedTeachers, teacherId];
+      const updatedOrder = [...newTeachersOrder, teacherId];
+      setAttributes({
+        teachers: updatedTeachers,
+        teachersOrder: updatedOrder
+      });
+    }
+  };
+
+  // Очистка выбора
+  const clearSelection = () => {
+    setAttributes({
+      teachers: [],
+      teachersOrder: []
+    });
+  };
+
+  // Получаем выбранных преподавателей в правильном порядке
+  const selectedTeachers = (teachersPosts?.filter(teacher => selectedTeacherIds?.includes(teacher.id)) || []).sort((a, b) => {
+    var _ref, _teachersOrder$indexO, _ref2, _teachersOrder$indexO2;
+    const orderA = (_ref = (_teachersOrder$indexO = teachersOrder?.indexOf(a.id)) !== null && _teachersOrder$indexO !== void 0 ? _teachersOrder$indexO : selectedTeacherIds?.indexOf(a.id)) !== null && _ref !== void 0 ? _ref : -1;
+    const orderB = (_ref2 = (_teachersOrder$indexO2 = teachersOrder?.indexOf(b.id)) !== null && _teachersOrder$indexO2 !== void 0 ? _teachersOrder$indexO2 : selectedTeacherIds?.indexOf(b.id)) !== null && _ref2 !== void 0 ? _ref2 : -1;
+    return orderA - orderB;
+  });
+
+  // Функции для перестановки карточек
+  const moveTeacher = (fromIndex, toIndex) => {
+    if (fromIndex === toIndex) return;
+    const newOrder = [...teachersOrder];
+    const [moved] = newOrder.splice(fromIndex, 1);
+    newOrder.splice(toIndex, 0, moved);
+    setAttributes({
+      teachersOrder: newOrder
+    });
+  };
+  const moveTeacherUp = currentIndex => {
+    if (currentIndex === 0) return;
+    moveTeacher(currentIndex, currentIndex - 1);
+  };
+  const moveTeacherDown = currentIndex => {
+    if (currentIndex === teachersOrder.length - 1) return;
+    moveTeacher(currentIndex, currentIndex + 1);
+  };
+  const moveTeacherToStart = currentIndex => {
+    if (currentIndex === 0) return;
+    moveTeacher(currentIndex, 0);
+  };
+  const moveTeacherToEnd = currentIndex => {
+    if (currentIndex === teachersOrder.length - 1) return;
+    moveTeacher(currentIndex, teachersOrder.length - 1);
+  };
+
+  // Получаем текущий индекс в teachersOrder для карточки
+  const getCurrentOrderIndex = teacherId => {
+    return teachersOrder.indexOf(teacherId);
+  };
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+    className: 'block-style'
+  });
+
+  // Отображаем состояние загрузки
+  if (showLoading || isLoading) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "advanced-block"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "block-loading"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Загружаем данные преподавателей...', 'theme')))));
+  }
+
+  // Отображаем ошибку
+  if (hasError) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "advanced-block"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Notice, {
+      status: "error",
+      isDismissible: false
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Ошибка при загрузке данных преподавателей. Пожалуйста, проверьте наличие типа записи "teachers".', 'theme'))));
+  }
+
+  // Проверяем наличие данных
+  if (!teachersPosts || teachersPosts.length === 0) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "advanced-block"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Notice, {
+      status: "warning",
+      isDismissible: false
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Преподаватели не найдены. Создайте записи типа "teachers".', 'theme'))));
+  }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Выбор преподавателя', 'theme'),
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: '20px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      maxHeight: '340px',
+      overflowY: 'auto'
+    }
+  }, teachersPosts.map(teacher => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: teacher.id,
+    style: {
+      marginBottom: '8px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    label: teacher.title?.rendered || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Без названия', 'theme'),
+    checked: selectedTeacherIds?.includes(teacher.id) || false,
+    onChange: () => handleTeacherSelect(teacher.id)
+  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: '16px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    variant: "secondary",
+    onClick: clearSelection,
+    disabled: !selectedTeacherIds || selectedTeacherIds.length === 0
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Очистить выбор', 'theme'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 08 - \u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "preview-mode"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Режим предпросмотра:', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Здесь будет отображаться выбранный преподаватель(и) как на фронтенде.', 'theme'))), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "selected-teachers"
+  }, selectedTeachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Notice, {
+    status: "warning",
+    isDismissible: false
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Преподаватели не выбраны. Выберите преподавателя в панели настроек.', 'theme')) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "order-controls",
+    style: {
+      marginBottom: '20px',
+      padding: '10px',
+      background: '#f6f7f7',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    style: {
+      margin: '0 0 10px 0'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Порядок отображения преподавателей:', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      margin: '0 0 10px 0',
+      fontSize: '12px',
+      color: '#666'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Используйте кнопки для изменения порядка карточек', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: '12px',
+      color: '#007cba'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Текущий порядок:', 'theme'), " [", teachersOrder.join(', '), "]")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teachers-grid"
+  }, selectedTeachers.map((teacher, displayIndex) => {
+    const currentOrderIndex = getCurrentOrderIndex(teacher.id);
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: teacher.id,
+      className: "teacher-card"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "teacher-card__header"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "teacher-card__title"
+    }, teacher.title?.rendered || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Без названия', 'theme'), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "teacher-card__position",
+      style: {
+        fontSize: '12px',
+        color: '#666',
+        display: 'block'
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Позиция:', 'theme'), " ", displayIndex + 1, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)(' (в порядке:', 'theme'), " ", currentOrderIndex + 1, ")"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "teacher-card__meta"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "teacher-card__id"
+    }, "ID: ", teacher.id), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "teacher-card__slug"
+    }, "Slug: ", teacher.slug)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "teacher-card__controls",
+      style: {
+        display: 'flex',
+        gap: '5px',
+        flexWrap: 'wrap',
+        marginBottom: '10px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: () => moveTeacherToStart(currentOrderIndex),
+      disabled: currentOrderIndex === 0
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('В начало', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: () => moveTeacherUp(currentOrderIndex),
+      disabled: currentOrderIndex === 0
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Вверх', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: () => moveTeacherDown(currentOrderIndex),
+      disabled: currentOrderIndex === teachersOrder.length - 1
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Вниз', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: () => moveTeacherToEnd(currentOrderIndex),
+      disabled: currentOrderIndex === teachersOrder.length - 1
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('В конец', 'theme'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: () => handleTeacherSelect(teacher.id)
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Удалить', 'theme')));
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("details", {
+    style: {
+      marginTop: '20px',
+      fontSize: '12px',
+      opacity: 0.7
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("summary", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Отладочная информация', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: '10px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "selectedTeacherIds:"), " [", selectedTeacherIds?.join(', ') || '', "]"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "teachersOrder:"), " [", teachersOrder.join(', '), "]"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "selectedTeachers IDs:"), " [", selectedTeachers.map(t => t.id).join(', '), "]")))))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/index.js":
+/*!********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./development/gutenberg/blocks/block-08/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./save */ "./development/gutenberg/blocks/block-08/save.js");
+/* harmony import */ var _attributes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./attributes */ "./development/gutenberg/blocks/block-08/attributes.js");
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-08', {
+  title: 'Преподаватели',
+  category: 'webdmitriev',
+  icon: 'admin-customizer',
+  description: ' ',
+  attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+console.log('✅ block-08');
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-08/save.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-08/save.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ save)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function save({
+  attributes
+}) {
+  const {
+    teachers = [],
+    teachersOrder = []
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
+  }, `[teachers_block ids="${teachersOrder.join(',')}"]`);
+}
 
 /***/ }),
 
@@ -6814,6 +7371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_block_05_index_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./blocks/block-05/index.js */ "./development/gutenberg/blocks/block-05/index.js");
 /* harmony import */ var _blocks_block_06_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./blocks/block-06/index.js */ "./development/gutenberg/blocks/block-06/index.js");
 /* harmony import */ var _blocks_block_07_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./blocks/block-07/index.js */ "./development/gutenberg/blocks/block-07/index.js");
+/* harmony import */ var _blocks_block_08_index_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/block-08/index.js */ "./development/gutenberg/blocks/block-08/index.js");
 // add sidebar
 
 
@@ -6833,6 +7391,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // add blocks
+
 
 
 

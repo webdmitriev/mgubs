@@ -211,7 +211,6 @@ const Edit = ({ attributes, setAttributes }) => {
                       </div>
                     )}
                   </div>
-                  {console.log('metaField:', item.metaField)}
 
                   {/* Отображение загруженных данных */}
                   {item.title && (
