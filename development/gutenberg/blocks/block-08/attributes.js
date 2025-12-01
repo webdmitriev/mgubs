@@ -6,5 +6,9 @@ export default {
   teachersOrder: {
     type: 'array',
     default: [],
+  },
+  buttonControl: {
+    type: 'string',
+    default: ''
   }
 };

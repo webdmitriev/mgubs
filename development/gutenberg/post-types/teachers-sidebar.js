@@ -50,7 +50,7 @@ const TeachersSidebar = () => {
           <div style={{ height: '24px' }} />
 
           <ToggleControl
-            label="Отключить кнопку?"
+            label={!!postMeta.is_button_off ? 'Кнопка видна' : 'Кнопка скрыта'}
             checked={!!postMeta.is_button_off}
             onChange={(val) => updateMeta('is_button_off', val)}
           />

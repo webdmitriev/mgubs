@@ -17,7 +17,7 @@ the_content();
       <div class="teacher-link">Подробнее</div>
     </div>
   </div>
-  <a href=#" class="btn btn-white">Все новости</a>
+  <a href="#" class="btn btn-white">Все новости</a>
 </div>
 
 <div class="block-standard block-09">

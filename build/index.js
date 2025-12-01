@@ -3295,77 +3295,12 @@ __webpack_require__.r(__webpack_exports__);
   teachersOrder: {
     type: 'array',
     default: []
+  },
+  buttonControl: {
+    type: 'string',
+    default: ''
   }
 });
-
-/***/ }),
-
-/***/ "./development/gutenberg/blocks/block-08/controls/ContentPanel.js":
-/*!************************************************************************!*\
-  !*** ./development/gutenberg/blocks/block-08/controls/ContentPanel.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/useTypograf */ "./development/gutenberg/utils/useTypograf.js");
-
-
-
-
-const ContentPanel = ({
-  attributes,
-  setAttributes
-}) => {
-  const {
-    title,
-    second_title,
-    description
-  } = attributes;
-  const {
-    typographField,
-    typographAllFields
-  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title']);
-  const hasTextToTypograph = title;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типограф', 'theme'),
-    initialOpen: false
-  }, hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      marginBottom: '20px',
-      padding: '10px',
-      background: '#f6f7f7',
-      borderRadius: '4px'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
-    direction: "column",
-    gap: "10px"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-    variant: "primary",
-    onClick: typographAllFields,
-    style: {
-      display: 'block',
-      width: '100%',
-      textAlign: 'center'
-    }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типографировать все поля', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      fontSize: '12px',
-      color: '#757575',
-      textAlign: 'center'
-    }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Расставит кавычки, тире и неразрывные пробелы', 'theme')))));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentPanel);
 
 /***/ }),
 
@@ -3452,9 +3387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-08/controls/ContentPanel.js");
-/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-08/controls/VideoHelpPanel.js");
-
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-08/controls/VideoHelpPanel.js");
 
 
 
@@ -3468,7 +3401,8 @@ const Edit = ({
 }) => {
   const {
     teachers: selectedTeacherIds,
-    teachersOrder = []
+    teachersOrder = [],
+    buttonControl = ''
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
   const togglePreview = () => {
@@ -3623,16 +3557,9 @@ const Edit = ({
       isDismissible: false
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Преподаватели не найдены. Создайте записи типа "teachers".', 'theme'))));
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    attributes: attributes,
-    setAttributes: setAttributes
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Выбор преподавателя', 'theme'),
     initialOpen: true
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      marginTop: '20px'
-    }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       maxHeight: '340px',
@@ -3647,7 +3574,7 @@ const Edit = ({
     label: teacher.title?.rendered || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Без названия', 'theme'),
     checked: selectedTeacherIds?.includes(teacher.id) || false,
     onChange: () => handleTeacherSelect(teacher.id)
-  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       marginTop: '16px'
     }
@@ -3655,7 +3582,31 @@ const Edit = ({
     variant: "secondary",
     onClick: clearSelection,
     disabled: !selectedTeacherIds || selectedTeacherIds.length === 0
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Очистить выбор', 'theme'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Очистить выбор', 'theme'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: '24px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    style: {
+      display: 'block',
+      marginBottom: 5
+    }
+  }, "\u0410\u043A\u0442\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043A\u043D\u043E\u043F\u043A\u0443:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    value: buttonControl,
+    options: [{
+      label: 'Кнопка отключена',
+      value: ''
+    }, {
+      label: 'Показать ещё',
+      value: 'teachers-more'
+    }, {
+      label: 'Все преподаватели',
+      value: 'teachers-all'
+    }],
+    onChange: value => setAttributes({
+      buttonControl: value
+    })
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block"
@@ -3672,13 +3623,17 @@ const Edit = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Режим предпросмотра:', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Здесь будет отображаться выбранный преподаватель(и) как на фронтенде.', 'theme'))), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "selected-teachers"
+    className: "selected-teachers",
+    style: {
+      width: '100%'
+    }
   }, selectedTeachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Notice, {
     status: "warning",
     isDismissible: false
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Преподаватели не выбраны. Выберите преподавателя в панели настроек.', 'theme')) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "order-controls",
     style: {
+      width: '100%',
       marginBottom: '20px',
       padding: '10px',
       background: '#f6f7f7',
@@ -3700,73 +3655,89 @@ const Edit = ({
       color: '#007cba'
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Текущий порядок:', 'theme'), " [", teachersOrder.join(', '), "]")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teachers-grid"
+    className: "teachers-grid",
+    style: {
+      display: 'grid',
+      columnGap: '14px',
+      gridTemplateColumns: '1fr 1fr 1fr 1fr'
+    }
   }, selectedTeachers.map((teacher, displayIndex) => {
     const currentOrderIndex = getCurrentOrderIndex(teacher.id);
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       key: teacher.id,
-      className: "teacher-card"
+      className: "teacher-card",
+      style: {
+        display: 'block',
+        padding: 8,
+        backgroundColor: 'rgba(0,124,186,.15)',
+        borderRadius: 4
+      }
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "teacher-card__header"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "teacher-card__title"
-    }, teacher.title?.rendered || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Без названия', 'theme'), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "teacher-card__position",
       style: {
+        marginBottom: 8,
         fontSize: '12px',
         color: '#666',
         display: 'block'
       }
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Позиция:', 'theme'), " ", displayIndex + 1, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)(' (в порядке:', 'theme'), " ", currentOrderIndex + 1, ")"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "teacher-card__meta"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "teacher-card__id"
-    }, "ID: ", teacher.id), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "teacher-card__slug"
-    }, "Slug: ", teacher.slug)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Позиция:', 'theme'), " ", displayIndex + 1, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)(' (в порядке:', 'theme'), " ", currentOrderIndex + 1, ")"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: {
+        display: 'block',
+        width: '100%',
+        minHeight: 54,
+        marginBottom: 8,
+        fontSize: 14,
+        lineHeight: '1.3'
+      }
+    }, teacher.title?.rendered || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Без названия', 'theme')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "teacher-card__controls",
       style: {
         display: 'flex',
         gap: '5px',
         flexWrap: 'wrap',
+        justifyContent: 'space-between',
         marginBottom: '10px'
       }
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       variant: "secondary",
       size: "small",
-      onClick: () => moveTeacherToStart(currentOrderIndex),
-      disabled: currentOrderIndex === 0
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('В начало', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
-      variant: "secondary",
-      size: "small",
       onClick: () => moveTeacherUp(currentOrderIndex),
-      disabled: currentOrderIndex === 0
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Вверх', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      disabled: currentOrderIndex === 0,
+      style: {
+        display: 'block',
+        width: '48%',
+        lineHeight: '1',
+        textAlign: 'center'
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Назад', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       variant: "secondary",
       size: "small",
       onClick: () => moveTeacherDown(currentOrderIndex),
-      disabled: currentOrderIndex === teachersOrder.length - 1
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Вниз', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      disabled: currentOrderIndex === teachersOrder.length - 1,
+      style: {
+        display: 'block',
+        width: '48%',
+        lineHeight: '1',
+        textAlign: 'center'
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Вперёд', 'theme'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       variant: "secondary",
       size: "small",
-      onClick: () => moveTeacherToEnd(currentOrderIndex),
-      disabled: currentOrderIndex === teachersOrder.length - 1
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('В конец', 'theme'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
-      variant: "secondary",
-      size: "small",
-      onClick: () => handleTeacherSelect(teacher.id)
+      onClick: () => handleTeacherSelect(teacher.id),
+      style: {
+        display: 'block',
+        width: '100%',
+        lineHeight: '1',
+        textAlign: 'center',
+        color: '#cc1818',
+        borderColor: '#cc1818'
+      }
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Удалить', 'theme')));
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("details", {
-    style: {
-      marginTop: '20px',
-      fontSize: '12px',
-      opacity: 0.7
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("summary", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Отладочная информация', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      marginTop: '10px'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "selectedTeacherIds:"), " [", selectedTeacherIds?.join(', ') || '', "]"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "teachersOrder:"), " [", teachersOrder.join(', '), "]"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "selectedTeachers IDs:"), " [", selectedTeachers.map(t => t.id).join(', '), "]")))))))));
+  }))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -3813,22 +3784,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function save({
-  attributes
-}) {
-  const {
-    teachers = [],
-    teachersOrder = []
-  } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, `[teachers_block ids="${teachersOrder.join(',')}"]`);
+function save() {
+  return null;
 }
 
 /***/ }),
@@ -5341,7 +5298,7 @@ const TeachersSidebar = () => {
       height: '24px'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: "\u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u043D\u043E\u043F\u043A\u0443?",
+    label: !!postMeta.is_button_off ? 'Кнопка видна' : 'Кнопка скрыта',
     checked: !!postMeta.is_button_off,
     onChange: val => updateMeta('is_button_off', val)
   }))));

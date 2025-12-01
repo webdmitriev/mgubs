@@ -1,14 +1,13 @@
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { Button, ToggleControl, Spinner, Notice, PanelBody } from '@wordpress/components';
+import { Button, ToggleControl, Spinner, Notice, PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { teachers: selectedTeacherIds, teachersOrder = [] } = attributes;
+  const { teachers: selectedTeacherIds, teachersOrder = [], buttonControl = '' } = attributes;
   const [isPreview, setIsPreview] = useState(true);
 
   const togglePreview = () => {
@@ -180,23 +179,18 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
-        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
-
-        {/* Панель выбора преподавателя */}
         <PanelBody title={__('Выбор преподавателя', 'theme')} initialOpen={true}>
           {/* Множественный выбор через чекбоксы */}
-          <div style={{ marginTop: '20px' }}>
-            <div style={{ maxHeight: '340px', overflowY: 'auto' }}>
-              {teachersPosts.map((teacher) => (
-                <div key={teacher.id} style={{ marginBottom: '8px' }}>
-                  <ToggleControl
-                    label={teacher.title?.rendered || __('Без названия', 'theme')}
-                    checked={selectedTeacherIds?.includes(teacher.id) || false}
-                    onChange={() => handleTeacherSelect(teacher.id)}
-                  />
-                </div>
-              ))}
-            </div>
+          <div style={{ maxHeight: '340px', overflowY: 'auto' }}>
+            {teachersPosts.map((teacher) => (
+              <div key={teacher.id} style={{ marginBottom: '8px' }}>
+                <ToggleControl
+                  label={teacher.title?.rendered || __('Без названия', 'theme')}
+                  checked={selectedTeacherIds?.includes(teacher.id) || false}
+                  onChange={() => handleTeacherSelect(teacher.id)}
+                />
+              </div>
+            ))}
           </div>
 
           <div style={{ marginTop: '16px' }}>
@@ -207,6 +201,19 @@ const Edit = ({ attributes, setAttributes }) => {
             >
               {__('Очистить выбор', 'theme')}
             </Button>
+          </div>
+
+          <div style={{ marginTop: '24px' }}>
+            <span style={{ display: 'block', marginBottom: 5 }}>Активировать кнопку:</span>
+            <SelectControl
+              value={buttonControl}
+              options={[
+                { label: 'Кнопка отключена', value: '' },
+                { label: 'Показать ещё', value: 'teachers-more' },
+                { label: 'Все преподаватели', value: 'teachers-all' },
+              ]}
+              onChange={(value) => setAttributes({ buttonControl: value })}
+            />
           </div>
         </PanelBody>
       </InspectorControls>
@@ -232,7 +239,7 @@ const Edit = ({ attributes, setAttributes }) => {
           {isPreview && (
             <div className="advanced-block-content">
               {/* Отображение выбранных преподавателей */}
-              <div className="selected-teachers">
+              <div className="selected-teachers" style={{ width: '100%' }}>
                 {selectedTeachers.length === 0 ? (
                   <Notice status="warning" isDismissible={false}>
                     {__('Преподаватели не выбраны. Выберите преподавателя в панели настроек.', 'theme')}
@@ -240,7 +247,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 ) : (
                   <>
                     {/* Панель управления порядком */}
-                    <div className="order-controls" style={{ marginBottom: '20px', padding: '10px', background: '#f6f7f7', borderRadius: '4px' }}>
+                    <div className="order-controls" style={{ width: '100%', marginBottom: '20px', padding: '10px', background: '#f6f7f7', borderRadius: '4px' }}>
                       <h4 style={{ margin: '0 0 10px 0' }}>
                         {__('Порядок отображения преподавателей:', 'theme')}
                       </h4>
@@ -252,64 +259,41 @@ const Edit = ({ attributes, setAttributes }) => {
                       </div>
                     </div>
 
-                    <div className="teachers-grid">
+                    <div className="teachers-grid" style={{ display: 'grid', columnGap: '14px', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                       {selectedTeachers.map((teacher, displayIndex) => {
                         const currentOrderIndex = getCurrentOrderIndex(teacher.id);
 
                         return (
-                          <div key={teacher.id} className="teacher-card">
+                          <div key={teacher.id} className="teacher-card" style={{ display: 'block', padding: 8, backgroundColor: 'rgba(0,124,186,.15)', borderRadius: 4 }}>
                             <div className="teacher-card__header">
                               <div className="teacher-card__title">
-                                {teacher.title?.rendered || __('Без названия', 'theme')}
-                                <span className="teacher-card__position" style={{ fontSize: '12px', color: '#666', display: 'block' }}>
+                                <span className="teacher-card__position" style={{ marginBottom: 8, fontSize: '12px', color: '#666', display: 'block' }}>
                                   {__('Позиция:', 'theme')} {displayIndex + 1}
                                   {__(' (в порядке:', 'theme')} {currentOrderIndex + 1})
                                 </span>
+                                <span style={{ display: 'block', width: '100%', minHeight: 54, marginBottom: 8, fontSize: 14, lineHeight: '1.3' }}>{teacher.title?.rendered || __('Без названия', 'theme')}</span>
                               </div>
-                            </div>
-                            <div className="teacher-card__meta">
-                              <span className="teacher-card__id">
-                                ID: {teacher.id}
-                              </span>
-                              <br />
-                              <span className="teacher-card__slug">
-                                Slug: {teacher.slug}
-                              </span>
                             </div>
 
                             {/* Кнопки управления порядком */}
-                            <div className="teacher-card__controls" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '10px' }}>
-                              <Button
-                                variant="secondary"
-                                size="small"
-                                onClick={() => moveTeacherToStart(currentOrderIndex)}
-                                disabled={currentOrderIndex === 0}
-                              >
-                                {__('В начало', 'theme')}
-                              </Button>
+                            <div className="teacher-card__controls" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '10px' }}>
                               <Button
                                 variant="secondary"
                                 size="small"
                                 onClick={() => moveTeacherUp(currentOrderIndex)}
                                 disabled={currentOrderIndex === 0}
+                                style={{ display: 'block', width: '48%', lineHeight: '1', textAlign: 'center' }}
                               >
-                                {__('Вверх', 'theme')}
+                                {__('Назад', 'theme')}
                               </Button>
                               <Button
                                 variant="secondary"
                                 size="small"
                                 onClick={() => moveTeacherDown(currentOrderIndex)}
                                 disabled={currentOrderIndex === teachersOrder.length - 1}
+                                style={{ display: 'block', width: '48%', lineHeight: '1', textAlign: 'center' }}
                               >
-                                {__('Вниз', 'theme')}
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                size="small"
-                                onClick={() => moveTeacherToEnd(currentOrderIndex)}
-                                disabled={currentOrderIndex === teachersOrder.length - 1}
-                              >
-                                {__('В конец', 'theme')}
+                                {__('Вперёд', 'theme')}
                               </Button>
                             </div>
 
@@ -317,6 +301,7 @@ const Edit = ({ attributes, setAttributes }) => {
                               variant="secondary"
                               size="small"
                               onClick={() => handleTeacherSelect(teacher.id)}
+                              style={{ display: 'block', width: '100%', lineHeight: '1', textAlign: 'center', color: '#cc1818', borderColor: '#cc1818' }}
                             >
                               {__('Удалить', 'theme')}
                             </Button>
@@ -324,16 +309,6 @@ const Edit = ({ attributes, setAttributes }) => {
                         );
                       })}
                     </div>
-
-                    {/* Отладочная информация */}
-                    <details style={{ marginTop: '20px', fontSize: '12px', opacity: 0.7 }}>
-                      <summary>{__('Отладочная информация', 'theme')}</summary>
-                      <div style={{ marginTop: '10px' }}>
-                        <p><strong>selectedTeacherIds:</strong> [{selectedTeacherIds?.join(', ') || ''}]</p>
-                        <p><strong>teachersOrder:</strong> [{teachersOrder.join(', ')}]</p>
-                        <p><strong>selectedTeachers IDs:</strong> [{selectedTeachers.map(t => t.id).join(', ')}]</p>
-                      </div>
-                    </details>
                   </>
                 )}
               </div>

@@ -38,6 +38,12 @@ require get_template_directory() . '/admin/helpers/post-types/admissions/meta-fi
 
 
 /**
+ * Default links
+ */
+require_once get_template_directory() . '/admin/helpers/default-links.php';
+
+
+/**
  * Format date Russian
  */
 require_once get_template_directory() . '/admin/helpers/format-date-russian.php';
