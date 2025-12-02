@@ -3790,6 +3790,700 @@ function save() {
 
 /***/ }),
 
+/***/ "./development/gutenberg/blocks/block-test/attributes.js":
+/*!***************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-test/attributes.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const attributes = {
+  selectedTeachers: {
+    type: 'array',
+    default: []
+  },
+  teachersData: {
+    type: 'array',
+    default: [],
+    source: 'query',
+    selector: '.teacher-item',
+    query: {
+      id: {
+        type: 'number',
+        source: 'attribute',
+        attribute: 'data-teacher-id'
+      },
+      name: {
+        type: 'string',
+        source: 'html',
+        selector: '.teacher-name'
+      },
+      position: {
+        type: 'string',
+        source: 'html',
+        selector: '.teacher-position'
+      },
+      description: {
+        type: 'string',
+        source: 'html',
+        selector: '.teacher-description'
+      },
+      imageUrl: {
+        type: 'string',
+        source: 'attribute',
+        selector: '.teacher-image img',
+        attribute: 'src'
+      },
+      imageId: {
+        type: 'number',
+        source: 'attribute',
+        selector: '.teacher-image img',
+        attribute: 'data-image-id'
+      }
+    }
+  },
+  columns: {
+    type: 'number',
+    default: 3
+  },
+  showImage: {
+    type: 'boolean',
+    default: true
+  },
+  showPosition: {
+    type: 'boolean',
+    default: true
+  },
+  showDescription: {
+    type: 'boolean',
+    default: true
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-test/edit.js":
+/*!*********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-test/edit.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+// Создаем собственную функцию debounce
+const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+const Edit = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    selectedTeachers = [],
+    teachersData = [],
+    columns = 3,
+    showImage = true,
+    showPosition = true,
+    showDescription = true
+  } = attributes;
+  const [teachers, setTeachers] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
+  const [searchQuery, setSearchQuery] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('');
+  const [searchResults, setSearchResults] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
+  const [isSearching, setIsSearching] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+  const [showTeacherModal, setShowTeacherModal] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+  const [allTeachersMap, setAllTeachersMap] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(new Map());
+
+  // Используем useRef для хранения debounced функции
+  const debouncedSearchRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);
+
+  // Загрузка данных выбранных преподавателей
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    if (selectedTeachers.length === 0) {
+      setTeachers([]);
+      return;
+    }
+    const fetchSelectedTeachers = async () => {
+      const teachersData = await Promise.all(selectedTeachers.map(async teacherId => {
+        // Проверяем, есть ли уже данные в кэше
+        if (allTeachersMap.has(teacherId)) {
+          return allTeachersMap.get(teacherId);
+        }
+        try {
+          const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+            path: `/wp/v2/teachers/${teacherId}?_embed`
+          });
+          const teacherData = {
+            id: teacher.id,
+            name: teacher.title.rendered,
+            position: teacher.meta?.position || '',
+            description: teacher.content?.rendered || '',
+            imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+            imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0
+          };
+
+          // Сохраняем в кэш
+          setAllTeachersMap(prev => new Map(prev).set(teacherId, teacherData));
+          return teacherData;
+        } catch (error) {
+          console.error('Error fetching teacher:', error);
+          return null;
+        }
+      }));
+      setTeachers(teachersData.filter(Boolean));
+    };
+    fetchSelectedTeachers();
+  }, [selectedTeachers, allTeachersMap]);
+
+  // Функция поиска преподавателей
+  const performSearch = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useCallback)(async query => {
+    if (!query || query.trim().length < 2) {
+      setSearchResults([]);
+      return;
+    }
+    setIsSearching(true);
+    try {
+      const results = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+        path: `/wp/v2/teachers?search=${encodeURIComponent(query)}&per_page=10&_fields=id,title`
+      });
+      const options = results.filter(teacher => !selectedTeachers.includes(teacher.id)).map(teacher => ({
+        label: teacher.title.rendered,
+        value: teacher.id,
+        id: teacher.id,
+        name: teacher.title.rendered
+      }));
+      setSearchResults(options);
+    } catch (error) {
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  }, [selectedTeachers]);
+
+  // Инициализация debounced функции при монтировании
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    debouncedSearchRef.current = debounce(performSearch, 500);
+  }, [performSearch]);
+
+  // Выполнение поиска при изменении searchQuery
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    if (debouncedSearchRef.current) {
+      debouncedSearchRef.current(searchQuery);
+    }
+  }, [searchQuery]);
+
+  // Очистка при размонтировании
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    return () => {
+      // Очищаем таймаут если компонент размонтируется
+      if (debouncedSearchRef.current) {
+        // Простая очистка - сбрасываем функцию
+        debouncedSearchRef.current = null;
+      }
+    };
+  }, []);
+  const addTeacher = async teacherId => {
+    if (teacherId && !selectedTeachers.includes(teacherId)) {
+      try {
+        // Загружаем данные преподавателя
+        const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+          path: `/wp/v2/teachers/${teacherId}?_embed`
+        });
+        const teacherData = {
+          id: teacher.id,
+          name: teacher.title.rendered,
+          position: teacher.meta?.position || '',
+          description: teacher.content?.rendered || '',
+          imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+          imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0
+        };
+
+        // Обновляем атрибуты
+        setAttributes({
+          selectedTeachers: [...selectedTeachers, teacherId],
+          teachersData: [...teachersData, teacherData]
+        });
+      } catch (error) {
+        console.error('Error adding teacher:', error);
+      }
+      setSearchQuery('');
+      setSearchResults([]);
+      setShowTeacherModal(false);
+    }
+  };
+  const removeTeacher = index => {
+    const newTeachers = [...selectedTeachers];
+    const newTeachersData = [...teachersData];
+    newTeachers.splice(index, 1);
+    newTeachersData.splice(index, 1);
+    setAttributes({
+      selectedTeachers: newTeachers,
+      teachersData: newTeachersData
+    });
+  };
+  const moveTeacher = (fromIndex, toIndex) => {
+    const newTeachers = [...selectedTeachers];
+    const [movedTeacher] = newTeachers.splice(fromIndex, 1);
+    newTeachers.splice(toIndex, 0, movedTeacher);
+    setAttributes({
+      selectedTeachers: newTeachers
+    });
+  };
+
+  // Загрузка преподавателя по ID
+  const loadTeacherById = async teacherId => {
+    if (!teacherId) return;
+    try {
+      const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+        path: `/wp/v2/teachers/${teacherId}?_embed`
+      });
+      if (teacher && teacher.id) {
+        addTeacher(teacher.id);
+      } else {
+        alert((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Teacher not found', 'textdomain'));
+      }
+    } catch (error) {
+      alert((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Teacher not found or error loading', 'textdomain'));
+    }
+  };
+  const handleIdInputKeyDown = e => {
+    if (e.key === 'Enter') {
+      const teacherId = parseInt(e.target.value);
+      if (teacherId && !selectedTeachers.includes(teacherId)) {
+        loadTeacherById(teacherId);
+        e.target.value = '';
+      }
+    }
+  };
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    className: `teachers-grid columns-${columns}`
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout Settings', 'textdomain'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns', 'textdomain'),
+    value: columns,
+    onChange: value => setAttributes({
+      columns: value
+    }),
+    min: 1,
+    max: 6
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Image', 'textdomain'),
+    checked: showImage,
+    onChange: value => setAttributes({
+      showImage: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Position', 'textdomain'),
+    checked: showPosition,
+    onChange: value => setAttributes({
+      showPosition: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Description', 'textdomain'),
+    checked: showDescription,
+    onChange: value => setAttributes({
+      showDescription: value
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Teachers', 'textdomain'),
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: '16px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isPrimary: true,
+    onClick: () => setShowTeacherModal(true),
+    style: {
+      width: '100%'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Teacher', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      marginTop: '8px'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Selected:', 'textdomain'), " ", selectedTeachers.length)))), showTeacherModal && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Teacher', 'textdomain'),
+    onRequestClose: () => {
+      setShowTeacherModal(false);
+      setSearchQuery('');
+      setSearchResults([]);
+    },
+    className: "teachers-modal",
+    isFullScreen: false,
+    style: {
+      maxWidth: '500px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: '20px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: '20px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SearchControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Search by name', 'textdomain'),
+    value: searchQuery,
+    onChange: value => setSearchQuery(value),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Type at least 2 characters...', 'textdomain'),
+    className: "teacher-search-input"
+  }), isSearching && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      textAlign: 'center',
+      padding: '10px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Searching...', 'textdomain'))), !isSearching && searchResults.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-search-results",
+    style: {
+      maxHeight: '300px',
+      overflowY: 'auto',
+      marginTop: '10px',
+      border: '1px solid #ddd',
+      borderRadius: '4px'
+    }
+  }, searchResults.map(teacher => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: teacher.id,
+    className: "teacher-search-item",
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '10px 12px',
+      borderBottom: '1px solid #eee',
+      cursor: 'pointer'
+    },
+    onClick: () => addTeacher(teacher.id)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, teacher.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    style: {
+      fontSize: '12px',
+      color: '#666',
+      backgroundColor: '#f0f0f0',
+      padding: '2px 6px',
+      borderRadius: '3px'
+    }
+  }, "ID: ", teacher.id)))), !isSearching && searchQuery.length >= 2 && searchResults.length === 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      textAlign: 'center',
+      padding: '20px',
+      color: '#666',
+      backgroundColor: '#f9f9f9',
+      borderRadius: '4px',
+      marginTop: '10px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No teachers found for your search.', 'textdomain'))), !isSearching && searchQuery.length > 0 && searchQuery.length < 2 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      textAlign: 'center',
+      padding: '20px',
+      color: '#888',
+      backgroundColor: '#f5f5f5',
+      borderRadius: '4px',
+      marginTop: '10px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Type at least 2 characters to search.', 'textdomain')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      borderTop: '1px solid #ddd',
+      paddingTop: '20px',
+      marginTop: '20px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Or enter teacher ID', 'textdomain'),
+    type: "number",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter teacher ID and press Enter', 'textdomain'),
+    onKeyDown: handleIdInputKeyDown,
+    style: {
+      marginBottom: '10px'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      marginTop: '4px',
+      fontStyle: 'italic'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Find teacher ID in WordPress admin under "Teachers"', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: '30px',
+      paddingTop: '20px',
+      borderTop: '1px solid #ddd',
+      textAlign: 'center'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isSecondary: true,
+    onClick: () => {
+      setShowTeacherModal(false);
+      setSearchQuery('');
+      setSearchResults([]);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'textdomain'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teachers-block-editor"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teachers-list"
+  }, teachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "empty-state",
+    style: {
+      textAlign: 'center',
+      padding: '60px 20px',
+      backgroundColor: '#f9f9f9',
+      borderRadius: '8px',
+      border: '2px dashed #ddd'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "no-teachers",
+    style: {
+      fontSize: '16px',
+      color: '#666',
+      marginBottom: '20px'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No teachers selected.', 'textdomain')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isPrimary: true,
+    onClick: () => setShowTeacherModal(true),
+    style: {
+      marginTop: '10px'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add First Teacher', 'textdomain'))) : teachers.map((teacher, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: teacher.id,
+    className: "teacher-item-editor",
+    "data-teacher-id": teacher.id,
+    style: {
+      border: '2px dashed #ccc',
+      padding: '20px',
+      marginBottom: '20px',
+      borderRadius: '8px',
+      backgroundColor: '#f9f9f9'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-content"
+  }, showImage && teacher.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-image",
+    style: {
+      width: '100%',
+      height: '200px',
+      overflow: 'hidden',
+      borderRadius: '4px',
+      marginBottom: '15px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: teacher.imageUrl,
+    alt: teacher.name,
+    "data-image-id": teacher.imageId,
+    style: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "teacher-name",
+    style: {
+      margin: '0 0 10px 0',
+      fontSize: '1.3em'
+    }
+  }, teacher.name), showPosition && teacher.position && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-position",
+    style: {
+      color: '#666',
+      fontWeight: '500',
+      marginBottom: '10px'
+    }
+  }, teacher.position), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-description",
+    dangerouslySetInnerHTML: {
+      __html: teacher.description
+    },
+    style: {
+      color: '#777',
+      lineHeight: '1.5',
+      fontSize: '14px'
+    }
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-actions",
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: '15px',
+      paddingTop: '15px',
+      borderTop: '1px solid #ddd'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-id",
+    style: {
+      fontSize: '12px',
+      color: '#888'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("small", null, "ID: ", teacher.id)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-buttons",
+    style: {
+      display: 'flex',
+      gap: '5px'
+    }
+  }, index > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: () => moveTeacher(index, index - 1),
+    icon: "arrow-up-alt2",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move up', 'textdomain'),
+    isSmall: true
+  }), index < teachers.length - 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: () => moveTeacher(index, index + 1),
+    icon: "arrow-down-alt2",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move down', 'textdomain'),
+    isSmall: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: () => removeTeacher(index),
+    icon: "trash",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'textdomain'),
+    isSmall: true,
+    isDestructive: true
+  }))))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-test/index.js":
+/*!**********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-test/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./development/gutenberg/blocks/block-test/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./development/gutenberg/blocks/block-test/save.js");
+/* harmony import */ var _attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attributes */ "./development/gutenberg/blocks/block-test/attributes.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-test', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Teachers Block', 'textdomain'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display custom teachers posts', 'textdomain'),
+  icon: 'groups',
+  category: 'widgets',
+  attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
+  supports: {
+    html: false,
+    align: true
+  }
+});
+console.log('✅ block-test');
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-test/save.js":
+/*!*********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-test/save.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const Save = ({
+  attributes
+}) => {
+  const {
+    teachersData = [],
+    columns = 3,
+    showImage = true,
+    showPosition = true,
+    showDescription = true
+  } = attributes;
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+    className: `teachers-block teachers-grid columns-${columns}`
+  });
+  if (!teachersData || teachersData.length === 0) {
+    return null;
+  }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, teachersData.map(teacher => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: teacher.id,
+    className: "teacher-item",
+    "data-teacher-id": teacher.id
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-inner"
+  }, showImage && teacher.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-image"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: teacher.imageUrl,
+    alt: teacher.name || '',
+    "data-image-id": teacher.imageId,
+    loading: "lazy"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-content"
+  }, teacher.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "teacher-name"
+  }, teacher.name), showPosition && teacher.position && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-position"
+  }, teacher.position), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "teacher-description",
+    dangerouslySetInnerHTML: {
+      __html: teacher.description
+    }
+  }))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+
+/***/ }),
+
 /***/ "./development/gutenberg/components/AnchorField.js":
 /*!*********************************************************!*\
   !*** ./development/gutenberg/components/AnchorField.js ***!
@@ -7329,6 +8023,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_block_06_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./blocks/block-06/index.js */ "./development/gutenberg/blocks/block-06/index.js");
 /* harmony import */ var _blocks_block_07_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./blocks/block-07/index.js */ "./development/gutenberg/blocks/block-07/index.js");
 /* harmony import */ var _blocks_block_08_index_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/block-08/index.js */ "./development/gutenberg/blocks/block-08/index.js");
+/* harmony import */ var _blocks_block_test_index_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/block-test/index.js */ "./development/gutenberg/blocks/block-test/index.js");
 // add sidebar
 
 
@@ -7348,6 +8043,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // add blocks
+
 
 
 
