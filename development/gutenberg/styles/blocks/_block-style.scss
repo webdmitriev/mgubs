@@ -210,4 +210,11 @@
       border: 1px solid rgba(0, 124, 186, 0.5);
     }
   }
+
+  .teachers-block-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 12px;
+    row-gap: 24px;
+  }
 }

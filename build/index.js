@@ -4091,7 +4091,7 @@ const Edit = ({
     }
   };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-    className: `teachers-grid columns-${columns}`
+    className: `block-style`
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -4259,7 +4259,7 @@ const Edit = ({
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'textdomain'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-editor"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teachers-list"
+    className: "teachers-block-grid"
   }, teachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "empty-state",
     style: {
@@ -4277,20 +4277,17 @@ const Edit = ({
       marginBottom: '20px'
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No teachers selected.', 'textdomain')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    isPrimary: true,
     onClick: () => setShowTeacherModal(true),
     style: {
       marginTop: '10px'
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add First Teacher', 'textdomain'))) : teachers.map((teacher, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: teacher.id,
-    className: "teacher-item-editor",
     "data-teacher-id": teacher.id,
     style: {
       border: '2px dashed #ccc',
-      padding: '20px',
-      marginBottom: '20px',
-      borderRadius: '8px',
+      padding: '5px',
+      borderRadius: '4px',
       backgroundColor: '#f9f9f9'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4300,9 +4297,9 @@ const Edit = ({
     style: {
       width: '100%',
       height: '200px',
-      overflow: 'hidden',
+      marginBottom: '12px',
       borderRadius: '4px',
-      marginBottom: '15px'
+      overflow: 'hidden'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: teacher.imageUrl,
@@ -4319,14 +4316,15 @@ const Edit = ({
     className: "teacher-name",
     style: {
       margin: '0 0 10px 0',
-      fontSize: '1.3em'
+      fontSize: '18px'
     }
   }, teacher.name), showPosition && teacher.position && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-position",
     style: {
-      color: '#666',
-      fontWeight: '500',
-      marginBottom: '10px'
+      marginBottom: '10px',
+      fontWeight: '400',
+      fontSize: '13px',
+      color: '#666'
     }
   }, teacher.position), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-description",
@@ -4334,9 +4332,7 @@ const Edit = ({
       __html: teacher.description
     },
     style: {
-      color: '#777',
-      lineHeight: '1.5',
-      fontSize: '14px'
+      display: 'none'
     }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-actions",
@@ -4362,13 +4358,12 @@ const Edit = ({
     }
   }, index > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => moveTeacher(index, index - 1),
-    icon: "arrow-up-alt2",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move up', 'textdomain'),
-    isSmall: true
+    icon: "dashicons-arrow-right-alt2",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move right', 'textdomain')
   }), index < teachers.length - 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => moveTeacher(index, index + 1),
-    icon: "arrow-down-alt2",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move down', 'textdomain'),
+    icon: "dashicons-arrow-left-alt2",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move left', 'textdomain'),
     isSmall: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => removeTeacher(index),

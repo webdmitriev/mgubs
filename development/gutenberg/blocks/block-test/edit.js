@@ -13,6 +13,7 @@ import {
   SearchControl,
   Modal,
   TextControl,
+  Flex, FlexBlock, FlexItem
 } from '@wordpress/components';
 import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
@@ -235,7 +236,7 @@ const Edit = ({ attributes, setAttributes }) => {
   };
 
   const blockProps = useBlockProps({
-    className: `teachers-grid columns-${columns}`,
+    className: `block-style`,
   });
 
   return (
@@ -425,7 +426,7 @@ const Edit = ({ attributes, setAttributes }) => {
       )}
 
       <div className="teachers-block-editor">
-        <div className="teachers-list">
+        <div className="teachers-block-grid">
           {teachers.length === 0 ? (
             <div className="empty-state" style={{
               textAlign: 'center',
@@ -442,7 +443,6 @@ const Edit = ({ attributes, setAttributes }) => {
                 {__('No teachers selected.', 'textdomain')}
               </p>
               <Button
-                isPrimary
                 onClick={() => setShowTeacherModal(true)}
                 style={{ marginTop: '10px' }}
               >
@@ -453,13 +453,11 @@ const Edit = ({ attributes, setAttributes }) => {
             teachers.map((teacher, index) => (
               <div
                 key={teacher.id}
-                className="teacher-item-editor"
                 data-teacher-id={teacher.id}
                 style={{
                   border: '2px dashed #ccc',
-                  padding: '20px',
-                  marginBottom: '20px',
-                  borderRadius: '8px',
+                  padding: '5px',
+                  borderRadius: '4px',
                   backgroundColor: '#f9f9f9',
                 }}
               >
@@ -468,9 +466,9 @@ const Edit = ({ attributes, setAttributes }) => {
                     <div className="teacher-image" style={{
                       width: '100%',
                       height: '200px',
-                      overflow: 'hidden',
+                      marginBottom: '12px',
                       borderRadius: '4px',
-                      marginBottom: '15px'
+                      overflow: 'hidden'
                     }}>
                       <img
                         src={teacher.imageUrl}
@@ -487,15 +485,16 @@ const Edit = ({ attributes, setAttributes }) => {
                   <div className="teacher-info">
                     <h3 className="teacher-name" style={{
                       margin: '0 0 10px 0',
-                      fontSize: '1.3em'
+                      fontSize: '18px'
                     }}>
                       {teacher.name}
                     </h3>
                     {showPosition && teacher.position && (
                       <div className="teacher-position" style={{
+                        marginBottom: '10px',
+                        fontWeight: '400',
+                        fontSize: '13px',
                         color: '#666',
-                        fontWeight: '500',
-                        marginBottom: '10px'
                       }}>
                         {teacher.position}
                       </div>
@@ -505,9 +504,7 @@ const Edit = ({ attributes, setAttributes }) => {
                         className="teacher-description"
                         dangerouslySetInnerHTML={{ __html: teacher.description }}
                         style={{
-                          color: '#777',
-                          lineHeight: '1.5',
-                          fontSize: '14px'
+                          display: 'none'
                         }}
                       />
                     )}
@@ -534,16 +531,15 @@ const Edit = ({ attributes, setAttributes }) => {
                     {index > 0 && (
                       <Button
                         onClick={() => moveTeacher(index, index - 1)}
-                        icon="arrow-up-alt2"
-                        label={__('Move up', 'textdomain')}
-                        isSmall
+                        icon="dashicons-arrow-right-alt2"
+                        label={__('Move right', 'textdomain')}
                       />
                     )}
                     {index < teachers.length - 1 && (
                       <Button
                         onClick={() => moveTeacher(index, index + 1)}
-                        icon="arrow-down-alt2"
-                        label={__('Move down', 'textdomain')}
+                        icon="dashicons-arrow-left-alt2"
+                        label={__('Move left', 'textdomain')}
                         isSmall
                       />
                     )}
