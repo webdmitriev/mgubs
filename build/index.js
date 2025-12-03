@@ -3806,46 +3806,6 @@ const attributes = {
     type: 'array',
     default: []
   },
-  teachersData: {
-    type: 'array',
-    default: [],
-    source: 'query',
-    selector: '.teacher-item',
-    query: {
-      id: {
-        type: 'number',
-        source: 'attribute',
-        attribute: 'data-teacher-id'
-      },
-      name: {
-        type: 'string',
-        source: 'html',
-        selector: '.teacher-name'
-      },
-      position: {
-        type: 'string',
-        source: 'html',
-        selector: '.teacher-position'
-      },
-      description: {
-        type: 'string',
-        source: 'html',
-        selector: '.teacher-description'
-      },
-      imageUrl: {
-        type: 'string',
-        source: 'attribute',
-        selector: '.teacher-image img',
-        attribute: 'src'
-      },
-      imageId: {
-        type: 'number',
-        source: 'attribute',
-        selector: '.teacher-image img',
-        attribute: 'data-image-id'
-      }
-    }
-  },
   columns: {
     type: 'number',
     default: 3
@@ -3915,7 +3875,6 @@ const Edit = ({
 }) => {
   const {
     selectedTeachers = [],
-    teachersData = [],
     columns = 3,
     showImage = true,
     showPosition = true,
@@ -3938,10 +3897,12 @@ const Edit = ({
       return;
     }
     const fetchSelectedTeachers = async () => {
-      const teachersData = await Promise.all(selectedTeachers.map(async teacherId => {
-        // Проверяем, есть ли уже данные в кэше
+      const loadedTeachers = [];
+      for (const teacherId of selectedTeachers) {
+        // Берём из кэша
         if (allTeachersMap.has(teacherId)) {
-          return allTeachersMap.get(teacherId);
+          loadedTeachers.push(allTeachersMap.get(teacherId));
+          continue;
         }
         try {
           const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
@@ -3956,18 +3917,21 @@ const Edit = ({
             imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0
           };
 
-          // Сохраняем в кэш
-          setAllTeachersMap(prev => new Map(prev).set(teacherId, teacherData));
-          return teacherData;
-        } catch (error) {
-          console.error('Error fetching teacher:', error);
-          return null;
+          // сохраняем в кэш
+          setAllTeachersMap(prev => {
+            const updated = new Map(prev);
+            updated.set(teacherId, teacherData);
+            return updated;
+          });
+          loadedTeachers.push(teacherData);
+        } catch (err) {
+          console.error('Failed to load teacher:', err);
         }
-      }));
-      setTeachers(teachersData.filter(Boolean));
+      }
+      setTeachers(loadedTeachers);
     };
     fetchSelectedTeachers();
-  }, [selectedTeachers, allTeachersMap]);
+  }, [selectedTeachers]);
 
   // Функция поиска преподавателей
   const performSearch = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useCallback)(async query => {
@@ -4018,50 +3982,54 @@ const Edit = ({
     };
   }, []);
   const addTeacher = async teacherId => {
-    if (teacherId && !selectedTeachers.includes(teacherId)) {
-      try {
-        // Загружаем данные преподавателя
-        const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
-          path: `/wp/v2/teachers/${teacherId}?_embed`
-        });
-        const teacherData = {
-          id: teacher.id,
-          name: teacher.title.rendered,
-          position: teacher.meta?.position || '',
-          description: teacher.content?.rendered || '',
-          imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
-          imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0
-        };
+    if (!teacherId || selectedTeachers.includes(teacherId)) return;
+    try {
+      const teacher = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+        path: `/wp/v2/teachers/${teacherId}?_embed`
+      });
+      const teacherData = {
+        id: teacher.id,
+        name: teacher.title.rendered,
+        position: teacher.meta?.position || '',
+        description: teacher.content?.rendered || '',
+        imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+        imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0
+      };
 
-        // Обновляем атрибуты
-        setAttributes({
-          selectedTeachers: [...selectedTeachers, teacherId],
-          teachersData: [...teachersData, teacherData]
-        });
-      } catch (error) {
-        console.error('Error adding teacher:', error);
-      }
-      setSearchQuery('');
-      setSearchResults([]);
-      setShowTeacherModal(false);
+      // 1. обновляем selectedTeachers
+      setAttributes({
+        selectedTeachers: [...selectedTeachers, teacherId]
+      });
+
+      // 2. обновляем кэш
+      setAllTeachersMap(prev => {
+        const updated = new Map(prev);
+        updated.set(teacherId, teacherData);
+        return updated;
+      });
+
+      // 3. обновляем локальный массив teachers
+      setTeachers(prev => [...prev, teacherData]);
+    } catch (err) {
+      console.error('Error adding teacher:', err);
     }
+    setShowTeacherModal(false);
+    setSearchQuery('');
+    setSearchResults([]);
   };
   const removeTeacher = index => {
     const newTeachers = [...selectedTeachers];
-    const newTeachersData = [...teachersData];
     newTeachers.splice(index, 1);
-    newTeachersData.splice(index, 1);
     setAttributes({
-      selectedTeachers: newTeachers,
-      teachersData: newTeachersData
+      selectedTeachers: newTeachers
     });
   };
   const moveTeacher = (fromIndex, toIndex) => {
-    const newTeachers = [...selectedTeachers];
-    const [movedTeacher] = newTeachers.splice(fromIndex, 1);
-    newTeachers.splice(toIndex, 0, movedTeacher);
+    const newSelectedTeachers = [...selectedTeachers];
+    const [movedId] = newSelectedTeachers.splice(fromIndex, 1);
+    newSelectedTeachers.splice(toIndex, 0, movedId);
     setAttributes({
-      selectedTeachers: newTeachers
+      selectedTeachers: newSelectedTeachers
     });
   };
 
@@ -4096,36 +4064,7 @@ const Edit = ({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout Settings', 'textdomain'),
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns', 'textdomain'),
-    value: columns,
-    onChange: value => setAttributes({
-      columns: value
-    }),
-    min: 1,
-    max: 6
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Image', 'textdomain'),
-    checked: showImage,
-    onChange: value => setAttributes({
-      showImage: value
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Position', 'textdomain'),
-    checked: showPosition,
-    onChange: value => setAttributes({
-      showPosition: value
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Description', 'textdomain'),
-    checked: showDescription,
-    onChange: value => setAttributes({
-      showDescription: value
-    })
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Teachers', 'textdomain'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Преподаватели', 'textdomain'),
     initialOpen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
@@ -4137,14 +4076,14 @@ const Edit = ({
     style: {
       width: '100%'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Teacher', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Добавить преподавателя', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     style: {
       fontSize: '12px',
       color: '#757575',
       marginTop: '8px'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Selected:', 'textdomain'), " ", selectedTeachers.length)))), showTeacherModal && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Teacher', 'textdomain'),
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Выбрано:', 'textdomain'), " ", selectedTeachers.length)))), showTeacherModal && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Добавить преподавателя', 'textdomain'),
     onRequestClose: () => {
       setShowTeacherModal(false);
       setSearchQuery('');
@@ -4157,24 +4096,24 @@ const Edit = ({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
-      padding: '20px'
+      padding: '2px'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       marginBottom: '20px'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SearchControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Search by name', 'textdomain'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Искать по фамилии / имени', 'textdomain'),
     value: searchQuery,
     onChange: value => setSearchQuery(value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Type at least 2 characters...', 'textdomain'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Минимум 2 символа...', 'textdomain'),
     className: "teacher-search-input"
   }), isSearching && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       textAlign: 'center',
       padding: '10px'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Searching...', 'textdomain'))), !isSearching && searchResults.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Поиск...', 'textdomain'))), !isSearching && searchResults.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-search-results",
     style: {
       maxHeight: '300px',
@@ -4212,7 +4151,7 @@ const Edit = ({
       borderRadius: '4px',
       marginTop: '10px'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No teachers found for your search.', 'textdomain'))), !isSearching && searchQuery.length > 0 && searchQuery.length < 2 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Нет такого...', 'textdomain'))), !isSearching && searchQuery.length > 0 && searchQuery.length < 2 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       textAlign: 'center',
       padding: '20px',
@@ -4228,9 +4167,9 @@ const Edit = ({
       marginTop: '20px'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Or enter teacher ID', 'textdomain'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('ID преподавателя', 'textdomain'),
     type: "number",
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter teacher ID and press Enter', 'textdomain'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('ID преподавателя', 'textdomain'),
     onKeyDown: handleIdInputKeyDown,
     style: {
       marginBottom: '10px'
@@ -4242,7 +4181,7 @@ const Edit = ({
       marginTop: '4px',
       fontStyle: 'italic'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Find teacher ID in WordPress admin under "Teachers"', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Поиск преподавателя по ID', 'textdomain'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       marginTop: '30px',
       paddingTop: '20px',
@@ -4250,13 +4189,12 @@ const Edit = ({
       textAlign: 'center'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    isSecondary: true,
     onClick: () => {
       setShowTeacherModal(false);
       setSearchQuery('');
       setSearchResults([]);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'textdomain'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Закрыть', 'textdomain'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-editor"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-grid"
@@ -4292,7 +4230,7 @@ const Edit = ({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-content"
-  }, showImage && teacher.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-image",
     style: {
       width: '100%',
@@ -4301,10 +4239,17 @@ const Edit = ({
       borderRadius: '4px',
       overflow: 'hidden'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, teacher.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: teacher.imageUrl,
     alt: teacher.name,
     "data-image-id": teacher.imageId,
+    style: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+  }) || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: "data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw==",
     style: {
       width: '100%',
       height: '100%',
@@ -4316,17 +4261,22 @@ const Edit = ({
     className: "teacher-name",
     style: {
       margin: '0 0 10px 0',
-      fontSize: '18px'
+      fontSize: '16px',
+      textAlign: 'center'
     }
   }, teacher.name), showPosition && teacher.position && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-position",
     style: {
       marginBottom: '10px',
       fontWeight: '400',
-      fontSize: '13px',
+      fontSize: '11px',
+      textAlign: 'center',
       color: '#666'
+    },
+    dangerouslySetInnerHTML: {
+      __html: teacher.position.replace(/\n/g, '<br/>')
     }
-  }, teacher.position), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-description",
     dangerouslySetInnerHTML: {
       __html: teacher.description
@@ -4357,21 +4307,23 @@ const Edit = ({
       gap: '5px'
     }
   }, index > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => moveTeacher(index, index - 1),
-    icon: "dashicons-arrow-right-alt2",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move right', 'textdomain')
-  }), index < teachers.length - 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => moveTeacher(index, index + 1),
-    icon: "dashicons-arrow-left-alt2",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Move left', 'textdomain'),
-    isSmall: true
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    style: {
+      padding: 0
+    },
+    onClick: () => moveTeacher(index, index - 1)
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('⬅️', 'textdomain')), index < teachers.length - 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    style: {
+      padding: 0
+    },
+    onClick: () => moveTeacher(index, index + 1)
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('➡️', 'textdomain')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    style: {
+      padding: 0,
+      marginLeft: 10
+    },
     onClick: () => removeTeacher(index),
-    icon: "trash",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'textdomain'),
-    isSmall: true,
     isDestructive: true
-  }))))))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('❌', 'textdomain')))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -4423,59 +4375,11 @@ console.log('✅ block-test');
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const Save = ({
-  attributes
-}) => {
-  const {
-    teachersData = [],
-    columns = 3,
-    showImage = true,
-    showPosition = true,
-    showDescription = true
-  } = attributes;
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `teachers-block teachers-grid columns-${columns}`
-  });
-  if (!teachersData || teachersData.length === 0) {
-    return null;
-  }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...blockProps
-  }, teachersData.map(teacher => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: teacher.id,
-    className: "teacher-item",
-    "data-teacher-id": teacher.id
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teacher-inner"
-  }, showImage && teacher.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teacher-image"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: teacher.imageUrl,
-    alt: teacher.name || '',
-    "data-image-id": teacher.imageId,
-    loading: "lazy"
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teacher-content"
-  }, teacher.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "teacher-name"
-  }, teacher.name), showPosition && teacher.position && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teacher-position"
-  }, teacher.position), showDescription && teacher.description && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teacher-description",
-    dangerouslySetInnerHTML: {
-      __html: teacher.description
-    }
-  }))))));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+function save() {
+  return null;
+}
 
 /***/ }),
 
@@ -5962,16 +5866,18 @@ const TeachersSidebar = () => {
     icon: "admin-post"
   }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u0440\u0435\u043F\u043E\u0434."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
     name: "allevents-sidebar",
-    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u043E\u0431\u044B\u0442\u0438\u044F",
+    title: "\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044C",
     icon: "admin-post"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
     initialOpen: true
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
     label: "\u041A\u0442\u043E \u044F?",
     placeholder: "\u041A\u0442\u043E \u044F?",
     value: postMeta.position,
-    onChange: val => updateMeta('position', val)
+    onChange: val => updateMeta('position', val),
+    rows: 4,
+    help: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 Enter \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0430 \u0441\u0442\u0440\u043E\u043A\u0438."
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       height: '24px'
@@ -5981,10 +5887,11 @@ const TeachersSidebar = () => {
     placeholder: "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
     value: postMeta.custom_excerpt || '',
     onChange: val => updateMeta('custom_excerpt', val),
-    rows: 12
+    rows: 12,
+    help: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 Enter \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0430 \u0441\u0442\u0440\u043E\u043A\u0438."
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
-      height: '24px'
+      height: '14px'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: !!postMeta.is_button_off ? 'Кнопка видна' : 'Кнопка скрыта',

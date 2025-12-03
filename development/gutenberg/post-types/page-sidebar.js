@@ -21,9 +21,7 @@ const PageSidebar = () => {
 
   return (
     <Fragment>
-      <PluginSidebarMoreMenuItem target="page-sidebar" icon="admin-post">
-        Настройки странциы
-      </PluginSidebarMoreMenuItem>
+      <PluginSidebarMoreMenuItem target="page-sidebar" icon="admin-post">Настройки странциы</PluginSidebarMoreMenuItem>
 
       <PluginSidebar name="page-sidebar" title="Настройки странциы" icon="admin-post">
         <PanelBody title="Основные поля" initialOpen={true}>

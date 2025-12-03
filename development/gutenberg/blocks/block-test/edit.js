@@ -34,7 +34,6 @@ const debounce = (func, wait) => {
 const Edit = ({ attributes, setAttributes }) => {
   const {
     selectedTeachers = [],
-    teachersData = [],
     columns = 3,
     showImage = true,
     showPosition = true,
@@ -59,43 +58,50 @@ const Edit = ({ attributes, setAttributes }) => {
     }
 
     const fetchSelectedTeachers = async () => {
-      const teachersData = await Promise.all(
-        selectedTeachers.map(async (teacherId) => {
-          // Проверяем, есть ли уже данные в кэше
-          if (allTeachersMap.has(teacherId)) {
-            return allTeachersMap.get(teacherId);
-          }
+      const loadedTeachers = [];
 
-          try {
-            const teacher = await apiFetch({
-              path: `/wp/v2/teachers/${teacherId}?_embed`,
-            });
+      for (const teacherId of selectedTeachers) {
 
-            const teacherData = {
-              id: teacher.id,
-              name: teacher.title.rendered,
-              position: teacher.meta?.position || '',
-              description: teacher.content?.rendered || '',
-              imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
-              imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
-            };
+        // Берём из кэша
+        if (allTeachersMap.has(teacherId)) {
+          loadedTeachers.push(allTeachersMap.get(teacherId));
+          continue;
+        }
 
-            // Сохраняем в кэш
-            setAllTeachersMap(prev => new Map(prev).set(teacherId, teacherData));
+        try {
+          const teacher = await apiFetch({
+            path: `/wp/v2/teachers/${teacherId}?_embed`,
+          });
 
-            return teacherData;
-          } catch (error) {
-            console.error('Error fetching teacher:', error);
-            return null;
-          }
-        })
-      );
+          const teacherData = {
+            id: teacher.id,
+            name: teacher.title.rendered,
+            position: teacher.meta?.position || '',
+            description: teacher.content?.rendered || '',
+            imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+            imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
+          };
 
-      setTeachers(teachersData.filter(Boolean));
+          // сохраняем в кэш
+          setAllTeachersMap(prev => {
+            const updated = new Map(prev);
+            updated.set(teacherId, teacherData);
+            return updated;
+          });
+
+          loadedTeachers.push(teacherData);
+
+        } catch (err) {
+          console.error('Failed to load teacher:', err);
+        }
+      }
+
+      setTeachers(loadedTeachers);
     };
 
     fetchSelectedTeachers();
-  }, [selectedTeachers, allTeachersMap]);
+  }, [selectedTeachers]);
+
 
   // Функция поиска преподавателей
   const performSearch = useCallback(async (query) => {
@@ -152,57 +158,64 @@ const Edit = ({ attributes, setAttributes }) => {
   }, []);
 
   const addTeacher = async (teacherId) => {
-    if (teacherId && !selectedTeachers.includes(teacherId)) {
-      try {
-        // Загружаем данные преподавателя
-        const teacher = await apiFetch({
-          path: `/wp/v2/teachers/${teacherId}?_embed`,
-        });
+    if (!teacherId || selectedTeachers.includes(teacherId)) return;
 
-        const teacherData = {
-          id: teacher.id,
-          name: teacher.title.rendered,
-          position: teacher.meta?.position || '',
-          description: teacher.content?.rendered || '',
-          imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
-          imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
-        };
+    try {
+      const teacher = await apiFetch({
+        path: `/wp/v2/teachers/${teacherId}?_embed`,
+      });
 
-        // Обновляем атрибуты
-        setAttributes({
-          selectedTeachers: [...selectedTeachers, teacherId],
-          teachersData: [...teachersData, teacherData]
-        });
+      const teacherData = {
+        id: teacher.id,
+        name: teacher.title.rendered,
+        position: teacher.meta?.position || '',
+        description: teacher.content?.rendered || '',
+        imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+        imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
+      };
 
-      } catch (error) {
-        console.error('Error adding teacher:', error);
-      }
+      // 1. обновляем selectedTeachers
+      setAttributes({
+        selectedTeachers: [...selectedTeachers, teacherId],
+      });
 
-      setSearchQuery('');
-      setSearchResults([]);
-      setShowTeacherModal(false);
+      // 2. обновляем кэш
+      setAllTeachersMap(prev => {
+        const updated = new Map(prev);
+        updated.set(teacherId, teacherData);
+        return updated;
+      });
+
+      // 3. обновляем локальный массив teachers
+      setTeachers(prev => [...prev, teacherData]);
+
+    } catch (err) {
+      console.error('Error adding teacher:', err);
     }
+
+    setShowTeacherModal(false);
+    setSearchQuery('');
+    setSearchResults([]);
   };
+
 
   const removeTeacher = (index) => {
     const newTeachers = [...selectedTeachers];
-    const newTeachersData = [...teachersData];
 
     newTeachers.splice(index, 1);
-    newTeachersData.splice(index, 1);
 
     setAttributes({
       selectedTeachers: newTeachers,
-      teachersData: newTeachersData
     });
   };
 
   const moveTeacher = (fromIndex, toIndex) => {
-    const newTeachers = [...selectedTeachers];
-    const [movedTeacher] = newTeachers.splice(fromIndex, 1);
-    newTeachers.splice(toIndex, 0, movedTeacher);
+    const newSelectedTeachers = [...selectedTeachers];
+    const [movedId] = newSelectedTeachers.splice(fromIndex, 1);
+    newSelectedTeachers.splice(toIndex, 0, movedId);
+
     setAttributes({
-      selectedTeachers: newTeachers,
+      selectedTeachers: newSelectedTeachers,
     });
   };
 
@@ -242,32 +255,7 @@ const Edit = ({ attributes, setAttributes }) => {
   return (
     <div {...blockProps}>
       <InspectorControls>
-        <PanelBody title={__('Layout Settings', 'textdomain')} initialOpen={false}>
-          <RangeControl
-            label={__('Columns', 'textdomain')}
-            value={columns}
-            onChange={(value) => setAttributes({ columns: value })}
-            min={1}
-            max={6}
-          />
-          <ToggleControl
-            label={__('Show Image', 'textdomain')}
-            checked={showImage}
-            onChange={(value) => setAttributes({ showImage: value })}
-          />
-          <ToggleControl
-            label={__('Show Position', 'textdomain')}
-            checked={showPosition}
-            onChange={(value) => setAttributes({ showPosition: value })}
-          />
-          <ToggleControl
-            label={__('Show Description', 'textdomain')}
-            checked={showDescription}
-            onChange={(value) => setAttributes({ showDescription: value })}
-          />
-        </PanelBody>
-
-        <PanelBody title={__('Teachers', 'textdomain')} initialOpen={true}>
+        <PanelBody title={__('Преподаватели', 'textdomain')} initialOpen={true}>
           <BaseControl>
             <div style={{ marginBottom: '16px' }}>
               <Button
@@ -275,12 +263,12 @@ const Edit = ({ attributes, setAttributes }) => {
                 onClick={() => setShowTeacherModal(true)}
                 style={{ width: '100%' }}
               >
-                {__('Add Teacher', 'textdomain')}
+                {__('Добавить преподавателя', 'textdomain')}
               </Button>
             </div>
 
             <p style={{ fontSize: '12px', color: '#757575', marginTop: '8px' }}>
-              {__('Selected:', 'textdomain')} {selectedTeachers.length}
+              {__('Выбрано:', 'textdomain')} {selectedTeachers.length}
             </p>
           </BaseControl>
         </PanelBody>
@@ -288,7 +276,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
       {showTeacherModal && (
         <Modal
-          title={__('Add Teacher', 'textdomain')}
+          title={__('Добавить преподавателя', 'textdomain')}
           onRequestClose={() => {
             setShowTeacherModal(false);
             setSearchQuery('');
@@ -298,20 +286,20 @@ const Edit = ({ attributes, setAttributes }) => {
           isFullScreen={false}
           style={{ maxWidth: '500px' }}
         >
-          <div style={{ padding: '20px' }}>
+          <div style={{ padding: '2px' }}>
             <div style={{ marginBottom: '20px' }}>
               <SearchControl
-                label={__('Search by name', 'textdomain')}
+                label={__('Искать по фамилии / имени', 'textdomain')}
                 value={searchQuery}
                 onChange={(value) => setSearchQuery(value)}
-                placeholder={__('Type at least 2 characters...', 'textdomain')}
+                placeholder={__('Минимум 2 символа...', 'textdomain')}
                 className="teacher-search-input"
               />
 
               {isSearching && (
                 <div style={{ textAlign: 'center', padding: '10px' }}>
                   <Spinner />
-                  <p>{__('Searching...', 'textdomain')}</p>
+                  <p>{__('Поиск...', 'textdomain')}</p>
                 </div>
               )}
 
@@ -364,7 +352,7 @@ const Edit = ({ attributes, setAttributes }) => {
                   borderRadius: '4px',
                   marginTop: '10px'
                 }}>
-                  <p>{__('No teachers found for your search.', 'textdomain')}</p>
+                  <p>{__('Нет такого...', 'textdomain')}</p>
                 </div>
               )}
 
@@ -388,9 +376,9 @@ const Edit = ({ attributes, setAttributes }) => {
               marginTop: '20px'
             }}>
               <TextControl
-                label={__('Or enter teacher ID', 'textdomain')}
+                label={__('ID преподавателя', 'textdomain')}
                 type="number"
-                placeholder={__('Enter teacher ID and press Enter', 'textdomain')}
+                placeholder={__('ID преподавателя', 'textdomain')}
                 onKeyDown={handleIdInputKeyDown}
                 style={{ marginBottom: '10px' }}
               />
@@ -400,7 +388,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 marginTop: '4px',
                 fontStyle: 'italic'
               }}>
-                {__('Find teacher ID in WordPress admin under "Teachers"', 'textdomain')}
+                {__('Поиск преподавателя по ID', 'textdomain')}
               </p>
             </div>
 
@@ -411,14 +399,13 @@ const Edit = ({ attributes, setAttributes }) => {
               textAlign: 'center'
             }}>
               <Button
-                isSecondary
                 onClick={() => {
                   setShowTeacherModal(false);
                   setSearchQuery('');
                   setSearchResults([]);
                 }}
               >
-                {__('Close', 'textdomain')}
+                {__('Закрыть', 'textdomain')}
               </Button>
             </div>
           </div>
@@ -462,14 +449,14 @@ const Edit = ({ attributes, setAttributes }) => {
                 }}
               >
                 <div className="teacher-content">
-                  {showImage && teacher.imageUrl && (
-                    <div className="teacher-image" style={{
-                      width: '100%',
-                      height: '200px',
-                      marginBottom: '12px',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
+                  <div className="teacher-image" style={{
+                    width: '100%',
+                    height: '200px',
+                    marginBottom: '12px',
+                    borderRadius: '4px',
+                    overflow: 'hidden'
+                  }}>
+                    {teacher.imageUrl && (
                       <img
                         src={teacher.imageUrl}
                         alt={teacher.name}
@@ -480,24 +467,36 @@ const Edit = ({ attributes, setAttributes }) => {
                           objectFit: 'cover'
                         }}
                       />
-                    </div>
-                  )}
+                    ) || (
+                        <img
+                          src='data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      )}
+                  </div>
                   <div className="teacher-info">
                     <h3 className="teacher-name" style={{
                       margin: '0 0 10px 0',
-                      fontSize: '18px'
+                      fontSize: '16px',
+                      textAlign: 'center',
                     }}>
                       {teacher.name}
                     </h3>
                     {showPosition && teacher.position && (
-                      <div className="teacher-position" style={{
-                        marginBottom: '10px',
-                        fontWeight: '400',
-                        fontSize: '13px',
-                        color: '#666',
-                      }}>
-                        {teacher.position}
-                      </div>
+                      <div className="teacher-position"
+                        style={{
+                          marginBottom: '10px',
+                          fontWeight: '400',
+                          fontSize: '11px',
+                          textAlign: 'center',
+                          color: '#666',
+                        }}
+                        dangerouslySetInnerHTML={{ __html: teacher.position.replace(/\n/g, '<br/>') }}
+                      />
                     )}
                     {showDescription && teacher.description && (
                       <div
@@ -530,26 +529,21 @@ const Edit = ({ attributes, setAttributes }) => {
                   }}>
                     {index > 0 && (
                       <Button
+                        style={{ padding: 0 }}
                         onClick={() => moveTeacher(index, index - 1)}
-                        icon="dashicons-arrow-right-alt2"
-                        label={__('Move right', 'textdomain')}
-                      />
+                      >{__('⬅️', 'textdomain')}</Button>
                     )}
                     {index < teachers.length - 1 && (
                       <Button
+                        style={{ padding: 0 }}
                         onClick={() => moveTeacher(index, index + 1)}
-                        icon="dashicons-arrow-left-alt2"
-                        label={__('Move left', 'textdomain')}
-                        isSmall
-                      />
+                      >{__('➡️', 'textdomain')}</Button>
                     )}
                     <Button
+                      style={{ padding: 0, marginLeft: 10 }}
                       onClick={() => removeTeacher(index)}
-                      icon="trash"
-                      label={__('Remove', 'textdomain')}
-                      isSmall
                       isDestructive
-                    />
+                    >{__('❌', 'textdomain')}</Button>
                   </div>
                 </div>
               </div>

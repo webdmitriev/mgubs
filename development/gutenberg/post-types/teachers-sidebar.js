@@ -1,8 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
-import {
-  PanelBody, TextControl, TextareaControl, ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, TextareaControl, ToggleControl } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 
@@ -23,18 +21,18 @@ const TeachersSidebar = () => {
 
   return (
     <Fragment>
-      <PluginSidebarMoreMenuItem target="allevents-sidebar" icon="admin-post">
-        Настройки препод.
-      </PluginSidebarMoreMenuItem>
+      <PluginSidebarMoreMenuItem target="allevents-sidebar" icon="admin-post">Настройки препод.</PluginSidebarMoreMenuItem>
 
-      <PluginSidebar name="allevents-sidebar" title="Настройки события" icon="admin-post">
+      <PluginSidebar name="allevents-sidebar" title="Преподаватель" icon="admin-post">
         <PanelBody title="Основные поля" initialOpen={true}>
 
-          <TextControl
+          <TextareaControl
             label="Кто я?"
             placeholder="Кто я?"
             value={postMeta.position}
             onChange={(val) => updateMeta('position', val)}
+            rows={4}
+            help="Используйте Enter для переноса строки."
           />
 
           <div style={{ height: '24px' }} />
@@ -45,9 +43,10 @@ const TeachersSidebar = () => {
             value={postMeta.custom_excerpt || ''}
             onChange={(val) => updateMeta('custom_excerpt', val)}
             rows={12}
+            help="Используйте Enter для переноса строки."
           />
 
-          <div style={{ height: '24px' }} />
+          <div style={{ height: '14px' }} />
 
           <ToggleControl
             label={!!postMeta.is_button_off ? 'Кнопка видна' : 'Кнопка скрыта'}

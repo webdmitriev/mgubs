@@ -39,9 +39,7 @@ const AllEventsSidebar = () => {
 
   return (
     <Fragment>
-      <PluginSidebarMoreMenuItem target="allevents-sidebar" icon="admin-post">
-        Настройки события
-      </PluginSidebarMoreMenuItem>
+      <PluginSidebarMoreMenuItem target="allevents-sidebar" icon="admin-post">Настройки события</PluginSidebarMoreMenuItem>
 
       <PluginSidebar name="allevents-sidebar" title="Настройки события" icon="admin-post">
         <PanelBody title="Основные поля" initialOpen={true}>
