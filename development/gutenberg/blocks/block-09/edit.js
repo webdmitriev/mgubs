@@ -6,6 +6,7 @@ import {
   Spinner,
   BaseControl,
   SearchControl,
+  ToggleControl,
   Modal
 } from '@wordpress/components';
 import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
@@ -33,6 +34,12 @@ const Edit = ({ attributes, setAttributes }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [showTeacherModal, setShowTeacherModal] = useState(false);
   const [allTeachersMap, setAllTeachersMap] = useState(new Map());
+
+  const [isPreview, setIsPreview] = useState(true);
+
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
 
   // Используем useRef для хранения debounced функции
   const debouncedSearchRef = useRef(null);
@@ -329,138 +336,153 @@ const Edit = ({ attributes, setAttributes }) => {
         </Modal>
       )}
 
-      <div className="teachers-block-editor teachers-block-editor-courses">
-        <div className="teachers-block-grid">
-          {teachers.length === 0 ? (
-            <div className="empty-state" style={{
-              textAlign: 'center',
-              padding: '60px 20px',
-              backgroundColor: '#f9f9f9',
-              borderRadius: '8px',
-              border: '2px dashed #ddd'
-            }}>
-              <p className="no-teachers" style={{
-                fontSize: '16px',
-                color: '#666',
-                marginBottom: '20px'
+      <div className="advanced-block teachers-block-editor teachers-block-editor-courses">
+        <div className="block-info">
+          <span className="block-info-title">🎨 Block 09</span>
+          <ToggleControl
+            label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
+            checked={isPreview}
+            onChange={togglePreview}
+          />
+        </div>
+
+        {!isPreview && (
+          <div>Картинка</div>
+        )}
+
+        {isPreview && (
+          <div className="teachers-block-grid">
+            {teachers.length === 0 ? (
+              <div className="empty-state" style={{
+                textAlign: 'center',
+                padding: '60px 20px',
+                backgroundColor: '#f9f9f9',
+                borderRadius: '8px',
+                border: '2px dashed #ddd'
               }}>
-                {__('Курсы не выбраны', 'textdomain')}
-              </p>
-              <Button
-                isPrimary
-                onClick={() => setShowTeacherModal(true)}
-                style={{ marginTop: '10px' }}
-              >
-                {__('Добавить курс', 'textdomain')}
-              </Button>
-            </div>
-          ) : (
-            teachers.map((teacher, index) => (
-              <div
-                key={teacher.id}
-                data-teacher-id={teacher.id}
-                style={{
-                  position: 'relative',
-                  border: '2px dashed #ccc',
-                  padding: '5px 5px 58px 5px',
-                  borderRadius: '4px',
-                  backgroundColor: '#f9f9f9',
-                }}
-              >
-                <div className="teacher-content">
-                  <div className="teacher-image" style={{
-                    width: '100%',
-                    height: '160px',
-                    marginBottom: '12px',
+                <p className="no-teachers" style={{
+                  fontSize: '16px',
+                  color: '#666',
+                  marginBottom: '20px'
+                }}>
+                  {__('Курсы не выбраны', 'textdomain')}
+                </p>
+                <Button
+                  isPrimary
+                  onClick={() => setShowTeacherModal(true)}
+                  style={{ marginTop: '10px' }}
+                >
+                  {__('Добавить курс', 'textdomain')}
+                </Button>
+              </div>
+            ) : (
+              teachers.map((teacher, index) => (
+                <div
+                  key={teacher.id}
+                  data-teacher-id={teacher.id}
+                  style={{
+                    position: 'relative',
+                    border: '2px dashed #ccc',
+                    padding: '5px 5px 58px 5px',
                     borderRadius: '4px',
-                    overflow: 'hidden'
-                  }}>
-                    {teacher.imageUrl && (
-                      <img
-                        src={teacher.imageUrl}
-                        alt={teacher.name}
-                        data-image-id={teacher.imageId}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
-                      />
-                    ) || (
+                    backgroundColor: '#f9f9f9',
+                  }}
+                >
+                  <div className="teacher-content">
+                    <div className="teacher-image" style={{
+                      width: '100%',
+                      height: '160px',
+                      marginBottom: '12px',
+                      borderRadius: '4px',
+                      overflow: 'hidden'
+                    }}>
+                      {teacher.imageUrl && (
                         <img
-                          src='data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='
+                          src={teacher.imageUrl}
+                          alt={teacher.name}
+                          data-image-id={teacher.imageId}
                           style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover'
                           }}
                         />
-                      )}
+                      ) || (
+                          <img
+                            src='data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover'
+                            }}
+                          />
+                        )}
+                    </div>
+                    <div className="teacher-info">
+                      <h3 className="teacher-name" style={{
+                        margin: '0 0 10px 0',
+                        fontSize: '16px',
+                        textAlign: 'center',
+                      }}>
+                        {teacher.name}
+                      </h3>
+                      <span className="teacher-date" style={{
+                        display: 'block',
+                        width: '100%',
+                        margin: '0 0 8px 0',
+                        fontSize: '11px',
+                        textAlign: 'center',
+                        color: 'rgb(102, 102, 102)',
+                      }}>
+                        {teacher.date_start ? 'С датой старта' : 'Без даты старта'}
+                      </span>
+                    </div>
                   </div>
-                  <div className="teacher-info">
-                    <h3 className="teacher-name" style={{
-                      margin: '0 0 10px 0',
-                      fontSize: '16px',
-                      textAlign: 'center',
-                    }}>
-                      {teacher.name}
-                    </h3>
-                    <span className="teacher-date" style={{
-                      display: 'block',
-                      width: '100%',
-                      margin: '0 0 8px 0',
-                      fontSize: '11px',
-                      textAlign: 'center',
-                      color: 'rgb(102, 102, 102)',
-                    }}>
-                      {teacher.date_start ? 'С датой старта' : 'Без даты старта'}
-                    </span>
-                  </div>
-                </div>
-                <div className="teacher-actions" style={{
-                  position: 'absolute',
-                  bottom: '5px',
-                  left: '5px',
-                  right: '5px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  paddingTop: '15px',
-                  borderTop: '1px solid #ddd'
-                }}>
-                  <div className="teacher-id" style={{
-                    fontSize: '12px',
-                    color: '#888'
-                  }}>
-                    <small>ID: {teacher.id}</small>
-                  </div>
-                  <div className="teacher-buttons" style={{
+                  <div className="teacher-actions" style={{
+                    position: 'absolute',
+                    bottom: '5px',
+                    left: '5px',
+                    right: '5px',
                     display: 'flex',
-                    gap: '5px'
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingTop: '15px',
+                    borderTop: '1px solid #ddd'
                   }}>
-                    {index > 0 && (
+                    <div className="teacher-id" style={{
+                      fontSize: '12px',
+                      color: '#888'
+                    }}>
+                      <small>ID: {teacher.id}</small>
+                    </div>
+                    <div className="teacher-buttons" style={{
+                      display: 'flex',
+                      gap: '5px'
+                    }}>
+                      {index > 0 && (
+                        <Button
+                          style={{ padding: 0 }}
+                          onClick={() => moveTeacher(index, index - 1)}
+                        >{__('⬅️', 'textdomain')}</Button>
+                      )}
+                      {index < teachers.length - 1 && (
+                        <Button
+                          style={{ padding: 0 }}
+                          onClick={() => moveTeacher(index, index + 1)}
+                        >{__('➡️', 'textdomain')}</Button>
+                      )}
                       <Button
-                        style={{ padding: 0 }}
-                        onClick={() => moveTeacher(index, index - 1)}
-                      >{__('⬅️', 'textdomain')}</Button>
-                    )}
-                    {index < teachers.length - 1 && (
-                      <Button
-                        style={{ padding: 0 }}
-                        onClick={() => moveTeacher(index, index + 1)}
-                      >{__('➡️', 'textdomain')}</Button>
-                    )}
-                    <Button
-                      style={{ padding: 0, marginLeft: 10 }}
-                      onClick={() => removeTeacher(index)}
-                      isDestructive
-                    >{__('❌', 'textdomain')}</Button>
+                        style={{ padding: 0, marginLeft: 10 }}
+                        onClick={() => removeTeacher(index)}
+                        isDestructive
+                      >{__('❌', 'textdomain')}</Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
-        </div>
+              ))
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

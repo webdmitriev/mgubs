@@ -3366,6 +3366,10 @@ const Edit = ({
     linkText = '',
     linkURL = ''
   } = attributes;
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(true);
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
   const [teachers, setTeachers] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
   const [searchQuery, setSearchQuery] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('');
   const [searchResults, setSearchResults] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
@@ -3734,8 +3738,16 @@ const Edit = ({
       setSearchResults([]);
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Закрыть', 'textdomain'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teachers-block-editor"
+    className: "teachers-block-editor advanced-block"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 08"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430"), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-grid"
   }, teachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "empty-state",
@@ -3995,6 +4007,10 @@ const Edit = ({
   const [isSearching, setIsSearching] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
   const [showTeacherModal, setShowTeacherModal] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
   const [allTeachersMap, setAllTeachersMap] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(new Map());
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(true);
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
 
   // Используем useRef для хранения debounced функции
   const debouncedSearchRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);
@@ -4241,8 +4257,16 @@ const Edit = ({
       marginTop: '10px'
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Type at least 2 characters to search.', 'textdomain')))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "teachers-block-editor teachers-block-editor-courses"
+    className: "advanced-block teachers-block-editor teachers-block-editor-courses"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 09"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430"), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-grid"
   }, teachers.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "empty-state",
