@@ -217,6 +217,9 @@
     column-gap: 12px;
     row-gap: 24px;
   }
+  .teachers-block-editor-courses .teachers-block-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .components-base-control.block-editor-url-input.URLInput {
   width: 100%;

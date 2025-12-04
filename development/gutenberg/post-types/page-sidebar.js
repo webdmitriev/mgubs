@@ -4,6 +4,8 @@ import { PanelBody, ToggleControl, TextareaControl, RangeControl, Flex } from '@
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 
+import { DateOnlyPicker } from "../components/DateTimePicker.js";
+
 const PageSidebar = () => {
   const postType = useSelect((select) => select('core/editor').getCurrentPostType(), []);
 
@@ -71,6 +73,14 @@ const PageSidebar = () => {
               withInputField={false}
             />
           </Flex>
+
+          <div style={{ height: '24px' }} />
+
+          <DateOnlyPicker
+            label="Дата окончания"
+            value={postMeta.date_start || ''}
+            onChange={(val) => updateMeta('date_start', val)}
+          />
 
         </PanelBody>
       </PluginSidebar>

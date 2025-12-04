@@ -41,6 +41,7 @@ function register_page_meta_fields() {
 
   $str_fields = [
     'shadow_image',
+    'date_start',
   ];
   foreach ($str_fields as $field) {
     register_post_meta($post_type, $field, [
