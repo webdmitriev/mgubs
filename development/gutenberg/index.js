@@ -26,3 +26,4 @@ import './blocks/block-06/index.js';
 import './blocks/block-07/index.js';
 import './blocks/block-08/index.js';
 import './blocks/block-09/index.js';
+import './blocks/block-10/index.js';

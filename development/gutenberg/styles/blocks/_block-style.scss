@@ -216,9 +216,16 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 12px;
     row-gap: 24px;
+    width: 100%;
   }
   .teachers-block-editor-courses .teachers-block-grid {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .contacts-items {
+    [role="textbox"] {
+      font-size: 14px !important;
+    }
   }
 }
 .components-base-control.block-editor-url-input.URLInput {

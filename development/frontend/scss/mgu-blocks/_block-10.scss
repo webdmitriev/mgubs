@@ -11,14 +11,20 @@
   .descr {
     margin-bottom: 40px;
   }
-  img {
+  picture,
+  .container > img {
     display: block;
     width: 100%;
     max-width: calc(50% - 10px);
     height: inherit;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
     margin-bottom: 40px;
+  }
+  img {
+    object-fit: cover;
+  }
+  picture img {
+    width: 100%;
   }
   .contacts-items {
     display: grid;
@@ -28,7 +34,7 @@
     width: 100%;
     .contacts-item {
       .contacts-item__label,
-      .contacts-item__link {
+      a {
         display: block;
         width: 100%;
         font-family: var(--font-family);
@@ -41,34 +47,38 @@
         font-weight: 600;
         font-size: 18px;
       }
-      .contacts-item__link {
+      a {
         position: relative;
         padding-left: 32px;
         font-size: var(--font-size);
-        &.icon-phone-contacts:before,
-        &.icon-mail-contacts:before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 0;
-          display: block;
-          width: 18px;
-          height: 18px;
-          transform: translateY(-50%);
-        }
-        &.icon-phone-contacts:before {
-          background: url("../img/icons/icon-phone-contacts.svg") center / contain no-repeat;
-        }
-        &.icon-mail-contacts:before {
-          background: url("../img/icons/icon-mail-contacts.svg") center / contain no-repeat;
-        }
+      }
+      a[href^="tel:"]:before,
+      a[href^="mailto:"]:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        display: block;
+        width: 18px;
+        height: 18px;
+        transform: translateY(-50%);
+      }
+      a[href^="tel:"]:before {
+        background: url("../img/icons/icon-phone-contacts.svg") center / contain no-repeat;
+      }
+      a[href^="mailto:"]:before {
+        background: url("../img/icons/icon-mail-contacts.svg") center / contain no-repeat;
+      }
+      a + br {
+        display: none;
       }
     }
   }
 }
 
 @media (max-width: 991px) {
-  .block-10 img {
+  .block-10 .container > img,
+  .block-10 picture {
     max-width: 70%;
     margin-inline: auto;
   }
@@ -77,7 +87,8 @@
   }
 }
 @media (max-width: 768px) {
-  .block-10 img {
+  .block-10 .container > img,
+  .block-10 picture {
     max-width: 80%;
   }
   .block-10 .contacts-items {
@@ -85,7 +96,8 @@
   }
 }
 @media (max-width: 576px) {
-  .block-10 img {
+  .block-10 .container > img,
+  .block-10 picture {
     max-width: 100%;
   }
   .block-10 .contacts-items {
