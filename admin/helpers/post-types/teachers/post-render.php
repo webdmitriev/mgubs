@@ -2,7 +2,7 @@
 
 defined('ABSPATH') || exit;
 
-register_block_type('theme/block-test', [
+register_block_type('theme/block-08', [
   'render_callback' => 'render_teachers_block',
 ] );
 
@@ -15,10 +15,10 @@ function render_teachers_block( $attributes ) {
   }
 
   // Параметры
-  $columns        = $attributes['columns'] ?? 3;
-  $show_image     = $attributes['showImage'] ?? true;
-  $show_position  = $attributes['showPosition'] ?? true;
-  $show_desc      = $attributes['showDescription'] ?? true;
+  $isShowMoreButton = $attributes['isShowMoreButton'] ?? false;
+  $isShowLink       = $attributes['isShowLink'] ?? false;
+  $linkText         = $attributes['linkText'] ?? '';
+  $linkURL          = $attributes['linkURL'] ?? '';
 
   // Берём преподавателей в порядке ID
   $posts = get_posts([
@@ -52,7 +52,16 @@ function render_teachers_block( $attributes ) {
         </div>
       <?php endforeach; ?>
     </div>
-    <a href="#" class="btn btn-white">Все новости</a>
+
+    <?php if ( $isShowLink && $linkURL ) : ?>
+      <a href="<?php echo esc_url( $linkURL ); ?>" class="btn btn-white">
+        <?php echo esc_html( $linkText ?: 'Все преподаватели' ); ?>
+      </a>
+    <?php endif; ?>
+
+    <?php if ($isShowMoreButton): ?>
+      <button class="btn btn-white">Показать ещё</button>
+    <?php endif; ?>
   </div>
 <?php
   return ob_get_clean();

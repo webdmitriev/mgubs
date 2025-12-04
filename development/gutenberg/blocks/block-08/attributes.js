@@ -1,14 +1,24 @@
-export default {
-  teachers: {
+const attributes = {
+  selectedTeachers: {
     type: 'array',
     default: [],
   },
-  teachersOrder: {
-    type: 'array',
-    default: [],
+  isShowMoreButton: {
+    type: 'boolean',
+    default: false,
   },
-  buttonControl: {
+  isShowLink: {
+    type: 'boolean',
+    default: false,
+  },
+  linkText: {
     type: 'string',
-    default: ''
+    default: 'View All Teachers',
+  },
+  linkURL: {
+    type: 'string',
+    default: '',
   }
 };
+
+export default attributes;

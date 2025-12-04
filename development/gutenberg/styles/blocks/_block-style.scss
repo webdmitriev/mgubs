@@ -218,3 +218,8 @@
     row-gap: 24px;
   }
 }
+.components-base-control.block-editor-url-input.URLInput {
+  width: 100%;
+  max-width: 100%;
+  min-width: max-content;
+}

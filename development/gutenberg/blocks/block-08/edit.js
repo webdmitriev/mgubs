@@ -1,322 +1,604 @@
-import { useState } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { Button, ToggleControl, Spinner, Notice, PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import {
+  InspectorControls,
+  useBlockProps,
+  URLInput
+} from '@wordpress/block-editor';
+import {
+  PanelBody,
+  RangeControl,
+  ToggleControl,
+  Button,
+  Spinner,
+  BaseControl,
+  SearchControl,
+  Modal,
+  TextControl,
+  TextareaControl,
+  Flex, FlexBlock, FlexItem
+} from '@wordpress/components';
+import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 
-import VideoHelpPanel from './controls/VideoHelpPanel';
+// Создаем собственную функцию debounce
+const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { teachers: selectedTeacherIds, teachersOrder = [], buttonControl = '' } = attributes;
-  const [isPreview, setIsPreview] = useState(true);
+  const {
+    selectedTeachers = [],
+    isShowMoreButton = true,
+    isShowLink = true,
+    linkText = '',
+    linkURL = '',
+  } = attributes;
 
-  const togglePreview = () => {
-    setIsPreview(!isPreview);
-  };
+  const [teachers, setTeachers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showTeacherModal, setShowTeacherModal] = useState(false);
+  const [allTeachersMap, setAllTeachersMap] = useState(new Map());
 
-  // Загружаем всех преподавателей с обработкой состояний
-  const { teachersPosts, isLoading, hasError } = useSelect((select) => {
-    const query = {
-      per_page: -1,
-      _fields: 'id,title,status,slug,meta,featured_media',
-      status: ['publish']
+  // Используем useRef для хранения debounced функции
+  const debouncedSearchRef = useRef(null);
+
+  // Загрузка данных выбранных преподавателей
+  useEffect(() => {
+    if (selectedTeachers.length === 0) {
+      setTeachers([]);
+      return;
+    }
+
+    const fetchSelectedTeachers = async () => {
+      const loadedTeachers = [];
+
+      for (const teacherId of selectedTeachers) {
+
+        // Берём из кэша
+        if (allTeachersMap.has(teacherId)) {
+          loadedTeachers.push(allTeachersMap.get(teacherId));
+          continue;
+        }
+
+        try {
+          const teacher = await apiFetch({
+            path: `/wp/v2/teachers/${teacherId}?_embed`,
+          });
+
+          const teacherData = {
+            id: teacher.id,
+            name: teacher.title.rendered,
+            position: teacher.meta?.position || '',
+            description: teacher.content?.rendered || '',
+            imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+            imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
+          };
+
+          // сохраняем в кэш
+          setAllTeachersMap(prev => {
+            const updated = new Map(prev);
+            updated.set(teacherId, teacherData);
+            return updated;
+          });
+
+          loadedTeachers.push(teacherData);
+
+        } catch (err) {
+          console.error('Failed to load teacher:', err);
+        }
+      }
+
+      setTeachers(loadedTeachers);
     };
 
+    fetchSelectedTeachers();
+  }, [selectedTeachers]);
+
+
+  // Функция поиска преподавателей
+  const performSearch = useCallback(async (query) => {
+    if (!query || query.trim().length < 2) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
     try {
-      const posts = select('core').getEntityRecords('postType', 'teachers', query);
-      const resolving = select('core').isResolving('getEntityRecords', ['postType', 'teachers', query]);
-      const hasResolved = select('core').hasFinishedResolution('getEntityRecords', ['postType', 'teachers', query]);
+      const results = await apiFetch({
+        path: `/wp/v2/teachers?search=${encodeURIComponent(query)}&per_page=10&_fields=id,title`,
+      });
 
-      return {
-        teachersPosts: posts,
-        isLoading: resolving && !hasResolved,
-        hasError: !resolving && !hasResolved && !posts,
-        isResolved: hasResolved
-      };
+      const options = results
+        .filter(teacher => !selectedTeachers.includes(teacher.id))
+        .map(teacher => ({
+          label: teacher.title.rendered,
+          value: teacher.id,
+          id: teacher.id,
+          name: teacher.title.rendered,
+        }));
+
+      setSearchResults(options);
     } catch (error) {
-      return {
-        teachersPosts: null,
-        isLoading: false,
-        hasError: true,
-        errorMessage: error.message
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  }, [selectedTeachers]);
+
+  // Инициализация debounced функции при монтировании
+  useEffect(() => {
+    debouncedSearchRef.current = debounce(performSearch, 500);
+  }, [performSearch]);
+
+  // Выполнение поиска при изменении searchQuery
+  useEffect(() => {
+    if (debouncedSearchRef.current) {
+      debouncedSearchRef.current(searchQuery);
+    }
+  }, [searchQuery]);
+
+  // Очистка при размонтировании
+  useEffect(() => {
+    return () => {
+      // Очищаем таймаут если компонент размонтируется
+      if (debouncedSearchRef.current) {
+        // Простая очистка - сбрасываем функцию
+        debouncedSearchRef.current = null;
+      }
+    };
+  }, []);
+
+  const addTeacher = async (teacherId) => {
+    if (!teacherId || selectedTeachers.includes(teacherId)) return;
+
+    try {
+      const teacher = await apiFetch({
+        path: `/wp/v2/teachers/${teacherId}?_embed`,
+      });
+
+      const teacherData = {
+        id: teacher.id,
+        name: teacher.title.rendered,
+        position: teacher.meta?.position || '',
+        description: teacher.content?.rendered || '',
+        imageUrl: teacher._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+        imageId: teacher._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
       };
-    }
-  }, []);
 
-  // Добавляем искусственную задержку для демонстрации
-  const [showLoading, setShowLoading] = useState(true);
-  useState(() => {
-    const timer = setTimeout(() => {
-      setShowLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Обработчик выбора преподавателя
-  const handleTeacherSelect = (teacherId) => {
-    const newSelectedTeachers = selectedTeacherIds || [];
-    let newTeachersOrder = teachersOrder || [];
-
-    if (newSelectedTeachers.includes(teacherId)) {
-      // Удаляем если уже выбран
-      const updatedTeachers = newSelectedTeachers.filter(id => id !== teacherId);
-      const updatedOrder = newTeachersOrder.filter(id => id !== teacherId);
-
+      // 1. обновляем selectedTeachers
       setAttributes({
-        teachers: updatedTeachers,
-        teachersOrder: updatedOrder
+        selectedTeachers: [...selectedTeachers, teacherId],
       });
-    } else {
-      // Добавляем если не выбран
-      const updatedTeachers = [...newSelectedTeachers, teacherId];
-      const updatedOrder = [...newTeachersOrder, teacherId];
 
-      setAttributes({
-        teachers: updatedTeachers,
-        teachersOrder: updatedOrder
+      // 2. обновляем кэш
+      setAllTeachersMap(prev => {
+        const updated = new Map(prev);
+        updated.set(teacherId, teacherData);
+        return updated;
       });
+
+      // 3. обновляем локальный массив teachers
+      setTeachers(prev => [...prev, teacherData]);
+
+    } catch (err) {
+      console.error('Error adding teacher:', err);
     }
+
+    setShowTeacherModal(false);
+    setSearchQuery('');
+    setSearchResults([]);
   };
 
-  // Очистка выбора
-  const clearSelection = () => {
+
+  const removeTeacher = (index) => {
+    const newTeachers = [...selectedTeachers];
+
+    newTeachers.splice(index, 1);
+
     setAttributes({
-      teachers: [],
-      teachersOrder: []
+      selectedTeachers: newTeachers,
     });
   };
 
-  // Получаем выбранных преподавателей в правильном порядке
-  const selectedTeachers = (teachersPosts?.filter(teacher =>
-    selectedTeacherIds?.includes(teacher.id)
-  ) || []).sort((a, b) => {
-    const orderA = teachersOrder?.indexOf(a.id) ?? selectedTeacherIds?.indexOf(a.id) ?? -1;
-    const orderB = teachersOrder?.indexOf(b.id) ?? selectedTeacherIds?.indexOf(b.id) ?? -1;
-    return orderA - orderB;
-  });
-
-  // Функции для перестановки карточек
   const moveTeacher = (fromIndex, toIndex) => {
-    if (fromIndex === toIndex) return;
+    const newSelectedTeachers = [...selectedTeachers];
+    const [movedId] = newSelectedTeachers.splice(fromIndex, 1);
+    newSelectedTeachers.splice(toIndex, 0, movedId);
 
-    const newOrder = [...teachersOrder];
-    const [moved] = newOrder.splice(fromIndex, 1);
-    newOrder.splice(toIndex, 0, moved);
-    setAttributes({ teachersOrder: newOrder });
+    setAttributes({
+      selectedTeachers: newSelectedTeachers,
+    });
   };
 
-  const moveTeacherUp = (currentIndex) => {
-    if (currentIndex === 0) return;
-    moveTeacher(currentIndex, currentIndex - 1);
+  // Загрузка преподавателя по ID
+  const loadTeacherById = async (teacherId) => {
+    if (!teacherId) return;
+
+    try {
+      const teacher = await apiFetch({
+        path: `/wp/v2/teachers/${teacherId}?_embed`,
+      });
+
+      if (teacher && teacher.id) {
+        addTeacher(teacher.id);
+      } else {
+        alert(__('Teacher not found', 'textdomain'));
+      }
+    } catch (error) {
+      alert(__('Teacher not found or error loading', 'textdomain'));
+    }
   };
 
-  const moveTeacherDown = (currentIndex) => {
-    if (currentIndex === teachersOrder.length - 1) return;
-    moveTeacher(currentIndex, currentIndex + 1);
+  const handleIdInputKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const teacherId = parseInt(e.target.value);
+      if (teacherId && !selectedTeachers.includes(teacherId)) {
+        loadTeacherById(teacherId);
+        e.target.value = '';
+      }
+    }
   };
 
-  const moveTeacherToStart = (currentIndex) => {
-    if (currentIndex === 0) return;
-    moveTeacher(currentIndex, 0);
-  };
+  const isShowButton = () => {
+    setAttributes({ isShowLink: false });
+    setAttributes({ isShowMoreButton: !isShowMoreButton });
+  }
 
-  const moveTeacherToEnd = (currentIndex) => {
-    if (currentIndex === teachersOrder.length - 1) return;
-    moveTeacher(currentIndex, teachersOrder.length - 1);
-  };
-
-  // Получаем текущий индекс в teachersOrder для карточки
-  const getCurrentOrderIndex = (teacherId) => {
-    return teachersOrder.indexOf(teacherId);
-  };
+  const isLinkButton = () => {
+    setAttributes({ isShowMoreButton: false });
+    setAttributes({ isShowLink: !isShowLink });
+  }
 
   const blockProps = useBlockProps({
-    className: 'block-style'
+    className: `block-style`,
   });
 
-  // Отображаем состояние загрузки
-  if (showLoading || isLoading) {
-    return (
-      <div {...blockProps}>
-        <div className="advanced-block">
-          <div className="block-loading">
-            <Spinner />
-            <p>{__('Загружаем данные преподавателей...', 'theme')}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Отображаем ошибку
-  if (hasError) {
-    return (
-      <div {...blockProps}>
-        <div className="advanced-block">
-          <Notice status="error" isDismissible={false}>
-            {__('Ошибка при загрузке данных преподавателей. Пожалуйста, проверьте наличие типа записи "teachers".', 'theme')}
-          </Notice>
-        </div>
-      </div>
-    );
-  }
-
-  // Проверяем наличие данных
-  if (!teachersPosts || teachersPosts.length === 0) {
-    return (
-      <div {...blockProps}>
-        <div className="advanced-block">
-          <Notice status="warning" isDismissible={false}>
-            {__('Преподаватели не найдены. Создайте записи типа "teachers".', 'theme')}
-          </Notice>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <>
+    <div {...blockProps}>
       <InspectorControls>
-        <VideoHelpPanel />
-        <PanelBody title={__('Выбор преподавателя', 'theme')} initialOpen={true}>
-          {/* Множественный выбор через чекбоксы */}
-          <div style={{ maxHeight: '340px', overflowY: 'auto' }}>
-            {teachersPosts.map((teacher) => (
-              <div key={teacher.id} style={{ marginBottom: '8px' }}>
-                <ToggleControl
-                  label={teacher.title?.rendered || __('Без названия', 'theme')}
-                  checked={selectedTeacherIds?.includes(teacher.id) || false}
-                  onChange={() => handleTeacherSelect(teacher.id)}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginTop: '16px' }}>
+        <PanelBody title={__('Преподаватели', 'theme')} initialOpen={true}>
+          <BaseControl>
             <Button
-              variant="secondary"
-              onClick={clearSelection}
-              disabled={!selectedTeacherIds || selectedTeacherIds.length === 0}
+              isPrimary
+              onClick={() => setShowTeacherModal(true)}
+              style={{ width: '100%' }}
             >
-              {__('Очистить выбор', 'theme')}
+              {__('Добавить преподавателя', 'theme')}
             </Button>
-          </div>
 
-          <div style={{ marginTop: '24px' }}>
-            <span style={{ display: 'block', marginBottom: 5 }}>Активировать кнопку:</span>
-            <SelectControl
-              value={buttonControl}
-              options={[
-                { label: 'Кнопка отключена', value: '' },
-                { label: 'Показать ещё', value: 'teachers-more' },
-                { label: 'Все преподаватели', value: 'teachers-all' },
-              ]}
-              onChange={(value) => setAttributes({ buttonControl: value })}
+            <div style={{ height: 14 }} />
+
+            <p style={{ fontSize: '12px', color: '#757575' }}>
+              {__('Выбрано:', 'theme')} {selectedTeachers.length}
+            </p>
+
+            <div style={{ height: 24 }} />
+
+            <ToggleControl
+              label={__('Показать кнопку "Показать еще"', 'theme')}
+              checked={isShowMoreButton}
+              onChange={isShowButton}
             />
-          </div>
+
+            <div style={{ height: 14 }} />
+
+            <ToggleControl
+              label={__('Показать кнопку "Ссылку"', 'theme')}
+              checked={isShowLink}
+              onChange={isLinkButton}
+            />
+
+            {isShowLink && (
+              <>
+                <div style={{ height: 8 }} />
+
+                <TextareaControl
+                  value={linkText}
+                  onChange={(value) => setAttributes({ linkText: value })}
+                  placeholder={__('Текст на кнопке', 'theme')}
+                  rows={1}
+                />
+
+                <div style={{ height: 8 }} />
+
+                <URLInput
+                  className="URLInput"
+                  value={linkURL}
+                  onChange={(value) => setAttributes({ linkURL: value })}
+                  placeholder={__('URL страницы', 'theme')}
+                />
+              </>
+            )}
+
+          </BaseControl>
         </PanelBody>
       </InspectorControls>
 
-      <div {...blockProps}>
-        <div className="advanced-block">
-          <div className="block-info">
-            <span className="block-info-title">🎨 Block 08 - Преподаватели</span>
-            <ToggleControl
-              label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
-              checked={isPreview}
-              onChange={togglePreview}
-            />
+      {showTeacherModal && (
+        <Modal
+          title={__('Добавить преподавателя', 'textdomain')}
+          onRequestClose={() => {
+            setShowTeacherModal(false);
+            setSearchQuery('');
+            setSearchResults([]);
+          }}
+          className="teachers-modal"
+          isFullScreen={false}
+          style={{ maxWidth: '500px' }}
+        >
+          <div style={{ padding: '2px' }}>
+            <div style={{ marginBottom: '20px' }}>
+              <SearchControl
+                label={__('Искать по фамилии / имени', 'textdomain')}
+                value={searchQuery}
+                onChange={(value) => setSearchQuery(value)}
+                placeholder={__('Минимум 2 символа...', 'textdomain')}
+                className="teacher-search-input"
+              />
+
+              {isSearching && (
+                <div style={{ textAlign: 'center', padding: '10px' }}>
+                  <Spinner />
+                  <p>{__('Поиск...', 'textdomain')}</p>
+                </div>
+              )}
+
+              {!isSearching && searchResults.length > 0 && (
+                <div
+                  className="teacher-search-results"
+                  style={{
+                    maxHeight: '300px',
+                    overflowY: 'auto',
+                    marginTop: '10px',
+                    border: '1px solid #ddd',
+                    borderRadius: '4px'
+                  }}
+                >
+                  {searchResults.map((teacher) => (
+                    <div
+                      key={teacher.id}
+                      className="teacher-search-item"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '10px 12px',
+                        borderBottom: '1px solid #eee',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => addTeacher(teacher.id)}
+                    >
+                      <span>{teacher.name}</span>
+                      <span style={{
+                        fontSize: '12px',
+                        color: '#666',
+                        backgroundColor: '#f0f0f0',
+                        padding: '2px 6px',
+                        borderRadius: '3px'
+                      }}>
+                        ID: {teacher.id}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {!isSearching && searchQuery.length >= 2 && searchResults.length === 0 && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '20px',
+                  color: '#666',
+                  backgroundColor: '#f9f9f9',
+                  borderRadius: '4px',
+                  marginTop: '10px'
+                }}>
+                  <p>{__('Нет такого...', 'textdomain')}</p>
+                </div>
+              )}
+
+              {!isSearching && searchQuery.length > 0 && searchQuery.length < 2 && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '20px',
+                  color: '#888',
+                  backgroundColor: '#f5f5f5',
+                  borderRadius: '4px',
+                  marginTop: '10px'
+                }}>
+                  <p>{__('Type at least 2 characters to search.', 'textdomain')}</p>
+                </div>
+              )}
+            </div>
+
+            <div style={{
+              borderTop: '1px solid #ddd',
+              paddingTop: '20px',
+              marginTop: '20px'
+            }}>
+              <TextControl
+                label={__('ID преподавателя', 'textdomain')}
+                type="number"
+                placeholder={__('ID преподавателя', 'textdomain')}
+                onKeyDown={handleIdInputKeyDown}
+                style={{ marginBottom: '10px' }}
+              />
+              <p style={{
+                fontSize: '12px',
+                color: '#757575',
+                marginTop: '4px',
+                fontStyle: 'italic'
+              }}>
+                {__('Поиск преподавателя по ID', 'textdomain')}
+              </p>
+            </div>
+
+            <div style={{
+              marginTop: '30px',
+              paddingTop: '20px',
+              borderTop: '1px solid #ddd',
+              textAlign: 'center'
+            }}>
+              <Button
+                onClick={() => {
+                  setShowTeacherModal(false);
+                  setSearchQuery('');
+                  setSearchResults([]);
+                }}
+              >
+                {__('Закрыть', 'textdomain')}
+              </Button>
+            </div>
           </div>
+        </Modal>
+      )}
 
-          {!isPreview && (
-            <div className="preview-mode">
-              <h4>{__('Режим предпросмотра:', 'theme')}</h4>
-              <p>{__('Здесь будет отображаться выбранный преподаватель(и) как на фронтенде.', 'theme')}</p>
+      <div className="teachers-block-editor">
+        <div className="teachers-block-grid">
+          {teachers.length === 0 ? (
+            <div className="empty-state" style={{
+              textAlign: 'center',
+              padding: '60px 20px',
+              backgroundColor: '#f9f9f9',
+              borderRadius: '8px',
+              border: '2px dashed #ddd'
+            }}>
+              <p className="no-teachers" style={{
+                fontSize: '16px',
+                color: '#666',
+                marginBottom: '20px'
+              }}>
+                {__('Преподавателя не выбраны', 'textdomain')}
+              </p>
+              <Button
+                isPrimary
+                onClick={() => setShowTeacherModal(true)}
+                style={{ marginTop: '10px' }}
+              >
+                {__('Добавить преподавателя', 'textdomain')}
+              </Button>
             </div>
-          )}
-
-          {isPreview && (
-            <div className="advanced-block-content">
-              {/* Отображение выбранных преподавателей */}
-              <div className="selected-teachers" style={{ width: '100%' }}>
-                {selectedTeachers.length === 0 ? (
-                  <Notice status="warning" isDismissible={false}>
-                    {__('Преподаватели не выбраны. Выберите преподавателя в панели настроек.', 'theme')}
-                  </Notice>
-                ) : (
-                  <>
-                    {/* Панель управления порядком */}
-                    <div className="order-controls" style={{ width: '100%', marginBottom: '20px', padding: '10px', background: '#f6f7f7', borderRadius: '4px' }}>
-                      <h4 style={{ margin: '0 0 10px 0' }}>
-                        {__('Порядок отображения преподавателей:', 'theme')}
-                      </h4>
-                      <p style={{ margin: '0 0 10px 0', fontSize: '12px', color: '#666' }}>
-                        {__('Используйте кнопки для изменения порядка карточек', 'theme')}
-                      </p>
-                      <div style={{ fontSize: '12px', color: '#007cba' }}>
-                        {__('Текущий порядок:', 'theme')} [{teachersOrder.join(', ')}]
-                      </div>
-                    </div>
-
-                    <div className="teachers-grid" style={{ display: 'grid', columnGap: '14px', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
-                      {selectedTeachers.map((teacher, displayIndex) => {
-                        const currentOrderIndex = getCurrentOrderIndex(teacher.id);
-
-                        return (
-                          <div key={teacher.id} className="teacher-card" style={{ display: 'block', padding: 8, backgroundColor: 'rgba(0,124,186,.15)', borderRadius: 4 }}>
-                            <div className="teacher-card__header">
-                              <div className="teacher-card__title">
-                                <span className="teacher-card__position" style={{ marginBottom: 8, fontSize: '12px', color: '#666', display: 'block' }}>
-                                  {__('Позиция:', 'theme')} {displayIndex + 1}
-                                  {__(' (в порядке:', 'theme')} {currentOrderIndex + 1})
-                                </span>
-                                <span style={{ display: 'block', width: '100%', minHeight: 54, marginBottom: 8, fontSize: 14, lineHeight: '1.3' }}>{teacher.title?.rendered || __('Без названия', 'theme')}</span>
-                              </div>
-                            </div>
-
-                            {/* Кнопки управления порядком */}
-                            <div className="teacher-card__controls" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '10px' }}>
-                              <Button
-                                variant="secondary"
-                                size="small"
-                                onClick={() => moveTeacherUp(currentOrderIndex)}
-                                disabled={currentOrderIndex === 0}
-                                style={{ display: 'block', width: '48%', lineHeight: '1', textAlign: 'center' }}
-                              >
-                                {__('Назад', 'theme')}
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                size="small"
-                                onClick={() => moveTeacherDown(currentOrderIndex)}
-                                disabled={currentOrderIndex === teachersOrder.length - 1}
-                                style={{ display: 'block', width: '48%', lineHeight: '1', textAlign: 'center' }}
-                              >
-                                {__('Вперёд', 'theme')}
-                              </Button>
-                            </div>
-
-                            <Button
-                              variant="secondary"
-                              size="small"
-                              onClick={() => handleTeacherSelect(teacher.id)}
-                              style={{ display: 'block', width: '100%', lineHeight: '1', textAlign: 'center', color: '#cc1818', borderColor: '#cc1818' }}
-                            >
-                              {__('Удалить', 'theme')}
-                            </Button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </>
-                )}
+          ) : (
+            teachers.map((teacher, index) => (
+              <div
+                key={teacher.id}
+                data-teacher-id={teacher.id}
+                style={{
+                  position: 'relative',
+                  border: '2px dashed #ccc',
+                  padding: '5px 5px 58px 5px',
+                  borderRadius: '4px',
+                  backgroundColor: '#f9f9f9',
+                }}
+              >
+                <div className="teacher-content">
+                  <div className="teacher-image" style={{
+                    width: '100%',
+                    height: '200px',
+                    marginBottom: '12px',
+                    borderRadius: '4px',
+                    overflow: 'hidden'
+                  }}>
+                    {teacher.imageUrl && (
+                      <img
+                        src={teacher.imageUrl}
+                        alt={teacher.name}
+                        data-image-id={teacher.imageId}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    ) || (
+                        <img
+                          src='data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      )}
+                  </div>
+                  <div className="teacher-info">
+                    <h3 className="teacher-name" style={{
+                      margin: '0 0 10px 0',
+                      fontSize: '16px',
+                      textAlign: 'center',
+                    }}>
+                      {teacher.name}
+                    </h3>
+                    {teacher.position && (
+                      <div className="teacher-position"
+                        style={{
+                          marginBottom: '10px',
+                          fontWeight: '400',
+                          fontSize: '11px',
+                          textAlign: 'center',
+                          color: '#666',
+                        }}
+                        dangerouslySetInnerHTML={{ __html: teacher.position.replace(/\n/g, '<br/>') }}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="teacher-actions" style={{
+                  position: 'absolute',
+                  bottom: '5px',
+                  left: '5px',
+                  right: '5px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingTop: '15px',
+                  borderTop: '1px solid #ddd'
+                }}>
+                  <div className="teacher-id" style={{
+                    fontSize: '12px',
+                    color: '#888'
+                  }}>
+                    <small>ID: {teacher.id}</small>
+                  </div>
+                  <div className="teacher-buttons" style={{
+                    display: 'flex',
+                    gap: '5px'
+                  }}>
+                    {index > 0 && (
+                      <Button
+                        style={{ padding: 0 }}
+                        onClick={() => moveTeacher(index, index - 1)}
+                      >{__('⬅️', 'textdomain')}</Button>
+                    )}
+                    {index < teachers.length - 1 && (
+                      <Button
+                        style={{ padding: 0 }}
+                        onClick={() => moveTeacher(index, index + 1)}
+                      >{__('➡️', 'textdomain')}</Button>
+                    )}
+                    <Button
+                      style={{ padding: 0, marginLeft: 10 }}
+                      onClick={() => removeTeacher(index)}
+                      isDestructive
+                    >{__('❌', 'textdomain')}</Button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

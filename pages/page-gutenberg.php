@@ -8,18 +8,6 @@ get_header();
 the_content();
 ?>
 
-<div class="block-standard block-08">
-  <div class="container">
-    <div class="teacher-article">
-      <img src="https://mgubs.ru/wp-content/uploads/2022/12/oleg_vichansky_500.jpg" alt="alto" class="teacher-image" />
-      <div class="teacher-title">Виханский Олег Самуилович</div>
-      <div class="teacher-descr">Декан Высшей школы бизнеса Доктор экономических наук Заслуженный профессор МГУ</div>
-      <div class="teacher-link">Подробнее</div>
-    </div>
-  </div>
-  <a href="#" class="btn btn-white">Все новости</a>
-</div>
-
 <div class="block-standard block-09">
   <div class="container">
     <div class="program-article">
