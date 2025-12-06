@@ -29,7 +29,7 @@ function render_course_block( $attributes ) {
       <?php foreach ( $posts as $post ):
         $date_info = format_date_russian(get_post_meta($post->ID, 'date_start', true));
       ?>
-        <a href="<?php the_permalink(); ?>" class="program-article">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="program-article">
           <div class="program-article__image df-fs-fe">
             <?php echo theme_get_responsive_thumbnail($post->ID, 'full'); ?>
             <h3 class="h3"><?php echo esc_html(get_the_title($post->ID)); ?></h3>
