@@ -18,7 +18,7 @@ registerBlockType('theme/block-07', {
   save,
   example: {
     attributes: {
-      title: 'Заголовок с фоном',
+      title: 'О школе',
     },
   },
 });

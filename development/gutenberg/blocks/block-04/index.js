@@ -13,7 +13,7 @@ registerBlockType('theme/block-04', {
   save,
   example: {
     attributes: {
-      title: 'Заголовок с фоном',
+      title: 'Новости (с настроек)',
     },
   },
 });

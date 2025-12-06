@@ -1839,7 +1839,7 @@ __webpack_require__.r(__webpack_exports__);
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
   example: {
     attributes: {
-      title: 'Заголовок с фоном'
+      title: 'Новости (с настроек)'
     }
   }
 });
@@ -2305,7 +2305,7 @@ __webpack_require__.r(__webpack_exports__);
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
   example: {
     attributes: {
-      title: 'Заголовок с фоном'
+      title: 'Программы'
     }
   }
 });
@@ -2692,7 +2692,7 @@ __webpack_require__.r(__webpack_exports__);
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
   example: {
     attributes: {
-      title: 'Заголовок с фоном'
+      title: 'Блок для вызова формы'
     }
   }
 });
@@ -3366,7 +3366,7 @@ __webpack_require__.r(__webpack_exports__);
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
   example: {
     attributes: {
-      title: 'Заголовок с фоном'
+      title: 'О школе'
     }
   }
 });
