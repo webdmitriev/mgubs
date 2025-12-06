@@ -1,37 +1,18 @@
 import { useState } from '@wordpress/element';
-import {
-  useBlockProps,
-  RichText,
-  InspectorControls,
-  MediaUpload,
-  MediaUploadCheck,
-} from '@wordpress/block-editor';
-import { Button, Flex, FlexBlock, ToggleControl } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { Flex, FlexBlock, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-11.jpg';
 
-import { useOptimizedMedia } from '../../utils/useOptimizedMedia';
 import CF7FormSelector from '../../components/CF7FormSelector';
 
-import { useAutoLinking } from '../../utils/useAutoLinking';
-import AutoLinkingPanel from '../../utils/AutoLinkingPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
+import ImagePanel from "./controls/ImagePanel";
 
 const Edit = ({ attributes, setAttributes }) => {
-  const {
-    title,
-    subTitleOne,
-    subTitleTwo,
-    divider,
-    descr,
-    imageUrl,
-    imageWebp,
-    imageId,
-    cf7FormId,
-    cf7Shortcode
-  } = attributes;
+  const { title, subTitleOne, subTitleTwo, divider, descr } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -43,23 +24,12 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  // Используем хук авто-линкинга
-  const { autoLinkContent, postsCount } = useAutoLinking();
-
-  // Обработчик авто-линкинга
-  const handleAutoLink = () => {
-    autoLinkContent(attributes, setAttributes, ['subTitleOne', 'subTitleTwo', 'descr']);
-  };
-
-  // Handlers image
-  const { onSelectImage } = useOptimizedMedia(setAttributes);
-  const onRemoveImage = () => setAttributes({ imageUrl: '', imageWebp: '', imageId: 0 });
-
   return (
     <>
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+        <ImagePanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -129,35 +99,11 @@ const Edit = ({ attributes, setAttributes }) => {
                 </FlexBlock>
               </Flex>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '16px' }}>
-                <div className="advanced-block-images" style={{ display: 'block', width: '100%', maxWidth: '32%' }}>
-                  <span>{__('Фоновая картинка', 'theme')}</span>
-                  <MediaUploadCheck>
-                    <MediaUpload
-                      onSelect={onSelectImage}
-                      allowedTypes={['image']}
-                      value={imageId}
-                      render={({ open }) => (
-                        <div className="advanced-block-image">
-                          {imageUrl ? (
-                            <>
-                              <img src={imageUrl} alt="" style={{ borderRadius: '8px' }} />
-                              <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
-                                <Button onClick={open} variant="secondary" size="small">✏️ {__('Заменить', 'theme')}</Button>
-                                <Button onClick={onRemoveImage} variant="tertiary" size="small" isDestructive>🗑 {__('Удалить', 'theme')}</Button>
-                              </div>
-                            </>
-                          ) : (
-                            <Button onClick={open} variant="primary" style={{ overflow: 'hidden' }}>
-                              📷 {__('Фоновая картинка', 'theme')}
-                            </Button>
-                          )}
-                        </div>
-                      )}
-                    />
-                  </MediaUploadCheck>
-                </div>
-                <div className="rich-text" style={{ display: 'block', width: '100%', maxWidth: '66%' }}>
+              <Flex direction={[
+                'column',
+                'row'
+              ]}>
+                <FlexBlock>
                   <span>{__('Описание', 'theme')}</span>
                   <RichText
                     tagName="div"
@@ -166,8 +112,9 @@ const Edit = ({ attributes, setAttributes }) => {
                     placeholder={__('Описание...', 'theme')}
                     allowedFormats={['core/bold', 'core/italic', 'core/link', 'core/underline', 'core/text-color']}
                   />
-                </div>
-              </div>
+                </FlexBlock>
+              </Flex>
+
               <Flex direction={[
                 'column',
                 'row'
