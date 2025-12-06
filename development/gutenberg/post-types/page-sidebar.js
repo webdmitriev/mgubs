@@ -4,6 +4,9 @@ import { PanelBody, ToggleControl, TextareaControl, RangeControl, Flex } from '@
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 
+import colors from '../utils/default-colors.js';
+import ColorSelect from '../components/ColorSelectBg';
+
 import { DateOnlyPicker } from "../components/DateTimePicker.js";
 
 const PageSidebar = () => {
@@ -20,13 +23,16 @@ const PageSidebar = () => {
   const updateMeta = (key, value) => {
     editPost({ meta: { ...postMeta, [key]: value } });
   };
+  const updateMetaBulk = (obj) => {
+    editPost({ meta: { ...postMeta, ...obj } });
+  };
 
   return (
     <Fragment>
       <PluginSidebarMoreMenuItem target="page-sidebar" icon="admin-post">Настройки странциы</PluginSidebarMoreMenuItem>
 
       <PluginSidebar name="page-sidebar" title="Настройки странциы" icon="admin-post">
-        <PanelBody title="Основные поля" initialOpen={true}>
+        <PanelBody title="Основные поля" initialOpen={false}>
 
           <ToggleControl
             label="Подключить Jivo chat?"
@@ -82,6 +88,17 @@ const PageSidebar = () => {
             onChange={(val) => updateMeta('date_start', val)}
           />
 
+        </PanelBody>
+
+        <PanelBody title="Основные поля" initialOpen={true}>
+          <ColorSelect
+            label="Цвет фона"
+            colors={[...colors]}
+            value={postMeta.bgc || ''}
+            onChange={(val, theme) => {
+              updateMetaBulk({ bgc: val, theme: theme });
+            }}
+          />
         </PanelBody>
       </PluginSidebar>
     </Fragment>

@@ -6000,6 +6000,129 @@ function ColorSelect({
 
 /***/ }),
 
+/***/ "./development/gutenberg/components/ColorSelectBg.js":
+/*!***********************************************************!*\
+  !*** ./development/gutenberg/components/ColorSelectBg.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorSelect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function ColorSelect({
+  colors,
+  value,
+  onChange,
+  label
+}) {
+  const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  const options = [{
+    label: "Прозрачный / удалить цвет",
+    value: "",
+    theme: ''
+  }, ...colors.map(c => ({
+    label: c.name,
+    value: c.color,
+    theme: c.theme
+  }))];
+  const selectedOption = options.find(o => o.value === value) || options[0];
+  console.log(selectedOption);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const handleClickOutside = e => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const colorBoxStyle = color => ({
+    width: 28,
+    height: 22,
+    borderRadius: 4,
+    border: "1px solid #ccc",
+    backgroundColor: color || "transparent",
+    backgroundImage: color ? "none" : `linear-gradient(45deg, #eee 25%, transparent 25%),
+               linear-gradient(-45deg, #eee 25%, transparent 25%),
+               linear-gradient(45deg, transparent 75%, #eee 75%),
+               linear-gradient(-45deg, transparent 75%, #eee 75%)`,
+    backgroundSize: "10px 10px",
+    backgroundPosition: "0 0, 0 5px, 5px -5px, -5px 0px",
+    boxSizing: "border-box"
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: ref,
+    style: {
+      marginBottom: 18,
+      position: "relative"
+    }
+  }, label && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 500,
+      marginBottom: 6,
+      color: "#1e1e1e"
+    }
+  }, label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => setOpen(!open),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "8px 10px",
+      border: "1px solid #ccc",
+      borderRadius: 6,
+      cursor: "pointer",
+      background: "#fff",
+      userSelect: "none"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: colorBoxStyle(selectedOption.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, selectedOption.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginLeft: "auto"
+    }
+  }, "\u25BE")), open && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: "absolute",
+      top: "110%",
+      left: 0,
+      right: 0,
+      background: "#fff",
+      border: "1px solid #ccc",
+      borderRadius: 6,
+      zIndex: 9999,
+      maxHeight: 250,
+      overflowY: "auto"
+    }
+  }, options.map(option => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: option.label,
+    onClick: () => {
+      onChange(option.value, option.theme);
+      setOpen(false);
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "8px 10px",
+      cursor: "pointer",
+      background: option.value === value ? "#f0f0f0" : "transparent"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: colorBoxStyle(option.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, option.label)))));
+}
+
+/***/ }),
+
 /***/ "./development/gutenberg/components/DateTimePicker.js":
 /*!************************************************************!*\
   !*** ./development/gutenberg/components/DateTimePicker.js ***!
@@ -7032,7 +7155,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/DateTimePicker.js */ "./development/gutenberg/components/DateTimePicker.js");
+/* harmony import */ var _utils_default_colors_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/default-colors.js */ "./development/gutenberg/utils/default-colors.js");
+/* harmony import */ var _components_ColorSelectBg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ColorSelectBg */ "./development/gutenberg/components/ColorSelectBg.js");
+/* harmony import */ var _components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/DateTimePicker.js */ "./development/gutenberg/components/DateTimePicker.js");
+
+
 
 
 
@@ -7055,6 +7182,14 @@ const PageSidebar = () => {
       }
     });
   };
+  const updateMetaBulk = obj => {
+    editPost({
+      meta: {
+        ...postMeta,
+        ...obj
+      }
+    });
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_2__.PluginSidebarMoreMenuItem, {
     target: "page-sidebar",
     icon: "admin-post"
@@ -7064,7 +7199,7 @@ const PageSidebar = () => {
     icon: "admin-post"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
-    initialOpen: true
+    initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C Jivo chat?",
     checked: !!postMeta.is_jivo_chat,
@@ -7119,10 +7254,23 @@ const PageSidebar = () => {
     style: {
       height: '24px'
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_6__.DateOnlyPicker, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DateTimePicker_js__WEBPACK_IMPORTED_MODULE_8__.DateOnlyPicker, {
     label: "\u0414\u0430\u0442\u0430 \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u044F",
     value: postMeta.date_start || '',
     onChange: val => updateMeta('date_start', val)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043B\u044F",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_ColorSelectBg__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    label: "\u0426\u0432\u0435\u0442 \u0444\u043E\u043D\u0430",
+    colors: [..._utils_default_colors_js__WEBPACK_IMPORTED_MODULE_6__["default"]],
+    value: postMeta.bgc || '',
+    onChange: (val, theme) => {
+      updateMetaBulk({
+        bgc: val,
+        theme: theme
+      });
+    }
   }))));
 };
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('page-sidebar', {
@@ -7606,88 +7754,116 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const colors = [{
   name: 'ВШБ',
-  color: '#ff762f'
+  color: '#ff762f',
+  theme: 'owner'
 }, {
   name: 'ВШБ Фон',
-  color: '#F8EFEA'
+  color: '#F8EFEA',
+  theme: 'owner'
 }, {
   name: 'Магистратура',
-  color: '#002B2A'
+  color: '#002B2A',
+  theme: 'masters-degree'
 }, {
   name: 'Магистратура Фон',
-  color: '#F1F1F1'
+  color: '#F1F1F1',
+  theme: 'masters-degree'
 }, {
   name: 'Бакалавриат',
-  color: '#26A3D1'
+  color: '#26A3D1',
+  theme: 'bachelors-degree'
 }, {
   name: 'Бакалавриат Фон',
-  color: '#EAF1F4'
+  color: '#EAF1F4',
+  theme: 'bachelors-degree'
 }, {
   name: 'Универсиада',
-  color: '#CF8500'
+  color: '#CF8500',
+  theme: 'universiade'
 }, {
   name: 'Универсиада Фон',
-  color: '#F6F2EA'
+  color: '#F6F2EA',
+  theme: 'universiade'
 }, {
   name: 'EMBA',
-  color: '#6D0916'
+  color: '#6D0916',
+  theme: 'emba'
 }, {
   name: 'EMBA Фон',
-  color: '#FFEBEB'
+  color: '#FFEBEB',
+  theme: 'emba'
 }, {
   name: 'Вертикаль',
-  color: '#FF5F21'
+  color: '#FF5F21',
+  theme: 'vertical'
 }, {
   name: 'Вертикаль Фон',
-  color: '#F9EFEA'
+  color: '#F9EFEA',
+  theme: 'vertical'
 }, {
   name: 'Ассоциация',
-  color: '#B50035'
+  color: '#B50035',
+  theme: 'association'
 }, {
   name: 'Ассоциация Фон',
-  color: '#F3E8EE'
+  color: '#F3E8EE',
+  theme: 'association'
 }, {
   name: 'Школа Модераторов',
-  color: '#01A781'
+  color: '#01A781',
+  theme: 'school-of-moderators'
 }, {
   name: 'Школа Модераторов Фон',
-  color: '#F0FAF8'
+  color: '#F0FAF8',
+  theme: 'school-of-moderators'
 }, {
   name: 'Китай',
-  color: '#006023'
+  color: '#006023',
+  theme: 'chines'
 }, {
   name: 'Китай Фон',
-  color: '#EDFFF4'
+  color: '#EDFFF4',
+  theme: 'chines'
 }, {
   name: 'Корпоративное обучение',
-  color: '#4F2299'
+  color: '#4F2299',
+  theme: 'corporate-training'
 }, {
   name: 'Корпоративное обучение Фон',
-  color: '#F6F4FA'
+  color: '#F6F4FA',
+  theme: 'corporate-training'
 }, {
   name: 'MBA',
-  color: '#003760'
+  color: '#003760',
+  theme: 'mba'
 }, {
   name: 'MBA Фон',
-  color: '#EDF1F4'
+  color: '#EDF1F4',
+  theme: 'mba'
 }, {
   name: 'Doing Busines',
-  color: '#006E99'
+  color: '#006E99',
+  theme: 'doing-busines'
 }, {
   name: 'Doing Busines Фон',
-  color: '#EDEFF0'
+  color: '#EDEFF0',
+  theme: 'doing-busines'
 }, {
   name: 'Переговоры',
-  color: '#BF8BA1'
+  color: '#BF8BA1',
+  theme: 'negotiation'
 }, {
   name: 'Переговоры Фон',
-  color: '#F6EDEF'
+  color: '#F6EDEF',
+  theme: 'negotiation'
 }, {
   name: 'Гуманитарный трек',
-  color: '#AB8DC1'
+  color: '#AB8DC1',
+  theme: 'humanitarian-track'
 }, {
   name: 'Гуманитарный трек Фон',
-  color: '#F6EDEF'
+  color: '#F6EDEF',
+  theme: 'humanitarian-track'
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (colors);
 

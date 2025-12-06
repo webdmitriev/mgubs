@@ -10,6 +10,7 @@
  */
 
 $url = get_template_directory_uri();
+$theme = get_post_meta( get_the_ID(), 'theme', true );
 
 ?>
 <!doctype html>
@@ -29,12 +30,10 @@ $url = get_template_directory_uri();
 		})();
 	</script>
 
-
-
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('is-animation'); ?>>
+<body <?php body_class(['is-animation', $theme]); ?>>
 
 	<div id="app">
 

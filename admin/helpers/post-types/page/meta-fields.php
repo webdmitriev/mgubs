@@ -23,7 +23,7 @@ function register_page_meta_fields() {
   // Строковые поля
   $string_fields = [
     'custom_title',
-    'custom_excerpt',
+    'custom_excerpt'
   ];
   foreach ($string_fields as $field) {
     register_post_meta($post_type, $field, [
@@ -42,6 +42,8 @@ function register_page_meta_fields() {
   $str_fields = [
     'shadow_image',
     'date_start',
+    'bgc',
+    'theme',
   ];
   foreach ($str_fields as $field) {
     register_post_meta($post_type, $field, [

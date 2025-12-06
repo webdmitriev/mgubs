@@ -23,11 +23,6 @@ the_content();
       <a href="#" class="breadcrumb ancLinks">Стоимость</a>
       <a href="#" class="breadcrumb ancLinks">FAQ</a>
       <a href="#" class="breadcrumb ancLinks">Контакты</a>
-
-      <a href="#" class="breadcrumb ancLinks">Отзывы</a>
-      <a href="#" class="breadcrumb ancLinks">Стоимость</a>
-      <a href="#" class="breadcrumb ancLinks">FAQ</a>
-      <a href="#" class="breadcrumb ancLinks">Контакты</a>
     </div>
     <div class="breadcrumbs-next"><svg width="7" height="15" viewBox="0 0 7 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.79216 6.91978L1.19438 0.247253C0.91726 -0.0824177 0.484956 -0.0824177 0.207839 0.247253C-0.0692794 0.576923 -0.0692793 1.09121 0.207839 1.42088L5.3179 7.5L0.207841 13.5791C-0.0692771 13.9088 -0.069277 14.4231 0.207841 14.7527C0.484959 15.0824 0.917263 15.0824 1.19438 14.7527L6.79216 8.09341C7.06928 7.76374 7.06928 7.23626 6.79216 6.91978Z" fill="#333"></path></svg></div>
   </div>
