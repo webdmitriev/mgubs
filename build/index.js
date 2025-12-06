@@ -23,6 +23,28 @@ module.exports = __webpack_require__.p + "images/block-02.9d683601.jpg";
 
 /***/ }),
 
+/***/ "./admin/assets/img/blocks/block-03.jpg":
+/*!**********************************************!*\
+  !*** ./admin/assets/img/blocks/block-03.jpg ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "images/block-03.b76963ef.jpg";
+
+/***/ }),
+
+/***/ "./admin/assets/img/blocks/block-04.jpg":
+/*!**********************************************!*\
+  !*** ./admin/assets/img/blocks/block-04.jpg ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "images/block-04.743c47cd.jpg";
+
+/***/ }),
+
 /***/ "./assets/img/icons/icon-telegram-black.svg":
 /*!**************************************************!*\
   !*** ./assets/img/icons/icon-telegram-black.svg ***!
@@ -1323,8 +1345,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-03/controls/ContentPanel.js");
-/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-03/controls/VideoHelpPanel.js");
+/* harmony import */ var _admin_assets_img_blocks_block_03_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-03.jpg */ "./admin/assets/img/blocks/block-03.jpg");
+/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-03/controls/ContentPanel.js");
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-03/controls/VideoHelpPanel.js");
+
 
 
 
@@ -1341,7 +1365,7 @@ const Edit = ({
     bgData,
     bgId
   } = attributes;
-  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
@@ -1378,7 +1402,7 @@ const Edit = ({
       }
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_ContentPanel__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_ContentPanel__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1389,11 +1413,19 @@ const Edit = ({
     className: "block-info"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "block-info-title"
-  }, "\uD83C\uDFA8 Block 03"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+  }, "\uD83C\uDFA8 Block 03 - \u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0441 \u0444\u043E\u043D\u043E\u043C"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Предпросмотр ☺️', 'theme'),
     checked: isPreview,
     onChange: togglePreview
-  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430"), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: _admin_assets_img_blocks_block_03_jpg__WEBPACK_IMPORTED_MODULE_5__,
+    alt: "MGUBS",
+    style: {
+      width: '100%',
+      height: 'inherit',
+      objectFit: 'contain'
+    }
+  }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-text"
@@ -1476,7 +1508,12 @@ __webpack_require__.r(__webpack_exports__);
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
+  example: {
+    attributes: {
+      title: 'Заголовок с фоном'
+    }
+  }
 });
 console.log('✅ block-03');
 
@@ -1633,7 +1670,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-04/controls/VideoHelpPanel.js");
+/* harmony import */ var _admin_assets_img_blocks_block_04_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-04.jpg */ "./admin/assets/img/blocks/block-04.jpg");
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-04/controls/VideoHelpPanel.js");
+
 
 
 
@@ -1648,14 +1687,14 @@ const Edit = ({
     buttonText,
     buttonLink
   } = attributes;
-  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'block-style'
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_5__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block"
@@ -1663,11 +1702,19 @@ const Edit = ({
     className: "block-info"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "block-info-title"
-  }, "\uD83C\uDFA8 Block 04"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+  }, "\uD83C\uDFA8 Block 04 - \u041D\u043E\u0432\u043E\u0441\u0442\u0438 (\u0441 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A)"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Предпросмотр ☺️', 'theme'),
     checked: isPreview,
     onChange: togglePreview
-  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430"), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: _admin_assets_img_blocks_block_04_jpg__WEBPACK_IMPORTED_MODULE_5__,
+    alt: "MGUBS",
+    style: {
+      width: '100%',
+      height: 'inherit',
+      objectFit: 'contain'
+    }
+  }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-buttons"
@@ -1723,7 +1770,12 @@ __webpack_require__.r(__webpack_exports__);
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
+  example: {
+    attributes: {
+      title: 'Заголовок с фоном'
+    }
+  }
 });
 console.log('✅ block-04');
 
