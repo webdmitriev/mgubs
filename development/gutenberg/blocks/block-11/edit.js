@@ -79,10 +79,12 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <Flex direction={[
-                'column',
-                'row'
-              ]}>
+              <Flex
+                direction={[
+                  'column',
+                  'row'
+                ]}
+                align="flex-start">
                 <FlexBlock>
                   <span>{__('Заголовок', 'theme')}</span>
                   <RichText
