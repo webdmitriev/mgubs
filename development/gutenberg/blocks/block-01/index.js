@@ -5,7 +5,7 @@ import attributes from './attributes';
 
 registerBlockType('theme/block-01', {
   title: 'Главный блок',
-  category: 'webdmitriev',
+  category: 'main-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes,

@@ -6,12 +6,13 @@ import {
   MediaUpload,
   MediaUploadCheck,
 } from '@wordpress/block-editor';
-import { Button, ToggleControl, RadioControl, TextareaControl } from '@wordpress/components';
+import { Button, Flex, FlexBlock, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+import blockImage from '../../../../admin/assets/img/blocks/block-11.jpg';
 
 import { useOptimizedMedia } from '../../utils/useOptimizedMedia';
 import CF7FormSelector from '../../components/CF7FormSelector';
-import mainBlockImg from '../../../../admin/assets/img/blocks/mgu-main.png';
 
 import { useAutoLinking } from '../../utils/useAutoLinking';
 import AutoLinkingPanel from '../../utils/AutoLinkingPanel';
@@ -32,11 +33,15 @@ const Edit = ({ attributes, setAttributes }) => {
     cf7Shortcode
   } = attributes;
 
-  const [viewMode, setViewMode] = useState('preview'); // 'preview' | 'edit' | 'production'
+  const [isPreview, setIsPreview] = useState(false);
 
   const blockProps = useBlockProps({
-    className: 'development mgu-main'
+    className: 'block-style block-11'
   });
+
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
 
   // Используем хук авто-линкинга
   const { autoLinkContent, postsCount } = useAutoLinking();
@@ -55,78 +60,76 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
-
-        {/* Добавляем панель авто-линкинга */}
-        <AutoLinkingPanel
-          onAutoLink={handleAutoLink}
-          postsCount={postsCount}
-          disabled={postsCount === 0}
-        />
       </InspectorControls>
 
       <div {...blockProps}>
         <div className="advanced-block">
-          <div className="block-info" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
-            <span className="block-info-title">🎨 Главный блок</span>
-            <RadioControl
-              selected={viewMode}
-              options={[
-                { label: __('Pveview ✍️', 'theme'), value: 'preview' },
-                { label: __('Редактирование ☺️', 'theme'), value: 'edit' },
-                { label: __('Результат 🖼️', 'theme'), value: 'production' },
-              ]}
-              onChange={(value) => setViewMode(value)}
+          <div className="block-info">
+            <span className="block-info-title">🎨 Block 11 - Главный блок с формой</span>
+            <ToggleControl
+              label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
+              checked={isPreview}
+              onChange={togglePreview}
             />
           </div>
 
-          {viewMode === 'preview' && (
-            <img
-              src={mainBlockImg}
-              className="preview-image"
-              alt=""
-              style={{ borderRadius: '8px' }}
-            />
+          {!isPreview && (
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
-          {viewMode === 'edit' && (
+          {isPreview && (
             <div className="advanced-block-content">
-              <div className="rich-text">
-                <span>{__('Заголовок', 'theme')}</span>
-                <RichText
-                  tagName="h1"
-                  value={title}
-                  onChange={(value) => setAttributes({ title: value })}
-                  placeholder={__('Заголовок...', 'theme')}
-                  allowedFormats={['core/bold']}
-                />
-              </div>
-              <div className="rich-text">
-                <span>{__('Подзаголовок', 'theme')}</span>
-                <RichText
-                  tagName="p"
-                  value={subTitleOne}
-                  onChange={(value) => setAttributes({ subTitleOne: value })}
-                  placeholder={__('Подзаголовок...', 'theme')}
-                  allowedFormats={['core/bold', 'core/italic', 'core/link']}
-                />
-              </div>
+              <Flex direction={[
+                'column',
+                'row'
+              ]}>
+                <FlexBlock>
+                  <span>{__('Заголовок', 'theme')}</span>
+                  <RichText
+                    tagName="div"
+                    value={title}
+                    onChange={(value) => setAttributes({ title: value })}
+                    placeholder={__('Заголовок...', 'theme')}
+                    allowedFormats={[]}
+                  />
+                </FlexBlock>
+                <FlexBlock>
+                  <span>{__('Подзаголовок 1', 'theme')}</span>
+                  <RichText
+                    tagName="div"
+                    value={subTitleOne}
+                    onChange={(value) => setAttributes({ subTitleOne: value })}
+                    placeholder={__('Текст', 'theme')}
+                    allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                  />
+                </FlexBlock>
+              </Flex>
+
               <ToggleControl
                 label={divider ? __('Убрать линию ❌', 'theme') : __('Добавить линию ✅', 'theme')}
                 checked={divider}
                 onChange={(value) => setAttributes({ divider: value })}
               />
-              <div className="rich-text">
-                <span>{__('Подзаголовок', 'theme')}</span>
-                <RichText
-                  tagName="p"
-                  value={subTitleTwo}
-                  onChange={(value) => setAttributes({ subTitleTwo: value })}
-                  placeholder={__('Подзаголовок...', 'theme')}
-                  allowedFormats={['core/bold', 'core/italic', 'core/link']}
-                />
-              </div>
+
+              <Flex direction={[
+                'column',
+                'row'
+              ]}>
+                <FlexBlock>
+                  <span>{__('Подзаголовок 2', 'theme')}</span>
+                  <RichText
+                    tagName="div"
+                    value={subTitleTwo}
+                    onChange={(value) => setAttributes({ subTitleTwo: value })}
+                    placeholder={__('Текст', 'theme')}
+                    allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                  />
+                </FlexBlock>
+              </Flex>
+
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '16px' }}>
                 <div className="advanced-block-images" style={{ display: 'block', width: '100%', maxWidth: '32%' }}>
+                  <span>{__('Фоновая картинка', 'theme')}</span>
                   <MediaUploadCheck>
                     <MediaUpload
                       onSelect={onSelectImage}
@@ -155,7 +158,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 <div className="rich-text" style={{ display: 'block', width: '100%', maxWidth: '66%' }}>
                   <span>{__('Описание', 'theme')}</span>
                   <RichText
-                    tagName="p"
+                    tagName="div"
                     value={descr}
                     onChange={(value) => setAttributes({ descr: value })}
                     placeholder={__('Описание...', 'theme')}
@@ -163,39 +166,14 @@ const Edit = ({ attributes, setAttributes }) => {
                   />
                 </div>
               </div>
-              <div className="rich-text">
-                <CF7FormSelector attributes={attributes} setAttributes={setAttributes} />
-              </div>
-            </div>
-          )}
-
-          {viewMode === 'production' && (
-            <div className="advanced-block-preview">
-
-              {imageUrl && (
-                <picture>
-                  {imageWebp && <source srcSet={imageWebp} type="image/webp" />}
-                  <img
-                    src={imageUrl}
-                    alt=""
-                    className="mgu-main__bg"
-                    style={{ borderRadius: '8px' }}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              )}
-
-              <div className="preview-content">
-                <RichText.Content tagName="h1" value={title} className="h1" />
-                <RichText.Content tagName="p" value={subTitleOne} className="sub_title" />
-                {divider && (
-                  <div className="divider"></div>
-                )}
-                <RichText.Content tagName="p" value={subTitleTwo} className="sub_title" />
-                <RichText.Content tagName="p" value={descr} className="descr" />
-              </div>
-              <div className="wpcf7" dangerouslySetInnerHTML={{ __html: cf7Shortcode }} />
+              <Flex direction={[
+                'column',
+                'row'
+              ]}>
+                <FlexBlock>
+                  <CF7FormSelector attributes={attributes} setAttributes={setAttributes} />
+                </FlexBlock>
+              </Flex>
             </div>
           )}
         </div>

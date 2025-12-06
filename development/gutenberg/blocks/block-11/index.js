@@ -3,9 +3,9 @@ import edit from './edit';
 import save from './save';
 import attributes from './attributes';
 
-registerBlockType('theme/main-block', {
-  title: 'Main block',
-  category: 'landing',
+registerBlockType('theme/block-11', {
+  title: 'Главный блок с формой',
+  category: 'main-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes,
@@ -13,10 +13,9 @@ registerBlockType('theme/main-block', {
   save,
   example: {
     attributes: {
-      title: 'Превью заголовка',
-      subTitleOne: 'Превью подзаголовка',
+      title: 'Главный блок с формой'
     },
   },
 });
 
-console.log('✅ Main block');
+console.log('✅ block-11');

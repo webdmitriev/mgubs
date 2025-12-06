@@ -18,8 +18,8 @@ function theme_register_block_categories( $categories, $context ) {
         'icon'  => 'star-filled',
       ],
       [
-        'slug'  => 'landing',
-        'title' => __( 'Landing Blocks', 'theme' ),
+        'slug'  => 'main-blocks',
+        'title' => __( 'Заглавные блоки', 'theme' ),
         'icon'  => 'layout',
       ],
     ]
@@ -41,6 +41,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-08',
     'theme/block-09',
     'theme/block-10',
+    'theme/block-11',
     'core/paragraph',
     'core/list',
     'core/list-item',

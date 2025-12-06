@@ -15,7 +15,7 @@ const Save = ({ attributes }) => {
   } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `mgu-main`,
+    className: `block-11`,
   });
 
   return (

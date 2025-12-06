@@ -8,9 +8,9 @@ get_header();
 the_content();
 ?>
 
-<div class="block-11">
+<div class="block-12">
   <div class="container">
-    block-11
+    block-12
   </div>
 </div>
 
