@@ -8,7 +8,7 @@ get_header();
 the_content();
 ?>
 
-<div class="block-12">
+<div class="block-standard block-12">
   <div class="container">
     block-12
   </div>

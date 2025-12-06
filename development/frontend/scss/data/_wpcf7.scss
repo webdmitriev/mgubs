@@ -76,6 +76,9 @@
       border: none;
       border-radius: 32px;
       transition: all 0.2s ease;
+      &[disabled] {
+        background-color: var(--gray-color);
+      }
     }
     .wpcf7-not-valid-tip {
       width: 100%;

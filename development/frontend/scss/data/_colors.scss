@@ -110,10 +110,16 @@ html.theme-dark {
 }
 
 .theme-dark {
+  .wpcf7 .form-group .wpcf7-not-valid-tip {
+    color: var(--black-color);
+  }
   .article-post,
   .block-02 .event-item,
   .block-06 .container:before,
   .block-09 .program-article {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+  }
+  .block-07 {
+    background-color: var(--bg-color) !important;
   }
 }
