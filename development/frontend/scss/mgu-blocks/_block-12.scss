@@ -1,0 +1,67 @@
+.block-12 {
+  background-color: var(--bgc-color);
+  .container {
+    position: relative;
+    padding-block: 10px;
+  }
+  .breadcrumbs-prev,
+  .breadcrumbs-next {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 70px;
+    height: 100%;
+    cursor: pointer;
+  }
+  .breadcrumbs-prev {
+    left: 0;
+    justify-content: flex-start;
+    padding-left: 10px;
+    background: linear-gradient(90deg, var(--bgc-color) 55%, rgba(255, 255, 255, 0) 95.71%);
+  }
+  .breadcrumbs-next {
+    right: 0;
+    justify-content: flex-end;
+    padding-right: 10px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--bgc-color) 55%);
+  }
+  .breadcrumbs {
+    display: block;
+    width: 100%;
+    padding-inline: 34px;
+    white-space: nowrap;
+    overflow-y: scroll;
+    .breadcrumb {
+      user-select: none;
+      display: inline-block;
+      width: 100%;
+      max-width: max-content;
+      padding: 8px 24px;
+      font-size: 14px;
+      line-height: 1.2;
+      color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      border-radius: 100px;
+      transition: all 0.4s ease;
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+  &.breadcrumbs-fixed {
+    position: fixed;
+    top: 58px;
+  }
+}
+
+@media (max-width: 576px) {
+  .block-12 .breadcrumbs .breadcrumb:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

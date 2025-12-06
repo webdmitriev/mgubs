@@ -47,4 +47,9 @@
       transform: scale(1.05);
     }
   }
+
+  .block-12 .breadcrumbs .breadcrumb:hover {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
 }
