@@ -9,13 +9,15 @@ import {
 import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import blockImage from '../../../../admin/assets/img/blocks/block-01.jpg';
+
 import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, isBlockLine, second_title, description, imageData, imageId, bgData, bgId } = attributes;
 
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
 
   const togglePreview = () => {
     setIsPreview(!isPreview);
@@ -97,7 +99,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <div {...blockProps}>
         <div className="advanced-block">
           <div className="block-info">
-            <span className="block-info-title">🎨 Block 01</span>
+            <span className="block-info-title">🎨 Block 01 - Главный блок</span>
             <ToggleControl
               label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
               checked={isPreview}
@@ -106,7 +108,7 @@ const Edit = ({ attributes, setAttributes }) => {
           </div>
 
           {!isPreview && (
-            <div>Картинка</div>
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
           {isPreview && (

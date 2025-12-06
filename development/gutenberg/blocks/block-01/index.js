@@ -11,6 +11,11 @@ registerBlockType('theme/block-01', {
   attributes,
   edit,
   save,
+  example: {
+    attributes: {
+      title: 'Главный блок',
+    },
+  },
 });
 
 console.log('✅ block-01');
