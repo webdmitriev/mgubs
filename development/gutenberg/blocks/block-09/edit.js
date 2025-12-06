@@ -12,6 +12,8 @@ import {
 import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
+import blockImage from '../../../../admin/assets/img/blocks/block-09.jpg';
+
 // Создаем собственную функцию debounce
 const debounce = (func, wait) => {
   let timeout;
@@ -35,7 +37,7 @@ const Edit = ({ attributes, setAttributes }) => {
   const [showTeacherModal, setShowTeacherModal] = useState(false);
   const [allTeachersMap, setAllTeachersMap] = useState(new Map());
 
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
 
   const togglePreview = () => {
     setIsPreview(!isPreview);
@@ -338,7 +340,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
       <div className="advanced-block teachers-block-editor teachers-block-editor-courses">
         <div className="block-info">
-          <span className="block-info-title">🎨 Block 09</span>
+          <span className="block-info-title">🎨 Block 09 - Курсы</span>
           <ToggleControl
             label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
             checked={isPreview}
@@ -347,7 +349,7 @@ const Edit = ({ attributes, setAttributes }) => {
         </div>
 
         {!isPreview && (
-          <div>Картинка</div>
+          <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
         )}
 
         {isPreview && (

@@ -17,6 +17,11 @@ registerBlockType('theme/block-09', {
     html: false,
     align: true,
   },
+  example: {
+    attributes: {
+      title: 'Курсы',
+    },
+  },
 });
 
 console.log('✅ block-09');

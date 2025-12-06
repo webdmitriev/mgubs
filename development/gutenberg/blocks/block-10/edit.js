@@ -1,11 +1,12 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import {
   useBlockProps, InspectorControls, RichText,
   MediaUpload, MediaUploadCheck
 } from '@wordpress/block-editor';
-import { Button, SelectControl, ToggleControl, Spinner } from '@wordpress/components';
-import apiFetch from '@wordpress/api-fetch';
+import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+import blockImage from '../../../../admin/assets/img/blocks/block-10.jpg';
 
 import { useAttributeList } from '../../hooks/useAttributeList';
 
@@ -13,7 +14,7 @@ import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, subTitle, imageOneId, imageOneData, imageTwoId, imageTwoData, contacts } = attributes;
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
 
   const contactsList = useAttributeList(attributes, setAttributes, 'contacts');
 
@@ -117,7 +118,7 @@ const Edit = ({ attributes, setAttributes }) => {
           </div>
 
           {!isPreview && (
-            <div>Картинка</div>
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
           {isPreview && (
