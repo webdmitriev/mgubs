@@ -6,8 +6,8 @@ import Save from './save';
 import attributes from './attributes';
 
 registerBlockType('theme/block-08', {
-  title: __('Teachers Block', 'textdomain'),
-  description: __('Display custom teachers posts', 'textdomain'),
+  title: __('Преподаватели', 'theme'),
+  description: __('', 'theme'),
   icon: 'groups',
   category: 'widgets',
   attributes,
@@ -16,6 +16,11 @@ registerBlockType('theme/block-08', {
   supports: {
     html: false,
     align: true,
+  },
+  example: {
+    attributes: {
+      title: 'Преподаватели',
+    },
   },
 });
 

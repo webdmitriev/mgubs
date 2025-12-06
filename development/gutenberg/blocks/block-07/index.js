@@ -16,6 +16,11 @@ registerBlockType('theme/block-07', {
   },
   edit,
   save,
+  example: {
+    attributes: {
+      title: 'Заголовок с фоном',
+    },
+  },
 });
 
 console.log('✅ block-07');

@@ -6,6 +6,8 @@ import {
 import { PanelBody, ToggleControl, TextareaControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import blockImage from '../../../../admin/assets/img/blocks/block-07.jpg';
+
 import { useAttributeList } from '../../hooks/useAttributeList';
 
 import ContentPanel from './controls/ContentPanel';
@@ -15,7 +17,7 @@ import BgAnchorPanel from './controls/BgAnchorPanel';
 const Edit = ({ attributes, setAttributes }) => {
   const { anchor, bgc, title, descr, buttonText, buttonLink, widgetTitle, widgetSocials, widgetImageId, widgetImageData, posts } = attributes;
 
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
 
   const togglePreview = () => {
     setIsPreview(!isPreview);
@@ -173,7 +175,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <div {...blockProps}>
         <div className="advanced-block">
           <div className="block-info">
-            <span className="block-info-title">🎨 Block 07</span>
+            <span className="block-info-title">🎨 Block 07 - О школе</span>
             <ToggleControl
               label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
               checked={isPreview}
@@ -182,7 +184,7 @@ const Edit = ({ attributes, setAttributes }) => {
           </div>
 
           {!isPreview && (
-            <div>Картинка</div>
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
           {isPreview && (

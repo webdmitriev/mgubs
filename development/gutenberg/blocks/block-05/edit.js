@@ -7,11 +7,13 @@ import { Button, SelectControl, ToggleControl, Spinner } from '@wordpress/compon
 import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 
+import blockImage from '../../../../admin/assets/img/blocks/block-05.jpg';
+
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { programs } = attributes;
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
   const [pages, setPages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingItems, setLoadingItems] = useState({});
@@ -185,7 +187,7 @@ const Edit = ({ attributes, setAttributes }) => {
           </div>
 
           {!isPreview && (
-            <div>Картинка</div>
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
           {isPreview && (
