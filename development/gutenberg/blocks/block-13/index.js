@@ -4,20 +4,19 @@ import edit from './edit';
 import save from './save';
 import attributes from './attributes';
 
-registerBlockType('theme/mgu-advantages', {
+registerBlockType('theme/block-13', {
   title: __('Преимущества', 'theme'),
-  category: 'landing',
+  category: 'main-blocks',
   icon: 'admin-customizer',
-  description: __('Блок с повторяющимися элементами', 'theme'),
+  description: __(' ', 'theme'),
   attributes,
   edit,
   save,
   example: {
     attributes: {
       title: 'Преимущества',
-      subTitleOne: 'Преимущества',
     },
   },
 });
 
-console.log('✅ Advantages block');
+console.log('✅ block-13');

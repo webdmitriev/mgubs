@@ -1,6 +1,7 @@
 // Главный файл стилей
 @use "./admin/reset";
 @use "./admin/global";
+@use "./blocks/mgu-advantages";
 @use "./blocks/block-style";
 
 .development {

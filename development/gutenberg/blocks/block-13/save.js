@@ -5,7 +5,7 @@ const Save = ({ attributes }) => {
 
   const blockProps = useBlockProps.save({
     style: { backgroundColor: bgc },
-    className: `mgu-advantages`,
+    className: `block-13`,
   });
 
   return (

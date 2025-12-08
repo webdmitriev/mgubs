@@ -111,6 +111,17 @@ module.exports = __webpack_require__.p + "images/block-11.c9529760.jpg";
 
 /***/ }),
 
+/***/ "./admin/assets/img/blocks/mgu-advantages.png":
+/*!****************************************************!*\
+  !*** ./admin/assets/img/blocks/mgu-advantages.png ***!
+  \****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "images/mgu-advantages.29f6558e.png";
+
+/***/ }),
+
 /***/ "./assets/img/icons/icon-telegram-black.svg":
 /*!**************************************************!*\
   !*** ./assets/img/icons/icon-telegram-black.svg ***!
@@ -5752,6 +5763,522 @@ const Save = ({
 
 /***/ }),
 
+/***/ "./development/gutenberg/blocks/block-13/attributes.js":
+/*!*************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/attributes.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const attributes = {
+  title: {
+    type: 'string',
+    default: ''
+  },
+  underlineColor: {
+    type: 'string',
+    default: ''
+  },
+  bgc: {
+    type: 'string',
+    default: ''
+  },
+  items: {
+    type: 'array',
+    default: [{
+      imageURL: '',
+      imageID: 0,
+      content: ''
+    }]
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-13/controls/ContentPanel.js":
+/*!************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/controls/ContentPanel.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/useTypograf */ "./development/gutenberg/utils/useTypograf.js");
+
+
+
+
+const ContentPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    title,
+    items
+  } = attributes;
+
+  // Подключаем общий хук с указанием полей для типографирования
+  const {
+    typographField,
+    typographAllFields
+  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title', 'items[].content' // Указываем, что нужно типографировать поле content в каждом item
+  ]);
+
+  // Проверяем наличие текста для типографирования
+  const hasTextToTypograph = title || items.some(item => item.content && item.content.trim() !== '');
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типограф', 'theme'),
+    initialOpen: false
+  }, hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: '20px',
+      padding: '10px',
+      background: '#f6f7f7',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+    direction: "column",
+    gap: "10px"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    variant: "primary",
+    onClick: typographAllFields,
+    style: {
+      display: 'block',
+      width: '100%',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типографировать все поля', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Расставит кавычки, тире и неразрывные пробелы', 'theme')))), !hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: '10px',
+      textAlign: 'center',
+      color: '#757575'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Нет текста для типографирования', 'theme')));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-13/controls/VideoHelpPanel.js":
+/*!**************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/controls/VideoHelpPanel.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const VideoHelpPanel = () => {
+  const [isVideoOpen, setIsVideoOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const videoPath = `${themeData.uploadUrl}/main.mov`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Инструкции', 'theme'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => setIsVideoOpen(true),
+    icon: "video-alt3"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Смотреть видео', 'theme'))), isVideoOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Видео инструкция к блоку', 'theme'),
+    onRequestClose: () => setIsVideoOpen(false),
+    className: "help-video-modal"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'relative',
+      paddingBottom: '56.25%',
+      height: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    src: videoPath,
+    controls: true,
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '8px'
+    }
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoHelpPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-13/edit.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/edit.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _admin_assets_img_blocks_mgu_advantages_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/mgu-advantages.png */ "./admin/assets/img/blocks/mgu-advantages.png");
+/* harmony import */ var _utils_useAutoLinking__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/useAutoLinking */ "./development/gutenberg/utils/useAutoLinking.js");
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-13/controls/VideoHelpPanel.js");
+/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-13/controls/ContentPanel.js");
+
+
+
+
+
+
+
+
+
+const Edit = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    title,
+    underlineColor,
+    bgc,
+    items
+  } = attributes;
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    style: {
+      backgroundColor: bgc
+    },
+    className: 'block-style mgu-advantages'
+  });
+
+  // Используем хук авто-линкинга
+  const {
+    autoLinkContent,
+    postsCount
+  } = (0,_utils_useAutoLinking__WEBPACK_IMPORTED_MODULE_6__.useAutoLinking)();
+
+  // Обработчик авто-линкинга
+  const handleAutoLink = () => {
+    autoLinkContent(attributes, setAttributes, ['title']);
+  };
+
+  // Добавить новый элемент
+  const addItem = () => {
+    const newItems = [...items, {
+      imageURL: '',
+      imageID: 0,
+      content: ''
+    }];
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Удалить элемент
+  const removeItem = index => {
+    const newItems = items.filter((_, i) => i !== index);
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Обновить элемент
+  const updateItem = (index, key, value) => {
+    const newItems = items.map((item, i) => i === index ? {
+      ...item,
+      [key]: value
+    } : item);
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Переместить элемент вверх
+  const moveItemUp = index => {
+    if (index === 0) return;
+    const newItems = [...items];
+    [newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]];
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Переместить элемент вниз
+  const moveItemDown = index => {
+    if (index === items.length - 1) return;
+    const newItems = [...items];
+    [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Обработчик выбора изображения
+  const onSelectImage = (media, index) => {
+    const newItems = items.map((item, i) => i === index ? {
+      ...item,
+      imageURL: media.url,
+      imageID: media.id
+    } : item);
+    setAttributes({
+      items: newItems
+    });
+  };
+
+  // Обработчик удаления изображения
+  const onRemoveImage = index => {
+    const newItems = items.map((item, i) => i === index ? {
+      ...item,
+      imageURL: '',
+      imageID: 0
+    } : item);
+    setAttributes({
+      items: newItems
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_ContentPanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 13 - \u041F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: _admin_assets_img_blocks_mgu_advantages_png__WEBPACK_IMPORTED_MODULE_5__,
+    alt: "MGUBS",
+    style: {
+      width: '100%',
+      height: 'inherit',
+      objectFit: 'contain'
+    }
+  }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-text"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    value: title,
+    onChange: value => setAttributes({
+      title: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок...', 'theme'),
+    allowedFormats: ['core/bold']
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "repeater-items"
+  }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
+    className: "repeater-item"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "repeater-item-controls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isSmall: true,
+    onClick: () => moveItemUp(index),
+    disabled: index === 0,
+    className: "controls-arrow"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('⬅️', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isSmall: true,
+    onClick: () => moveItemDown(index),
+    disabled: index === items.length - 1,
+    className: "controls-arrow"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('➡️', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isSmall: true,
+    isDestructive: true,
+    onClick: () => removeItem(index)
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Удалить блок', 'theme'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: media => onSelectImage(media, index),
+    allowedTypes: ['image'],
+    value: item.imageID,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "repeater-image"
+    }, item.imageURL ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: item.imageURL,
+      alt: "",
+      style: {
+        maxWidth: '64px',
+        height: '64px',
+        objectFit: 'contain'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      className: "edit-icon"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('✍️', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isDestructive: true,
+      isSmall: true,
+      onClick: () => onRemoveImage(index),
+      className: "delete-icon"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('❌', 'theme'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      className: "add-icon"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить иконку', 'theme')))
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Введите текст...', 'theme'),
+    value: item.content,
+    onChange: value => updateItem(index, 'content', value),
+    className: "repeater-content"
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isPrimary: true,
+    onClick: addItem,
+    className: "add-repeater-item"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme'))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-13/index.js":
+/*!********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./development/gutenberg/blocks/block-13/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./development/gutenberg/blocks/block-13/save.js");
+/* harmony import */ var _attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attributes */ "./development/gutenberg/blocks/block-13/attributes.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-13', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Преимущества', 'theme'),
+  category: 'main-blocks',
+  icon: 'admin-customizer',
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
+  attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
+  example: {
+    attributes: {
+      title: 'Преимущества'
+    }
+  }
+});
+console.log('✅ block-13');
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-13/save.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-13/save.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const Save = ({
+  attributes
+}) => {
+  const {
+    title,
+    bgc,
+    underlineColor,
+    items
+  } = attributes;
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+    style: {
+      backgroundColor: bgc
+    },
+    className: `block-13`
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "h2",
+    value: title,
+    className: "h2",
+    style: {
+      backgroundImage: `linear-gradient(180deg, ${underlineColor}, ${underlineColor})`
+    }
+  })), items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
+    className: "advantages-item"
+  }, item.imageURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "advantages-item__icon",
+    src: item.imageURL,
+    alt: "alto"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: item.content,
+    className: "advantages-item__content"
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+
+/***/ }),
+
 /***/ "./development/gutenberg/components/AnchorField.js":
 /*!*********************************************************!*\
   !*** ./development/gutenberg/components/AnchorField.js ***!
@@ -7850,6 +8377,209 @@ const programs = [{
 
 /***/ }),
 
+/***/ "./development/gutenberg/utils/useAutoLinking.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/utils/useAutoLinking.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useAutoLinking: () => (/* binding */ useAutoLinking)
+/* harmony export */ });
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * Хук для автоматического связывания текста с постами
+ * @returns {Object} Объект с функциями и данными для авто-линкинга
+ */
+const useAutoLinking = () => {
+  // Получаем все посты
+  const allPosts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
+    return select('core').getEntityRecords('postType', 'post', {
+      per_page: -1,
+      status: 'publish'
+    });
+  }, []);
+
+  /**
+   * Функция для замены текста на ссылки
+   * @param {string} text - Исходный текст
+   * @returns {string} - Текст с ссылками
+   */
+  const replaceTextWithLinks = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(text => {
+    if (!text || !allPosts || allPosts.length === 0) return text;
+    let updatedText = text;
+
+    // Сортируем посты по длине заголовка (сначала длинные)
+    const sortedPosts = [...allPosts].sort((a, b) => b.title.rendered.length - a.title.rendered.length);
+    sortedPosts.forEach(post => {
+      const postTitle = post.title.rendered.replace(/&nbsp;/g, ' ').trim();
+      if (postTitle.length < 3) return; // Пропускаем короткие заголовки
+
+      // Экранируем специальные символы для regex
+      const escapedTitle = postTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+      // Улучшенное регулярное выражение для кириллицы и любых символов
+      // Ищем границы слов для любых символов (включая кириллицу)
+      const regex = new RegExp(`(^|[^\\p{L}\\d])${escapedTitle}(?![\\p{L}\\d])`, 'gui' // g - global, u - unicode, i - case insensitive
+      );
+
+      // Альтернативный вариант если не поддерживается unicode
+      // const regex = new RegExp(
+      //   `(^|[^a-zA-Zа-яА-ЯёЁ0-9])${escapedTitle}(?![a-zA-Zа-яА-ЯёЁ0-9])`, 
+      //   'gi'
+      // );
+
+      // Проверяем, не находится ли уже в ссылке
+      const linkRegex = new RegExp(`<a[^>]*>${escapedTitle}<\\/a>`, 'gi');
+      if (!linkRegex.test(updatedText)) {
+        const link = `<a href="${post.link}" class="auto-linked" data-post-id="${post.id}">${postTitle}</a>`;
+        updatedText = updatedText.replace(regex, `$1${link}`);
+      }
+    });
+    return updatedText;
+  }, [allPosts]);
+
+  /**
+   * Альтернативная функция для сложных случаев с кириллицей
+   */
+  const replaceTextWithLinksAdvanced = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(text => {
+    if (!text || !allPosts || allPosts.length === 0) return text;
+    let updatedText = text;
+    const sortedPosts = [...allPosts].sort((a, b) => b.title.rendered.length - a.title.rendered.length);
+    sortedPosts.forEach(post => {
+      const postTitle = post.title.rendered.replace(/&nbsp;/g, ' ').trim();
+      if (postTitle.length < 3) return;
+
+      // Простая замена без сложных границ - работает для кириллицы
+      const regex = new RegExp(`\\b${postTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+
+      // Более надежная проверка на существующие ссылки
+      const existingLinkPattern = `<a[^>]*>.*?${postTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}.*?<\\/a>`;
+      const linkRegex = new RegExp(existingLinkPattern, 'gi');
+      if (!linkRegex.test(updatedText)) {
+        const link = `<a href="${post.link}" class="auto-linked" data-post-id="${post.id}">${postTitle}</a>`;
+        updatedText = updatedText.replace(regex, link);
+      }
+    });
+    return updatedText;
+  }, [allPosts]);
+
+  /**
+   * Улучшенная функция с ручной проверкой границ для кириллицы
+   */
+  const replaceTextWithLinksUnicode = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(text => {
+    if (!text || !allPosts || allPosts.length === 0) return text;
+    let updatedText = text;
+    const sortedPosts = [...allPosts].sort((a, b) => b.title.rendered.length - a.title.rendered.length);
+
+    // Функция для проверки границ слова
+    const isWordBoundary = char => {
+      if (!char) return true; // Начало или конец строки
+      const code = char.charCodeAt(0);
+      // Проверяем на буквы (латиница, кириллица), цифры
+      return !(code >= 65 && code <= 90 ||
+      // A-Z
+      code >= 97 && code <= 122 ||
+      // a-z
+      code >= 1040 && code <= 1103 ||
+      // Кириллица
+      code === 1105 || code === 1025 ||
+      // ёЁ
+      code >= 48 && code <= 57 // 0-9
+      );
+    };
+    sortedPosts.forEach(post => {
+      const postTitle = post.title.rendered.replace(/&nbsp;/g, ' ').trim();
+      if (postTitle.length < 3) return;
+
+      // Экранируем для regex
+      const escapedTitle = postTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(escapedTitle, 'gi');
+
+      // Проверяем существующие ссылки
+      const linkRegex = new RegExp(`<a[^>]*>${escapedTitle}<\\/a>`, 'gi');
+      if (linkRegex.test(updatedText)) return;
+
+      // Заменяем с ручной проверкой границ
+      updatedText = updatedText.replace(regex, (match, offset, original) => {
+        // Проверяем границы перед и после совпадения
+        const before = original[offset - 1];
+        const after = original[offset + match.length];
+        if (isWordBoundary(before) && isWordBoundary(after)) {
+          return `<a href="${post.link}" class="auto-linked" data-post-id="${post.id}">${match}</a>`;
+        }
+        return match; // Оставляем без изменений если не границы слова
+      });
+    });
+    return updatedText;
+  }, [allPosts]);
+
+  /**
+   * Основная функция авто-линкинга
+   * @param {Object} attributes - Атрибуты блока
+   * @param {Function} setAttributes - Функция установки атрибутов
+   * @param {Array} fields - Массив полей для обработки
+   */
+  const autoLinkContent = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)((attributes, setAttributes, fields = ['title', 'subTitle', 'items']) => {
+    if (!allPosts || allPosts.length === 0) return;
+    const updates = {};
+
+    // Обрабатываем простые текстовые поля
+    const textFields = fields.filter(field => field !== 'items');
+    textFields.forEach(field => {
+      if (attributes[field]) {
+        // Используем улучшенную функцию для кириллицы
+        const updatedText = replaceTextWithLinksUnicode(attributes[field]);
+        if (updatedText !== attributes[field]) {
+          updates[field] = updatedText;
+        }
+      }
+    });
+
+    // Обрабатываем элементы (items)
+    if (fields.includes('items') && attributes.items && attributes.items.length > 0) {
+      const updatedItems = attributes.items.map(item => {
+        if (item.content) {
+          const updatedContent = replaceTextWithLinksUnicode(item.content);
+          return {
+            ...item,
+            content: updatedContent !== item.content ? updatedContent : item.content
+          };
+        }
+        return item;
+      });
+
+      // Проверяем, есть ли изменения
+      const hasChanges = updatedItems.some((item, index) => item.content !== attributes.items[index].content);
+      if (hasChanges) {
+        updates.items = updatedItems;
+      }
+    }
+
+    // Применяем обновления, если они есть
+    if (Object.keys(updates).length > 0) {
+      setAttributes(updates);
+    }
+  }, [allPosts, replaceTextWithLinksUnicode]);
+  return {
+    allPosts,
+    autoLinkContent,
+    replaceTextWithLinks: replaceTextWithLinksUnicode,
+    // Экспортируем улучшенную версию
+    postsCount: allPosts ? allPosts.length : 0
+  };
+};
+
+/***/ }),
+
 /***/ "./development/gutenberg/utils/useOptimizedMedia.js":
 /*!**********************************************************!*\
   !*** ./development/gutenberg/utils/useOptimizedMedia.js ***!
@@ -9658,6 +10388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_block_09_index_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/block-09/index.js */ "./development/gutenberg/blocks/block-09/index.js");
 /* harmony import */ var _blocks_block_10_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./blocks/block-10/index.js */ "./development/gutenberg/blocks/block-10/index.js");
 /* harmony import */ var _blocks_block_11_index_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./blocks/block-11/index.js */ "./development/gutenberg/blocks/block-11/index.js");
+/* harmony import */ var _blocks_block_13_index_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./blocks/block-13/index.js */ "./development/gutenberg/blocks/block-13/index.js");
 // add sidebar
 
 
@@ -9677,6 +10408,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // add blocks
+
 
 
 

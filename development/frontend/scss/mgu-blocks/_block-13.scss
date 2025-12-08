@@ -1,8 +1,8 @@
-.mgu-advantages {
+.block-13 {
   position: relative;
   display: block;
   width: 100%;
-  container: mgu-advantages / inline-size;
+  container: block-13 / inline-size;
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -38,14 +38,14 @@
   }
 }
 
-@container mgu-advantages (max-width: 991px) {
-  .mgu-advantages .advantages-item {
+@container block-13 (max-width: 991px) {
+  .block-13 .advantages-item {
     flex: 1 1 calc(50% - 8px);
   }
 }
 
-@container mgu-advantages (max-width: 576px) {
-  .mgu-advantages .advantages-item {
+@container block-13 (max-width: 576px) {
+  .block-13 .advantages-item {
     flex: 1 1 calc(100%);
   }
 }

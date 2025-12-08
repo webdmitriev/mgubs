@@ -5,16 +5,15 @@ import {
   InspectorControls,
   MediaUpload
 } from '@wordpress/block-editor';
-import { Button, RadioControl } from '@wordpress/components';
+import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import mainBlockImg from '../../../../admin/assets/img/blocks/mgu-advantages.png';
+import blockImage from '../../../../admin/assets/img/blocks/mgu-advantages.png';
 
 import { useAutoLinking } from '../../utils/useAutoLinking';
-import AutoLinkingPanel from '../../utils/AutoLinkingPanel';
+
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
-import ColorPanel from './controls/ColorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const {
@@ -24,11 +23,15 @@ const Edit = ({ attributes, setAttributes }) => {
     items
   } = attributes;
 
-  const [viewMode, setViewMode] = useState('preview'); // 'preview' | 'edit' | 'production'
+  const [isPreview, setIsPreview] = useState(false);
+
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
 
   const blockProps = useBlockProps({
     style: { backgroundColor: bgc },
-    className: 'development mgu-advantages'
+    className: 'block-style mgu-advantages'
   });
 
   // Используем хук авто-линкинга
@@ -108,46 +111,29 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
-
-        {/* Добавляем панель авто-линкинга */}
-        <AutoLinkingPanel
-          onAutoLink={handleAutoLink}
-          postsCount={postsCount}
-          disabled={postsCount === 0}
-        />
-        <ColorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
         <div className="advanced-block">
-          <div className="block-info" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
-            <span className="block-info-title">🎨 Преимущества блок</span>
-            <RadioControl
-              selected={viewMode}
-              options={[
-                { label: __('Pveview ✍️', 'theme'), value: 'preview' },
-                { label: __('Редактирование ☺️', 'theme'), value: 'edit' },
-                { label: __('Результат 🖼️', 'theme'), value: 'production' },
-              ]}
-              onChange={(value) => setViewMode(value)}
+          <div className="block-info">
+            <span className="block-info-title">🎨 Block 13 - Преимущества</span>
+            <ToggleControl
+              label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
+              checked={isPreview}
+              onChange={togglePreview}
             />
           </div>
 
-          {viewMode === 'preview' && (
-            <img
-              src={mainBlockImg}
-              className="preview-image"
-              alt=""
-              style={{ borderRadius: '8px' }}
-            />
+          {!isPreview && (
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
           )}
 
-          {viewMode === 'edit' && (
+          {isPreview && (
             <div className="advanced-block-content">
-              <div className="rich-text">
+              <div className="advanced-block-text">
                 <span>{__('Заголовок', 'theme')}</span>
                 <RichText
-                  tagName="h1"
+                  tagName="div"
                   value={title}
                   onChange={(value) => setAttributes({ title: value })}
                   placeholder={__('Заголовок...', 'theme')}
@@ -236,26 +222,6 @@ const Edit = ({ attributes, setAttributes }) => {
               >
                 {__('+ Добавить элемент', 'theme')}
               </Button>
-            </div>
-          )}
-
-          {viewMode === 'production' && (
-            <div className="container">
-              <div className="block-title">
-                <h2 className="h2" style={{ backgroundImage: `linear-gradient(180deg, ${underlineColor}, ${underlineColor})` }}>{title}</h2>
-              </div>
-              {items.map((item, index) => (
-                <div key={index} className="advantages-item">
-                  {item.imageURL && (
-                    <img className="advantages-item__icon" src={item.imageURL} alt="alto" />
-                  )}
-                  <RichText.Content
-                    tagName="div"
-                    value={item.content}
-                    className="advantages-item__content"
-                  />
-                </div>
-              ))}
             </div>
           )}
         </div>
