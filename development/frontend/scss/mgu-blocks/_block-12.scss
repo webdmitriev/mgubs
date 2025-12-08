@@ -1,5 +1,8 @@
 .block-12 {
+  position: relative;
+  top: 0;
   background-color: var(--bgc-color);
+  transition: all 0.8s ease;
   .container {
     position: relative;
     padding-block: 10px;
@@ -50,9 +53,14 @@
       }
     }
   }
-  &.breadcrumbs-fixed {
+  &.breadcrumbs-fixed-anim {
     position: fixed;
+    top: 2px;
+    opacity: 0;
+  }
+  &.breadcrumbs-fixed-anim.breadcrumbs-fixed {
     top: 58px;
+    opacity: 1;
   }
 }
 

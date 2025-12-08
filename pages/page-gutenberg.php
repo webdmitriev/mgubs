@@ -28,7 +28,7 @@ the_content();
   </div>
 </div>
 
-<div style="display: block; height: 100vh;"></div>
+<div style="display: block; height: 200vh;"></div>
 
 <?php
 get_footer();
