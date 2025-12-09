@@ -5779,14 +5779,6 @@ const attributes = {
     type: 'string',
     default: ''
   },
-  underlineColor: {
-    type: 'string',
-    default: ''
-  },
-  bgc: {
-    type: 'string',
-    default: ''
-  },
   items: {
     type: 'array',
     default: [{
@@ -6239,14 +6231,9 @@ const Save = ({
 }) => {
   const {
     title,
-    bgc,
-    underlineColor,
     items
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    style: {
-      backgroundColor: bgc
-    },
     className: `block-13`
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -6258,10 +6245,7 @@ const Save = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h2",
     value: title,
-    className: "h2",
-    style: {
-      backgroundImage: `linear-gradient(180deg, ${underlineColor}, ${underlineColor})`
-    }
+    className: "h2 underline"
   })), items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
     className: "advantages-item"
