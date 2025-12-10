@@ -125,5 +125,30 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
-  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText };
+  // ----------------------------
+  // ✍️ Рендер для breadcrumbs
+  // ----------------------------
+  const renderBreadcrumbs = (item, index) => {
+    const text = `text`;
+    const hash = `hash`;
+
+    return (
+      <>
+        <TextareaControl
+          placeholder={__('Текст...', 'theme')}
+          value={item[text]}
+          onChange={(value) => update(index, text, value)}
+          rows={1}
+        />
+        <TextareaControl
+          placeholder={__('Хештег', 'theme')}
+          value={item[hash]}
+          onChange={(value) => update(index, hash, value)}
+          rows={1}
+        />
+      </>
+    )
+  };
+
+  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs };
 }

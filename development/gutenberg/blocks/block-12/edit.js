@@ -1,27 +1,16 @@
 import { useState } from '@wordpress/element';
-import {
-  useBlockProps,
-  RichText,
-  InspectorControls,
-  MediaUpload
-} from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import blockImage from '../../../../admin/assets/img/blocks/mgu-advantages.png';
+import blockImage from '../../../../admin/assets/img/blocks/block-12.jpg';
 
-import { useAutoLinking } from '../../utils/useAutoLinking';
+import { useAttributeList } from '../../hooks/useAttributeList';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
-import ContentPanel from './controls/ContentPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const {
-    title,
-    underlineColor,
-    bgc,
-    items
-  } = attributes;
+  const { breadcrumbs } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -29,94 +18,22 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
+  const breadcrumbsList = useAttributeList(attributes, setAttributes, 'breadcrumbs');
+
   const blockProps = useBlockProps({
-    style: { backgroundColor: bgc },
-    className: 'block-style mgu-advantages'
+    className: 'block-style'
   });
-
-  // Используем хук авто-линкинга
-  const { autoLinkContent, postsCount } = useAutoLinking();
-
-  // Обработчик авто-линкинга
-  const handleAutoLink = () => {
-    autoLinkContent(attributes, setAttributes, ['title']);
-  };
-
-  // Добавить новый элемент
-  const addItem = () => {
-    const newItems = [...items, {
-      imageURL: '',
-      imageID: 0,
-      content: ''
-    }];
-    setAttributes({ items: newItems });
-  };
-
-  // Удалить элемент
-  const removeItem = (index) => {
-    const newItems = items.filter((_, i) => i !== index);
-    setAttributes({ items: newItems });
-  };
-
-  // Обновить элемент
-  const updateItem = (index, key, value) => {
-    const newItems = items.map((item, i) =>
-      i === index ? { ...item, [key]: value } : item
-    );
-    setAttributes({ items: newItems });
-  };
-
-  // Переместить элемент вверх
-  const moveItemUp = (index) => {
-    if (index === 0) return;
-    const newItems = [...items];
-    [newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]];
-    setAttributes({ items: newItems });
-  };
-
-  // Переместить элемент вниз
-  const moveItemDown = (index) => {
-    if (index === items.length - 1) return;
-    const newItems = [...items];
-    [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
-    setAttributes({ items: newItems });
-  };
-
-  // Обработчик выбора изображения
-  const onSelectImage = (media, index) => {
-    const newItems = items.map((item, i) =>
-      i === index ? {
-        ...item,
-        imageURL: media.url,
-        imageID: media.id
-      } : item
-    );
-    setAttributes({ items: newItems });
-  };
-
-  // Обработчик удаления изображения
-  const onRemoveImage = (index) => {
-    const newItems = items.map((item, i) =>
-      i === index ? {
-        ...item,
-        imageURL: '',
-        imageID: 0
-      } : item
-    );
-    setAttributes({ items: newItems });
-  };
 
   return (
     <>
       <InspectorControls>
         <VideoHelpPanel />
-        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
         <div className="advanced-block">
           <div className="block-info">
-            <span className="block-info-title">🎨 Block 13 - Преимущества</span>
+            <span className="block-info-title">🎨 Block 12 - Breadcrumbs</span>
             <ToggleControl
               label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
               checked={isPreview}
@@ -130,95 +47,25 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="advanced-block-text">
-                <span>{__('Заголовок', 'theme')}</span>
-                <RichText
-                  tagName="div"
-                  value={title}
-                  onChange={(value) => setAttributes({ title: value })}
-                  placeholder={__('Заголовок...', 'theme')}
-                  allowedFormats={['core/bold']}
-                />
-              </div>
-
-              <div className="repeater-items">
-                {items.map((item, index) => (
+              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {breadcrumbs.map((item, index) => (
                   <div key={index} className="repeater-item">
-                    <div className="repeater-item-controls">
-                      <Button
-                        isSmall
-                        onClick={() => moveItemUp(index)}
-                        disabled={index === 0}
-                        className="controls-arrow"
-                      >
-                        {__('⬅️', 'theme')}
-                      </Button>
-                      <Button
-                        isSmall
-                        onClick={() => moveItemDown(index)}
-                        disabled={index === items.length - 1}
-                        className="controls-arrow"
-                      >
-                        {__('➡️', 'theme')}
-                      </Button>
-                      <Button
-                        isSmall
-                        isDestructive
-                        onClick={() => removeItem(index)}
-                      >
-                        {__('Удалить блок', 'theme')}
-                      </Button>
+                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="items-control__buttons">
+                        <Button onClick={() => breadcrumbsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
+                        <Button onClick={() => breadcrumbsList.moveDown(index)} disabled={index === breadcrumbs.length - 1} style={{ opacity: index === (breadcrumbs.length - 1) ? 0.4 : 1 }}>➡️</Button>
+                      </div>
+                      <Button isDestructive onClick={() => breadcrumbsList.remove(index)}>❌</Button>
                     </div>
 
-                    <MediaUpload
-                      onSelect={(media) => onSelectImage(media, index)}
-                      allowedTypes={['image']}
-                      value={item.imageID}
-                      render={({ open }) => (
-                        <div className="repeater-image">
-                          {item.imageURL ? (
-                            <>
-                              <img
-                                src={item.imageURL}
-                                alt=""
-                                style={{ maxWidth: '64px', height: '64px', objectFit: 'contain' }}
-                              />
-                              <Button onClick={open} className="edit-icon">
-                                {__('✍️', 'theme')}
-                              </Button>
-                              <Button
-                                isDestructive
-                                isSmall
-                                onClick={() => onRemoveImage(index)}
-                                className="delete-icon"
-                              >
-                                {__('❌', 'theme')}
-                              </Button>
-                            </>
-                          ) : (
-                            <Button onClick={open} className="add-icon">
-                              {__('Добавить иконку', 'theme')}
-                            </Button>
-                          )}
-                        </div>
-                      )}
-                    />
-
-                    <RichText
-                      tagName="div"
-                      placeholder={__('Введите текст...', 'theme')}
-                      value={item.content}
-                      onChange={(value) => updateItem(index, 'content', value)}
-                      className="repeater-content"
-                    />
+                    {breadcrumbsList.renderBreadcrumbs(item, index)}
                   </div>
                 ))}
               </div>
-
               <Button
-                isPrimary
-                onClick={addItem}
+                onClick={() => breadcrumbsList.add({ text: '', link: '' })}
                 className="add-repeater-item"
+                style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
               >
                 {__('+ Добавить элемент', 'theme')}
               </Button>

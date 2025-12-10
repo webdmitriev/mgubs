@@ -1,12 +1,7 @@
 const attributes = {
-  title: { type: 'string', default: '' },
-  items: {
+  breadcrumbs: {
     type: 'array',
-    default: [{
-      imageURL: '',
-      imageID: 0,
-      content: ''
-    }]
+    default: []
   },
 };
 
