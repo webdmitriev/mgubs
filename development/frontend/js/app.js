@@ -52,6 +52,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   $('body').on('click', ".btn-show-popup", () => $(".popup-call").fadeIn(300))
 
+  // **********
+  // AutoSlider
+  document.querySelectorAll('.block-14-slider-items-js')?.forEach(slider => {
+    new AutoSlider(slider, {
+      loop: true,
+      autoScrollDelay: 4000,
+      slideWidth: 250,
+      gap: 16,
+      pauseOnHover: true
+    });
+  });
+
   // Находим все honeypot поля
   // console.log('www');
   // const honeypots = document.querySelectorAll('.cf7-honeypot-field');

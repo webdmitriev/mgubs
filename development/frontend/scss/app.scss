@@ -22,6 +22,7 @@
 @use "./components/divider";
 @use "./components/btn";
 @use "./components/link";
+@use "./components/owner-slider";
 
 @use "components/article-post";
 // @use "components/btn";
@@ -42,6 +43,7 @@
 @use "./mgu-blocks/block-11";
 @use "./mgu-blocks/block-12";
 @use "./mgu-blocks/block-13";
+@use "./mgu-blocks/block-14";
 
 // animations
 @use "./data/animations";
