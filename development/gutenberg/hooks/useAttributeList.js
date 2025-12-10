@@ -218,5 +218,29 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
-  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen };
+  // ----------------------------
+  // ✍️ Рендер для TextareaToRichText
+  // ----------------------------
+  const renderTextareaToRichText = (item, index) => {
+    const title = `title`;
+    const content = `content`;
+
+    return (
+      <>
+        <TextareaControl
+          placeholder={__('Число', 'theme')}
+          value={item[title]}
+          onChange={(value) => update(index, title, value)}
+          rows={1}
+        />
+        <RichText
+          placeholder={__('Описание', 'theme')}
+          value={item[content]}
+          onChange={(value) => update(index, content, value)}
+        />
+      </>
+    )
+  };
+
+  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen, renderTextareaToRichText };
 }
