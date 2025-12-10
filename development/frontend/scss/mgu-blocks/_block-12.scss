@@ -3,6 +3,7 @@
   top: 0;
   background-color: var(--bgc-color);
   transition: all 0.8s ease;
+  z-index: 60;
   .container {
     position: relative;
     padding-block: 10px;
@@ -59,7 +60,7 @@
     opacity: 0;
   }
   &.breadcrumbs-fixed-anim.breadcrumbs-fixed {
-    top: 58px;
+    top: 53px;
     opacity: 1;
   }
 }

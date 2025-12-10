@@ -14,7 +14,7 @@ import './seo-panel.js';
 import './extends/spacer-bg.js';
 
 // add components
-import './formats/li-format.js';
+// import './formats/li-format.js';
 
 // add blocks
 import './blocks/block-01/index.js';
@@ -32,3 +32,4 @@ import './blocks/block-12/index.js';
 import './blocks/block-13/index.js';
 import './blocks/block-14/index.js';
 import './blocks/block-15/index.js';
+import './blocks/block-16/index.js';

@@ -1,0 +1,104 @@
+.block-16 {
+  padding-block: 0 40px;
+  .content-items {
+    gap: 40px;
+    width: 100%;
+    .content-item {
+      position: relative;
+      width: 100%;
+      .content-item__num {
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 30px;
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+        color: var(--white-color);
+        background-color: var(--accent-color);
+        border-radius: 60px;
+        z-index: 5;
+      }
+      .content-item__line {
+        position: absolute;
+        top: 3px;
+        left: 11px;
+        display: block;
+        width: 6px;
+        height: calc(100% - 5px);
+        background-color: transparent;
+        border-left: 8px dotted;
+        border-color: #26a3d1;
+        z-index: 2;
+      }
+      .content-item__head,
+      .content-item__descr {
+        display: block;
+        width: 100%;
+        max-width: calc(50% - 32px);
+      }
+      .content-item__head {
+        .h3 {
+        }
+        .descr {
+        }
+      }
+      .content-item__descr {
+      }
+      .block-16-link {
+        display: none;
+      }
+      &:not(:last-child) {
+        .content-item__line {
+          height: calc(100% + 40px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .block-16 .content-items .content-item .content-item__line {
+    display: none;
+  }
+  .block-16 .content-items .content-item .content-item__num {
+    margin-top: 10px;
+  }
+  .block-16 .content-items .content-item .content-item__head {
+    max-width: calc(100% - 50px);
+    margin-bottom: 24px;
+  }
+  .block-16 .content-items .content-item .content-item__descr {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .block-16 .content-items .content-item .content-item__descr {
+    max-height: 0;
+    margin-bottom: 16px;
+    transition:
+      max-height 0.45s ease,
+      opacity 0.35s ease;
+    opacity: 0;
+    overflow: hidden;
+  }
+  .block-16 .content-items .content-item .content-item__descr.active {
+    opacity: 1;
+  }
+  .block-16 .content-items .content-item .block-16-link {
+    display: block;
+    margin: 0 0 0 auto;
+  }
+}
+@media (max-width: 576px) {
+  .block-16 .content-items .content-item .content-item__head {
+    margin-bottom: 14px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

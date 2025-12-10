@@ -1,6 +1,6 @@
 import { useCallback } from '@wordpress/element';
-import { MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
-import { Button, TextControl, TextareaControl, SelectControl } from '@wordpress/components';
+import { MediaUpload, RichText } from '@wordpress/block-editor';
+import { Button, TextareaControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 export function useAttributeList(attributes, setAttributes, key) {

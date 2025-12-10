@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./admin/assets/img/blocks/block-01.jpg":
@@ -7,7 +8,6 @@
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-01.e044c307.jpg";
 
 /***/ }),
@@ -18,7 +18,6 @@ module.exports = __webpack_require__.p + "images/block-01.e044c307.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-02.9d683601.jpg";
 
 /***/ }),
@@ -29,7 +28,6 @@ module.exports = __webpack_require__.p + "images/block-02.9d683601.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-03.b76963ef.jpg";
 
 /***/ }),
@@ -40,7 +38,6 @@ module.exports = __webpack_require__.p + "images/block-03.b76963ef.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-04.743c47cd.jpg";
 
 /***/ }),
@@ -51,7 +48,6 @@ module.exports = __webpack_require__.p + "images/block-04.743c47cd.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-05.cb0af6ea.jpg";
 
 /***/ }),
@@ -62,7 +58,6 @@ module.exports = __webpack_require__.p + "images/block-05.cb0af6ea.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-06.a38f0084.jpg";
 
 /***/ }),
@@ -73,7 +68,6 @@ module.exports = __webpack_require__.p + "images/block-06.a38f0084.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-07.53e5fdca.jpg";
 
 /***/ }),
@@ -84,7 +78,6 @@ module.exports = __webpack_require__.p + "images/block-07.53e5fdca.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-08.4089117c.jpg";
 
 /***/ }),
@@ -95,8 +88,17 @@ module.exports = __webpack_require__.p + "images/block-08.4089117c.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-09.b5e7b5b6.jpg";
+
+/***/ }),
+
+/***/ "./admin/assets/img/blocks/block-10.jpg":
+/*!**********************************************!*\
+  !*** ./admin/assets/img/blocks/block-10.jpg ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/block-10.798fa062.jpg";
 
 /***/ }),
 
@@ -106,7 +108,6 @@ module.exports = __webpack_require__.p + "images/block-09.b5e7b5b6.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-11.c9529760.jpg";
 
 /***/ }),
@@ -117,7 +118,6 @@ module.exports = __webpack_require__.p + "images/block-11.c9529760.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-12.0c421acc.jpg";
 
 /***/ }),
@@ -128,7 +128,6 @@ module.exports = __webpack_require__.p + "images/block-12.0c421acc.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-13.e94f7e4a.jpg";
 
 /***/ }),
@@ -139,7 +138,6 @@ module.exports = __webpack_require__.p + "images/block-13.e94f7e4a.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-14.84106dd8.jpg";
 
 /***/ }),
@@ -150,8 +148,17 @@ module.exports = __webpack_require__.p + "images/block-14.84106dd8.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 module.exports = __webpack_require__.p + "images/block-15.da799555.jpg";
+
+/***/ }),
+
+/***/ "./admin/assets/img/blocks/block-16.jpg":
+/*!**********************************************!*\
+  !*** ./admin/assets/img/blocks/block-16.jpg ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/block-16.fdf416be.jpg";
 
 /***/ }),
 
@@ -161,7 +168,6 @@ module.exports = __webpack_require__.p + "images/block-15.da799555.jpg";
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgIconTelegramBlack),
@@ -206,7 +212,6 @@ var SvgIconTelegramBlack = function SvgIconTelegramBlack(props) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgIconVkBlack),
@@ -249,7 +254,6 @@ var SvgIconVkBlack = function SvgIconVkBlack(props) {
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgIconWhatsappBlack),
@@ -292,7 +296,6 @@ var SvgIconWhatsappBlack = function SvgIconWhatsappBlack(props) {
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgIconYoutubeBlack),
@@ -335,7 +338,6 @@ var SvgIconYoutubeBlack = function SvgIconYoutubeBlack(props) {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -399,7 +401,6 @@ __webpack_require__.r(__webpack_exports__);
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -468,7 +469,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -528,7 +528,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -792,7 +791,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -827,7 +825,6 @@ console.log('✅ block-01');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -894,7 +891,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -926,7 +922,6 @@ __webpack_require__.r(__webpack_exports__);
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -995,7 +990,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1055,7 +1049,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1188,7 +1181,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -1223,7 +1215,6 @@ console.log('✅ block-02');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1275,7 +1266,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1311,7 +1301,6 @@ __webpack_require__.r(__webpack_exports__);
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1380,7 +1369,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1440,7 +1428,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1600,7 +1587,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -1635,7 +1621,6 @@ console.log('✅ block-03');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1681,7 +1666,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1705,7 +1689,6 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1765,7 +1748,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1862,7 +1844,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -1897,7 +1878,6 @@ console.log('✅ block-04');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1947,7 +1927,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1974,7 +1953,6 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2034,7 +2012,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2328,7 +2305,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -2363,7 +2339,6 @@ console.log('✅ block-05');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2422,7 +2397,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2454,7 +2428,6 @@ __webpack_require__.r(__webpack_exports__);
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2523,7 +2496,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2583,7 +2555,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2715,7 +2686,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -2750,7 +2720,6 @@ console.log('✅ block-06');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2801,7 +2770,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2869,7 +2837,6 @@ __webpack_require__.r(__webpack_exports__);
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2925,7 +2892,6 @@ const BgAnchorPanel = ({
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -2995,7 +2961,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3055,7 +3020,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3382,7 +3346,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -3424,7 +3387,6 @@ console.log('✅ block-07');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3541,7 +3503,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3578,7 +3539,6 @@ const attributes = {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4152,7 +4112,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -4194,7 +4153,6 @@ console.log('✅ block-08');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
@@ -4211,7 +4169,6 @@ function save() {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4232,7 +4189,6 @@ const attributes = {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4684,7 +4640,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -4726,7 +4681,6 @@ console.log('✅ block-09');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
@@ -4743,7 +4697,6 @@ function save() {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4806,7 +4759,6 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4866,7 +4818,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -4881,7 +4832,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _admin_assets_img_blocks_block_11_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-11.jpg */ "./admin/assets/img/blocks/block-11.jpg");
+/* harmony import */ var _admin_assets_img_blocks_block_10_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-10.jpg */ "./admin/assets/img/blocks/block-10.jpg");
 /* harmony import */ var _hooks_useAttributeList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../hooks/useAttributeList */ "./development/gutenberg/hooks/useAttributeList.js");
 /* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-10/controls/VideoHelpPanel.js");
 
@@ -4994,7 +4945,7 @@ const Edit = ({
     checked: isPreview,
     onChange: togglePreview
   })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: _admin_assets_img_blocks_block_11_jpg__WEBPACK_IMPORTED_MODULE_5__,
+    src: _admin_assets_img_blocks_block_10_jpg__WEBPACK_IMPORTED_MODULE_5__,
     alt: "MGUBS",
     style: {
       width: '100%',
@@ -5157,7 +5108,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -5192,7 +5142,6 @@ console.log('✅ block-10');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5258,7 +5207,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5329,7 +5277,6 @@ const attributes = {
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5401,7 +5348,6 @@ const ContentPanel = ({
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5490,7 +5436,6 @@ const ImagePanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5550,7 +5495,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5688,7 +5632,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -5723,7 +5666,6 @@ console.log('✅ block-11');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5802,7 +5744,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5823,7 +5764,6 @@ const attributes = {
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -5883,7 +5823,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6007,7 +5946,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -6045,7 +5983,6 @@ console.log('✅ block-12');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6111,7 +6048,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6140,7 +6076,6 @@ const attributes = {
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6219,7 +6154,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6279,7 +6213,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6519,7 +6452,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -6557,7 +6489,6 @@ console.log('✅ block-13');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6611,7 +6542,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6644,7 +6574,6 @@ const attributes = {
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6700,7 +6629,6 @@ const BgAnchorPanel = ({
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6779,7 +6707,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6839,7 +6766,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -6987,7 +6913,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -7025,7 +6950,6 @@ console.log('✅ block-14');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7084,7 +7008,6 @@ const Save = ({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7117,7 +7040,6 @@ const attributes = {
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7173,7 +7095,6 @@ const BgAnchorPanel = ({
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7252,7 +7173,6 @@ const ContentPanel = ({
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7312,7 +7232,6 @@ const VideoHelpPanel = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7460,7 +7379,6 @@ const Edit = ({
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
@@ -7498,7 +7416,6 @@ console.log('✅ block-15');
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7548,13 +7465,430 @@ const Save = ({
 
 /***/ }),
 
+/***/ "./development/gutenberg/blocks/block-16/attributes.js":
+/*!*************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/attributes.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const attributes = {
+  anchor: {
+    type: 'string',
+    default: ''
+  },
+  bgc: {
+    type: 'string',
+    default: ''
+  },
+  num: {
+    type: 'string',
+    default: ''
+  },
+  title: {
+    type: 'string',
+    default: ''
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/controls/BgAnchorPanel.js":
+/*!*************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/controls/BgAnchorPanel.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_default_colors_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/default-colors.js */ "./development/gutenberg/utils/default-colors.js");
+/* harmony import */ var _components_ColorSelect_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/ColorSelect.js */ "./development/gutenberg/components/ColorSelect.js");
+/* harmony import */ var _components_AnchorField_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/AnchorField.js */ "./development/gutenberg/components/AnchorField.js");
+
+
+
+
+
+
+const BgAnchorPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    anchor,
+    bgc
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Фон и якорь', 'theme'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AnchorField_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: anchor,
+    onChange: newId => setAttributes({
+      anchor: newId
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_ColorSelect_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: "\u0426\u0432\u0435\u0442 \u0444\u043E\u043D\u0430",
+    colors: [..._utils_default_colors_js__WEBPACK_IMPORTED_MODULE_3__["default"]],
+    value: bgc,
+    onChange: val => setAttributes({
+      bgc: val
+    })
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BgAnchorPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/controls/ContentPanel.js":
+/*!************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/controls/ContentPanel.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/useTypograf */ "./development/gutenberg/utils/useTypograf.js");
+
+
+
+
+const ContentPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    title,
+    items
+  } = attributes;
+
+  // Подключаем общий хук с указанием полей для типографирования
+  const {
+    typographField,
+    typographAllFields
+  } = (0,_utils_useTypograf__WEBPACK_IMPORTED_MODULE_3__.useTypograf)(attributes, setAttributes, ['title', 'items[].content' // Указываем, что нужно типографировать поле content в каждом item
+  ]);
+
+  // Проверяем наличие текста для типографирования
+  const hasTextToTypograph = title || items.some(item => item.content && item.content.trim() !== '');
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типограф', 'theme'),
+    initialOpen: false
+  }, hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: '20px',
+      padding: '10px',
+      background: '#f6f7f7',
+      borderRadius: '4px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+    direction: "column",
+    gap: "10px"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    variant: "primary",
+    onClick: typographAllFields,
+    style: {
+      display: 'block',
+      width: '100%',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Типографировать все поля', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: '12px',
+      color: '#757575',
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Расставит кавычки, тире и неразрывные пробелы', 'theme')))), !hasTextToTypograph && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: '10px',
+      textAlign: 'center',
+      color: '#757575'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Нет текста для типографирования', 'theme')));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/controls/VideoHelpPanel.js":
+/*!**************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/controls/VideoHelpPanel.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const VideoHelpPanel = () => {
+  const [isVideoOpen, setIsVideoOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const videoPath = `${themeData.uploadUrl}/main.mov`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Инструкции', 'theme'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => setIsVideoOpen(true),
+    icon: "video-alt3"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Смотреть видео', 'theme'))), isVideoOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Видео инструкция к блоку', 'theme'),
+    onRequestClose: () => setIsVideoOpen(false),
+    className: "help-video-modal"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'relative',
+      paddingBottom: '56.25%',
+      height: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    src: videoPath,
+    controls: true,
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '8px'
+    }
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoHelpPanel);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/edit.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/edit.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _admin_assets_img_blocks_block_16_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-16.jpg */ "./admin/assets/img/blocks/block-16.jpg");
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-16/controls/VideoHelpPanel.js");
+/* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-16/controls/ContentPanel.js");
+/* harmony import */ var _controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/BgAnchorPanel */ "./development/gutenberg/blocks/block-16/controls/BgAnchorPanel.js");
+
+
+
+
+
+
+
+
+
+const Edit = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    anchor,
+    bgc,
+    num,
+    title
+  } = attributes;
+  const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    className: 'block-style mgu-advantages'
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "block-info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "block-info-title"
+  }, "\uD83C\uDFA8 Block 16 - \u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Предпросмотр ☺️', 'theme'),
+    checked: isPreview,
+    onChange: togglePreview
+  })), !isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: _admin_assets_img_blocks_block_16_jpg__WEBPACK_IMPORTED_MODULE_5__,
+    alt: "MGUBS",
+    style: {
+      width: '100%',
+      height: 'inherit',
+      objectFit: 'contain'
+    }
+  }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "advanced-block-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex',
+      flex: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'stretch',
+      gap: '16px',
+      width: '100%'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      width: '30%'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    style: {
+      textAlign: 'left'
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Число', 'theme'),
+    value: num,
+    onChange: value => setAttributes({
+      num: value
+    }),
+    rows: 1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    style: {
+      textAlign: 'left'
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок', 'theme'),
+    value: title,
+    onChange: value => setAttributes({
+      title: value
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      width: 'calc(70% - 18px)',
+      textAlign: 'left',
+      minHeight: '100px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+    allowedBlocks: ['core/paragraph', 'core/list', 'core/quote', 'core/table'],
+    templateLock: false,
+    renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.ButtonBlockAppender
+  })))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/index.js":
+/*!********************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./development/gutenberg/blocks/block-16/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./development/gutenberg/blocks/block-16/save.js");
+/* harmony import */ var _attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attributes */ "./development/gutenberg/blocks/block-16/attributes.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-16', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Структура', 'theme'),
+  category: 'main-blocks',
+  icon: 'admin-customizer',
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
+  attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
+  example: {
+    attributes: {
+      title: 'Структура'
+    }
+  }
+});
+console.log('✅ block-16');
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-16/save.js":
+/*!*******************************************************!*\
+  !*** ./development/gutenberg/blocks/block-16/save.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const Save = ({
+  attributes
+}) => {
+  const {
+    title
+  } = attributes;
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+    className: `block-standard block-16`
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+
+/***/ }),
+
 /***/ "./development/gutenberg/components/AnchorField.js":
 /*!*********************************************************!*\
   !*** ./development/gutenberg/components/AnchorField.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnchorField)
@@ -7609,7 +7943,6 @@ function AnchorField({
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7688,7 +8021,6 @@ const CF7FormSelector = ({
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ColorSelect)
@@ -7808,7 +8140,6 @@ function ColorSelect({
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ColorSelect)
@@ -7931,7 +8262,6 @@ function ColorSelect({
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DateOnlyPicker: () => (/* binding */ DateOnlyPicker),
@@ -8081,7 +8411,6 @@ const DateTimeSeparatePicker = ({
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -8153,7 +8482,6 @@ const MultipleCheckboxControl = ({
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -8201,7 +8529,6 @@ const Picture = ({
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -8293,54 +8620,12 @@ const addBackgroundColorExtraProps = (saveElementProps, blockType, attributes) =
 
 /***/ }),
 
-/***/ "./development/gutenberg/formats/li-format.js":
-/*!****************************************************!*\
-  !*** ./development/gutenberg/formats/li-format.js ***!
-  \****************************************************/
-/***/ (() => {
-
-const {
-  registerFormatType,
-  toggleFormat
-} = wp.richText;
-const {
-  RichTextToolbarButton
-} = wp.blockEditor;
-const {
-  createElement
-} = wp.element;
-registerFormatType('theme/li-format', {
-  title: 'Custom List Item',
-  tagName: 'span',
-  className: 'custom-list',
-  edit({
-    isActive,
-    value,
-    onChange
-  }) {
-    return createElement(RichTextToolbarButton, {
-      icon: 'editor-ul',
-      // или свой svg
-      title: 'Псевдо-элемент списка',
-      onClick: () => {
-        onChange(toggleFormat(value, {
-          type: 'theme/li-format'
-        }));
-      },
-      isActive
-    });
-  }
-});
-
-/***/ }),
-
 /***/ "./development/gutenberg/hooks/useAttributeList.js":
 /*!*********************************************************!*\
   !*** ./development/gutenberg/hooks/useAttributeList.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   useAttributeList: () => (/* binding */ useAttributeList)
@@ -8589,7 +8874,6 @@ function useAttributeList(attributes, setAttributes, key) {
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -8731,7 +9015,6 @@ const AdmissionsSidebar = () => {
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -8885,7 +9168,6 @@ const AllEventsSidebar = () => {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9056,7 +9338,6 @@ const ManagerSidebar = () => {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9200,7 +9481,6 @@ const PageSidebar = () => {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9287,7 +9567,6 @@ const PostSidebar = () => {
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9359,7 +9638,6 @@ const SchoolHistorySidebar = () => {
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9444,7 +9722,6 @@ const TeachersSidebar = () => {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -9597,7 +9874,6 @@ const SeoTab = () => {
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -9725,7 +10001,6 @@ const colors = [{
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -9765,7 +10040,6 @@ const programs = [{
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   useAutoLinking: () => (/* binding */ useAutoLinking)
@@ -9968,7 +10242,6 @@ const useAutoLinking = () => {
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   useOptimizedMedia: () => (/* binding */ useOptimizedMedia)
@@ -10011,7 +10284,6 @@ const useOptimizedMedia = setAttributes => {
   \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   typographText: () => (/* binding */ typographText),
@@ -10104,7 +10376,6 @@ const useTypograf = (attributes, setAttributes, fields) => {
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ calendar_default)
@@ -10128,7 +10399,6 @@ var calendar_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MO
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-"use strict";
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -11472,7 +11742,6 @@ exports.jsxs = jsxs;
   \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 if (false) // removed by dead control flow
@@ -11489,7 +11758,6 @@ if (false) // removed by dead control flow
   \**********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
@@ -11500,7 +11768,6 @@ module.exports = window["wp"]["apiFetch"];
   \*************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["blockEditor"];
 
 /***/ }),
@@ -11511,7 +11778,6 @@ module.exports = window["wp"]["blockEditor"];
   \********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["blocks"];
 
 /***/ }),
@@ -11522,7 +11788,6 @@ module.exports = window["wp"]["blocks"];
   \************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["components"];
 
 /***/ }),
@@ -11533,7 +11798,6 @@ module.exports = window["wp"]["components"];
   \*********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["compose"];
 
 /***/ }),
@@ -11544,7 +11808,6 @@ module.exports = window["wp"]["compose"];
   \******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["data"];
 
 /***/ }),
@@ -11555,7 +11818,6 @@ module.exports = window["wp"]["data"];
   \******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["date"];
 
 /***/ }),
@@ -11566,7 +11828,6 @@ module.exports = window["wp"]["date"];
   \********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["editor"];
 
 /***/ }),
@@ -11577,7 +11838,6 @@ module.exports = window["wp"]["editor"];
   \*********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["element"];
 
 /***/ }),
@@ -11588,7 +11848,6 @@ module.exports = window["wp"]["element"];
   \*******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["hooks"];
 
 /***/ }),
@@ -11599,7 +11858,6 @@ module.exports = window["wp"]["hooks"];
   \******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["i18n"];
 
 /***/ }),
@@ -11610,7 +11868,6 @@ module.exports = window["wp"]["i18n"];
   \*********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["plugins"];
 
 /***/ }),
@@ -11621,7 +11878,6 @@ module.exports = window["wp"]["plugins"];
   \************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["primitives"];
 
 /***/ }),
@@ -11632,7 +11888,6 @@ module.exports = window["wp"]["primitives"];
   \************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["React"];
 
 /***/ })
@@ -11741,9 +11996,8 @@ module.exports = window["React"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!****************************************!*\
   !*** ./development/gutenberg/index.js ***!
   \****************************************/
@@ -11757,23 +12011,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_types_admissions_sidebar_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./post-types/admissions-sidebar.js */ "./development/gutenberg/post-types/admissions-sidebar.js");
 /* harmony import */ var _seo_panel_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./seo-panel.js */ "./development/gutenberg/seo-panel.js");
 /* harmony import */ var _extends_spacer_bg_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./extends/spacer-bg.js */ "./development/gutenberg/extends/spacer-bg.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./formats/li-format.js */ "./development/gutenberg/formats/li-format.js");
-/* harmony import */ var _formats_li_format_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_formats_li_format_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _blocks_block_01_index_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./blocks/block-01/index.js */ "./development/gutenberg/blocks/block-01/index.js");
-/* harmony import */ var _blocks_block_02_index_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./blocks/block-02/index.js */ "./development/gutenberg/blocks/block-02/index.js");
-/* harmony import */ var _blocks_block_03_index_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./blocks/block-03/index.js */ "./development/gutenberg/blocks/block-03/index.js");
-/* harmony import */ var _blocks_block_04_index_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./blocks/block-04/index.js */ "./development/gutenberg/blocks/block-04/index.js");
-/* harmony import */ var _blocks_block_05_index_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./blocks/block-05/index.js */ "./development/gutenberg/blocks/block-05/index.js");
-/* harmony import */ var _blocks_block_06_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./blocks/block-06/index.js */ "./development/gutenberg/blocks/block-06/index.js");
-/* harmony import */ var _blocks_block_07_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./blocks/block-07/index.js */ "./development/gutenberg/blocks/block-07/index.js");
-/* harmony import */ var _blocks_block_08_index_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/block-08/index.js */ "./development/gutenberg/blocks/block-08/index.js");
-/* harmony import */ var _blocks_block_09_index_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/block-09/index.js */ "./development/gutenberg/blocks/block-09/index.js");
-/* harmony import */ var _blocks_block_10_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./blocks/block-10/index.js */ "./development/gutenberg/blocks/block-10/index.js");
-/* harmony import */ var _blocks_block_11_index_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./blocks/block-11/index.js */ "./development/gutenberg/blocks/block-11/index.js");
-/* harmony import */ var _blocks_block_12_index_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./blocks/block-12/index.js */ "./development/gutenberg/blocks/block-12/index.js");
-/* harmony import */ var _blocks_block_13_index_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./blocks/block-13/index.js */ "./development/gutenberg/blocks/block-13/index.js");
-/* harmony import */ var _blocks_block_14_index_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./blocks/block-14/index.js */ "./development/gutenberg/blocks/block-14/index.js");
-/* harmony import */ var _blocks_block_15_index_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./blocks/block-15/index.js */ "./development/gutenberg/blocks/block-15/index.js");
+/* harmony import */ var _blocks_block_01_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/block-01/index.js */ "./development/gutenberg/blocks/block-01/index.js");
+/* harmony import */ var _blocks_block_02_index_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./blocks/block-02/index.js */ "./development/gutenberg/blocks/block-02/index.js");
+/* harmony import */ var _blocks_block_03_index_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./blocks/block-03/index.js */ "./development/gutenberg/blocks/block-03/index.js");
+/* harmony import */ var _blocks_block_04_index_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./blocks/block-04/index.js */ "./development/gutenberg/blocks/block-04/index.js");
+/* harmony import */ var _blocks_block_05_index_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./blocks/block-05/index.js */ "./development/gutenberg/blocks/block-05/index.js");
+/* harmony import */ var _blocks_block_06_index_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./blocks/block-06/index.js */ "./development/gutenberg/blocks/block-06/index.js");
+/* harmony import */ var _blocks_block_07_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./blocks/block-07/index.js */ "./development/gutenberg/blocks/block-07/index.js");
+/* harmony import */ var _blocks_block_08_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./blocks/block-08/index.js */ "./development/gutenberg/blocks/block-08/index.js");
+/* harmony import */ var _blocks_block_09_index_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/block-09/index.js */ "./development/gutenberg/blocks/block-09/index.js");
+/* harmony import */ var _blocks_block_10_index_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/block-10/index.js */ "./development/gutenberg/blocks/block-10/index.js");
+/* harmony import */ var _blocks_block_11_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./blocks/block-11/index.js */ "./development/gutenberg/blocks/block-11/index.js");
+/* harmony import */ var _blocks_block_12_index_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./blocks/block-12/index.js */ "./development/gutenberg/blocks/block-12/index.js");
+/* harmony import */ var _blocks_block_13_index_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./blocks/block-13/index.js */ "./development/gutenberg/blocks/block-13/index.js");
+/* harmony import */ var _blocks_block_14_index_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./blocks/block-14/index.js */ "./development/gutenberg/blocks/block-14/index.js");
+/* harmony import */ var _blocks_block_15_index_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./blocks/block-15/index.js */ "./development/gutenberg/blocks/block-15/index.js");
+/* harmony import */ var _blocks_block_16_index_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./blocks/block-16/index.js */ "./development/gutenberg/blocks/block-16/index.js");
 // add sidebar
 
 
@@ -11790,9 +12043,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // add components
-
+// import './formats/li-format.js';
 
 // add blocks
+
 
 
 

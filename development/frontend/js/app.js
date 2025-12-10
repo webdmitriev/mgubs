@@ -64,6 +64,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ********
+  // block-16
+  document.querySelectorAll('.block-16-link').forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const item = this.closest('.content-item');
+      const descr = item.querySelector('.content-item__descr');
+
+      if (!descr) return;
+
+      const textOpen = this.dataset.rename || 'Свернуть';
+      const textClosed = this.dataset.name || 'Подробнее';
+
+      // === ЗАКРЫВАЕМ ===
+      if (descr.classList.contains('active')) {
+        // плавное закрытие
+        descr.style.maxHeight = descr.scrollHeight + 'px';
+
+        setTimeout(() => {
+          descr.style.maxHeight = '0';
+        }, 10);
+
+        descr.classList.remove('active');
+        this.classList.remove('active');
+
+        // меняем текст на "Подробнее"
+        this.textContent = textClosed;
+
+        return;
+      }
+
+      // === ОТКРЫВАЕМ ===
+      descr.classList.add('active');
+      this.classList.add('active');
+
+      // подготовка
+      descr.style.maxHeight = '0px';
+
+      // плавное открытие
+      setTimeout(() => {
+        descr.style.maxHeight = descr.scrollHeight + 'px';
+      }, 10);
+
+      // меняем текст на "Свернуть"
+      this.textContent = textOpen;
+    });
+  });
+
+
+
+
   // Находим все honeypot поля
   // console.log('www');
   // const honeypots = document.querySelectorAll('.cf7-honeypot-field');

@@ -29,7 +29,6 @@ function theme_register_block_categories( $categories, $context ) {
 // === Разрешаем только нужные блоки ===
 add_filter( 'allowed_block_types_all', 'theme_allowed_blocks', 10, 2 );
 function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
-  // перечисли только свои блоки по namespace
   return [
     'theme/block-01',
     'theme/block-02',
@@ -46,6 +45,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-13',
     'theme/block-14',
     'theme/block-15',
+    'theme/block-16',
     'core/paragraph',
     'core/list',
     'core/list-item',
