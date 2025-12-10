@@ -8,7 +8,7 @@ import {
 import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import blockImage from '../../../../admin/assets/img/blocks/mgu-advantages.png';
+import blockImage from '../../../../admin/assets/img/blocks/block-13.jpg';
 
 import { useAutoLinking } from '../../utils/useAutoLinking';
 

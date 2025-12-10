@@ -227,6 +227,23 @@
       font-size: 14px !important;
     }
   }
+
+  .custom-list {
+    position: relative;
+    display: block;
+    padding-left: 14px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 0;
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: #212121;
+      border-radius: 20px;
+    }
+  }
 }
 .components-base-control.block-editor-url-input.URLInput {
   width: 100%;

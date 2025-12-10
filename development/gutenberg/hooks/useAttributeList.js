@@ -1,5 +1,5 @@
 import { useCallback } from '@wordpress/element';
-import { MediaUpload, RichText } from '@wordpress/block-editor';
+import { MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
 import { Button, TextControl, TextareaControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -150,5 +150,73 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
-  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs };
+  // ----------------------------
+  // ✍️ Рендер для blockFourteen
+  // ----------------------------
+  const renderBlockFourteen = (item, index) => {
+    const image = `image`;
+    const content = `content`;
+
+    return (
+      <>
+        <MediaUpload
+          onSelect={(media) =>
+            update(index, image, {
+              id: media.id,
+              url: media.url,
+              alt: media.alt || '',
+            })
+          }
+          allowedTypes={['image']}
+          value={item[image]?.id}
+          render={({ open }) => (
+            <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+              {item[image]?.url ? (
+                <div className="repeater-image-preview">
+                  <img
+                    src={item[image].url}
+                    alt={item[image].alt || ''}
+                    style={{
+                      aspectRatio: '16 / 9',
+                      width: '100%',
+                      height: 'inherit',
+                      marginBottom: '8px',
+                      objectFit: 'cover',
+                      borderRadius: '3px',
+                    }}
+                  />
+                  <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                    <Button onClick={open} variant="secondary" size="small">
+                      ✍️ {__('Заменить', 'theme')}
+                    </Button>
+                    <Button
+                      isDestructive
+                      onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                      variant="secondary"
+                      size="small"
+                    >
+                      ❌ {__('Удалить', 'theme')}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button onClick={open} variant="primary" size="small">
+                  {__('Добавить изображение', 'theme')}
+                </Button>
+              )}
+            </div>
+          )}
+        />
+        <RichText
+          style={{ textAlign: 'left' }}
+          tagName="div"
+          placeholder={__('Описание...', 'theme')}
+          value={item[content]}
+          onChange={(value) => update(index, content, value)}
+        />
+      </>
+    )
+  };
+
+  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen };
 }
