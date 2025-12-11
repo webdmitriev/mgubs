@@ -30,8 +30,12 @@
         height: calc(100% - 5px);
         background-color: transparent;
         border-left: 8px dotted;
-        border-color: #26a3d1;
+        border-color: var(--accent-color);
         z-index: 2;
+      }
+      .content-item__head strong {
+        font-weight: 600;
+        font-size: 22px;
       }
       .content-item__head,
       .content-item__descr {

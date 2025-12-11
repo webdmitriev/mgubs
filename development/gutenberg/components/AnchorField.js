@@ -18,17 +18,36 @@ export default function AnchorField({ value, onChange }) {
     if (value) navigator.clipboard.writeText(value);
   };
 
+  const dot = "•";
+
+  const copyToClipboardDot = () => {
+    if (dot) navigator.clipboard.writeText(dot);
+  };
+
   return (
-    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <TextControl
-        label="Якорь дял скролла"
-        value={value}
-        style={{ height: 36 }}
-        readOnly
-      />
-      <Button variant="secondary" onClick={copyToClipboard}>
-        Копировать
-      </Button>
-    </div>
+    <>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <TextControl
+          label="Якорь дял скролла"
+          value={value}
+          style={{ height: 36 }}
+          readOnly
+        />
+        <Button variant="secondary" onClick={copyToClipboard}>
+          Копировать
+        </Button>
+      </div>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <TextControl
+          label="Точка для списков"
+          value={dot}
+          style={{ height: 36 }}
+          readOnly
+        />
+        <Button variant="secondary" onClick={copyToClipboardDot}>
+          Копировать
+        </Button>
+      </div>
+    </>
   );
 }

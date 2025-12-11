@@ -3,6 +3,7 @@ const attributes = {
   bgc: { type: 'string', default: '' },
   num: { type: 'string', default: '' },
   title: { type: 'string', default: '' },
+  items: { type: 'array', default: [] },
 };
 
 export default attributes;

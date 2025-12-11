@@ -1,22 +1,26 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
 import { Flex, FlexBlock, Button, ToggleControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-16.jpg';
+
+import { useAttributeList } from '../../hooks/useAttributeList';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { anchor, bgc, num, title } = attributes;
+  const { anchor, bgc, num, title, items } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
+
+  const itemsList = useAttributeList(attributes, setAttributes, 'items');
 
   const blockProps = useBlockProps({
     className: 'block-style mgu-advantages'
@@ -27,6 +31,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
+        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -46,40 +51,28 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div style={{ display: 'flex', flex: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: '16px', width: '100%' }}>
-                <div style={{ width: '30%' }}>
-                  <TextareaControl
-                    style={{ textAlign: 'left' }}
-                    placeholder={__('Число', 'theme')}
-                    value={num}
-                    onChange={(value) => setAttributes({ num: value })}
-                    rows={1}
-                  />
-                  <RichText
-                    style={{ textAlign: 'left' }}
-                    placeholder={__('Заголовок', 'theme')}
-                    value={title}
-                    onChange={(value) => setAttributes({ title: value })}
-                  />
-                </div>
+              <div className="repeater-items" style={{ display: 'block', width: '100%' }}>
+                {items.map((item, index) => (
+                  <div key={index} className="repeater-item">
+                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="items-control__buttons">
+                        <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
+                        <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>
+                      </div>
+                      <Button isDestructive onClick={() => itemsList.remove(index)}>❌</Button>
+                    </div>
 
-                <div style={{
-                  width: 'calc(70% - 18px)',
-                  textAlign: 'left',
-                  minHeight: '100px'
-                }}>
-                  <InnerBlocks
-                    allowedBlocks={[
-                      'core/paragraph',
-                      'core/list',
-                      'core/quote',
-                      'core/table',
-                    ]}
-                    templateLock={false}
-                    renderAppender={InnerBlocks.ButtonBlockAppender}
-                  />
-                </div>
+                    {itemsList.renderTextRichToRich(item, index)}
+                  </div>
+                ))}
               </div>
+              <Button
+                onClick={() => itemsList.add({ num: '', title: '', content: '' })}
+                className="add-repeater-item"
+                style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
+              >
+                {__('+ Добавить элемент', 'theme')}
+              </Button>
             </div>
           )}
         </div>

@@ -242,5 +242,47 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
-  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen, renderTextareaToRichText };
+  // ----------------------------
+  // ✍️ Рендер для TextRichToRich
+  // ----------------------------
+  const renderTextRichToRich = (item, index) => {
+    const num = `num`;
+    const title = `title`;
+    const content = `content`;
+
+    return (
+      <div style={{ display: 'flex', flex: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: '16px', width: '100%' }}>
+        <div style={{ width: '30%' }}>
+          <TextareaControl
+            style={{ textAlign: 'left' }}
+            placeholder={__('Число', 'theme')}
+            value={item[num]}
+            onChange={(value) => update(index, num, value)}
+            rows={1}
+          />
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Заголовок', 'theme')}
+            value={item[title]}
+            onChange={(value) => update(index, title, value)}
+          />
+        </div>
+
+        <div style={{
+          width: 'calc(70% - 18px)',
+          textAlign: 'left',
+          minHeight: '100px'
+        }}>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Описание', 'theme')}
+            value={item[content]}
+            onChange={(value) => update(index, content, value)}
+          />
+        </div>
+      </div>
+    )
+  };
+
+  return { list, add, remove, update, moveUp, moveDown, setList, renderSelectTextareaControl, renderTextareaToTextarea, renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen, renderTextareaToRichText, renderTextRichToRich };
 }

@@ -10,7 +10,7 @@ const BgAnchorPanel = ({ attributes, setAttributes }) => {
   const { anchor, bgc } = attributes;
 
   return (
-    <PanelBody title={__('Фон и якорь', 'theme')} initialOpen={false}>
+    <PanelBody title={__('Фон и якорь', 'theme')} initialOpen={true}>
       <AnchorField
         value={anchor}
         onChange={(newId) => setAttributes({ anchor: newId })}
