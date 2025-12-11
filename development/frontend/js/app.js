@@ -125,6 +125,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ************
+  // GalleryPopup
+  new GalleryPopup();
+
 
 
 
