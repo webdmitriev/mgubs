@@ -18,7 +18,7 @@ export default function AnchorField({ value, onChange }) {
     if (value) navigator.clipboard.writeText(value);
   };
 
-  const dot = "•";
+  const dot = "• ";
 
   const copyToClipboardDot = () => {
     if (dot) navigator.clipboard.writeText(dot);

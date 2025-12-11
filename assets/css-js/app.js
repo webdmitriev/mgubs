@@ -54,9 +54,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   $('body').on('click', ".btn-show-popup", () => $(".popup-call").fadeIn(300))
 
-  // **********
-  // AutoSlider
+  // *******************
+  // AutoSlider block-14
   document.querySelectorAll('.block-14-slider-items-js')?.forEach(slider => {
+    new AutoSlider(slider, {
+      loop: true,
+      autoScrollDelay: 4000,
+      slideWidth: 250,
+      gap: 16,
+      pauseOnHover: true
+    });
+  });
+
+  // *******************
+  // AutoSlider block-17
+  document.querySelectorAll('.block-17-slider-items-js')?.forEach(slider => {
     new AutoSlider(slider, {
       loop: true,
       autoScrollDelay: 4000,
