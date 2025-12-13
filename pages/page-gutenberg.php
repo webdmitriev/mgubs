@@ -46,8 +46,8 @@ the_content();
   <div class="container">
     <div class="block-title"><h2 class="h2 underline">Отзывы</h2></div>
   </div>
-  <div class="content-reviews content-reviews-js owner-slider owner-slider-with-arrows">
-    <div class="content-review owner-slide slide">
+  <div class="content-reviews">
+    <div class="content-review">
       <img decoding="async" class="img" src="https://mgubs.ru/wp-content/uploads/2023/07/buzueva-eva-3-kurs.jpg" alt="MGU" />
       <div class="descr">
         <strong>Гасымова Рахила – 4 курс</strong><br/><br/>
@@ -55,34 +55,34 @@ the_content();
       </div>
       <div class="link arrow-hide">Показать полностью</div>
     </div>
-    <div class="content-review owner-slide slide">
+    <div class="content-review">
       <img decoding="async" class="img" src="https://mgubs.ru/wp-content/uploads/2023/07/buzueva-eva-3-kurs.jpg" alt="MGU" />
       <div class="descr">
-        <strong>Гасымова Рахила – 4 курс</strong><br/><br/>
+        <strong>Гасымова Рахила – 5 курс</strong><br/><br/>
         Поступление в ВШБ было одним из правильных решений в моей жизни. Я не только овладела теоретическими знаниями, но также и практическими навыками. Главное достоинство ВШБ-это сильный английский, особенно на первых 2-х курсах. Помимо всего, ВШБ научило тайм-менеджменту, пунктуальности и дисциплине, что является ключевыми характеристиками настоящего бизнесмена. Поступление в ВШБ было одним из правильных решений в моей жизни. Я не только овладела теоретическими знаниями, но также и практическими навыками. Главное достоинство ВШБ-это сильный английский, особенно на первых 2-х курсах. Помимо всего, ВШБ научило тайм-менеджменту, пунктуальности и дисциплине, что является ключевыми характеристиками настоящего бизнесмена.
       </div>
       <div class="link arrow-hide">Показать полностью</div>
     </div>
-    <div class="content-review owner-slide slide">
+    <div class="content-review">
       <img decoding="async" class="img" src="https://mgubs.ru/wp-content/uploads/2023/07/buzueva-eva-3-kurs.jpg" alt="MGU" />
       <div class="descr">
-        <strong>Гасымова Рахила – 4 курс</strong><br/><br/>
+        <strong>Гасымова Рахила – 6 курс</strong><br/><br/>
         Поступление в ВШБ было одним из правильных решений в моей жизни. Я не только овладела теоретическими знаниями, но также и практическими навыками. Главное достоинство ВШБ-это сильный английский, особенно на первых 2-х курсах. Помимо всего, ВШБ научило тайм-менеджменту, пунктуальности и дисциплине, что является ключевыми характеристиками настоящего бизнесмена.
       </div>
       <div class="link arrow-hide">Показать полностью</div>
     </div>
-    <div class="content-review owner-slide slide">
+    <div class="content-review">
       <img decoding="async" class="img" src="https://mgubs.ru/wp-content/uploads/2023/07/buzueva-eva-3-kurs.jpg" alt="MGU" />
       <div class="descr">
-        <strong>Гасымова Рахила – 4 курс</strong><br/><br/>
+        <strong>Гасымова Рахила – 7 курс</strong><br/><br/>
         Поступление в ВШБ было одним из правильных решений в моей жизни. Я не только овладела теоретическими знаниями, но также и практическими навыками. Главное достоинство ВШБ-это сильный английский, особенно на первых 2-х курсах. Помимо всего, ВШБ научило тайм-менеджменту, пунктуальности и дисциплине, что является ключевыми характеристиками настоящего бизнесмена.
       </div>
       <div class="link arrow-hide">Показать полностью</div>
     </div>
-    <div class="content-review owner-slide slide">
+    <div class="content-review">
       <img decoding="async" class="img" src="https://mgubs.ru/wp-content/uploads/2023/07/buzueva-eva-3-kurs.jpg" alt="MGU" />
       <div class="descr">
-        <strong>Гасымова Рахила – 4 курс</strong><br/><br/>
+        <strong>Гасымова Рахила – 8 курс</strong><br/><br/>
         Поступление в ВШБ было одним из правильных решений в моей жизни. Я не только овладела теоретическими знаниями, но также и практическими навыками. Главное достоинство ВШБ-это сильный английский, особенно на первых 2-х курсах. Помимо всего, ВШБ научило тайм-менеджменту, пунктуальности и дисциплине, что является ключевыми характеристиками настоящего бизнесмена.
       </div>
       <div class="link arrow-hide">Показать полностью</div>
