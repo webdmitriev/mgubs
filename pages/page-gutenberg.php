@@ -21,6 +21,33 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-18">
+  <picture>
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/07/bg-576.9.jpg.webp" type="image/webp" media="(max-width: 576px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/07/bg-576.9.jpg" type="image/jpeg" media="(max-width: 576px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/05/bg-1240.2.jpg.webp" type="image/webp" media="(max-width: 1240px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/05/bg-1240.2.jpg" type="image/jpeg" media="(max-width: 1240px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/05/bg-1920.4.jpg.webp" type="image/webp">
+    <img decoding="async" class="lazy img" src="https://mgubs.ru/wp-content/uploads/2023/05/bg-1920.4.jpg" data-src="https://mgubs.ru/wp-content/uploads/2023/05/bg-1920.4.jpg" alt="MGU">
+  </picture>
+  <div class="container">
+    <h2 class="h2">Практика бизнеса Бакалавриат</h2>
+    <div class="descr">
+      Курс «Практика бизнеса» является обязательной частью учебной программы бакалавриата. <br/><br/>
+      Цель курса – предоставить студентам возможность сочетать опыт практической работы с учебой. <br/><br/>
+      Работа в компании дает студентам возможность использовать теории и модели, изучаемые в ВШБ, для решения практических задач. <br/><br/>
+      Курс формирует навык карьерной ориентированности, дает возможность систематически размышлять о своем практическом опыте работы, самостоятельности и востребованности.
+    </div>
+    <div class="link link-white">Подробнее</div>
+  </div>
+</div>
+
+<div class="block-standard block-19">
+  <div class="container">
+    <div class="block-title"><h2 class="h2 underline">Отзывы</h2></div>
+  </div>
+</div>
+
 <div style="display: block; height: 200vh;"></div>
 
 <?php
