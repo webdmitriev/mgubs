@@ -57,11 +57,11 @@
 }
 .owner-slider.owner-slider-with-arrows::scroll-button(left) {
   right: 70px;
-  background: var(--accent-color) url("../img/icons/icon-arrow-next.svg") center / contain no-repeat;
+  background: var(--accent-color) center / contain no-repeat;
   transform: rotate(180deg);
 }
 .owner-slider.owner-slider-with-arrows::scroll-button(right) {
-  background: var(--accent-color) url("../img/icons/icon-arrow-next.svg") center / contain no-repeat;
+  background: var(--accent-color) center / contain no-repeat;
 }
 .owner-slider.owner-slider-with-arrows::scroll-button(right):disabled,
 .owner-slider.owner-slider-with-arrows::scroll-button(left):disabled {

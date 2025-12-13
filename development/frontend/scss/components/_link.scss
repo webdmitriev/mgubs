@@ -26,6 +26,13 @@
     top: calc(50% + 2.5px);
     transform: translateY(-50%) rotate(45deg);
   }
+  &.arrow-hide {
+    padding-right: 0;
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
   &.link-white {
     color: var(--white-color);
     &:before,
