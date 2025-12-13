@@ -101,6 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // *********
+  // Accordion
+  new Accordion('.accordion-container', {
+    multiple: false, // только один открыт
+    animationTime: 300
+  });
 
   // block-47__slider (start)
   // ['.content-reviews-js'].forEach(selector => {

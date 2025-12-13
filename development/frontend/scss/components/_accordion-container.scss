@@ -1,0 +1,71 @@
+.accordion-container {
+  display: block;
+  width: 100%;
+  max-width: 648px;
+  margin: 0 auto;
+  .panel {
+    display: block;
+    width: 100%;
+    .panel-heading {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding-right: 58px;
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--black-color);
+      cursor: pointer;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 48%;
+        right: 24px;
+        width: 11px;
+        height: 11px;
+        border-right: 3px solid var(--black-color);
+        border-bottom: 3px solid var(--black-color);
+        transform: translateY(-50%) rotate(45deg);
+        transition: all 0.4s ease;
+      }
+      &.in {
+        &:after {
+          transform: translateY(-50%) rotate(-135deg);
+        }
+      }
+    }
+    .panel-collapse {
+      display: none;
+      overflow: hidden;
+      .panel-body {
+        display: block;
+        width: 100%;
+        padding: 16px 22px 22px 0px;
+        a {
+          text-decoration: underline;
+          color: var(--accent-color);
+        }
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .accordion-container .panel .panel-heading {
+    padding-right: 32px;
+    font-size: 16px;
+    &:after {
+      right: 6px;
+    }
+  }
+  .accordion-container .panel .panel-collapse .panel-body {
+    font-size: 15px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

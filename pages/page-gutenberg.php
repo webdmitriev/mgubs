@@ -118,8 +118,29 @@ the_content();
 </div>
 
 <div class="block-standard block-21">
-  <div class="container">
-    <!--  -->
+  <div class="container accordion-container">
+    <div class="panel">
+      <div class="panel-heading">При каких симптомах следует пройти эндодонтическое лечение?</div>
+      <div class="panel-collapse" style="display: none;"><div class="panel-body descr">Например, если цвет зуба изменился, либо у вас есть какие-либо болевые ощущения или если появилась повышенная чувствительность зубов к теплу или холоду.</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="heading-title">Насколько болезненно лечение?</span>
+      </div>
+      <div class="panel-collapse" style="display: none;"><div class="panel-body">Большинство пациентов не испытывают никакой боли во время лечения благодаря анестезии</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="heading-title">Может ли потребоваться эндодонтические лечение повторно?</span>
+      </div>
+      <div class="panel-collapse" style="display: none;"><div class="panel-body">Травмы или глубокий вторичный кариес могут быть показанием к повторному эндодонтическому лечению. Однако, такое случается редко</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="heading-title">Всегда ли врач-эндодонтист может сохранить зуб?</span>
+      </div>
+      <div class="panel-collapse" style="display: none;"><div class="panel-body"><a href="#">Всё зависит</a> от степени разрушения зуба</div></div>
+    </div>
   </div>
 </div>
 

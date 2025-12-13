@@ -26,6 +26,7 @@
 @use "./components/divider";
 @use "./components/btn";
 @use "./components/link";
+@use "./components/accordion-container";
 
 @use "components/article-post";
 // @use "components/btn";
@@ -53,6 +54,7 @@
 @use "./mgu-blocks/block-18";
 @use "./mgu-blocks/block-19";
 @use "./mgu-blocks/block-20";
+@use "./mgu-blocks/block-21";
 
 // animations
 @use "./data/animations";
