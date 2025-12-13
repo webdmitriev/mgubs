@@ -4,8 +4,8 @@
 
 .btn {
   display: block;
-  width: 240px;
-  max-width: 100%;
+  width: max-content;
+  min-width: 240px;
   padding: 11px 24px;
   font-family: var(--font-family);
   font-weight: 700;

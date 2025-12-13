@@ -10,7 +10,6 @@ the_content();
 ?>
 
 <div class="block-standard block-17">
-  <!-- owner-slider-with-dots owner-slider-with-arrows -->
   <div class="slider-items">
     <img src="<?= $url; ?>/assets/img/slider/slide-01.jpg" alt="alto" class="slider-item" />
     <img src="<?= $url; ?>/assets/img/slider/slide-02.jpg" alt="alto" class="slider-item" />
@@ -87,6 +86,40 @@ the_content();
       </div>
       <div class="link arrow-hide">Показать полностью</div>
     </div>
+  </div>
+</div>
+
+<div class="block-standard block-20">
+  <picture>
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/06/bg-576.11.jpg.webp" type="image/webp" media="(max-width: 576px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/06/bg-576.11.jpg" type="image/jpeg" media="(max-width: 576px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/06/bg-991.11.jpg.webp" type="image/webp" media="(max-width: 991px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/06/bg-991.11.jpg" type="image/jpeg" media="(max-width: 991px)">
+    <source srcset="https://mgubs.ru/wp-content/uploads/2023/06/bg-1920.11.jpg.webp" type="image/webp">
+    <img decoding="async" class="bg-image" src="https://mgubs.ru/wp-content/uploads/2023/06/bg-1920.11.jpg" alt="MGU" />
+  </picture>
+  <div class="container">
+    <h2 class="h2">Стоимость обучения</h2>
+    <div class="content-items df-ce-st">
+      <div class="content-item">
+        <h4 class="h4">Для российских граждан</h4>
+        <div class="content-item__sum">860 000 ₽</div>
+        <div class="descr">за академический год <br/>430 000 ₽ – за семестр <br/>(оплата производится по семестрам)</div>
+        <button class="btn btn-orange">Оставить заявку</button>
+      </div>
+      <div class="content-item">
+        <h4 class="h4">Для иностранных граждан</h4>
+        <div class="content-item__sum">890 000 ₽</div>
+        <div class="descr">за академический год <br/>445 000 ₽ – за семестр <br/>(оплата производится по семестрам)</div>
+        <button class="btn btn-orange">Оставить заявку</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-21">
+  <div class="container">
+    <!--  -->
   </div>
 </div>
 
