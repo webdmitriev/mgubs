@@ -1,7 +1,7 @@
 @use "./data/reset";
 @use "../fonts/stylesheet.css";
 
-@use "./slick/slick-lightbox.css";
+@use "./slick/slick-lightbox.scss";
 @use "./slick/slick.css";
 
 @use "./data/colors";
@@ -25,8 +25,6 @@
 @use "./components/divider";
 @use "./components/btn";
 @use "./components/link";
-@use "./components/owner-slider";
-@use "./components/gallery-popup";
 
 @use "components/article-post";
 // @use "components/btn";
