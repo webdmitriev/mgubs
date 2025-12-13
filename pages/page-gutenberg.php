@@ -144,6 +144,12 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-22">
+  <div class="container form-small">
+    <?php echo do_shortcode('[contact-form-7 id="8ff0401" title="Форма для подвала"]'); ?>
+  </div>
+</div>
+
 <div style="display: block; height: 200vh;"></div>
 
 <?php

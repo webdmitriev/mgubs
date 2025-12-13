@@ -1,0 +1,42 @@
+.block-22 {
+  padding-block: 40px;
+  background-color: var(--accent-color);
+  .form-small {
+    max-width: 854px;
+  }
+  .form-title {
+    text-align: center;
+  }
+  .wpcf7 .form-title,
+  .wpcf7 .form-group .form-group_label,
+  .wpcf7 .form-group.form-group-checkbox .wpcf7-list-item-label,
+  .wpcf7 .form-group .wpcf7-not-valid-tip {
+    color: var(--white-color);
+  }
+  .wpcf7 .form-group input[type="checkbox"]:checked + .wpcf7-list-item-label:before {
+    border-color: var(--white-color);
+  }
+  .wpcf7 .form-group input[type="submit"][disabled] {
+    border: 2px solid var(--gray-color);
+  }
+  .wpcf7 .form-group input[type="submit"] {
+    border: 2px solid var(--white-color);
+  }
+}
+
+@media (max-width: 1680px) {
+}
+@media (max-width: 1366px) {
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}
