@@ -90,7 +90,7 @@ const PageSidebar = () => {
 
         </PanelBody>
 
-        <PanelBody title="Основные поля" initialOpen={true}>
+        <PanelBody title="Фон" initialOpen={false}>
           <ColorSelect
             label="Цвет фона"
             colors={[...colors]}

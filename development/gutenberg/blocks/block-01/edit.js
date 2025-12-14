@@ -11,11 +11,14 @@ import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-01.jpg';
 
-import ContentPanel from './controls/ContentPanel';
+import PictureBgEdit from '../../components/PictureBgEdit';
+
 import VideoHelpPanel from './controls/VideoHelpPanel';
+import ContentPanel from './controls/ContentPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, isBlockLine, second_title, description, imageData, imageId, bgData, bgId } = attributes;
+  const { title, isBlockLine, second_title, description, imageData, imageId } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -23,9 +26,38 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  const blockProps = useBlockProps({
-    className: 'block-style'
-  });
+  const bgSizes = [1920, 991, 576];
+
+  // Handler - bg
+  const getOnSelectBg = (size) => (media) => {
+    setAttributes({
+      [`bg${size}Id`]: media.id,
+      [`bg${size}Data`]: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        },
+      },
+    });
+  };
+
+  const getOnRemoveBg = (size) => () => {
+    setAttributes({
+      [`bg${size}Id`]: 0,
+      [`bg${size}Data`]: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        },
+      },
+    });
+  };
 
   // Handler - image
   const onSelectImage = (media) => {
@@ -58,42 +90,16 @@ const Edit = ({ attributes, setAttributes }) => {
     });
   };
 
-  // Handler - bg
-  const onSelectBg = (media) => {
-    setAttributes({
-      bgId: media.id,
-      bgData: {
-        url: media.url,
-        alt: media.alt || '',
-        responsive: media.responsive || {
-          webp: '',
-          jpg: '',
-          default: media.url,
-        }
-      }
-    });
-  };
-
-  const onRemoveBg = () => {
-    setAttributes({
-      bgId: 0,
-      bgData: {
-        url: '',
-        alt: '',
-        responsive: {
-          webp: '',
-          jpg: '',
-          default: '',
-        }
-      }
-    });
-  };
+  const blockProps = useBlockProps({
+    className: 'block-style'
+  });
 
   return (
     <>
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -115,9 +121,8 @@ const Edit = ({ attributes, setAttributes }) => {
             <div className="advanced-block-content">
               <div className="advanced-block-text">
                 <>
-                  <label htmlFor="rich-title" className="my-rich-text__label">Заголовок</label>
+                  <label className="my-rich-text__label">Заголовок</label>
                   <RichText
-                    id="rich-title"
                     tagName="div"
                     label="Заголовок"
                     value={title}
@@ -137,9 +142,8 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
 
                 <>
-                  <label htmlFor="rich-second_title" className="my-rich-text__label">Второй заголовок</label>
+                  <label className="my-rich-text__label">Второй заголовок</label>
                   <RichText
-                    id="rich-second_title"
                     tagName="div"
                     value={second_title}
                     onChange={(value) => setAttributes({ second_title: value })}
@@ -149,9 +153,8 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
 
                 <>
-                  <label htmlFor="rich-description" className="my-rich-text__label">Описание</label>
+                  <label className="my-rich-text__label">Описание</label>
                   <RichText
-                    id="rich-description"
                     tagName="div"
                     value={description}
                     onChange={(value) => setAttributes({ description: value })}
@@ -202,45 +205,18 @@ const Edit = ({ attributes, setAttributes }) => {
                 />
               </MediaUploadCheck>
 
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={onSelectBg}
-                  allowedTypes={['image']}
-                  value={bgId}
-                  render={({ open }) => (
-                    <div className="advanced-block-image advanced-block-image-48">
-                      <div className="label-image">Картинка (фон)</div>
-                      {bgData.url ? (
-                        <>
-                          <img
-                            src={bgData.url}
-                            className="advanced-image-preview"
-                            alt=""
-                            style={{ borderRadius: '8px' }}
-                          />
-                          <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
-                            <Button onClick={open} variant="secondary" size="small">
-                              ✏️ {__('Изменить', 'theme')}
-                            </Button>
-                            <Button
-                              onClick={onRemoveBg}
-                              variant="tertiary"
-                              size="small"
-                              isDestructive
-                            >
-                              🗑 {__('Удалить', 'theme')}
-                            </Button>
-                          </div>
-                        </>
-                      ) : (
-                        <Button onClick={open} variant="primary">
-                          📷 {__('Добавить картинку', 'theme')}
-                        </Button>
-                      )}
-                    </div>
-                  )}
-                />
-              </MediaUploadCheck>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {bgSizes.map((size) => (
+                  <PictureBgEdit
+                    key={size}
+                    label={`Фон ${size}px`}
+                    imageId={attributes[`bg${size}Id`]}
+                    imageData={attributes[`bg${size}Data`]}
+                    onSelect={getOnSelectBg(size)}
+                    onRemove={getOnRemoveBg(size)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>

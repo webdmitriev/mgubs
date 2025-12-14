@@ -14,12 +14,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const {
-    title, items,
-    bg1920Id, bg1920Data,
-    bg991Id, bg991Data,
-    bg576Id, bg576Data
-  } = attributes;
+  const { title, items } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 

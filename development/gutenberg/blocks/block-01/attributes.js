@@ -1,18 +1,12 @@
 export default {
-  title: {
-    type: 'string',
-    default: 'Высшая школа бизнеса МГУ',
-  },
+  anchor: { type: 'string', default: '' },
+  bgc: { type: 'string', default: '' },
 
-  isBlockLine: {
-    type: 'boolean',
-    default: true
-  },
+  title: { type: 'string', default: 'Высшая школа бизнеса МГУ' },
 
-  second_title: {
-    type: 'string',
-    default: 'Миссия школы',
-  },
+  isBlockLine: { type: 'boolean', default: true },
+
+  second_title: { type: 'string', default: 'Миссия школы' },
 
   description: {
     type: 'string',
@@ -33,8 +27,36 @@ export default {
     }
   },
 
-  bgId: { type: 'number', default: 0 },
-  bgData: {
+  bg1920Id: { type: 'number', default: 0 },
+  bg1920Data: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: '',
+      }
+    }
+  },
+
+  bg991Id: { type: 'number', default: 0 },
+  bg991Data: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: '',
+      }
+    }
+  },
+
+  bg576Id: { type: 'number', default: 0 },
+  bg576Data: {
     type: 'object',
     default: {
       url: '',

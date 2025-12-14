@@ -53,7 +53,7 @@ const PictureBg = ({
   }
 
   return (
-    <picture className={className}>
+    <picture>
       {/* mobile first */}
       {renderSources(bg576Data, '(max-width: 576px)')}
       {renderSources(bg991Data, '(max-width: 991px)')}
@@ -72,6 +72,7 @@ const PictureBg = ({
           ''
         }
         loading="lazy"
+        className={className}
       />
     </picture>
   );
