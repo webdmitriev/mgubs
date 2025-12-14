@@ -14,6 +14,8 @@ import apiFetch from '@wordpress/api-fetch';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-09.jpg';
 
+import BgAnchorPanel from './controls/BgAnchorPanel';
+
 // Создаем собственную функцию debounce
 const debounce = (func, wait) => {
   let timeout;
@@ -237,6 +239,7 @@ const Edit = ({ attributes, setAttributes }) => {
             </p>
           </BaseControl>
         </PanelBody>
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       {showTeacherModal && (

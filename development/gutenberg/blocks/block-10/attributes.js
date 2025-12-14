@@ -1,12 +1,9 @@
 export default {
-  title: {
-    type: 'string',
-    default: '',
-  },
-  subTitle: {
-    type: 'string',
-    default: '',
-  },
+  anchor: { type: 'string', default: '' },
+  bgc: { type: 'string', default: '' },
+
+  title: { type: 'string', default: '' },
+  subTitle: { type: 'string', default: '' },
 
   imageOneId: { type: 'number', default: 0 },
   imageOneData: {

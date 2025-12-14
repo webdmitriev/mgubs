@@ -11,6 +11,7 @@ import blockImage from '../../../../admin/assets/img/blocks/block-10.jpg';
 import { useAttributeList } from '../../hooks/useAttributeList';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, subTitle, imageOneId, imageOneData, imageTwoId, imageTwoData, contacts } = attributes;
@@ -104,6 +105,7 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>

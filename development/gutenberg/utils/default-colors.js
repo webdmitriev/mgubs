@@ -40,6 +40,8 @@ const colors = [
 
   { name: 'Гуманитарный трек', color: '#AB8DC1', theme: 'humanitarian-track' },
   { name: 'Гуманитарный трек Фон', color: '#F6EDEF', theme: 'humanitarian-track' },
+
+  { name: 'Для блока контактов', color: '#313135', theme: 'block-contacts' },
 ]
 
 export default colors;

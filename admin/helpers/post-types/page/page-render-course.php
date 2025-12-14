@@ -14,6 +14,9 @@ function render_course_block( $attributes ) {
     return '';
   }
 
+  $anchor = $attributes['anchor'] ?? false;
+  $bgc = $attributes['bgc'] ?? false;
+
   // Берём преподавателей в порядке ID
   $posts = get_posts([
     'post_type'      => 'page',
@@ -24,7 +27,7 @@ function render_course_block( $attributes ) {
 
   ob_start();
 ?>
-  <div class="block-standard block-09">
+  <div class="block-standard block-09" id="<?php echo esc_html($anchor); ?>" style="background-color: <?php echo $bgc ? esc_html($bgc) : 'transparent'; ?>">
     <div class="container">
       <?php foreach ( $posts as $post ):
         $date_info = format_date_russian(get_post_meta($post->ID, 'date_start', true));

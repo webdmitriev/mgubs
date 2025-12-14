@@ -3,11 +3,14 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Picture from '../../components/picture';
 
 const Save = ({ attributes }) => {
-  const { title, subTitle, imageOneData, imageTwoData, contacts } = attributes;
+  const { anchor, bgc, title, subTitle, imageOneData, imageTwoData, contacts } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-10',
-    id: 'contacts-block-id'
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent',
+    }
   });
 
   return (
