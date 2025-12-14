@@ -14,7 +14,7 @@ const Picture = ({ data, className = '' }) => {
         <source
           type="image/webp"
           srcSet={data.responsive.webp}
-          sizes="(max-width: 768px) 100vw, 768px"
+          sizes="(max-width: 1920px) 100vw, 1920px"
         />
       )}
 
@@ -22,7 +22,7 @@ const Picture = ({ data, className = '' }) => {
         <source
           type="image/jpeg"
           srcSet={data.responsive.jpg}
-          sizes="(max-width: 768px) 100vw, 768px"
+          sizes="(max-width: 1920px) 100vw, 1920px"
         />
       )}
 

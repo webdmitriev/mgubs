@@ -22,6 +22,11 @@ function theme_register_block_categories( $categories, $context ) {
         'title' => __( 'Заглавные блоки', 'theme' ),
         'icon'  => 'layout',
       ],
+      [
+        'slug'  => 'slider-blocks',
+        'title' => __( 'Слайдеры', 'theme' ),
+        'icon'  => 'layout',
+      ],
     ]
   );
 }
@@ -46,6 +51,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-14',
     'theme/block-15',
     'theme/block-16',
+    'theme/block-17',
     'core/paragraph',
     'core/list',
     'core/list-item',
