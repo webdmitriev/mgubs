@@ -11,7 +11,7 @@ import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, bgData, bgId } = attributes;
+  const { title } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 

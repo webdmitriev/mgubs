@@ -2,10 +2,14 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 
 const Save = ({ attributes }) => {
-  const { buttonText, buttonLink, title } = attributes;
+  const { anchor, bgc, buttonText, buttonLink, title } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-04',
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent',
+    }
   });
 
   return (
