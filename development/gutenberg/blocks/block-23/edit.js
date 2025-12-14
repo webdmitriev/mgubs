@@ -30,8 +30,8 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
-        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
