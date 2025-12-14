@@ -14,6 +14,7 @@ import { useAutoLinking } from '../../utils/useAutoLinking';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const {
@@ -30,7 +31,6 @@ const Edit = ({ attributes, setAttributes }) => {
   };
 
   const blockProps = useBlockProps({
-    style: { backgroundColor: bgc },
     className: 'block-style mgu-advantages'
   });
 
@@ -111,6 +111,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -215,13 +216,14 @@ const Edit = ({ attributes, setAttributes }) => {
                 ))}
               </div>
 
-              <Button
-                isPrimary
-                onClick={addItem}
-                className="add-repeater-item"
-              >
-                {__('+ Добавить элемент', 'theme')}
-              </Button>
+              <div style={{ display: 'block', width: '100%' }}>
+                <Button
+                  style={{ display: 'block', width: '100%', marginInline: 'auto', border: '1px solid rgba(0,124,186,.5)' }}
+                  onClick={addItem}
+                >
+                  {__('+ Добавить элемент', 'theme')}
+                </Button>
+              </div>
             </div>
           )}
         </div>
