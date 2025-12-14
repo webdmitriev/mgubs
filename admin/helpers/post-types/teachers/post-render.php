@@ -15,6 +15,8 @@ function render_teachers_block( $attributes ) {
   }
 
   // Параметры
+  $anchor = $attributes['anchor'] ?? false;
+  $bgc = $attributes['bgc'] ?? false;
   $isShowMoreButton = $attributes['isShowMoreButton'] ?? false;
   $isShowLink       = $attributes['isShowLink'] ?? false;
   $linkText         = $attributes['linkText'] ?? '';
@@ -30,7 +32,7 @@ function render_teachers_block( $attributes ) {
 
   ob_start();
 ?>
-  <div class="block-standard block-08">
+  <div class="block-standard block-08" id="<?php echo esc_html($anchor); ?>" style="background-color: <?php echo $bgc ? esc_html($bgc) : 'transparent'; ?>">
     <div class="container">
       <?php foreach ( $posts as $post ):
         $meta_position = get_post_meta( $post->ID, 'position', true );

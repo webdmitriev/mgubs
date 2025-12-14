@@ -1,26 +1,15 @@
 import { __ } from '@wordpress/i18n';
+import { InspectorControls, useBlockProps, URLInput } from '@wordpress/block-editor';
 import {
-  InspectorControls,
-  useBlockProps,
-  URLInput
-} from '@wordpress/block-editor';
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  Button,
-  Spinner,
-  BaseControl,
-  SearchControl,
-  Modal,
-  TextControl,
-  TextareaControl,
-  Flex, FlexBlock, FlexItem
+  PanelBody, ToggleControl, Button,
+  Spinner, BaseControl, SearchControl,
+  Modal, TextControl, TextareaControl
 } from '@wordpress/components';
 import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-08.jpg';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 // Создаем собственную функцию debounce
 const debounce = (func, wait) => {
@@ -331,6 +320,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
           </BaseControl>
         </PanelBody>
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       {showTeacherModal && (
