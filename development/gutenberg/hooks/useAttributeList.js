@@ -1,6 +1,6 @@
 import { useCallback } from '@wordpress/element';
 import { MediaUpload, RichText } from '@wordpress/block-editor';
-import { Button, TextareaControl, SelectControl } from '@wordpress/components';
+import { Button, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 export function useAttributeList(attributes, setAttributes, key) {
@@ -421,11 +421,64 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+  // ----------------------------
+  // ✍️ Рендер для blockTwenty
+  // ----------------------------
+  const renderBlockTwenty = (item, index) => {
+    const title = `title`;
+    const sum = `sum`;
+    const content = `content`;
+    const isButton = 'isButton';
+
+    return (
+      <>
+        <div style={{ display: 'flex', flex: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: '16px', width: '100%' }}>
+          <div style={{ width: '30%' }}>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Заголовок', 'theme')}
+              value={item[title]}
+              onChange={(value) => update(index, title, value)}
+            />
+            <TextareaControl
+              style={{ textAlign: 'left' }}
+              placeholder={__('Число', 'theme')}
+              value={item[sum]}
+              onChange={(value) => update(index, sum, value)}
+              rows={1}
+            />
+          </div>
+
+          <div style={{
+            width: 'calc(70% - 18px)',
+            textAlign: 'left',
+            minHeight: '100px'
+          }}>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Описание', 'theme')}
+              value={item[content]}
+              onChange={(value) => update(index, content, value)}
+            />
+          </div>
+        </div>
+
+        <div style={{ width: '100%' }}>
+          <ToggleControl
+            label={!item[isButton] ? __('Кнопка убрана ❌', 'theme') : __('Кнопка показано ✅', 'theme')}
+            checked={item[isButton]}
+            onChange={(value) => update(index, isButton, value)}
+          />
+        </div>
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
     renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen,
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
-    renderBlockNineteen
+    renderBlockNineteen, renderBlockTwenty
   };
 }

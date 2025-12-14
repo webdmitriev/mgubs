@@ -1,0 +1,156 @@
+import { useState } from '@wordpress/element';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { Button, ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+
+import blockImage from '../../../../admin/assets/img/blocks/block-20.jpg';
+
+import PictureBgEdit from '../../components/PictureBgEdit';
+
+import { useAttributeList } from '../../hooks/useAttributeList';
+
+import VideoHelpPanel from './controls/VideoHelpPanel';
+import ContentPanel from './controls/ContentPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
+
+const Edit = ({ attributes, setAttributes }) => {
+  const {
+    title, items,
+    bg1920Id, bg1920Data,
+    bg991Id, bg991Data,
+    bg576Id, bg576Data
+  } = attributes;
+
+  const [isPreview, setIsPreview] = useState(false);
+
+  const togglePreview = () => {
+    setIsPreview(!isPreview);
+  };
+
+  const itemsList = useAttributeList(attributes, setAttributes, 'items');
+
+  const bgSizes = [1920, 991, 576];
+
+  // Handler - bg
+  const getOnSelectBg = (size) => (media) => {
+    setAttributes({
+      [`bg${size}Id`]: media.id,
+      [`bg${size}Data`]: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        },
+      },
+    });
+  };
+
+  const getOnRemoveBg = (size) => () => {
+    setAttributes({
+      [`bg${size}Id`]: 0,
+      [`bg${size}Data`]: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        },
+      },
+    });
+  };
+
+  const blockProps = useBlockProps({
+    className: 'block-style mgu-advantages'
+  });
+
+  return (
+    <>
+      <InspectorControls>
+        <VideoHelpPanel />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
+        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+      </InspectorControls>
+
+      <div {...blockProps}>
+        <div className="advanced-block">
+          <div className="block-info">
+            <span className="block-info-title">🎨 Block 20 - Стоимость обучения</span>
+            <ToggleControl
+              label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
+              checked={isPreview}
+              onChange={togglePreview}
+            />
+          </div>
+
+          {!isPreview && (
+            <img src={blockImage} alt="MGUBS" style={{ width: '100%', height: 'inherit', objectFit: 'contain' }} />
+          )}
+
+          {isPreview && (
+            <div className="advanced-block-content">
+              <div className="advanced-block-text">
+                <>
+                  <label htmlFor="rich-title" className="my-rich-text__label">Заголовок</label>
+                  <RichText
+                    id="rich-title"
+                    tagName="div"
+                    label="Заголовок"
+                    value={title}
+                    onChange={(value) => setAttributes({ title: value })}
+                    placeholder={__('Заголовок...', 'theme')}
+                    allowedFormats={[]}
+                  />
+                </>
+              </div>
+
+              <div style={{ height: '24px' }} />
+
+              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {items.map((item, index) => (
+                  <div key={index} className="repeater-item">
+                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="items-control__buttons">
+                        <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
+                        <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>
+                      </div>
+                      <Button isDestructive onClick={() => itemsList.remove(index)}>❌</Button>
+                    </div>
+
+                    {itemsList.renderBlockTwenty(item, index)}
+                  </div>
+                ))}
+              </div>
+              <Button
+                onClick={() => itemsList.add({ title: '', sum: '', content: '' })}
+                className="add-repeater-item"
+                style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
+              >
+                {__('+ Добавить элемент', 'theme')}
+              </Button>
+
+              <div style={{ height: '24px' }} />
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {bgSizes.map((size) => (
+                  <PictureBgEdit
+                    key={size}
+                    label={`Фон ${size}px`}
+                    imageId={attributes[`bg${size}Id`]}
+                    imageData={attributes[`bg${size}Data`]}
+                    onSelect={getOnSelectBg(size)}
+                    onRemove={getOnRemoveBg(size)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Edit;

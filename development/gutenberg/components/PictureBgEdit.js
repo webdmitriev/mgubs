@@ -16,7 +16,7 @@ const PictureBgEdit = ({
         allowedTypes={['image']}
         value={imageId}
         render={({ open }) => (
-          <div className="advanced-block-image advanced-block-image-48">
+          <div className="advanced-block-image">
             <div className="label-image">{label}</div>
 
             {imageData?.url ? (
