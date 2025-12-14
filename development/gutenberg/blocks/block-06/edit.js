@@ -5,8 +5,9 @@ import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-06.jpg';
 
-import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
+import ContentPanel from './controls/ContentPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, subTitle, buttonText, buttonOption } = attributes;
@@ -26,6 +27,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
