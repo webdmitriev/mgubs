@@ -140,16 +140,18 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
               </div>
 
-              {bgSizes.map((size) => (
-                <PictureBgEdit
-                  key={size}
-                  label={`Фон ${size}px`}
-                  imageId={attributes[`bg${size}Id`]}
-                  imageData={attributes[`bg${size}Data`]}
-                  onSelect={getOnSelectBg(size)}
-                  onRemove={getOnRemoveBg(size)}
-                />
-              ))}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {bgSizes.map((size) => (
+                  <PictureBgEdit
+                    key={size}
+                    label={`Фон ${size}px`}
+                    imageId={attributes[`bg${size}Id`]}
+                    imageData={attributes[`bg${size}Data`]}
+                    onSelect={getOnSelectBg(size)}
+                    onRemove={getOnRemoveBg(size)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>

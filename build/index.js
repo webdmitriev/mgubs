@@ -9530,14 +9530,22 @@ const Edit = ({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Ссылка...', 'theme'),
     allowedFormats: []
-  }))), bgSizes.map(size => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PictureBgEdit__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      rowGap: '16px',
+      columnGap: '16px',
+      width: '100%'
+    }
+  }, bgSizes.map(size => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PictureBgEdit__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: size,
     label: `Фон ${size}px`,
     imageId: attributes[`bg${size}Id`],
     imageData: attributes[`bg${size}Data`],
     onSelect: getOnSelectBg(size),
     onRemove: getOnRemoveBg(size)
-  }))))));
+  })))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
