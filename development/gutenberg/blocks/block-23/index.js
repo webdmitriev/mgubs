@@ -1,0 +1,22 @@
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import edit from './edit';
+import save from './save';
+import attributes from './attributes';
+
+registerBlockType('theme/block-23', {
+  title: __('Managers', 'theme'),
+  category: 'main-blocks',
+  icon: 'admin-customizer',
+  description: __(' ', 'theme'),
+  attributes,
+  edit,
+  save,
+  example: {
+    attributes: {
+      title: 'Managers',
+    },
+  },
+});
+
+console.log('✅ block-23');
