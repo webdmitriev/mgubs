@@ -1,10 +1,14 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { programs } = attributes;
+  const { anchor, bgc, programs } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-05',
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent',
+    }
   });
 
   return (

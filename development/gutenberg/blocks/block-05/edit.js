@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 import blockImage from '../../../../admin/assets/img/blocks/block-05.jpg';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { programs } = attributes;
@@ -173,6 +174,7 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>

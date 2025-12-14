@@ -1,4 +1,7 @@
 export default {
+  anchor: { type: 'string', default: '' },
+  bgc: { type: 'string', default: '' },
+
   programs: {
     type: 'array',
     default: [
