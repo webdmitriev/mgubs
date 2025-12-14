@@ -51,30 +51,45 @@ const processNestedField = (attributes, fieldPath) => {
 // Универсальный хук для подключения к любому блоку
 export const useTypograf = (attributes, setAttributes, fields) => {
   const typographField = (fieldName) => {
-    const processedValue = processNestedField(attributes, fieldName);
-
     if (fieldName.includes('[].')) {
-      const [arrayField] = fieldName.split('[].');
-      setAttributes({ [arrayField]: processedValue });
+      const [arrayField, nestedField] = fieldName.split('[].');
+      const array = attributes[arrayField];
+
+      if (Array.isArray(array)) {
+        const newArray = array.map(item => ({
+          ...item,
+          [nestedField]: typographText(item[nestedField])
+        }));
+
+        setAttributes({ [arrayField]: newArray });
+      }
     } else {
-      setAttributes({ [fieldName]: processedValue });
+      setAttributes({ [fieldName]: typographText(attributes[fieldName]) });
     }
   };
 
+
   const typographAllFields = () => {
     const newAttributes = {};
+    const arraysCache = {};
 
     fields.forEach((field) => {
-      const processedValue = processNestedField(attributes, field);
-
       if (field.includes('[].')) {
-        const [arrayField] = field.split('[].');
-        newAttributes[arrayField] = processedValue;
+        const [arrayField, nestedField] = field.split('[].');
+        const sourceArray = arraysCache[arrayField] || attributes[arrayField];
+
+        if (Array.isArray(sourceArray)) {
+          arraysCache[arrayField] = sourceArray.map(item => ({
+            ...item,
+            [nestedField]: typographText(item[nestedField])
+          }));
+        }
       } else {
-        newAttributes[field] = processedValue;
+        newAttributes[field] = typographText(attributes[field]);
       }
     });
 
+    Object.assign(newAttributes, arraysCache);
     setAttributes(newAttributes);
   };
 

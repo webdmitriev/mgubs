@@ -37,3 +37,4 @@ import './blocks/block-17/index.js';
 import './blocks/block-18/index.js';
 import './blocks/block-19/index.js';
 import './blocks/block-20/index.js';
+import './blocks/block-21/index.js';

@@ -474,11 +474,36 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+  // ----------------------------
+  // ✍️ Рендер для TextareaToRichText
+  // ----------------------------
+  const renderBlockTwentyOne = (item, index) => {
+    const title = `title`;
+    const content = `content`;
+
+    return (
+      <>
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Вопрос', 'theme')}
+          value={item[title]}
+          onChange={(value) => update(index, title, value)}
+        />
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Ответ', 'theme')}
+          value={item[content]}
+          onChange={(value) => update(index, content, value)}
+        />
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
     renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen,
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
-    renderBlockNineteen, renderBlockTwenty
+    renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne
   };
 }

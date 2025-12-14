@@ -27,8 +27,8 @@ const Save = ({ attributes }) => {
       </div>
       <div className="content-reviews">
         {items.map((item, index) => (
-          <div className="content-review">
-            <Picture key={index} data={item.image} className="img" />
+          <div key={index} className="content-review">
+            <Picture data={item.image} className="img" />
             <RichText.Content
               tagName="div"
               value={item.content}
