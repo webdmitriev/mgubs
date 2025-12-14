@@ -7,7 +7,7 @@ const Save = ({ attributes }) => {
     className: `block-standard block-14`,
     id: anchor,
     style: {
-      backgroundColor: bgc,
+      backgroundColor: bgc || 'transparent',
     }
   });
 
@@ -19,8 +19,7 @@ const Save = ({ attributes }) => {
           value={title}
           className="h2"
         />
-        {/* <!-- owner-slider-with-dots owner-slider-with-arrows --> */}
-        <div className="slider-items block-14-slider-items-js owner-slider owner-slider-with-dots">
+        <div className="slider-items block-14-slider">
           {items.map((item, index) => (
             <div key={index} className="slider-item owner-slide slide">
               {item.image && (

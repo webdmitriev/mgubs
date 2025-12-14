@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  $('.block-14 .block-14-slider').each(function () {
+    const slider = $(this);
+    slider.slick({
+      autoplay: true,
+      autoplaySpeed: 7000,
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      variableWidth: true,
+      prevArrow: false,
+      nextArrow: false,
+      rows: 0,
+      responsive: [
+        {
+          breakpoint: 1199,
+          settings: {
+            centerMode: true
+          }
+        }
+      ]
+    });
+  })
+
   $('.block-17 .slider-items').each(function () {
     const slider = $(this);
     slider.slick({

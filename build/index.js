@@ -7767,7 +7767,7 @@ const Save = ({
     className: `block-standard block-14`,
     id: anchor,
     style: {
-      backgroundColor: bgc
+      backgroundColor: bgc || 'transparent'
     }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -7779,7 +7779,7 @@ const Save = ({
     value: title,
     className: "h2"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "slider-items block-14-slider-items-js owner-slider owner-slider-with-dots"
+    className: "slider-items block-14-slider"
   }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
     className: "slider-item owner-slide slide"
@@ -8224,11 +8224,17 @@ const Save = ({
   attributes
 }) => {
   const {
+    anchor,
+    bgc,
     title,
     items
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `block-15block-standard block-15`
+    className: `block-15block-standard block-15`,
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent'
+    }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -10106,7 +10112,7 @@ const Save = ({
     className: `block-standard block-19`,
     id: anchor,
     style: {
-      backgroundColor: bgc || 'var(--accent-color);'
+      backgroundColor: bgc || 'transparent'
     }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -10694,7 +10700,7 @@ const Save = ({
     className: `block-standard block-20`,
     id: anchor,
     style: {
-      backgroundColor: bgc || 'var(--accent-color);'
+      backgroundColor: bgc || 'transparent'
     }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -11153,7 +11159,7 @@ const Save = ({
     className: `block-standard block-21`,
     id: anchor,
     style: {
-      backgroundColor: bgc || 'var(--accent-color);'
+      backgroundColor: bgc || 'transparent'
     }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -11487,7 +11493,7 @@ const Save = ({
     className: `block-standard block-22`,
     id: anchor,
     style: {
-      backgroundColor: bgc || 'var(--accent-color);'
+      backgroundColor: bgc || 'transparent'
     }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
@@ -11973,7 +11979,7 @@ function AnchorField({
   const copyToClipboard = () => {
     if (value) navigator.clipboard.writeText(value);
   };
-  const dot = "• ";
+  const dot = "●";
   const copyToClipboardDot = () => {
     if (dot) navigator.clipboard.writeText(dot);
   };

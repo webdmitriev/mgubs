@@ -8,7 +8,7 @@ const Save = ({ attributes }) => {
     className: `block-standard block-22`,
     id: anchor,
     style: {
-      backgroundColor: bgc || 'var(--accent-color);',
+      backgroundColor: bgc || 'transparent',
     }
   });
 

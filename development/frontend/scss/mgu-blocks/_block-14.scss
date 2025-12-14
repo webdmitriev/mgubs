@@ -6,11 +6,9 @@
     color: var(--white-color);
   }
   .slider-items {
-    gap: 16px;
     .slider-item {
-      scroll-snap-align: center;
-      flex: 0 0 250px;
       width: 250px;
+      margin-right: 14px;
       padding: 12px 10px 14px 10px;
       background-color: var(--white-color);
       border-radius: 10px;
@@ -25,6 +23,18 @@
         display: block;
         margin-bottom: 8px;
       }
+    }
+    .slick-track {
+      display: flex !important;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .slick-slide {
+      display: flex !important;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      height: inherit !important;
     }
   }
 }
