@@ -1,42 +1,29 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
+import PictureBg from '../../components/PictureBg';
 
 const Save = ({ attributes }) => {
   const {
-    title,
-    subTitleOne,
-    subTitleTwo,
-    descr,
-    divider,
-    imageUrl,
-    imageAlt,
-    responsive,
-    cf7Shortcode
+    anchor, bgc, title, subTitleOne, subTitleTwo, descr,
+    divider, bg1920Data, bg991Data, bg576Data, cf7Shortcode
   } = attributes;
 
   const blockProps = useBlockProps.save({
     className: `block-11`,
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent',
+    }
   });
 
   return (
     <main {...blockProps}>
-      {imageUrl && (
-        <picture>
-          {responsive?.webp && (
-            <source srcSet={responsive.webp} type="image/webp" />
-          )}
-          {responsive?.jpg && (
-            <source srcSet={responsive.jpg} type="image/jpeg" />
-          )}
-          <img
-            src={responsive?.default || imageUrl}
-            alt={responsive?.alt || imageAlt || title || 'MGU'}
-            className="mgu-main__bg"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      )}
+      <PictureBg
+        bg1920Data={bg1920Data}
+        bg991Data={bg991Data}
+        bg576Data={bg576Data}
+        className="mgu-main__bg"
+      />
 
       <div className="container df-sp-ce">
         <div className="mgu-main__content">

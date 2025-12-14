@@ -5,11 +5,12 @@ import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-11.jpg';
 
+import PictureBgEdit from '../../components/PictureBgEdit';
 import CF7FormSelector from '../../components/CF7FormSelector';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
-import ImagePanel from "./controls/ImagePanel";
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, subTitleOne, subTitleTwo, divider, descr } = attributes;
@@ -20,6 +21,39 @@ const Edit = ({ attributes, setAttributes }) => {
     className: 'block-style block-11'
   });
 
+  const bgSizes = [1920, 991, 576];
+
+  // Handler - bg
+  const getOnSelectBg = (size) => (media) => {
+    setAttributes({
+      [`bg${size}Id`]: media.id,
+      [`bg${size}Data`]: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        },
+      },
+    });
+  };
+
+  const getOnRemoveBg = (size) => () => {
+    setAttributes({
+      [`bg${size}Id`]: 0,
+      [`bg${size}Data`]: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        },
+      },
+    });
+  };
+
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
@@ -29,7 +63,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <InspectorControls>
         <VideoHelpPanel />
         <ContentPanel attributes={attributes} setAttributes={setAttributes} />
-        <ImagePanel attributes={attributes} setAttributes={setAttributes} />
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -123,6 +157,19 @@ const Edit = ({ attributes, setAttributes }) => {
                   <CF7FormSelector attributes={attributes} setAttributes={setAttributes} />
                 </FlexBlock>
               </Flex>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {bgSizes.map((size) => (
+                  <PictureBgEdit
+                    key={size}
+                    label={`Фон ${size}px`}
+                    imageId={attributes[`bg${size}Id`]}
+                    imageData={attributes[`bg${size}Data`]}
+                    onSelect={getOnSelectBg(size)}
+                    onRemove={getOnRemoveBg(size)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
