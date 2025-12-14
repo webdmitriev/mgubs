@@ -34,3 +34,4 @@ import './blocks/block-14/index.js';
 import './blocks/block-15/index.js';
 import './blocks/block-16/index.js';
 import './blocks/block-17/index.js';
+import './blocks/block-18/index.js';
