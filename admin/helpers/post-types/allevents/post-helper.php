@@ -57,6 +57,8 @@ function get_footer_posts_by_program($program_slug, $limit = 5) {
 // Функция рендеринга блока
 function render_popular_events_block($attributes, $content) {
     $program_slug = $attributes['selectedProgram'] ?? '';
+    $anchor = $attributes['anchor'] ?? '';
+    $bgc = $attributes['bgc'] ?? '';
     $title = $attributes['title'] ?? '';
     $buttonText = $attributes['buttonText'] ?? '';
     $buttonLink = $attributes['buttonLink'] ?? '';
@@ -75,7 +77,7 @@ function render_popular_events_block($attributes, $content) {
     }
     ob_start();
     ?>
-    <div class="block-standard block-02">
+    <div class="block-standard block-02" id="<?php echo esc_html($anchor); ?>" style="background-color: <?php echo $bgc ? esc_html($bgc) : 'var(--accent-color)'; ?>">
       <div class="container">
         <?php if (!empty($title)): ?><div class="block-title"><h2 class="h2 underline"><?php echo esc_html($title); ?></h2></div><?php endif; ?>
 

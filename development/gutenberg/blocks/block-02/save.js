@@ -1,10 +1,14 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { title, selectedProgram, buttonText, buttonLink } = attributes;
+  const { anchor, bgc, title, selectedProgram, buttonText, buttonLink } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-02',
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'var(--accent-color);',
+    }
   });
 
   return (

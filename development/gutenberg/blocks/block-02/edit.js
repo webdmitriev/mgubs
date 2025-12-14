@@ -9,6 +9,7 @@ import programs from '../../utils/default-programs';
 
 import ContentPanel from './controls/ContentPanel';
 import VideoHelpPanel from './controls/VideoHelpPanel';
+import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const { title, selectedProgram, buttonText, buttonLink } = attributes;
@@ -36,6 +37,7 @@ const Edit = ({ attributes, setAttributes }) => {
             onChange={(value) => setAttributes({ selectedProgram: value })}
           />
         </PanelBody>
+        <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
       <div {...blockProps}>
@@ -71,9 +73,9 @@ const Edit = ({ attributes, setAttributes }) => {
 
                 <div className="popular-events-preview">
                   {selectedProgram ? (
-                    <p>Будут показаны события для программы: <strong>{programs.find(p => p.value === selectedProgram)?.label}</strong></p>
+                    <div>Будут показаны события для программы: <strong>{programs.find(p => p.value === selectedProgram)?.label}</strong></div>
                   ) : (
-                    <p>Выберите программу в панели настроек</p>
+                    <div>Выберите программу в панели настроек:</div>
                   )}
                 </div>
 

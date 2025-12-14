@@ -1051,6 +1051,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  anchor: {
+    type: 'string',
+    default: ''
+  },
+  bgc: {
+    type: 'string',
+    default: ''
+  },
   title: {
     type: 'string',
     default: ''
@@ -1068,6 +1076,60 @@ __webpack_require__.r(__webpack_exports__);
     default: ''
   }
 });
+
+/***/ }),
+
+/***/ "./development/gutenberg/blocks/block-02/controls/BgAnchorPanel.js":
+/*!*************************************************************************!*\
+  !*** ./development/gutenberg/blocks/block-02/controls/BgAnchorPanel.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_default_colors_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/default-colors.js */ "./development/gutenberg/utils/default-colors.js");
+/* harmony import */ var _components_ColorSelect_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/ColorSelect.js */ "./development/gutenberg/components/ColorSelect.js");
+/* harmony import */ var _components_AnchorField_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/AnchorField.js */ "./development/gutenberg/components/AnchorField.js");
+
+
+
+
+
+
+const BgAnchorPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    anchor,
+    bgc
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Фон и якорь', 'theme'),
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AnchorField_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: anchor,
+    onChange: newId => setAttributes({
+      anchor: newId
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_ColorSelect_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: "\u0426\u0432\u0435\u0442 \u0444\u043E\u043D\u0430",
+    colors: [..._utils_default_colors_js__WEBPACK_IMPORTED_MODULE_3__["default"]],
+    value: bgc,
+    onChange: val => setAttributes({
+      bgc: val
+    })
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BgAnchorPanel);
 
 /***/ }),
 
@@ -1222,6 +1284,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_default_programs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/default-programs */ "./development/gutenberg/utils/default-programs.js");
 /* harmony import */ var _controls_ContentPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/ContentPanel */ "./development/gutenberg/blocks/block-02/controls/ContentPanel.js");
 /* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-02/controls/VideoHelpPanel.js");
+/* harmony import */ var _controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./controls/BgAnchorPanel */ "./development/gutenberg/blocks/block-02/controls/BgAnchorPanel.js");
+
 
 
 
@@ -1261,7 +1325,10 @@ const Edit = ({
     onChange: value => setAttributes({
       selectedProgram: value
     })
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block"
@@ -1300,7 +1367,7 @@ const Edit = ({
     allowedFormats: []
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "popular-events-preview"
-  }, selectedProgram ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0411\u0443\u0434\u0443\u0442 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u0441\u043E\u0431\u044B\u0442\u0438\u044F \u0434\u043B\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, _utils_default_programs__WEBPACK_IMPORTED_MODULE_6__["default"].find(p => p.value === selectedProgram)?.label)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443 \u0432 \u043F\u0430\u043D\u0435\u043B\u0438 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, selectedProgram ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u0411\u0443\u0434\u0443\u0442 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u0441\u043E\u0431\u044B\u0442\u0438\u044F \u0434\u043B\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, _utils_default_programs__WEBPACK_IMPORTED_MODULE_6__["default"].find(p => p.value === selectedProgram)?.label)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443 \u0432 \u043F\u0430\u043D\u0435\u043B\u0438 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A:")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-buttons"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-button"
@@ -1384,13 +1451,19 @@ const Save = ({
   attributes
 }) => {
   const {
+    anchor,
+    bgc,
     title,
     selectedProgram,
     buttonText,
     buttonLink
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'block-standard block-02'
+    className: 'block-standard block-02',
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'var(--accent-color);'
+    }
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
