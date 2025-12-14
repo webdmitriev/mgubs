@@ -77,7 +77,7 @@ function render_popular_events_block($attributes, $content) {
     }
     ob_start();
     ?>
-    <div class="block-standard block-02" id="<?php echo esc_html($anchor); ?>" style="background-color: <?php echo $bgc ? esc_html($bgc) : 'var(--accent-color)'; ?>">
+    <div class="block-standard block-02" id="<?php echo esc_html($anchor); ?>" style="background-color: <?php echo $bgc ? esc_html($bgc) : 'transparent'; ?>">
       <div class="container">
         <?php if (!empty($title)): ?><div class="block-title"><h2 class="h2 underline"><?php echo esc_html($title); ?></h2></div><?php endif; ?>
 
