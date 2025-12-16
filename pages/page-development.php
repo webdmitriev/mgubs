@@ -39,6 +39,44 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-26">
+  <div class="container">
+    <a href="#" class="content-item">
+      <div class="content-item__content df-fs-fe">
+        <picture>
+          <source srcset="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg.webp" type="image/webp">
+          <img decoding="async" class="content-item__image" src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" data-src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" alt="MGU">
+        </picture>
+        <h4 class="h4 content-item__title">title</h4>
+        <div class="descr content-item__descr">www</div>
+      </div>
+      <div class="descr">Нацелена на изучение подходов и инструментов к стратегированию и принятию управленческих решений менеджментом организаций. Программа формирует компетенции и высокопрофессиональное поведение. Позволяет успешно решать конкретные управленческие задачи на практике.</div>
+    </a>
+    <a href="#" class="content-item">
+      <div class="content-item__content df-fs-fe">
+        <picture>
+          <source srcset="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg.webp" type="image/webp">
+          <img decoding="async" class="content-item__image" src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" data-src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" alt="MGU">
+        </picture>
+        <h4 class="h4 content-item__title">title</h4>
+        <div class="descr content-item__descr">www</div>
+      </div>
+      <div class="descr">Нацелена на изучение подходов и инструментов к стратегированию и принятию управленческих решений менеджментом организаций. Программа формирует компетенции и высокопрофессиональное поведение. Позволяет успешно решать конкретные управленческие задачи на практике.</div>
+    </a>
+    <a href="#" class="content-item">
+      <div class="content-item__content df-fs-fe">
+        <picture>
+          <source srcset="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg.webp" type="image/webp">
+          <img decoding="async" class="content-item__image" src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" data-src="https://mgubs.ru/wp-content/uploads/2023/07/ma-strategia-biznesa-585x.jpg" alt="MGU">
+        </picture>
+        <h4 class="h4 content-item__title">title</h4>
+        <div class="descr content-item__descr">www</div>
+      </div>
+      <div class="descr">Нацелена на изучение подходов и инструментов к стратегированию и принятию управленческих решений менеджментом организаций. Программа формирует компетенции и высокопрофессиональное поведение. Позволяет успешно решать конкретные управленческие задачи на практике.</div>
+    </a>
+  </div>
+</div>
+
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
