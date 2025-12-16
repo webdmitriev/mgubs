@@ -580,11 +580,101 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // -----------------------------------
+  // ✍️ Рендер для renderBlockTwentyFine
+  // -----------------------------------
+  const renderBlockTwentyFine = (item, index) => {
+    const image = `image`;
+    const title = `title`;
+    const subTitle = `subTitle`;
+    const content = `content`;
+
+    return (
+      <>
+        <MediaUpload
+          onSelect={(media) =>
+            update(index, image, {
+              url: media.url,
+              alt: media.alt || '',
+              responsive: media.responsive || {
+                webp: '',
+                jpg: '',
+                default: media.url,
+              }
+            })
+          }
+          allowedTypes={['image']}
+          value={item[image]?.id}
+          render={({ open }) => (
+            <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+              {item[image]?.url ? (
+                <div className="repeater-image-preview">
+                  <img
+                    src={item[image].url}
+                    alt={item[image].alt || ''}
+                    style={{
+                      aspectRatio: '16 / 9',
+                      width: '100%',
+                      height: 'inherit',
+                      marginBottom: '8px',
+                      objectFit: 'cover',
+                      borderRadius: '3px',
+                    }}
+                  />
+                  <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                    <Button onClick={open} variant="secondary" size="small">
+                      ✍️ {__('Заменить', 'theme')}
+                    </Button>
+                    <Button
+                      isDestructive
+                      onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                      variant="secondary"
+                      size="small"
+                    >
+                      ❌ {__('Удалить', 'theme')}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button onClick={open} variant="primary" size="small">
+                  {__('Добавить изображение', 'theme')}
+                </Button>
+              )}
+            </div>
+          )}
+        />
+
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Текст', 'theme')}
+          value={item[title]}
+          onChange={(value) => update(index, title, value)}
+        />
+
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Текст', 'theme')}
+          value={item[subTitle]}
+          onChange={(value) => update(index, subTitle, value)}
+        />
+
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Текст', 'theme')}
+          value={item[content]}
+          onChange={(value) => update(index, content, value)}
+        />
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
     renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen,
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
-    renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree
+    renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
+    renderBlockTwentyFine
   };
 }
