@@ -33,6 +33,12 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-25">
+  <div class="container">
+    <div class="block-title" style="margin-bottom: 24px;"><h2 class="h2 underline">Ближайшие события</h2></div>
+  </div>
+</div>
+
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
