@@ -1,5 +1,5 @@
 import { useCallback } from '@wordpress/element';
-import { MediaUpload, RichText } from '@wordpress/block-editor';
+import { MediaUpload, RichText, URLInput } from '@wordpress/block-editor';
 import { Button, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -589,6 +589,7 @@ export function useAttributeList(attributes, setAttributes, key) {
     const title = `title`;
     const subTitle = `subTitle`;
     const content = `content`;
+    const link = `link`;
 
     return (
       <>
@@ -645,26 +646,50 @@ export function useAttributeList(attributes, setAttributes, key) {
           )}
         />
 
-        <RichText
-          style={{ textAlign: 'left' }}
-          placeholder={__('Текст', 'theme')}
-          value={item[title]}
-          onChange={(value) => update(index, title, value)}
-        />
+        <>
+          <label className="my-rich-text__label">Заголовок</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[title]}
+            onChange={(value) => update(index, title, value)}
+          />
+        </>
 
-        <RichText
-          style={{ textAlign: 'left' }}
-          placeholder={__('Текст', 'theme')}
-          value={item[subTitle]}
-          onChange={(value) => update(index, subTitle, value)}
-        />
+        <div style={{ height: '8px' }} />
 
-        <RichText
-          style={{ textAlign: 'left' }}
-          placeholder={__('Текст', 'theme')}
-          value={item[content]}
-          onChange={(value) => update(index, content, value)}
-        />
+        <>
+          <label className="my-rich-text__label">Подзаголовок</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[subTitle]}
+            onChange={(value) => update(index, subTitle, value)}
+          />
+        </>
+
+        <div style={{ height: '8px' }} />
+
+        <>
+          <label className="my-rich-text__label">Описание</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[content]}
+            onChange={(value) => update(index, content, value)}
+          />
+        </>
+
+        <div style={{ height: '8px' }} />
+
+        <>
+          <label className="my-rich-text__label">Ссылка</label>
+          <URLInput
+            placeholder={__('Введите название страницы или url', 'theme')}
+            value={item[link]}
+            onChange={(value) => update(index, link, value)}
+          />
+        </>
       </>
     )
   };

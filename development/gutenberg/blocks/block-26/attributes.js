@@ -21,7 +21,8 @@ const attributes = {
       },
       title: '',
       subTitle: '',
-      content: ''
+      content: '',
+      link: '',
     }]
   },
 };

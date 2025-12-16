@@ -3,7 +3,7 @@ import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-edi
 import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import blockImage from '../../../../admin/assets/img/blocks/block-24.jpg';
+import blockImage from '../../../../admin/assets/img/blocks/block-26.jpg';
 
 import { useAttributeList } from '../../hooks/useAttributeList';
 
@@ -37,7 +37,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <div {...blockProps}>
         <div className="advanced-block">
           <div className="block-info">
-            <span className="block-info-title">🎨 Block 24 - Заглавный блок</span>
+            <span className="block-info-title">🎨 Block 26 - События (детальнее)</span>
             <ToggleControl
               label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
               checked={isPreview}
@@ -83,7 +83,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 ))}
               </div>
               <Button
-                onClick={() => itemsList.add({ image: '', title: '', subTitle: '', content: '' })}
+                onClick={() => itemsList.add({ image: '', title: '', subTitle: '', content: '', link: '' })}
                 className="add-repeater-item"
                 style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
               >

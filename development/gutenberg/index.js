@@ -42,3 +42,4 @@ import './blocks/block-22/index.js';
 import './blocks/block-23/index.js';
 import './blocks/block-24/index.js';
 import './blocks/block-25/index.js';
+import './blocks/block-26/index.js';

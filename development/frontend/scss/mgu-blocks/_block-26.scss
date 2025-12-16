@@ -1,10 +1,11 @@
 .block-26 {
   padding-bottom: 24px;
-  .container {
+  .content-items {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 40px;
     column-gap: 16px;
+    width: 100%;
   }
   .content-item {
     width: 100%;
@@ -48,7 +49,7 @@
 @media (max-width: 991px) {
 }
 @media (max-width: 768px) {
-  .block-26 .container {
+  .block-26 .content-items {
     grid-template-columns: 1fr;
   }
 }
