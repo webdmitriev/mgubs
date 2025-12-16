@@ -1415,7 +1415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-02', {
   title: 'События',
-  category: 'webdmitriev',
+  category: 'pages-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -1839,7 +1839,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-03', {
   title: 'Заголовок с фоном',
-  category: 'webdmitriev',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -2167,7 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-04', {
   title: 'Новости (с настроек)',
-  category: 'webdmitriev',
+  category: 'pages-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -2701,7 +2701,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-05', {
   title: 'Программы',
-  category: 'webdmitriev',
+  category: 'pages-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -3155,7 +3155,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-06', {
   title: 'Блок для вызова формы',
-  category: 'webdmitriev',
+  category: 'contact-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -3821,7 +3821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-07', {
   title: 'О школе',
-  category: 'webdmitriev',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -4659,7 +4659,7 @@ __webpack_require__.r(__webpack_exports__);
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Преподаватели', 'theme'),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('', 'theme'),
   icon: 'groups',
-  category: 'widgets',
+  category: 'pages-blocks',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -5254,7 +5254,7 @@ __webpack_require__.r(__webpack_exports__);
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Курсы', 'textdomain'),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('', 'textdomain'),
   icon: 'groups',
-  category: 'widgets',
+  category: 'pages-blocks',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -5784,7 +5784,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-10', {
   title: 'Контакты',
-  category: 'webdmitriev',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -6676,7 +6676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-12', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Breadcrumbs', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -7255,7 +7255,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-13', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Преимущества', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -7722,7 +7722,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-14', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Кого мы ждем', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -8188,7 +8188,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-15', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('О программе', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -8648,7 +8648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-16', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Структура', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -9027,7 +9027,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-17', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Слайдер', 'theme'),
-  category: 'slider-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -9578,7 +9578,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-18', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Картинка с текстом', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -10065,7 +10065,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-19', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Отзывы', 'theme'),
-  category: 'slider-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -10650,7 +10650,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-20', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Стоимость обучения', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -11115,7 +11115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-21', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('FAQ', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -11445,7 +11445,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-22', {
   title: 'Контактная форма',
-  category: 'main-blocks',
+  category: 'contact-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -11877,7 +11877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('theme/block-23', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Managers', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(' ', 'theme'),
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_4__["default"],

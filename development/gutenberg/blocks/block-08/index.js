@@ -9,7 +9,7 @@ registerBlockType('theme/block-08', {
   title: __('Преподаватели', 'theme'),
   description: __('', 'theme'),
   icon: 'groups',
-  category: 'widgets',
+  category: 'pages-blocks',
   attributes,
   edit: Edit,
   save: Save,

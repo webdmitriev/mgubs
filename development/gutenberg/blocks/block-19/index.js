@@ -6,7 +6,7 @@ import attributes from './attributes';
 
 registerBlockType('theme/block-19', {
   title: __('Отзывы', 'theme'),
-  category: 'slider-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: __(' ', 'theme'),
   attributes,

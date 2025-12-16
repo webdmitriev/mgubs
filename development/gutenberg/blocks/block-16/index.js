@@ -6,7 +6,7 @@ import attributes from './attributes';
 
 registerBlockType('theme/block-16', {
   title: __('Структура', 'theme'),
-  category: 'main-blocks',
+  category: 'content-blocks',
   icon: 'admin-customizer',
   description: __(' ', 'theme'),
   attributes,

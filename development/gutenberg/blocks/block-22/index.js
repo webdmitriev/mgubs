@@ -5,7 +5,7 @@ import attributes from './attributes';
 
 registerBlockType('theme/block-22', {
   title: 'Контактная форма',
-  category: 'main-blocks',
+  category: 'contact-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes,

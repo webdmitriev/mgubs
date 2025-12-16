@@ -9,7 +9,7 @@ registerBlockType('theme/block-09', {
   title: __('Курсы', 'textdomain'),
   description: __('', 'textdomain'),
   icon: 'groups',
-  category: 'widgets',
+  category: 'pages-blocks',
   attributes,
   edit: Edit,
   save: Save,

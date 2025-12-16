@@ -13,18 +13,23 @@ function theme_register_block_categories( $categories, $context ) {
     $categories,
     [
       [
-        'slug'  => 'webdmitriev',
-        'title' => __( 'Webdmitriev Blocks', 'theme' ),
+        'slug'  => 'main-blocks',
+        'title' => __( 'Главные блоки', 'theme' ),
         'icon'  => 'star-filled',
       ],
       [
-        'slug'  => 'main-blocks',
-        'title' => __( 'Заглавные блоки', 'theme' ),
+        'slug'  => 'contact-blocks',
+        'title' => __( 'Contact form', 'theme' ),
         'icon'  => 'layout',
       ],
       [
-        'slug'  => 'slider-blocks',
-        'title' => __( 'Слайдеры', 'theme' ),
+        'slug'  => 'content-blocks',
+        'title' => __( 'Контент', 'theme' ),
+        'icon'  => 'layout',
+      ],
+      [
+        'slug'  => 'pages-blocks',
+        'title' => __( 'Наполненные блоки', 'theme' ),
         'icon'  => 'layout',
       ],
     ]

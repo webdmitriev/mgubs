@@ -5,7 +5,7 @@ import attributes from './attributes';
 
 registerBlockType('theme/block-06', {
   title: 'Блок для вызова формы',
-  category: 'webdmitriev',
+  category: 'contact-blocks',
   icon: 'admin-customizer',
   description: ' ',
   attributes,
