@@ -1,6 +1,20 @@
 <?php
 defined('ABSPATH') || exit;
 
+add_filter('wp_handle_upload_prefilter', function ($file) {
+  $timestamp = current_time('timestamp');
+  $rand = wp_rand(100, 999);
+
+  $filename = sanitize_file_name($file['name']);
+
+  // защита от повторного добавления
+  if (!preg_match('/^\d{10}-\d{3}-/', $filename)) {
+    $file['name'] = "{$timestamp}-{$rand}-{$filename}";
+  }
+  return $file;
+});
+
+
 /**
  * 1. Отключаем стандартные размеры WordPress
  */
