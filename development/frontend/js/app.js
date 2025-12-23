@@ -108,16 +108,40 @@ document.addEventListener('DOMContentLoaded', function () {
     animationTime: 300
   });
 
-  // block-47__slider (start)
-  // ['.content-reviews-js'].forEach(selector => {
-  //   document.querySelectorAll(selector)?.forEach(slider => {
-  //     setTimeout(() => {
-  //     }, 100);
-  //     slider.scrollLeft = slider.clientWidth / 2;
-  //   });
-  // })
-  // block-47__slider (end)
+  // block-29
+  document.querySelectorAll('.block-29').forEach(block => {
+    const btn = block.querySelector('.btn');
+    const contentButton = block.querySelector('.content-button');
+    const contentBlocks = block.querySelectorAll('.content-block');
 
+    if (!btn || !contentButton) {
+      console.warn('Отсутствуют обязательные элементы в блоке:', block);
+      return;
+    }
+
+    if (btn.hasAttribute('data-event-bound')) {
+      console.log('Событие уже привязано к кнопке');
+      return;
+    }
+
+    btn.addEventListener('click', function handleClick() {
+      try {
+        contentButton.style.display = 'none';
+
+        if (contentBlocks.length > 0) {
+          contentBlocks.forEach(el => {
+            el.style.display = 'flex';
+          });
+        } else {
+          console.log('Блоки контента не найдены');
+        }
+      } catch (error) {
+        console.error('Ошибка при обработке клика:', error);
+      }
+    });
+
+    btn.setAttribute('data-event-bound', 'true');
+  });
 
 
   // Находим все honeypot поля
