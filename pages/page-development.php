@@ -12,8 +12,18 @@ the_content();
 ?>
 
 <div class="block-standard block-27">
+  <div class="container df-sp-fs revers">
+    <div class="content-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/04/diplom-db.jpg" alt="MGU" style="" /></div>
+    <div class="content-data">
+      <h2 class="h2">title</h2>
+      <div class="descr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa illo quasi alias rem quaerat. Fuga nihil repellendus dolore cum architecto porro. Quisquam culpa tenetur quia, repellendus, alias labore esse ipsa, sapiente veritatis assumenda cumque saepe? A ut vel minus placeat atque perferendis, consequatur necessitatibus aliquid tempora recusandae enim, vitae maxime officia, commodi odio fuga optio. Incidunt ea eaque deleniti, sint voluptas maiores repellat sunt rerum odit vel, repudiandae debitis, minima repellendus dolor. Voluptatum eum omnis nobis, delectus similique corporis? Quae, labore corrupti. Vel eos perferendis, maiores maxime, nostrum et perspiciatis modi sunt sapiente fuga molestias, repellat ratione aliquam eveniet dolor tempore animi earum velit libero laborum. Corporis quibusdam doloribus aliquam ea temporibus omnis itaque voluptatibus similique pariatur, minima in sequi hic, numquam labore cupiditate aspernatur maiores deleniti neque reprehenderit magni sit cum sed! Similique reiciendis provident laudantium velit atque adipisci maiores? Amet deserunt excepturi nostrum possimus accusantium doloremque, inventore facere ducimus, cupiditate numquam tempore? Totam voluptatem dolorum, doloremque nam beatae molestiae aut aperiam commodi porro, saepe sapiente veniam neque. Aspernatur aliquam dolor cum assumenda unde earum, nihil harum commodi maxime ipsum totam explicabo facilis ut nisi doloremque atque quam, minus alias delectus? Rerum eius aspernatur at perferendis laboriosam consectetur non?</div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-28">
   <div class="container">
-    <!--  -->
+    www
   </div>
 </div>
 
