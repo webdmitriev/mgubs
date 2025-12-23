@@ -15,7 +15,7 @@ $options = get_option('theme_settings');
 $footer_program = $options['footer_edu_program'] ?? '';
 
 ?>
-		<!-- <div style="display: block; width: 100%; height: 400px;"></div> -->
+		<div style="display: block; width: 100%; height: 200px;"></div>
 
 		<footer class="footer">
 			<div class="container">

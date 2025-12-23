@@ -23,7 +23,14 @@ the_content();
 
 <div class="block-standard block-28">
   <div class="container">
-    www
+    <h2 class="h2">История школы</h2>
+    <div class="content-items df-ce-fe">
+      <div class="content-data">
+        <div class="h2">1989 год <div class="circle"></div></div>
+        <div class="descr">Высшая школа бизнеса ведет свою историю с 1989 года. В этом году на территории МГУ имени М. В. Ломоносова решением Ученого совета МГУ под руководством Ректора МГУ академика В. А. Садовничего была открыта одна из первых бизнес-школ в России — Школа управления МГУ. <br/>Директором школы становится доктор экономических наук, профессор О. С. Виханский. <div class="circles"></div></div>
+      </div>
+      <div class="content-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/01/school_main.jpg" alt="MGU" /></div>
+    </div>
   </div>
 </div>
 
