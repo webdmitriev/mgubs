@@ -124,6 +124,26 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-30">
+  <div class="container">
+    <h2 class="h2">Title</h2>
+    <div class="content-flex df-sp-fs">
+      <div class="content-data">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, aliquam ipsum. Expedita quis laboriosam quas aut architecto voluptatibus. Minima quae numquam tempore labore iusto omnis accusantium suscipit, enim incidunt, error, consequuntur fugit praesentium laboriosam facilis voluptatibus neque cumque possimus soluta?</div>
+      <div class="content-image"><img decoding="async" class="lazy img" src="https://mgubs.ru/wp-content/uploads/2024/01/mgubs_entrance.jpg" alt="MGU" style="" /></div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-30">
+  <div class="container">
+    <h2 class="h2">Title</h2>
+    <div class="content-flex df-sp-fs revers">
+      <div class="content-data">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, aliquam ipsum. Expedita quis laboriosam quas aut architecto voluptatibus. Minima quae numquam tempore labore iusto omnis accusantium suscipit, enim incidunt, error, consequuntur fugit praesentium laboriosam facilis voluptatibus neque cumque possimus soluta?</div>
+      <div class="content-image"><img decoding="async" class="lazy img" src="https://mgubs.ru/wp-content/uploads/2024/01/mgubs_entrance.jpg" alt="MGU" style="" /></div>
+    </div>
+  </div>
+</div>
+
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
