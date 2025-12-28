@@ -2,15 +2,19 @@ export default {
   anchor: { type: 'string', default: '' },
   bgc: { type: 'string', default: '' },
 
-  title: { type: 'string', default: 'Высшая школа бизнеса МГУ' },
+  title: { type: 'string', default: '' },
+  subTitle: { type: 'string', default: '' },
+
+  buttonText: { type: 'string', default: '' },
+  buttonLink: { type: 'string', default: '' },
 
   isBlockLine: { type: 'boolean', default: true },
 
-  second_title: { type: 'string', default: 'Миссия школы' },
+  second_title: { type: 'string', default: '' },
 
   description: {
     type: 'string',
-    default: 'Готовим будущих лидеров, провайдеров изменений, способных отвечать на вызовы современного бизнеса. Широко мыслящих, включенных в мировую бизнес среду. Ответственных перед обществом, создающих ценность для него.',
+    default: '',
   },
 
   imageId: { type: 'number', default: 0 },

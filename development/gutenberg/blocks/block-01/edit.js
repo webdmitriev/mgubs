@@ -1,12 +1,10 @@
 import { useState } from '@wordpress/element';
 import {
-  useBlockProps,
-  RichText,
-  InspectorControls,
-  MediaUpload,
-  MediaUploadCheck
+  useBlockProps, RichText,
+  InspectorControls, MediaUpload, MediaUploadCheck,
+  URLInput
 } from '@wordpress/block-editor';
-import { Button, ToggleControl } from '@wordpress/components';
+import { Button, ToggleControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-01.jpg';
@@ -18,7 +16,10 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, isBlockLine, second_title, description, imageData, imageId } = attributes;
+  const {
+    title, subTitle, buttonText, buttonLink,
+    isBlockLine, second_title, description,
+    imageData, imageId } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -120,17 +121,61 @@ const Edit = ({ attributes, setAttributes }) => {
           {isPreview && (
             <div className="advanced-block-content">
               <div className="advanced-block-text">
-                <>
-                  <label className="my-rich-text__label">Заголовок</label>
-                  <RichText
-                    tagName="div"
-                    label="Заголовок"
-                    value={title}
-                    onChange={(value) => setAttributes({ title: value })}
-                    placeholder={__('Заголовок...', 'theme')}
-                    allowedFormats={[]}
-                  />
-                </>
+                <Flex>
+                  <FlexBlock>
+                    <label className="my-rich-text__label">Заголовок</label>
+                    <RichText
+                      tagName="div"
+                      label="Заголовок"
+                      value={title}
+                      onChange={(value) => setAttributes({ title: value })}
+                      placeholder={__('Заголовок...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </FlexBlock>
+                </Flex>
+
+                <div style={{ height: 14 }} />
+
+                <Flex>
+                  <FlexBlock>
+                    <label className="my-rich-text__label">Подзаголовок</label>
+                    <RichText
+                      tagName="div"
+                      label="Подзаголовок"
+                      value={subTitle}
+                      onChange={(value) => setAttributes({ subTitle: value })}
+                      placeholder={__('Подзаголовок...', 'theme')}
+                      allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                    />
+                  </FlexBlock>
+                </Flex>
+
+                <div style={{ height: 14 }} />
+
+                <Flex>
+                  <FlexBlock>
+                    <label className="my-rich-text__label">Кнопка - текст</label>
+                    <RichText
+                      tagName="div"
+                      label="Подзаголовок"
+                      value={buttonText}
+                      onChange={(value) => setAttributes({ buttonText: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </FlexBlock>
+                  <FlexItem>
+                    <label className="my-rich-text__label">Кнопка - ссылка</label>
+                    <URLInput
+                      value={buttonLink}
+                      onChange={(value) => setAttributes({ buttonLink: value })}
+                      placeholder={__('URL...', 'theme')}
+                    />
+                  </FlexItem>
+                </Flex>
+
+                <div style={{ height: 24 }} />
 
                 <>
                   <label htmlFor="rich-title" className="my-rich-text__label">Линия между блоками</label>
@@ -162,7 +207,6 @@ const Edit = ({ attributes, setAttributes }) => {
                     allowedFormats={['core/bold', 'core/italic', 'core/link']}
                   />
                 </>
-
               </div>
 
               <MediaUploadCheck>

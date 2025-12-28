@@ -4,7 +4,8 @@ import PictureBg from '../../components/PictureBg';
 
 const Save = ({ attributes }) => {
   const {
-    anchor, bgc, title, isBlockLine, second_title, description,
+    anchor, bgc, title, subTitle, buttonText, buttonLink,
+    isBlockLine, second_title, description,
     imageData, bg1920Data, bg991Data, bg576Data
   } = attributes;
 
@@ -32,6 +33,19 @@ const Save = ({ attributes }) => {
             value={title}
             className="h1"
           />
+          <RichText.Content
+            tagName="div"
+            style={{ marginTop: 16 }}
+            value={subTitle}
+            className="descr"
+          />
+          {buttonText && (
+            buttonLink ? (
+              <a href={buttonLink} className="btn btn-white">{buttonText}</a>
+            ) : (
+              <button className="btn btn-white btn-show-popup">{buttonText}</button>
+            )
+          )}
         </div>
 
         {isBlockLine && (

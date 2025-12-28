@@ -144,6 +144,11 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-31">
+  <div class="container">
+    www
+  </div>
+</div>
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
