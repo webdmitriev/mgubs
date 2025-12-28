@@ -3017,6 +3017,10 @@ __webpack_require__.r(__webpack_exports__);
     default: 'Свяжитесь с нами'
   },
   buttonOption: {
+    type: 'boolean',
+    default: true
+  },
+  buttonId: {
     type: 'string',
     default: ''
   }
@@ -3246,7 +3250,8 @@ const Edit = ({
     title,
     subTitle,
     buttonText,
-    buttonOption
+    buttonOption,
+    buttonId
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const togglePreview = () => {
@@ -3305,33 +3310,31 @@ const Edit = ({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Подзаголовок...', 'theme'),
     allowedFormats: []
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "richtext-to-select"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "richtext-to-select__item"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
-  }, "\u0422\u0435\u043A\u0441\u0442 \u043A\u043D\u043E\u043F\u043A\u0438"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, "\u0422\u0435\u043A\u0441\u0442 \u043A\u043D\u043E\u043F\u043A\u0438:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
     value: buttonText,
     onChange: value => setAttributes({
       buttonText: value
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст кнопки...', 'theme'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст...', 'theme'),
     allowedFormats: []
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "richtext-to-select__item"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
-  }, "\u0417\u0430\u0434\u0430\u0447\u0430 \u043A\u043D\u043E\u043F\u043A\u0438"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    value: buttonOption,
-    options: [{
-      label: 'Вызов popup',
-      value: 'btn-show-popup'
-    }, {
-      label: 'Скролл до формы контактов',
-      value: 'contacts-block-id'
-    }],
+  }, "ID Popup:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    value: buttonId,
+    onChange: value => setAttributes({
+      buttonId: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('ID...', 'theme'),
+    allowedFormats: []
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u041A\u043D\u043E\u043F\u043A\u0430:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: buttonOption ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Скролла', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Popup', 'theme'),
+    checked: buttonOption,
     onChange: value => setAttributes({
       buttonOption: value
     })
@@ -3400,6 +3403,7 @@ const Save = ({
     title,
     subTitle,
     buttonText,
+    buttonId,
     buttonOption
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
@@ -3421,11 +3425,13 @@ const Save = ({
     tagName: "p",
     value: subTitle,
     className: "descr"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "button",
-    value: buttonText,
-    className: `btn btn-orange ${buttonOption}`
-  })));
+  }), buttonText && (buttonOption ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "btn btn-orange ancLinks",
+    href: `#${buttonId}`
+  }, buttonText) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "btn btn-orange",
+    "show-popup": buttonId
+  }, buttonText))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 

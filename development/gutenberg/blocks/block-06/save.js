@@ -1,7 +1,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { anchor, bgc, title, subTitle, buttonText, buttonOption } = attributes;
+  const { anchor, bgc, title, subTitle, buttonText, buttonId, buttonOption } = attributes;
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-06',
@@ -24,11 +24,14 @@ const Save = ({ attributes }) => {
           value={subTitle}
           className="descr"
         />
-        <RichText.Content
-          tagName="button"
-          value={buttonText}
-          className={`btn btn-orange ${buttonOption}`}
-        />
+
+        {buttonText && (
+          buttonOption ? (
+            <a className="btn btn-orange ancLinks" href={`#${buttonId}`}>{buttonText}</a>
+          ) : (
+            <button className="btn btn-orange" show-popup={buttonId}>{buttonText}</button>
+          )
+        )}
       </div>
     </div>
   );

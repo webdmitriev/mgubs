@@ -4,6 +4,8 @@ export default {
 
   title: { type: 'string', default: '' },
   subTitle: { type: 'string', default: '' },
+
   buttonText: { type: 'string', default: 'Свяжитесь с нами' },
-  buttonOption: { type: 'string', default: '' },
+  buttonOption: { type: 'boolean', default: true },
+  buttonId: { type: 'string', default: '' },
 };

@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-06.jpg';
@@ -10,7 +10,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, subTitle, buttonText, buttonOption } = attributes;
+  const { title, subTitle, buttonText, buttonOption, buttonId } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -68,29 +68,36 @@ const Edit = ({ attributes, setAttributes }) => {
                     allowedFormats={[]}
                   />
                 </>
-                <div className="richtext-to-select">
-                  <div className="richtext-to-select__item">
-                    <label className="my-rich-text__label">Текст кнопки</label>
+                <Flex>
+                  <FlexBlock>
+                    <label className="my-rich-text__label">Текст кнопки:</label>
                     <RichText
                       tagName="div"
                       value={buttonText}
                       onChange={(value) => setAttributes({ buttonText: value })}
-                      placeholder={__('Текст кнопки...', 'theme')}
+                      placeholder={__('Текст...', 'theme')}
                       allowedFormats={[]}
                     />
-                  </div>
-                  <div className="richtext-to-select__item">
-                    <label className="my-rich-text__label">Задача кнопки</label>
-                    <SelectControl
-                      value={buttonOption}
-                      options={[
-                        { label: 'Вызов popup', value: 'btn-show-popup' },
-                        { label: 'Скролл до формы контактов', value: 'contacts-block-id' }
-                      ]}
+                  </FlexBlock>
+                  <FlexBlock>
+                    <label className="my-rich-text__label">ID Popup:</label>
+                    <RichText
+                      tagName="div"
+                      value={buttonId}
+                      onChange={(value) => setAttributes({ buttonId: value })}
+                      placeholder={__('ID...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </FlexBlock>
+                  <FlexItem>
+                    <label className="my-rich-text__label">Кнопка:</label>
+                    <ToggleControl
+                      label={buttonOption ? __('Скролла', 'theme') : __('Popup', 'theme')}
+                      checked={buttonOption}
                       onChange={(value) => setAttributes({ buttonOption: value })}
                     />
-                  </div>
-                </div>
+                  </FlexItem>
+                </Flex>
               </div>
             </div>
           )}
