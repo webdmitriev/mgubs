@@ -47,10 +47,10 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+              <div className="repeater-items teachers-block-grid numerations-items">
                 {breadcrumbs.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={index} className="repeater-item numerations-item">
+                    <div className="items-control">
                       <div className="items-control__buttons">
                         <Button onClick={() => breadcrumbsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
                         <Button onClick={() => breadcrumbsList.moveDown(index)} disabled={index === breadcrumbs.length - 1} style={{ opacity: index === (breadcrumbs.length - 1) ? 0.4 : 1 }}>➡️</Button>

@@ -227,10 +227,10 @@ const Edit = ({ attributes, setAttributes }) => {
                 />
               </MediaUploadCheck>
 
-              <div className="teachers-block-grid contacts-items">
+              <div className="teachers-block-grid contacts-items numerations-items">
                 {contacts.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={index} className="repeater-item numerations-item">
+                    <div className="items-control">
                       <div className="items-control__buttons">
                         <Button onClick={() => contactsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
                         <Button onClick={() => contactsList.moveDown(index)} disabled={index === contacts.length - 1} style={{ opacity: index === (contacts.length - 1) ? 0.4 : 1 }}>➡️</Button>

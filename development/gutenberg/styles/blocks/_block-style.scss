@@ -244,6 +244,53 @@
       border-radius: 20px;
     }
   }
+
+  .numerations-items {
+    counter-reset: myCounter;
+    .numerations-item {
+      position: relative;
+      padding: 0 6px 6px 6px;
+      background-color: rgba(0, 124, 186, 0.25);
+      border: 1px solid rgba(0, 124, 186, 0.45);
+      border-radius: 4px;
+      &:before {
+        counter-increment: myCounter;
+        content: counter(myCounter);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 36px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 36px;
+        text-align: center;
+        color: rgba(0, 124, 186, 0.8);
+      }
+      .items-control {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 6px;
+        padding: 0 0 6px 24px;
+        border-bottom: 1px solid rgba(0, 124, 186, 0.45);
+        .items-control__buttons {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          align-items: stretch;
+          button {
+            padding: 0 6px;
+          }
+        }
+        button.components-button.is-destructive {
+          padding: 0 0 0 12px;
+        }
+      }
+    }
+  }
 }
 .components-base-control.block-editor-url-input.URLInput {
   width: 100%;
