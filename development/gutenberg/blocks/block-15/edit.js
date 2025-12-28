@@ -51,12 +51,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <Flex
-                direction={[
-                  'column',
-                  'row'
-                ]}
-                align="flex-start">
+              <Flex>
                 <FlexBlock>
                   <span>{__('Заголовок', 'theme')}</span>
                   <RichText
@@ -69,10 +64,10 @@ const Edit = ({ attributes, setAttributes }) => {
                 </FlexBlock>
               </Flex>
 
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '24px', columnGap: '24px', width: '100%' }}>
+              <div className="repeater-items numerations-items">
                 {items.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={index} className="repeater-item numerations-item">
+                    <div className="items-control">
                       <div className="items-control__buttons">
                         <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
                         <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>

@@ -142,9 +142,9 @@ const Edit = ({ attributes, setAttributes }) => {
                 />
               </div>
 
-              <div className="repeater-items">
+              <div className="repeater-items numerations-items">
                 {items.map((item, index) => (
-                  <div key={index} className="repeater-item">
+                  <div key={index} className="repeater-item numerations-item">
                     <div className="repeater-item-controls">
                       <Button
                         isSmall
@@ -167,7 +167,7 @@ const Edit = ({ attributes, setAttributes }) => {
                         isDestructive
                         onClick={() => removeItem(index)}
                       >
-                        {__('Удалить блок', 'theme')}
+                        {__('❌', 'theme')}
                       </Button>
                     </div>
 

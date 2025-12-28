@@ -27,26 +27,26 @@
         align-items: center;
         width: 100%;
         margin-bottom: 16px;
-        .components-button[disabled] {
-          opacity: 0.4;
-        }
-        .controls-arrow {
-          background-color: #fff;
-          transition: all 0.4s ease;
-          &:hover {
-            background-color: rgba(0, 124, 186, 0.25);
-          }
-        }
-        .components-button.is-destructive {
-          color: #ffffff;
-          background-color: #b90707;
-          border: 1px solid #b90707;
-          border-radius: 3px;
-          transition: all 0.4s ease;
-          &:hover {
-            background-color: transparent;
-          }
-        }
+        // .components-button[disabled] {
+        //   opacity: 0.4;
+        // }
+        // .controls-arrow {
+        //   background-color: #fff;
+        //   transition: all 0.4s ease;
+        //   &:hover {
+        //     background-color: rgba(0, 124, 186, 0.25);
+        //   }
+        // }
+        // .components-button.is-destructive {
+        //   color: #ffffff;
+        //   background-color: #b90707;
+        //   border: 1px solid #b90707;
+        //   border-radius: 3px;
+        //   transition: all 0.4s ease;
+        //   &:hover {
+        //     background-color: transparent;
+        //   }
+        // }
       }
       .repeater-image {
         position: relative;
