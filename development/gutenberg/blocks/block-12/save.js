@@ -1,10 +1,14 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { breadcrumbs } = attributes;
+  const { anchor, bgc, breadcrumbs } = attributes;
 
   const blockProps = useBlockProps.save({
     className: `block-standard block-12`,
+    id: anchor,
+    style: {
+      backgroundColor: bgc || 'transparent',
+    }
   });
 
   return (

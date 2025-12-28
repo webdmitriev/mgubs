@@ -14,13 +14,15 @@ const Save = ({ attributes }) => {
   return (
     <div {...blockProps}>
       <div className="container">
-        <div className="block-title">
-          <RichText.Content
-            tagName="h2"
-            value={title}
-            className="h2 underline"
-          />
-        </div>
+        {title && (
+          <div className="block-title">
+            <RichText.Content
+              tagName="h2"
+              value={title}
+              className="h2 underline"
+            />
+          </div>
+        )}
         <div className="content-items">
           {items.map((item, index) => (
             <div key={index} class="content-item">

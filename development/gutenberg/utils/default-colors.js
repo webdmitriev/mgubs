@@ -1,4 +1,6 @@
 const colors = [
+  { name: 'Белый', color: '#ffffff', theme: 'white' },
+
   { name: 'ВШБ', color: '#ff762f', theme: 'owner' },
   { name: 'ВШБ Фон', color: '#F8EFEA', theme: 'owner' },
 
