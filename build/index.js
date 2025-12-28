@@ -7492,7 +7492,7 @@ const Save = ({
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block-title"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h2",
