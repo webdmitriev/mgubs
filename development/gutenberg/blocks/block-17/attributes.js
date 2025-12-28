@@ -2,23 +2,10 @@ const attributes = {
   anchor: { type: 'string', default: '' },
   bgc: { type: 'string', default: '' },
 
-  items: {
+  gallery: {
     type: 'array',
-    default: [{
-      image: {
-        type: 'object',
-        default: {
-          url: '',
-          alt: '',
-          responsive: {
-            webp: '',
-            jpg: '',
-            default: '',
-          }
-        }
-      },
-    }]
-  },
+    default: []
+  }
 };
 
 export default attributes;

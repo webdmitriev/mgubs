@@ -1,17 +1,15 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { MediaUploadCheck, MediaUpload, useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-17.jpg';
 
-import { useAttributeList } from '../../hooks/useAttributeList';
-
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { items } = attributes;
+  const { gallery = [] } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -19,7 +17,28 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  const itemsList = useAttributeList(attributes, setAttributes, 'items');
+  const onSelectImage = (images) => {
+    const formatted = images.map(img => ({
+      imageId: img.id,
+      imageData: {
+        url: img.url,
+        alt: img.alt || '',
+        width: img.width,
+        height: img.height,
+        responsive: {
+          webp: img.sizes?.medium?.url || img.url,
+          jpg: img.sizes?.large?.url || img.url,
+          default: img.url
+        }
+      }
+    }));
+
+    setAttributes({ gallery: formatted });
+  };
+
+  const clearGallery = () => {
+    setAttributes({ gallery: [] });
+  };
 
   const blockProps = useBlockProps({
     className: 'block-style mgu-advantages'
@@ -35,7 +54,7 @@ const Edit = ({ attributes, setAttributes }) => {
       <div {...blockProps}>
         <div className="advanced-block">
           <div className="block-info">
-            <span className="block-info-title">🎨 Block 17 - Слайдер</span>
+            <span className="block-info-title">🎨 Block 17 - Галерея</span>
             <ToggleControl
               label={isPreview ? __('Редактирование ✍️', 'theme') : __('Предпросмотр ☺️', 'theme')}
               checked={isPreview}
@@ -49,28 +68,85 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
-                {items.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div className="items-control__buttons">
-                        <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
-                        <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>
+              {gallery.length === 0 ? (
+                <div style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  padding: '40px',
+                  border: '2px dashed #ddd',
+                  borderRadius: '5px'
+                }}>
+                  <p style={{ color: '#999' }}>
+                    {__('Нажмите "Выбрать изображения", чтобы добавить фото в галерею', 'theme')}
+                  </p>
+                </div>
+              ) : (
+                <div className="gallery-preview" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                  gap: '15px',
+                  width: '100%',
+                }}>
+                  {gallery.map((item, index) => (
+                    <div
+                      key={item.imageId || index}
+                      className="gallery-item"
+                      style={{
+                        position: 'relative',
+                        borderRadius: '5px',
+                        overflow: 'hidden',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+                      }}
+                    >
+                      <img
+                        src={item.imageData.url}
+                        alt={item.imageData.alt}
+                        style={{
+                          width: '100%',
+                          height: '150px',
+                          objectFit: 'cover',
+                          display: 'block'
+                        }}
+                      />
+                      <div style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                        color: 'white',
+                        width: '25px',
+                        height: '25px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px'
+                      }}>
+                        {index + 1}
                       </div>
-                      <Button isDestructive onClick={() => itemsList.remove(index)}>❌</Button>
                     </div>
+                  ))}
+                </div>
+              )}
 
-                    {itemsList.renderBlockSeventeen(item, index)}
-                  </div>
-                ))}
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={onSelectImage}
+                    allowedTypes={['image']}
+                    multiple
+                    gallery
+                    value={gallery.map(g => g.imageId)}
+                    render={({ open }) => (
+                      <Button onClick={open} variant="primary">{__('Выбрать изображения', 'theme')}</Button>
+                    )}
+                  />
+                </MediaUploadCheck>
+
+                {gallery.length > 0 && (
+                  <Button onClick={clearGallery} variant="secondary" isDestructive>{__('Очистить галерею', 'theme')}</Button>
+                )}
               </div>
-              <Button
-                onClick={() => itemsList.add({ image: '' })}
-                className="add-repeater-item"
-                style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
-              >
-                {__('+ Добавить элемент', 'theme')}
-              </Button>
             </div>
           )}
         </div>

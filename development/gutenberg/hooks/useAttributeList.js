@@ -1,5 +1,5 @@
 import { useCallback } from '@wordpress/element';
-import { MediaUpload, RichText, URLInput } from '@wordpress/block-editor';
+import { MediaUploadCheck, MediaUpload, RichText, URLInput } from '@wordpress/block-editor';
 import { Button, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -288,64 +288,52 @@ export function useAttributeList(attributes, setAttributes, key) {
   // ✍️ Рендер для blockSeventeen
   // ----------------------------
   const renderBlockSeventeen = (item, index) => {
-    const image = `image`;
+    const { gallery = [] } = item;
 
     return (
-      <>
-        <MediaUpload
-          onSelect={(media) =>
-            update(index, image, {
-              url: media.url,
-              alt: media.alt || '',
-              responsive: media.responsive || {
-                webp: '',
-                jpg: '',
-                default: media.url,
-              }
-            })
-          }
-          allowedTypes={['image']}
-          value={item[image]?.id}
-          render={({ open }) => (
-            <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
-              {item[image]?.url ? (
-                <div className="repeater-image-preview">
-                  <img
-                    src={item[image].url}
-                    alt={item[image].alt || ''}
-                    style={{
-                      aspectRatio: '16 / 9',
-                      width: '100%',
-                      height: 'inherit',
-                      marginBottom: '8px',
-                      objectFit: 'cover',
-                      borderRadius: '3px',
-                    }}
-                  />
-                  <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
-                    <Button onClick={open} variant="secondary" size="small">
-                      ✍️ {__('Заменить', 'theme')}
-                    </Button>
-                    <Button
-                      isDestructive
-                      onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
-                      variant="secondary"
-                      size="small"
-                    >
-                      ❌ {__('Удалить', 'theme')}
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <Button onClick={open} variant="primary" size="small">
-                  {__('Добавить изображение', 'theme')}
-                </Button>
+      <div style={{ display: 'grid', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+          {gallery.map((img, imgIndex) => (
+            <div key={imgIndex} style={{ position: 'relative' }}>
+              {img.imageData?.url && (
+                <img
+                  src={img.imageData.url}
+                  alt={img.imageData.alt}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               )}
+
+              <Button
+                isDestructive
+                isSmall
+                style={{ position: 'absolute', top: 4, right: 4, color: '#fff', backgroundColor: 'rgba(204, 24, 24, 0.6)', border: '1px solid #cc1818' }}
+                onClick={() => {
+                  const newGallery = gallery.filter((_, i) => i !== imgIndex);
+                  updateGallery(index, newGallery);
+                }}
+              >
+                ✕
+              </Button>
             </div>
-          )}
-        />
-      </>
-    )
+          ))}
+        </div>
+
+        <MediaUploadCheck>
+          <MediaUpload
+            onSelect={(images) => onSelectImage(index, images)}
+            allowedTypes={['image']}
+            multiple
+            gallery
+            value={gallery.map(g => g.imageId)}
+            render={({ open }) => (
+              <Button onClick={open} variant="secondary">
+                {__('Добавить изображения', 'theme')}
+              </Button>
+            )}
+          />
+        </MediaUploadCheck>
+      </div>
+    );
   };
 
 
@@ -501,7 +489,7 @@ export function useAttributeList(attributes, setAttributes, key) {
 
 
   // ----------------------------
-  // ✍️ Рендер для blockSeventeen
+  // ✍️ Рендер для renderBlockTwentyTree
   // ----------------------------
   const renderBlockTwentyTree = (item, index) => {
     const image = `image`;

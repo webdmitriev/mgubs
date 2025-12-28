@@ -8992,22 +8992,9 @@ const attributes = {
     type: 'string',
     default: ''
   },
-  items: {
+  gallery: {
     type: 'array',
-    default: [{
-      image: {
-        type: 'object',
-        default: {
-          url: '',
-          alt: '',
-          responsive: {
-            webp: '',
-            jpg: '',
-            default: ''
-          }
-        }
-      }
-    }]
+    default: []
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -9148,10 +9135,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _admin_assets_img_blocks_block_17_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../admin/assets/img/blocks/block-17.jpg */ "./admin/assets/img/blocks/block-17.jpg");
-/* harmony import */ var _hooks_useAttributeList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../hooks/useAttributeList */ "./development/gutenberg/hooks/useAttributeList.js");
-/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-17/controls/VideoHelpPanel.js");
-/* harmony import */ var _controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/BgAnchorPanel */ "./development/gutenberg/blocks/block-17/controls/BgAnchorPanel.js");
-
+/* harmony import */ var _controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/VideoHelpPanel */ "./development/gutenberg/blocks/block-17/controls/VideoHelpPanel.js");
+/* harmony import */ var _controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/BgAnchorPanel */ "./development/gutenberg/blocks/block-17/controls/BgAnchorPanel.js");
 
 
 
@@ -9165,17 +9150,40 @@ const Edit = ({
   setAttributes
 }) => {
   const {
-    items
+    gallery = []
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
-  const itemsList = (0,_hooks_useAttributeList__WEBPACK_IMPORTED_MODULE_6__.useAttributeList)(attributes, setAttributes, 'items');
+  const onSelectImage = images => {
+    const formatted = images.map(img => ({
+      imageId: img.id,
+      imageData: {
+        url: img.url,
+        alt: img.alt || '',
+        width: img.width,
+        height: img.height,
+        responsive: {
+          webp: img.sizes?.medium?.url || img.url,
+          jpg: img.sizes?.large?.url || img.url,
+          default: img.url
+        }
+      }
+    }));
+    setAttributes({
+      gallery: formatted
+    });
+  };
+  const clearGallery = () => {
+    setAttributes({
+      gallery: []
+    });
+  };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'block-style mgu-advantages'
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_VideoHelpPanel__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_BgAnchorPanel__WEBPACK_IMPORTED_MODULE_7__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -9186,7 +9194,7 @@ const Edit = ({
     className: "block-info"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "block-info-title"
-  }, "\uD83C\uDFA8 Block 17 - \u0421\u043B\u0430\u0439\u0434\u0435\u0440"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+  }, "\uD83C\uDFA8 Block 17 - \u0413\u0430\u043B\u0435\u0440\u0435\u044F"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: isPreview ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Редактирование ✍️', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Предпросмотр ☺️', 'theme'),
     checked: isPreview,
     onChange: togglePreview
@@ -9200,55 +9208,82 @@ const Edit = ({
     }
   }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "repeater-items",
+  }, gallery.length === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
-      rowGap: '16px',
-      columnGap: '16px',
-      width: '100%'
-    }
-  }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: index,
-    className: "repeater-item"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "items-control",
-    style: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "items-control__buttons"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => itemsList.moveUp(index),
-    disabled: index === 0,
-    style: {
-      opacity: index === 0 ? 0.4 : 1
-    }
-  }, "\u2B05\uFE0F"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => itemsList.moveDown(index),
-    disabled: index === items.length - 1,
-    style: {
-      opacity: index === items.length - 1 ? 0.4 : 1
-    }
-  }, "\u27A1\uFE0F")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    isDestructive: true,
-    onClick: () => itemsList.remove(index)
-  }, "\u274C")), itemsList.renderBlockSeventeen(item, index)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => itemsList.add({
-      image: ''
-    }),
-    className: "add-repeater-item",
-    style: {
-      display: 'block',
       width: '100%',
       textAlign: 'center',
-      border: '1px solid rgba(0, 124, 186, 0.5)'
+      padding: '40px',
+      border: '2px dashed #ddd',
+      borderRadius: '5px'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme'))))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      color: '#999'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Нажмите "Выбрать изображения", чтобы добавить фото в галерею', 'theme'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "gallery-preview",
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+      gap: '15px',
+      width: '100%'
+    }
+  }, gallery.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: item.imageId || index,
+    className: "gallery-item",
+    style: {
+      position: 'relative',
+      borderRadius: '5px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: item.imageData.url,
+    alt: item.imageData.alt,
+    style: {
+      width: '100%',
+      height: '150px',
+      objectFit: 'cover',
+      display: 'block'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      position: 'absolute',
+      top: '5px',
+      right: '5px',
+      backgroundColor: 'rgba(0,0,0,0.7)',
+      color: 'white',
+      width: '25px',
+      height: '25px',
+      borderRadius: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '12px'
+    }
+  }, index + 1)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex',
+      gap: '10px',
+      alignItems: 'center'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectImage,
+    allowedTypes: ['image'],
+    multiple: true,
+    gallery: true,
+    value: gallery.map(g => g.imageId),
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "primary"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Выбрать изображения', 'theme'))
+  })), gallery.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: clearGallery,
+    variant: "secondary",
+    isDestructive: true
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Очистить галерею', 'theme')))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -9315,8 +9350,14 @@ const Save = ({
   const {
     anchor,
     bgc,
-    items
+    gallery
   } = attributes;
+  console.log(gallery);
+
+  // Если галерея пустая, не выводим ничего
+  if (!gallery || gallery.length === 0) {
+    return null;
+  }
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `block-standard block-17`,
     id: anchor,
@@ -9328,9 +9369,9 @@ const Save = ({
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "slider-items"
-  }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, gallery.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: index,
-    data: item.image,
+    data: item.imageData,
     className: "slider-item"
   }))));
 };
@@ -14780,68 +14821,61 @@ function useAttributeList(attributes, setAttributes, key) {
   // ✍️ Рендер для blockSeventeen
   // ----------------------------
   const renderBlockSeventeen = (item, index) => {
-    const image = `image`;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-      onSelect: media => update(index, image, {
-        url: media.url,
-        alt: media.alt || '',
-        responsive: media.responsive || {
-          webp: '',
-          jpg: '',
-          default: media.url
-        }
-      }),
+    const {
+      gallery = []
+    } = item;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        display: 'grid',
+        gap: '16px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '8px'
+      }
+    }, gallery.map((img, imgIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: imgIndex,
+      style: {
+        position: 'relative'
+      }
+    }, img.imageData?.url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: img.imageData.url,
+      alt: img.imageData.alt,
+      style: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isDestructive: true,
+      isSmall: true,
+      style: {
+        position: 'absolute',
+        top: 4,
+        right: 4,
+        color: '#fff',
+        backgroundColor: 'rgba(204, 24, 24, 0.6)',
+        border: '1px solid #cc1818'
+      },
+      onClick: () => {
+        const newGallery = gallery.filter((_, i) => i !== imgIndex);
+        updateGallery(index, newGallery);
+      }
+    }, "\u2715")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+      onSelect: images => onSelectImage(index, images),
       allowedTypes: ['image'],
-      value: item[image]?.id,
+      multiple: true,
+      gallery: true,
+      value: gallery.map(g => g.imageId),
       render: ({
         open
-      }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "repeater-image",
-        style: {
-          display: 'block',
-          width: '100%'
-        }
-      }, item[image]?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "repeater-image-preview"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-        src: item[image].url,
-        alt: item[image].alt || '',
-        style: {
-          aspectRatio: '16 / 9',
-          width: '100%',
-          height: 'inherit',
-          marginBottom: '8px',
-          objectFit: 'cover',
-          borderRadius: '3px'
-        }
-      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "repeater-image-controls",
-        style: {
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'stretch',
-          width: '100%'
-        }
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
         onClick: open,
-        variant: "secondary",
-        size: "small"
-      }, "\u270D\uFE0F ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заменить', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        isDestructive: true,
-        onClick: () => update(index, image, {
-          id: 0,
-          url: '',
-          alt: ''
-        }),
-        variant: "secondary",
-        size: "small"
-      }, "\u274C ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Удалить', 'theme')))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        onClick: open,
-        variant: "primary",
-        size: "small"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить изображение', 'theme')))
-    }));
+        variant: "secondary"
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить изображения', 'theme'))
+    })));
   };
 
   // ----------------------------
@@ -15004,7 +15038,7 @@ function useAttributeList(attributes, setAttributes, key) {
   };
 
   // ----------------------------
-  // ✍️ Рендер для blockSeventeen
+  // ✍️ Рендер для renderBlockTwentyTree
   // ----------------------------
   const renderBlockTwentyTree = (item, index) => {
     const image = `image`;
