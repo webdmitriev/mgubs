@@ -9986,6 +9986,8 @@ const attributes = {
           }
         }
       },
+      name: '',
+      role: '',
       content: ''
     }]
   }
@@ -10279,25 +10281,12 @@ const Edit = ({
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок...', 'theme'),
     allowedFormats: []
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "repeater-items",
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      rowGap: '16px',
-      columnGap: '16px',
-      width: '100%'
-    }
+    className: "teachers-block-grid contacts-items numerations-items numerations-items-02"
   }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
-    className: "repeater-item"
+    className: "repeater-item numerations-item"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "items-control",
-    style: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }
+    className: "items-control"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "items-control__buttons"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
@@ -10318,6 +10307,8 @@ const Edit = ({
   }, "\u274C")), itemsList.renderBlockNineteen(item, index)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => itemsList.add({
       image: '',
+      name: '',
+      role: '',
       content: ''
     }),
     className: "add-repeater-item",
@@ -10422,11 +10413,21 @@ const Save = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: item.image,
     className: "img"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "content-review__descr"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "h3",
+    value: item.name,
+    className: "h3"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: item.role,
+    className: "descr descr-role"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "div",
     value: item.content,
     className: "descr"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "link arrow-hide"
   }, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E")))));
 };
@@ -14883,6 +14884,8 @@ function useAttributeList(attributes, setAttributes, key) {
   // ----------------------------
   const renderBlockNineteen = (item, index) => {
     const image = `image`;
+    const name = `name`;
+    const role = `role`;
     const content = `content`;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
       onSelect: media => update(index, image, {
@@ -14940,18 +14943,58 @@ function useAttributeList(attributes, setAttributes, key) {
         variant: "secondary",
         size: "small"
       }, "\u274C ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Удалить', 'theme')))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+        style: {
+          display: 'block',
+          width: '100%',
+          height: 'inherit',
+          textAlign: 'center'
+        },
         onClick: open,
         variant: "primary",
         size: "small"
       }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить изображение', 'theme')))
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        height: 12
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+      className: "my-rich-text__label"
+    }, "\u0418\u043C\u044F"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
       style: {
         textAlign: 'left'
       },
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Описание', 'theme'),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст', 'theme'),
+      value: item[name],
+      onChange: value => update(index, name, value),
+      allowedFormats: []
+    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        height: 12
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+      className: "my-rich-text__label"
+    }, "\u0420\u043E\u043B\u044C"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      style: {
+        textAlign: 'left'
+      },
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст', 'theme'),
+      value: item[role],
+      onChange: value => update(index, role, value),
+      allowedFormats: []
+    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        height: 12
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+      className: "my-rich-text__label"
+    }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      style: {
+        textAlign: 'left'
+      },
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст', 'theme'),
       value: item[content],
       onChange: value => update(index, content, value)
-    }));
+    }))));
   };
 
   // ----------------------------

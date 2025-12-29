@@ -23,7 +23,7 @@
         object-fit: cover;
         border-radius: 160px;
       }
-      .descr {
+      .content-review__descr {
         position: relative;
         max-width: calc(100% - 90px);
         max-height: 180px;
@@ -84,6 +84,12 @@
   .block-19 .content-reviews .content-review {
     width: 680px;
     margin-inline: 6px;
+  }
+  .block-19 .content-reviews .content-review img {
+    margin-bottom: 16px;
+  }
+  .block-19 .content-reviews .content-review .content-review__descr {
+    max-width: 100%;
   }
   .block-19 .content-reviews .slick-arrow.slick-arrow-prev {
     left: 30px;

@@ -19,6 +19,8 @@ const attributes = {
           }
         }
       },
+      name: '',
+      role: '',
       content: ''
     }]
   },

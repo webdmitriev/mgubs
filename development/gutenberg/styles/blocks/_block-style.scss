@@ -290,6 +290,9 @@
         }
       }
     }
+    &.numerations-items-02 {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }
 .components-base-control.block-editor-url-input.URLInput {

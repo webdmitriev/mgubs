@@ -29,11 +29,23 @@ const Save = ({ attributes }) => {
         {items.map((item, index) => (
           <div key={index} className="content-review">
             <Picture data={item.image} className="img" />
-            <RichText.Content
-              tagName="div"
-              value={item.content}
-              className="descr"
-            />
+            <div className="content-review__descr">
+              <RichText.Content
+                tagName="h3"
+                value={item.name}
+                className="h3"
+              />
+              <RichText.Content
+                tagName="div"
+                value={item.role}
+                className="descr descr-role"
+              />
+              <RichText.Content
+                tagName="div"
+                value={item.content}
+                className="descr"
+              />
+            </div>
             <div className="link arrow-hide">Показать полностью</div>
           </div>
         ))}

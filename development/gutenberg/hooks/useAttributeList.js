@@ -1,6 +1,6 @@
 import { useCallback } from '@wordpress/element';
 import { MediaUploadCheck, MediaUpload, RichText, URLInput } from '@wordpress/block-editor';
-import { Button, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
+import { Button, TextareaControl, SelectControl, ToggleControl, Flex, FlexBlock } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 export function useAttributeList(attributes, setAttributes, key) {
@@ -342,6 +342,8 @@ export function useAttributeList(attributes, setAttributes, key) {
   // ----------------------------
   const renderBlockNineteen = (item, index) => {
     const image = `image`;
+    const name = `name`;
+    const role = `role`;
     const content = `content`;
 
     return (
@@ -391,7 +393,7 @@ export function useAttributeList(attributes, setAttributes, key) {
                   </div>
                 </div>
               ) : (
-                <Button onClick={open} variant="primary" size="small">
+                <Button style={{ display: 'block', width: '100%', height: 'inherit', textAlign: 'center' }} onClick={open} variant="primary" size="small">
                   {__('Добавить изображение', 'theme')}
                 </Button>
               )}
@@ -399,12 +401,49 @@ export function useAttributeList(attributes, setAttributes, key) {
           )}
         />
 
-        <RichText
-          style={{ textAlign: 'left' }}
-          placeholder={__('Описание', 'theme')}
-          value={item[content]}
-          onChange={(value) => update(index, content, value)}
-        />
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Имя</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[name]}
+              onChange={(value) => update(index, name, value)}
+              allowedFormats={[]}
+            />
+          </FlexBlock>
+        </Flex>
+
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Роль</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[role]}
+              onChange={(value) => update(index, role, value)}
+              allowedFormats={[]}
+            />
+          </FlexBlock>
+        </Flex>
+
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Описание</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[content]}
+              onChange={(value) => update(index, content, value)}
+            />
+          </FlexBlock>
+        </Flex>
       </>
     )
   };

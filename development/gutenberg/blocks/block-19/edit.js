@@ -66,10 +66,10 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
               </div>
 
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+              <div className="teachers-block-grid contacts-items numerations-items numerations-items-02">
                 {items.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={index} className="repeater-item numerations-item">
+                    <div className="items-control">
                       <div className="items-control__buttons">
                         <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
                         <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>
@@ -82,7 +82,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 ))}
               </div>
               <Button
-                onClick={() => itemsList.add({ image: '', content: '' })}
+                onClick={() => itemsList.add({ image: '', name: '', role: '', content: '' })}
                 className="add-repeater-item"
                 style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
               >
