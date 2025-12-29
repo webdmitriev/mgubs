@@ -1,24 +1,9 @@
 const attributes = {
   anchor: { type: 'string', default: '' },
 
-  items: {
+  selectedPosts: {
     type: 'array',
-    default: [{
-      image: {
-        type: 'object',
-        default: {
-          url: '',
-          alt: '',
-          responsive: {
-            webp: '',
-            jpg: '',
-            default: '',
-          }
-        }
-      },
-      content: '',
-      contacts: ''
-    }]
+    default: []
   },
 };
 

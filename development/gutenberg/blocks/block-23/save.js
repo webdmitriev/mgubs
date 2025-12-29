@@ -2,7 +2,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Picture from '../../components/picture';
 
 const Save = ({ attributes }) => {
-  const { anchor, items } = attributes;
+  const { anchor, selectedPosts } = attributes;
 
   const blockProps = useBlockProps.save({
     className: `block-standard block-23`,
@@ -12,7 +12,7 @@ const Save = ({ attributes }) => {
   return (
     <div {...blockProps}>
       <div className="container content-items">
-        {items.map((item, index) => (
+        {/* {items.map((item, index) => (
           <div key={index} className="content-item df-fs-fs">
             <Picture data={item.image} className="img" />
             {item.content && (
@@ -30,7 +30,7 @@ const Save = ({ attributes }) => {
               />
             )}
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

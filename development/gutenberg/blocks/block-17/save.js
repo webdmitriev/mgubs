@@ -4,8 +4,6 @@ import Picture from '../../components/picture';
 const Save = ({ attributes }) => {
   const { anchor, bgc, gallery } = attributes;
 
-  console.log(gallery);
-
   // Если галерея пустая, не выводим ничего
   if (!gallery || gallery.length === 0) {
     return null;

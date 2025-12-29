@@ -1,18 +1,19 @@
 import { useState } from '@wordpress/element';
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { Button, ToggleControl } from '@wordpress/components';
+import { Button, ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-23.jpg';
 
-import { useAttributeList } from '../../hooks/useAttributeList';
+import { usePostTypeSelector } from '../../post-type-selector/usePostTypeSelector';
+import PostTypeSelectorModal from '../../post-type-selector/PostTypeSelectorModal';
 
 import VideoHelpPanel from './controls/VideoHelpPanel';
-import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { items } = attributes;
+  const { selectedPosts = [] } = attributes;
+  const [isOpen, setIsOpen] = useState(false);
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -20,7 +21,25 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  const itemsList = useAttributeList(attributes, setAttributes, 'items');
+  const selector = usePostTypeSelector({
+    postType: 'manager',
+    selectedIds: selectedPosts,
+    mapItem: (post) => ({
+      id: post.id,
+      name: post.title.rendered,
+      role: post.meta?.role || '',
+      imageUrl: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+      imageId: post._embedded?.['wp:featuredmedia']?.[0]?.id || 0,
+    }),
+  });
+
+  const addItem = (id) => {
+    setAttributes({
+      selectedPosts: [...selectedPosts, id],
+    });
+    setIsOpen(false);
+    selector.setSearchQuery('');
+  };
 
   const blockProps = useBlockProps({
     className: 'block-style mgu-advantages'
@@ -30,7 +49,6 @@ const Edit = ({ attributes, setAttributes }) => {
     <>
       <InspectorControls>
         <VideoHelpPanel />
-        <ContentPanel attributes={attributes} setAttributes={setAttributes} />
         <BgAnchorPanel attributes={attributes} setAttributes={setAttributes} />
       </InspectorControls>
 
@@ -51,28 +69,34 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
-                {items.map((item, index) => (
-                  <div key={index} className="repeater-item">
-                    <div className="items-control" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div className="items-control__buttons">
-                        <Button onClick={() => itemsList.moveUp(index)} disabled={index === 0} style={{ opacity: index === 0 ? 0.4 : 1 }}>⬅️</Button>
-                        <Button onClick={() => itemsList.moveDown(index)} disabled={index === items.length - 1} style={{ opacity: index === (items.length - 1) ? 0.4 : 1 }}>➡️</Button>
-                      </div>
-                      <Button isDestructive onClick={() => itemsList.remove(index)}>❌</Button>
-                    </div>
+              <PostTypeSelectorModal
+                title="Добавить менедржера"
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                searchQuery={selector.searchQuery}
+                setSearchQuery={selector.setSearchQuery}
+                isSearching={selector.isSearching}
+                results={selector.searchResults}
+                onSelect={addItem}
+              />
 
-                    {itemsList.renderBlockTwentyTree(item, index)}
+              {/* Рендер карточек */}
+              {selector.items.length === 0 && (<div>Нет выбранных менеджеров.</div>)}
+
+              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {selector.items.map(item => (
+                  <div key={item.id} className="repeater-item">
+                    <div>{item.name}</div>
+                    <div style={{ fontSize: 14, color: '#525252' }}>{item.role}</div>
+                    <div style={{ height: 12 }} />
+                    <img style={{ width: '100%', height: 240, objectFit: 'cover' }} src={item.imageUrl || ''} alt="Manager" />
                   </div>
                 ))}
               </div>
-              <Button
-                onClick={() => itemsList.add({ image: '', content: '', contacts: '' })}
-                className="add-repeater-item"
-                style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
-              >
-                {__('+ Добавить элемент', 'theme')}
-              </Button>
+
+              <div style={{ height: 24 }} />
+
+              <Button isPrimary onClick={() => setIsOpen(true)}>Добавить</Button>
             </div>
           )}
         </div>
