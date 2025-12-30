@@ -31,6 +31,7 @@ require get_template_directory() . '/admin/helpers/post-types/schoolhistory/meta
 
 require get_template_directory() . '/admin/helpers/post-types/manager/post-manager.php';
 require get_template_directory() . '/admin/helpers/post-types/manager/meta-fields.php';
+require get_template_directory() . '/admin/helpers/post-types/manager/post-render.php';
 
 require get_template_directory() . '/admin/helpers/post-types/thanks/post-thanks.php';
 

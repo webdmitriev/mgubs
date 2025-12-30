@@ -81,22 +81,35 @@ const Edit = ({ attributes, setAttributes }) => {
               />
 
               {/* Рендер карточек */}
-              {selector.items.length === 0 && (<div>Нет выбранных менеджеров.</div>)}
+              {selector.items.length === 0 ? (
+                <div style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  padding: '40px',
+                  border: '2px dashed #ddd',
+                  borderRadius: '5px'
+                }}>
+                  <p style={{ color: '#999' }}>
+                    {__('Нажмите "Выбрать менеджера", чтобы добавить в список', 'theme')}
+                  </p>
+                </div>
+              ) : (
+                <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                  {selector.items.map(item => (
+                    <div key={item.id} className="repeater-item">
+                      <div>{item.name}</div>
+                      <div style={{ fontSize: 14, color: '#525252' }}>{item.role}</div>
+                      <div style={{ height: 12 }} />
+                      <img style={{ width: '100%', height: 240, objectFit: 'cover' }} src={item.imageUrl || 'data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw=='} alt="Manager" />
+                    </div>
+                  ))}
+                </div>
+              )}
 
-              <div className="repeater-items" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
-                {selector.items.map(item => (
-                  <div key={item.id} className="repeater-item">
-                    <div>{item.name}</div>
-                    <div style={{ fontSize: 14, color: '#525252' }}>{item.role}</div>
-                    <div style={{ height: 12 }} />
-                    <img style={{ width: '100%', height: 240, objectFit: 'cover' }} src={item.imageUrl || ''} alt="Manager" />
-                  </div>
-                ))}
-              </div>
 
               <div style={{ height: 24 }} />
 
-              <Button isPrimary onClick={() => setIsOpen(true)}>Добавить</Button>
+              <Button isPrimary onClick={() => setIsOpen(true)}>Выбрать менеджера</Button>
             </div>
           )}
         </div>

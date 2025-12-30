@@ -32,6 +32,8 @@
         }
         a {
           position: relative;
+          font-size: 18px;
+          line-height: 1.1;
           color: var(--white-color);
         }
         a[href^="tel:"],
@@ -42,7 +44,7 @@
         a[href^="mailto:"]::before {
           content: "";
           position: absolute;
-          top: 50%;
+          top: calc(50% - 2px);
           left: 0;
           display: block;
           width: 20px;
