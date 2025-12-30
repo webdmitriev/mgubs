@@ -294,6 +294,32 @@
       grid-template-columns: 1fr 1fr;
     }
   }
+
+  &.block-style-27 {
+    .my-block-content-image {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      width: 100%;
+      .my-block-content {
+        order: 1;
+        width: 60%;
+      }
+      .my-block-image {
+        order: 2;
+        width: 38%;
+      }
+      &.my-block-content-image-revers {
+        .my-block-image {
+          order: 1;
+        }
+        .my-block-content {
+          order: 2;
+        }
+      }
+    }
+  }
 }
 .components-base-control.block-editor-url-input.URLInput {
   width: 100%;

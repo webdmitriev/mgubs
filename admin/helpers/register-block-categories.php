@@ -66,6 +66,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-24',
     'theme/block-25',
     'theme/block-26',
+    'theme/block-27',
 
     'core/paragraph',
     'core/list',

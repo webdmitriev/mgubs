@@ -1,13 +1,16 @@
 .block-27 {
   padding-block: 10px 30px;
+  .container > .h2 {
+    margin-bottom: 24px;
+  }
   .container {
     gap: 24px;
     &.revers {
       .content-data {
-        order: 1;
+        order: 2;
       }
       .content-image {
-        order: 2;
+        order: 1;
       }
     }
   }
