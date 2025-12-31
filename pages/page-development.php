@@ -3,7 +3,6 @@
  * Template Name: Development
 */
 
-
 get_header();
 
 $url = get_template_directory_uri();
@@ -15,17 +14,6 @@ the_content();
   <div class="container"><h2 class="h2">Title</h2></div>
   <div class="container df-sp-fs">
     <div class="content-descr">
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
       <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
     </div>
     <div class="content-images">

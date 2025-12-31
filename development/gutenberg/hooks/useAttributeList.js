@@ -927,12 +927,31 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // -------------------------------
+  // ✍️ Рендер для renderBlockThirty
+  // -------------------------------
+  const renderBlockThirty = (item, index) => {
+    const content = `content`;
+
+    return (
+      <>
+        <RichText
+          style={{ textAlign: 'left' }}
+          placeholder={__('Текст...', 'theme')}
+          value={item[content]}
+          onChange={(value) => update(index, content, value)}
+        />
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
     renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen,
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
-    renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine
+    renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty
   };
 }
