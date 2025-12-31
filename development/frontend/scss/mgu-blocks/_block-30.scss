@@ -1,0 +1,115 @@
+.block-30 {
+  padding-block: 24px;
+  background-color: var(--accent-color);
+  .h2 {
+    margin-bottom: 24px;
+  }
+  .h3 {
+    margin-bottom: 8px;
+  }
+  .h2,
+  .h3,
+  .descr {
+    color: var(--white-color);
+  }
+  .content-descr,
+  .content-images {
+    width: 100%;
+  }
+  .content-descr {
+    counter-reset: myCounter;
+    max-width: calc(100% - 410px);
+    .descr {
+      position: relative;
+      padding-left: 38px;
+      &:before {
+        counter-increment: myCounter;
+        content: counter(myCounter);
+        position: absolute;
+        top: -4px;
+        left: 0;
+        display: block;
+        width: 28px;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        text-align: center;
+      }
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+  }
+  .content-images {
+    max-width: 382px;
+    img {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+    .content-author {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .block-30 .content-descr,
+  .block-30 .content-images {
+    max-width: 100%;
+  }
+  .block-30 .content-descr {
+    margin-bottom: 40px;
+  }
+  .block-30 .content-images .content-author {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .block-30 .content-images .content-author img {
+    max-width: 314px;
+    margin-bottom: 0;
+  }
+  .block-30 .content-images .content-author .content-author__data {
+    max-width: 390px;
+  }
+  .block-30 .content-images > img {
+    display: block;
+    max-width: 60%;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+@media (max-width: 768px) {
+  .block-30 .content-images .content-author {
+    margin-bottom: 24px;
+  }
+  .block-30 .content-images .content-author img,
+  .block-30 .content-images .content-author .content-author__data,
+  .block-30 .content-images > img {
+    width: 100%;
+    max-width: 400px;
+  }
+  .block-30 .content-images .content-author .content-author__data .descr {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 576px) {
+  .block-30 .content-descr .descr:before {
+    font-size: 21px;
+  }
+  .block-30 .content-descr .descr:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}
