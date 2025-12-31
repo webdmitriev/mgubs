@@ -258,5 +258,95 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-29">
+  <div class="container">
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+    <div class="content-block df-sp-fs">
+      <div class="circles"></div>
+      <div class="content-block__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/history-46.jpg" style="" alt="MGU" /></div>
+      <div class="content-block__data">
+        <h2 class="h2">1992 год <div class="circle"></div></h2>
+        <div class="descr">В Школе управления МГУ стартует совместная российско — японская программа для преподавателей общеобразовательных школ «Учитель — 1» по «Основам рыночной экономики и бизнеса» и «Учитель — 2» по «Методике преподавания бизнес-дисциплин».</div>
+        <a href="#" class="link">Подробнее</a>
+      </div>
+    </div>
+  </div>
+  <div class="content-button">
+    <div class="circles"></div>
+    <div class="btn btn-white">Показать ещё</div>
+  </div>
+</div>
+
 <?php
 get_footer();
