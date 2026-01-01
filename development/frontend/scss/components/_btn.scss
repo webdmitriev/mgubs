@@ -26,6 +26,9 @@
     background-color: transparent;
     border: 2px solid var(--accent-color);
   }
+  &[hidden] {
+    display: none !important;
+  }
 }
 
 // @container block-www (max-width: 1680px) {
