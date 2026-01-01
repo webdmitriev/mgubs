@@ -253,6 +253,15 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.setAttribute('data-event-bound', 'true');
   });
 
+  // ********
+  // block-31
+  document.querySelectorAll('.block-31').forEach(block => {
+    block.querySelector('.show-more')?.addEventListener('click', function (e) {
+      e.currentTarget.closest('.block-31').querySelectorAll('.block-teachers').forEach(el => el.classList.add('active'))
+      e.currentTarget.style.display = 'none';
+    })
+  })
+
 
   // Находим все honeypot поля
   // console.log('www');

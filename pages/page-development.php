@@ -10,22 +10,101 @@ $image_base64 = 'data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAA
 the_content();
 ?>
 
-<div class="block-standard block-30">
-  <div class="container"><h2 class="h2">Title</h2></div>
-  <div class="container df-sp-fs">
-    <div class="content-descr">
-      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, fugiat.</div>
+<div class="block-standard block-31 block-08">
+  <div class="block-teacher df-fs-st">
+    <div class="teacher__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/01/oleg_vichansky_600.jpg" alt="MGU" /></div>
+    <div class="teacher__content">
+      <h4 class="h4">Олег Самуилович Виханский</h4>
+      <div class="descr">Декан Высшей школы бизнеса МГУ <br/>Профессор, доктор экономических наук <br/>Заслуженный профессор Московского университета <br/>Заведующий кафедрой менеджмента ВШБ МГУ</div>
+      <div class="link link-white">Подробнее</div>
     </div>
-    <div class="content-images">
-      <div class="content-author">
-        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/different.jpg" alt="MGU" />
-        <div class="content-author__data">
-          <h3 class="h3">Виханский Олег Самуилович</h3>
-          <div class="descr">Декан Высшей школы бизнеса МГУ. <br/>Профессор, доктор экономических наук. <br/>Заслуженный профессор Московского университета. <br/>Заведующий кафедрой менеджмента ВШБ МГУ.</div>
-        </div>
+  </div>
+  <button class="btn btn-white show-more">Показать ещё</button>
+  <div class="block-teachers">
+    <h3 class="h3">Заместители декана</h3>
+    <div class="container">
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
       </div>
-      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/01/cube-all-1.svg" alt="MGU" />
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
     </div>
+  </div>
+  <div class="block-teachers">
+    <h3 class="h3">Заместители декана</h3>
+    <div class="container">
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+      <div class="teacher-article">
+        <img src="https://mgubs.ru/wp-content/uploads/2023/06/greg_stryuk_500.jpg" alt="MGUBS" class="teacher-image" />
+        <div class="teacher-title">name</div>
+        <div class="teacher-descr">descr</div>
+        <div class="teacher-description" style="display: none;">descr</div>
+        <div class="teacher-link">Подробнее</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-31">
+  <div class="container">
+    www
   </div>
 </div>
 
