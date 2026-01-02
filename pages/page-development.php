@@ -10,7 +10,7 @@ $image_base64 = 'data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAA
 the_content();
 ?>
 
-<div class="block-standard block-31 block-08">
+<div class="block-standard block-31 block-08" style="display: none;">
   <div class="block-teacher df-fs-st">
     <div class="teacher__image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/01/oleg_vichansky_600.jpg" alt="MGU" /></div>
     <div class="teacher__content">
@@ -102,7 +102,7 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-31">
+<div class="block-standard block-32">
   <div class="container">
     www
   </div>
