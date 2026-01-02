@@ -1,6 +1,6 @@
 import { useCallback } from '@wordpress/element';
 import { MediaUploadCheck, MediaUpload, RichText, URLInput } from '@wordpress/block-editor';
-import { Button, TextareaControl, SelectControl, ToggleControl, Flex, FlexBlock } from '@wordpress/components';
+import { Button, TextareaControl, TextControl, SelectControl, ToggleControl, Flex, FlexBlock, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 export function useAttributeList(attributes, setAttributes, key) {
@@ -946,12 +946,109 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // -----------------------------------
+  // ✍️ Рендер для renderBlockThirtyTwo
+  // -----------------------------------
+  const renderBlockThirtyTwo = (item, index) => {
+    const image = `image`;
+    const shadow = `shadow`;
+    const link = `link`;
+
+    return (
+      <>
+        <MediaUpload
+          onSelect={(media) =>
+            update(index, image, {
+              url: media.url,
+              alt: media.alt || '',
+              responsive: media.responsive || {
+                webp: '',
+                jpg: '',
+                default: media.url,
+              }
+            })
+          }
+          allowedTypes={['image']}
+          value={item[image]?.id}
+          render={({ open }) => (
+            <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+              {item[image]?.url ? (
+                <div className="repeater-image-preview">
+                  <img
+                    src={item[image].url}
+                    alt={item[image].alt || ''}
+                    style={{
+                      aspectRatio: '16 / 9',
+                      width: '100%',
+                      height: 'inherit',
+                      marginBottom: '8px',
+                      objectFit: 'cover',
+                      borderRadius: '3px',
+                    }}
+                  />
+                  <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                    <Button onClick={open} variant="secondary" size="small">
+                      ✍️ {__('Заменить', 'theme')}
+                    </Button>
+                    <Button
+                      isDestructive
+                      onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                      variant="secondary"
+                      size="small"
+                    >
+                      ❌ {__('Удалить', 'theme')}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button onClick={open} variant="primary" size="small">
+                  {__('Добавить изображение', 'theme')}
+                </Button>
+              )}
+            </div>
+          )}
+        />
+
+        <div style={{ height: '8px' }} />
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Rutube</label>
+            <TextControl
+              placeholder={__('c08e1819ea06326802310c2f2dbf40ca...', 'theme')}
+              value={item[link]}
+              onChange={(value) => update(index, link, value)}
+            />
+          </FlexBlock>
+        </Flex>
+        <div style={{ height: '8px' }} />
+
+        <Flex direction="column" gap="8">
+          <FlexBlock>
+            <RangeControl
+              label={
+                <div>Затемнение картинки (0-10): <strong style={{ paddingBlock: '2px', paddingInline: '4px', color: '#fff', backgroundColor: '#000' }}>{item[shadow] || 0}</strong></div>
+              }
+              value={item[shadow] || 0}
+              onChange={(val) => update(index, shadow, val)}
+              min={0}
+              max={9}
+              step={1}
+              withInputField={false}
+            />
+          </FlexBlock>
+        </Flex>
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
     renderRichTextToRichText, renderBreadcrumbs, renderBlockFourteen,
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
-    renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty
+    renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty,
+    renderBlockThirtyTwo
   };
 }
