@@ -10,7 +10,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { isRevers, isTopTitle, title, content, imageId, imageData } = attributes;
+  const { isStandard, isRevers, isTopTitle, title, content, imageId, imageData } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -84,12 +84,25 @@ const Edit = ({ attributes, setAttributes }) => {
                 border: '2px dashed #ddd',
                 borderRadius: '5px'
               }}>
-                <label className="my-rich-text__label">Поменять местами?</label>
-                <ToggleControl
-                  label={isRevers ? __('Картинка справа', 'theme') : __('Картинка слева', 'theme')}
-                  checked={isRevers}
-                  onChange={(value) => setAttributes({ isRevers: value })}
-                />
+                <Flex justify="flex-start">
+                  <FlexItem>
+                    <label className="my-rich-text__label">Поменять местами?</label>
+                    <ToggleControl
+                      label={isRevers ? __('Картинка справа', 'theme') : __('Картинка слева', 'theme')}
+                      checked={isRevers}
+                      onChange={(value) => setAttributes({ isRevers: value })}
+                    />
+                  </FlexItem>
+                  <FlexItem> </FlexItem>
+                  <FlexItem>
+                    <label className="my-rich-text__label">Стиль блока:</label>
+                    <ToggleControl
+                      label={isStandard ? __('Стиль 02', 'theme') : __('Стиль 01', 'theme')}
+                      checked={isStandard}
+                      onChange={(value) => setAttributes({ isStandard: value })}
+                    />
+                  </FlexItem>
+                </Flex>
               </div>
 
               <div style={{ height: 12 }} />

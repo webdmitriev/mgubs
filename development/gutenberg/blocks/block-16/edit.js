@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { Flex, FlexBlock, Button, ToggleControl, TextareaControl } from '@wordpress/components';
+import { Flex, FlexBlock, Button, ToggleControl, TextareaControl, FlexItem } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-16.jpg';
@@ -12,7 +12,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { anchor, bgc, num, title, items } = attributes;
+  const { isStandard, items } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -51,6 +51,16 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
+              <Flex>
+                <FlexItem>
+                  <label className="my-rich-text__label">Стиль блока:</label>
+                  <ToggleControl
+                    label={isStandard ? __('Стиль 02', 'theme') : __('Стиль 01', 'theme')}
+                    checked={isStandard}
+                    onChange={(value) => setAttributes({ isStandard: value })}
+                  />
+                </FlexItem>
+              </Flex>
               <div className="repeater-items" style={{ display: 'block', width: '100%' }}>
                 {items.map((item, index) => (
                   <div key={index} className="repeater-item">

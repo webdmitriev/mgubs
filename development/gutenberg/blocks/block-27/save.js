@@ -2,10 +2,10 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Picture from '../../components/picture';
 
 const Save = ({ attributes }) => {
-  const { anchor, bgc, isRevers, isTopTitle, title, content, imageId, imageData } = attributes;
+  const { anchor, bgc, isStandard, isRevers, isTopTitle, title, content, imageId, imageData } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `block-standard block-27`,
+    className: `block-standard block-27 ${isStandard ? 'block-27--style-02' : ''}`,
     id: anchor,
     style: {
       backgroundColor: bgc || 'transparent',

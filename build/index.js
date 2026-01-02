@@ -158,7 +158,7 @@ module.exports = __webpack_require__.p + "images/block-15.da799555.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "images/block-16.fdf416be.jpg";
+module.exports = __webpack_require__.p + "images/block-16.770f9c35.jpg";
 
 /***/ }),
 
@@ -268,7 +268,7 @@ module.exports = __webpack_require__.p + "images/block-26.25b21dd8.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "images/block-27.62db96e3.jpg";
+module.exports = __webpack_require__.p + "images/block-27.7b74f8ee.jpg";
 
 /***/ }),
 
@@ -8572,6 +8572,10 @@ const attributes = {
     type: 'string',
     default: ''
   },
+  isStandard: {
+    type: 'boolean',
+    default: false
+  },
   num: {
     type: 'string',
     default: ''
@@ -8820,10 +8824,7 @@ const Edit = ({
   setAttributes
 }) => {
   const {
-    anchor,
-    bgc,
-    num,
-    title,
+    isStandard,
     items
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
@@ -8862,7 +8863,15 @@ const Edit = ({
     }
   }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u0421\u0442\u0438\u043B\u044C \u0431\u043B\u043E\u043A\u0430:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isStandard ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Стиль 02', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Стиль 01', 'theme'),
+    checked: isStandard,
+    onChange: value => setAttributes({
+      isStandard: value
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "repeater-items",
     style: {
       display: 'block',
@@ -8972,11 +8981,11 @@ const Save = ({
   attributes
 }) => {
   const {
-    title,
+    isStandard,
     items
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `block-standard block-16`
+    className: `block-standard block-16 ${isStandard ? '' : 'block-16--style-02'}`
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -13622,6 +13631,10 @@ const attributes = {
     type: 'string',
     default: ''
   },
+  isStandard: {
+    type: 'boolean',
+    default: false
+  },
   isRevers: {
     type: 'boolean',
     default: true
@@ -13867,6 +13880,7 @@ const Edit = ({
   setAttributes
 }) => {
   const {
+    isStandard,
     isRevers,
     isTopTitle,
     title,
@@ -13946,7 +13960,9 @@ const Edit = ({
       border: '2px dashed #ddd',
       borderRadius: '5px'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+    justify: "flex-start"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
   }, "\u041F\u043E\u043C\u0435\u043D\u044F\u0442\u044C \u043C\u0435\u0441\u0442\u0430\u043C\u0438?"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: isRevers ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Картинка справа', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Картинка слева', 'theme'),
@@ -13954,7 +13970,15 @@ const Edit = ({
     onChange: value => setAttributes({
       isRevers: value
     })
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, " "), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u0421\u0442\u0438\u043B\u044C \u0431\u043B\u043E\u043A\u0430:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isStandard ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Стиль 02', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Стиль 01', 'theme'),
+    checked: isStandard,
+    onChange: value => setAttributes({
+      isStandard: value
+    })
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       height: 12
     }
@@ -14101,6 +14125,7 @@ const Save = ({
   const {
     anchor,
     bgc,
+    isStandard,
     isRevers,
     isTopTitle,
     title,
@@ -14109,7 +14134,7 @@ const Save = ({
     imageData
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `block-standard block-27`,
+    className: `block-standard block-27 ${isStandard ? 'block-27--style-02' : ''}`,
     id: anchor,
     style: {
       backgroundColor: bgc || 'transparent'

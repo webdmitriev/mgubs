@@ -2,6 +2,8 @@ const attributes = {
   anchor: { type: 'string', default: '' },
   bgc: { type: 'string', default: '' },
 
+  isStandard: { type: 'boolean', default: false },
+
   isRevers: { type: 'boolean', default: true },
 
   isTopTitle: { type: 'boolean', default: false },

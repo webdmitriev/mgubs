@@ -1,10 +1,10 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-  const { title, items } = attributes;
+  const { isStandard, items } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `block-standard block-16`,
+    className: `block-standard block-16 ${isStandard ? '' : 'block-16--style-02'}`,
   });
 
   return (
