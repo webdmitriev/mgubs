@@ -103,8 +103,27 @@ the_content();
 </div>
 
 <div class="block-standard block-32">
-  <div class="container">
-    www
+  <div class="block-slider">
+    <div class="block-slide">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-slide__shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-slide__play" data-video="c08e1819ea06326802310c2f2dbf40ca"></button>
+    </div>
+    <div class="block-slide">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-slide__shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-slide__play" data-video="d08c0a63c1657d36ad9e2263522c63a8"></button>
+    </div>
+    <div class="block-slide">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-slide__shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-slide__play" data-video="a2590d2b8fbf114e430a52e9ffd9b8d5"></button>
+    </div>
+    <div class="block-slide">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-slide__shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-slide__play" data-video="502a484c72b7f371f8bc6493c3dc8fbe"></button>
+    </div>
   </div>
 </div>
 

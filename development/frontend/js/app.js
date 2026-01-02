@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // variables
   const body = document.querySelector('body');
   const contactsBlockId = document.querySelector('#contacts-block-id');
+  const overlay = document.querySelector('.overlay');
   const popupCall = document.querySelector('.popup-call');
+  const popupVideo = document.querySelector('.popup-video');
 
   body.addEventListener('click', function (e) {
     if (e.target.classList.contains('contacts-block-id')) {
@@ -155,6 +157,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ********
+  // block-32
+  document.addEventListener('click', function (e) {
+    const playButton = e.target.closest('.block-slide__play');
+    if (!playButton) return;
+
+    body.classList.add('overflow');
+    overlay.classList.add('active');
+
+    const dataVideo = playButton.getAttribute('data-video');
+    popupVideo.innerHTML = `<iframe width="840" height="472" src="https://rutube.ru/play/embed/${dataVideo}/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`;
+    popupVideo.style.display = 'block';
+  });
+
+
+  $(document).on('keydown', function (event) {
+    if (event.keyCode === 27) { hideCleanPopup() }
+  });
+
+  document.querySelector('.overlay').addEventListener('click', hideCleanPopup)
+
+  function hideCleanPopup() {
+    document.querySelector('.popup-video').innerHTML = '';
+    document.querySelectorAll('.popup').forEach(popup => popup.style.display = 'none');
+    document.querySelector('.overlay').classList.remove('active');
+    document.querySelector('body').classList.remove('overflow');
+  }
 
 
   // Находим все honeypot поля

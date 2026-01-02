@@ -132,6 +132,8 @@ $footer_program = $options['footer_edu_program'] ?? '';
 		<div class="popup-call" style="display: none;">
 			www
 		</div>
+
+		<div class="popup popup-video" style="display: none;"></div>
 	</div><!-- #app -->
 
 <?php wp_footer(); ?>

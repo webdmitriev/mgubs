@@ -66,4 +66,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })
 
+  $('.block-32 .block-slider').each(function () {
+    const slider = $(this);
+    slider.slick({
+      autoplay: true,
+      autoplaySpeed: 7000,
+      dots: false,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      variableWidth: true,
+      centerMode: true,
+      prevArrow: false,
+      nextArrow: false,
+      rows: 0,
+    });
+  })
+
 })
