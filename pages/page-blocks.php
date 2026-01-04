@@ -373,5 +373,16 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-33">
+  <div class="block-bg">
+    <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/08/bg-1920x.15.jpg" alt="MGU" />
+  </div>
+  <div class="container">
+    <h3 class="h3">Следите за новостями в нашем Telegram-канале</h3>
+    <div class="descr">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum, blanditiis?</div>
+    <a href="http://localhost:8888/mgubs/" class="btn btn-white">Перейти в Telegram</a>
+  </div>
+</div>
+
 <?php
 get_footer();
