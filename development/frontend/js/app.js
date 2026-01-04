@@ -185,6 +185,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('body').classList.remove('overflow');
   }
 
+  // block event (start)
+  if (document.querySelector('.block-42')) {
+    const eventsDataTitle = $('.block-42').attr('webdmitriev-title') ? $('.block-42').attr('webdmitriev-title') : 'MGU';
+    const eventsDataDay = $('.block-42').attr('webdmitriev-day') ? $('.block-42').attr('webdmitriev-day') : '01';
+    const eventsDataMounth = $('.block-42').attr('webdmitriev-month') ? $('.block-42').attr('webdmitriev-month') : 'Январь';
+    const eventsDataMounthNum = $('.block-42').attr('webdmitriev-month-num') ? $('.block-42').attr('webdmitriev-month-num') : '01';
+    const eventsDataTime = $('.block-42').attr('webdmitriev-time') ? $('.block-42').attr('webdmitriev-time') : '00:01';
+
+    let eventsDataAll = { 'title': eventsDataTitle, 'day': eventsDataDay, 'mounth': eventsDataMounth, 'mounthnum': eventsDataMounthNum, 'time': eventsDataTime }
+
+    localStorage.setItem('eventsData', JSON.stringify(eventsDataAll));
+  }
+  // // block event (end)
+
+  // recaptcha hide (start)
+  setInterval(() => { $('.grecaptcha-badge').parent().hide() }, 1200);
+  // recaptcha hide (end)
+
 
   // Находим все honeypot поля
   // console.log('www');
