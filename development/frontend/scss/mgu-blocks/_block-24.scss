@@ -27,8 +27,11 @@
   }
   .content-title {
     max-width: 622px;
-    .h1 {
-      margin-bottom: 16px;
+    .descr {
+      margin-top: 16px;
+    }
+    .btn {
+      margin-top: 24px;
     }
   }
   .content-descr {
@@ -72,6 +75,7 @@
     padding-bottom: 0;
   }
   .block-24 .content-descr {
+    margin-top: 24px;
     padding-left: 0;
   }
   .block-24 .content-descr.with-border:before {

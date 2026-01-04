@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { Button, ToggleControl } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls, URLInput } from '@wordpress/block-editor';
+import { Button, Flex, FlexBlock, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-24.jpg';
@@ -12,7 +12,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, titleSecond, descr } = attributes;
+  const { title, subTitle, buttonText, buttonLink, titleSecond, descr } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -82,41 +82,74 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <div className="advanced-block-text">
-                <>
-                  <label className="my-rich-text__label">Заголовок</label>
-                  <RichText
-                    tagName="div"
-                    label="Заголовок"
-                    value={title}
-                    onChange={(value) => setAttributes({ title: value })}
-                    placeholder={__('Текст...', 'theme')}
-                    allowedFormats={[]}
-                  />
-                </>
-                <>
-                  <label className="my-rich-text__label">Заголовок (справа)</label>
-                  <RichText
-                    tagName="div"
-                    label="Заголовок (справа)"
-                    value={titleSecond}
-                    onChange={(value) => setAttributes({ titleSecond: value })}
-                    placeholder={__('Текст...', 'theme')}
-                    allowedFormats={[]}
-                  />
-                </>
-                <>
-                  <label className="my-rich-text__label">Описание (справа)</label>
-                  <RichText
-                    tagName="div"
-                    label="Описание (справа)"
-                    value={descr}
-                    onChange={(value) => setAttributes({ descr: value })}
-                    placeholder={__('Текст...', 'theme')}
-                    allowedFormats={[]}
-                  />
-                </>
-              </div>
+              <Flex align="flex-start">
+                <FlexBlock>
+                  <>
+                    <label className="my-rich-text__label">Заголовок</label>
+                    <RichText
+                      tagName="div"
+                      label="Заголовок"
+                      value={title}
+                      onChange={(value) => setAttributes({ title: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                  <>
+                    <label className="my-rich-text__label">Подзаголовок</label>
+                    <RichText
+                      tagName="div"
+                      label="Подзаголовок"
+                      value={subTitle}
+                      onChange={(value) => setAttributes({ subTitle: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                  <>
+                    <label className="my-rich-text__label">Кнопка - текст</label>
+                    <RichText
+                      tagName="div"
+                      value={buttonText}
+                      onChange={(value) => setAttributes({ buttonText: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                  <>
+                    <label className="my-rich-text__label">Кнопка - ссылка</label>
+                    <URLInput
+                      value={buttonLink}
+                      onChange={(value) => setAttributes({ buttonLink: value })}
+                      placeholder={__('URL...', 'theme')}
+                    />
+                  </>
+                </FlexBlock>
+                <FlexBlock>
+                  <>
+                    <label className="my-rich-text__label">Заголовок</label>
+                    <RichText
+                      tagName="div"
+                      label="Заголовок"
+                      value={titleSecond}
+                      onChange={(value) => setAttributes({ titleSecond: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                  <>
+                    <label className="my-rich-text__label">Описание</label>
+                    <RichText
+                      tagName="div"
+                      label="Описание"
+                      value={descr}
+                      onChange={(value) => setAttributes({ descr: value })}
+                      placeholder={__('Текст...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                </FlexBlock>
+              </Flex>
 
               <div style={{ height: '24px' }} />
 

@@ -3,6 +3,10 @@ const attributes = {
   bgc: { type: 'string', default: '' },
 
   title: { type: 'string', default: '' },
+  subTitle: { type: 'string', default: '' },
+
+  buttonText: { type: 'string', default: '' },
+  buttonLink: { type: 'string', default: '' },
 
   titleSecond: { type: 'string', default: '' },
   descr: { type: 'string', default: '' },
