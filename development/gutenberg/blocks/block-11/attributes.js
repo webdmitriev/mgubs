@@ -7,15 +7,23 @@ const attributes = {
   subTitleTwo: { type: 'string', default: '' },
   descr: { type: 'string', default: '' },
   divider: { type: 'boolean', default: false },
-  // cf7: { type: 'string', default: '' },
-  cf7FormId: {
-    type: "string",
-    default: ""
+
+  imageId: { type: 'number', default: 0 },
+  imageData: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: '',
+      }
+    }
   },
-  cf7Shortcode: {
-    type: "string",
-    default: ""
-  },
+
+  cf7FormId: { type: "string", default: "" },
+  cf7Shortcode: { type: "string", default: "" },
 
   bg1920Id: { type: 'number', default: 0 },
   bg1920Data: {

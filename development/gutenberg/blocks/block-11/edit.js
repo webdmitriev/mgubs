@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { Flex, FlexBlock, ToggleControl } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { Flex, FlexBlock, ToggleControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-11.jpg';
@@ -13,7 +13,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, subTitleOne, subTitleTwo, divider, descr } = attributes;
+  const { title, subTitleOne, subTitleTwo, divider, descr, imageId, imageData } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -21,9 +21,39 @@ const Edit = ({ attributes, setAttributes }) => {
     className: 'block-style block-11'
   });
 
-  const bgSizes = [1920, 991, 576];
+  // Handler - image
+  const onSelectImage = (media) => {
+    setAttributes({
+      imageId: media.id,
+      imageData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        }
+      }
+    });
+  };
+
+  const onRemoveImage = () => {
+    setAttributes({
+      imageId: 0,
+      imageData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        }
+      }
+    });
+  };
 
   // Handler - bg
+  const bgSizes = [1920, 991, 576];
   const getOnSelectBg = (size) => (media) => {
     setAttributes({
       [`bg${size}Id`]: media.id,
@@ -83,31 +113,69 @@ const Edit = ({ attributes, setAttributes }) => {
 
           {isPreview && (
             <div className="advanced-block-content">
-              <Flex
-                direction={[
-                  'column',
-                  'row'
-                ]}
-                align="flex-start">
+              <Flex direction={['column', 'row']} align="flex-start">
                 <FlexBlock>
-                  <span>{__('Заголовок', 'theme')}</span>
-                  <RichText
-                    tagName="div"
-                    value={title}
-                    onChange={(value) => setAttributes({ title: value })}
-                    placeholder={__('Заголовок...', 'theme')}
-                    allowedFormats={[]}
-                  />
+                  <>
+                    <span>{__('Заголовок', 'theme')}</span>
+                    <RichText
+                      tagName="div"
+                      value={title}
+                      onChange={(value) => setAttributes({ title: value })}
+                      placeholder={__('Заголовок...', 'theme')}
+                      allowedFormats={[]}
+                    />
+                  </>
+                  <>
+                    <span>{__('Подзаголовок 1', 'theme')}</span>
+                    <RichText
+                      tagName="div"
+                      value={subTitleOne}
+                      onChange={(value) => setAttributes({ subTitleOne: value })}
+                      placeholder={__('Текст', 'theme')}
+                      allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                    />
+                  </>
                 </FlexBlock>
                 <FlexBlock>
-                  <span>{__('Подзаголовок 1', 'theme')}</span>
-                  <RichText
-                    tagName="div"
-                    value={subTitleOne}
-                    onChange={(value) => setAttributes({ subTitleOne: value })}
-                    placeholder={__('Текст', 'theme')}
-                    allowedFormats={['core/bold', 'core/italic', 'core/link']}
-                  />
+                  <MediaUploadCheck>
+                    <MediaUpload
+                      onSelect={onSelectImage}
+                      allowedTypes={['image']}
+                      value={imageId}
+                      render={({ open }) => (
+                        <div className="advanced-block-image advanced-block-image-100">
+                          <div className="label-image">Иконка (для вертикали)</div>
+                          {imageData.url ? (
+                            <>
+                              <img
+                                src={imageData.url}
+                                className="advanced-image-preview"
+                                alt=""
+                                style={{ borderRadius: '8px' }}
+                              />
+                              <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                                <Button onClick={open} variant="secondary" size="small">
+                                  ✏️ {__('Изменить', 'theme')}
+                                </Button>
+                                <Button
+                                  onClick={onRemoveImage}
+                                  variant="tertiary"
+                                  size="small"
+                                  isDestructive
+                                >
+                                  🗑 {__('Удалить', 'theme')}
+                                </Button>
+                              </div>
+                            </>
+                          ) : (
+                            <Button onClick={open} variant="primary">
+                              📷 {__('Добавить картинку', 'theme')}
+                            </Button>
+                          )}
+                        </div>
+                      )}
+                    />
+                  </MediaUploadCheck>
                 </FlexBlock>
               </Flex>
 
@@ -117,10 +185,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 onChange={(value) => setAttributes({ divider: value })}
               />
 
-              <Flex direction={[
-                'column',
-                'row'
-              ]}>
+              <Flex direction={['column', 'row']}>
                 <FlexBlock>
                   <span>{__('Подзаголовок 2', 'theme')}</span>
                   <RichText
@@ -133,10 +198,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 </FlexBlock>
               </Flex>
 
-              <Flex direction={[
-                'column',
-                'row'
-              ]}>
+              <Flex direction={['column', 'row']}>
                 <FlexBlock>
                   <span>{__('Описание', 'theme')}</span>
                   <RichText
@@ -149,10 +211,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 </FlexBlock>
               </Flex>
 
-              <Flex direction={[
-                'column',
-                'row'
-              ]}>
+              <Flex direction={['column', 'row']}>
                 <FlexBlock>
                   <CF7FormSelector attributes={attributes} setAttributes={setAttributes} />
                 </FlexBlock>

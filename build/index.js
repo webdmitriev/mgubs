@@ -108,7 +108,7 @@ module.exports = __webpack_require__.p + "images/block-10.798fa062.jpg";
   \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "images/block-11.c9529760.jpg";
+module.exports = __webpack_require__.p + "images/block-11.dead1b3d.jpg";
 
 /***/ }),
 
@@ -6173,7 +6173,22 @@ const attributes = {
     type: 'boolean',
     default: false
   },
-  // cf7: { type: 'string', default: '' },
+  imageId: {
+    type: 'number',
+    default: 0
+  },
+  imageData: {
+    type: 'object',
+    default: {
+      url: '',
+      alt: '',
+      responsive: {
+        webp: '',
+        jpg: '',
+        default: ''
+      }
+    }
+  },
   cf7FormId: {
     type: "string",
     default: ""
@@ -6465,15 +6480,47 @@ const Edit = ({
     subTitleOne,
     subTitleTwo,
     divider,
-    descr
+    descr,
+    imageId,
+    imageData
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'block-style block-11'
   });
-  const bgSizes = [1920, 991, 576];
+
+  // Handler - image
+  const onSelectImage = media => {
+    setAttributes({
+      imageId: media.id,
+      imageData: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url
+        }
+      }
+    });
+  };
+  const onRemoveImage = () => {
+    setAttributes({
+      imageId: 0,
+      imageData: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: ''
+        }
+      }
+    });
+  };
 
   // Handler - bg
+  const bgSizes = [1920, 991, 576];
   const getOnSelectBg = size => media => {
     setAttributes({
       [`bg${size}Id`]: media.id,
@@ -6536,7 +6583,7 @@ const Edit = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
     direction: ['column', 'row'],
     align: "flex-start"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
     value: title,
     onChange: value => setAttributes({
@@ -6544,7 +6591,7 @@ const Edit = ({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Заголовок...', 'theme'),
     allowedFormats: []
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Подзаголовок 1', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Подзаголовок 1', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
     value: subTitleOne,
     onChange: value => setAttributes({
@@ -6552,7 +6599,43 @@ const Edit = ({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Текст', 'theme'),
     allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectImage,
+    allowedTypes: ['image'],
+    value: imageId,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "advanced-block-image advanced-block-image-100"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "label-image"
+    }, "\u0418\u043A\u043E\u043D\u043A\u0430 (\u0434\u043B\u044F \u0432\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u0438)"), imageData.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: imageData.url,
+      className: "advanced-image-preview",
+      alt: "",
+      style: {
+        borderRadius: '8px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        display: 'flex',
+        gap: '6px',
+        marginTop: '4px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "secondary",
+      size: "small"
+    }, "\u270F\uFE0F ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Изменить', 'theme')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: onRemoveImage,
+      variant: "tertiary",
+      size: "small",
+      isDestructive: true
+    }, "\uD83D\uDDD1 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Удалить', 'theme')))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "primary"
+    }, "\uD83D\uDCF7 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить картинку', 'theme')))
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: divider ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Убрать линию ❌', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Добавить линию ✅', 'theme'),
     checked: divider,
     onChange: value => setAttributes({
@@ -6654,7 +6737,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_PictureBg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/PictureBg */ "./development/gutenberg/components/PictureBg.js");
+/* harmony import */ var _components_picture__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/picture */ "./development/gutenberg/components/picture.js");
+/* harmony import */ var _components_PictureBg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/PictureBg */ "./development/gutenberg/components/PictureBg.js");
+
 
 
 
@@ -6670,6 +6755,7 @@ const Save = ({
     subTitleTwo,
     descr,
     divider,
+    imageData,
     bg1920Data,
     bg991Data,
     bg576Data,
@@ -6684,7 +6770,7 @@ const Save = ({
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PictureBg__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PictureBg__WEBPACK_IMPORTED_MODULE_4__["default"], {
     bg1920Data: bg1920Data,
     bg991Data: bg991Data,
     bg576Data: bg576Data,
@@ -6693,7 +6779,10 @@ const Save = ({
     className: "container df-sp-ce"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "mgu-main__content"
-  }, title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: imageData,
+    className: "icon-vertical"
+  }), title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h1",
     value: title,
     className: "h1"

@@ -1,11 +1,12 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
+import Picture from '../../components/picture';
 import PictureBg from '../../components/PictureBg';
 
 const Save = ({ attributes }) => {
   const {
     anchor, bgc, title, subTitleOne, subTitleTwo, descr,
-    divider, bg1920Data, bg991Data, bg576Data, cf7Shortcode
+    divider, imageData, bg1920Data, bg991Data, bg576Data, cf7Shortcode
   } = attributes;
 
   const blockProps = useBlockProps.save({
@@ -27,6 +28,7 @@ const Save = ({ attributes }) => {
 
       <div className="container df-sp-ce">
         <div className="mgu-main__content">
+          <Picture data={imageData} className="icon-vertical" />
           {title && (
             <RichText.Content
               tagName="h1"
