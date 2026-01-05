@@ -323,6 +323,17 @@
       }
     }
   }
+
+  .components-base-control__field .components-base-control__label {
+    display: block;
+    width: 100%;
+    min-height: 21px;
+    margin-bottom: 3px;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: math-auto;
+    color: gray;
+  }
 }
 .components-base-control.block-editor-url-input.URLInput {
   width: 100%;

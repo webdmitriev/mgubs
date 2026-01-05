@@ -50,3 +50,4 @@ import './blocks/block-30/index.js';
 // import './blocks/block-31/index.js';
 import './blocks/block-32/index.js';
 import './blocks/block-33/index.js';
+import './blocks/block-34/index.js';

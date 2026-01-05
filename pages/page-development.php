@@ -109,8 +109,8 @@ the_content();
 
   <div class="block-gradient"></div>
   <style>
-    .block-34 .block-gradient { background: linear-gradient(270deg, rgba(207, 133, 0, 1) 81.9%, rgba(0, 110, 153, 0) 100%); }
-    @media (max-width: 991px) { .block-34 .block-gradient { background: linear-gradient(0deg, rgba(207, 133, 0, 1) 81.9%, rgba(0, 110, 153, 0) 100%); } }
+    .block-34 .block-gradient { background: linear-gradient(270deg, rgba(207, 133, 0, 1) 82%, rgba(0, 0, 0, 0) 100%); }
+    @media (max-width: 991px) { .block-34 .block-gradient { background: linear-gradient(0deg, rgba(207, 133, 0, 1) 82%, rgba(0, 0, 0, 0) 100%); } }
   </style>
 
   <div class="container df-sp-fs">
