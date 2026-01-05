@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const popupCall = document.querySelector('.popup-call');
   const popupVideo = document.querySelector('.popup-video');
 
+  const months = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+  ];
+
   body.addEventListener('click', function (e) {
     if (e.target.classList.contains('contacts-block-id')) {
       e.preventDefault();
@@ -186,18 +191,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // block event (start)
-  if (document.querySelector('.block-42')) {
-    const eventsDataTitle = $('.block-42').attr('webdmitriev-title') ? $('.block-42').attr('webdmitriev-title') : 'MGU';
-    const eventsDataDay = $('.block-42').attr('webdmitriev-day') ? $('.block-42').attr('webdmitriev-day') : '01';
-    const eventsDataMounth = $('.block-42').attr('webdmitriev-month') ? $('.block-42').attr('webdmitriev-month') : 'Январь';
-    const eventsDataMounthNum = $('.block-42').attr('webdmitriev-month-num') ? $('.block-42').attr('webdmitriev-month-num') : '01';
-    const eventsDataTime = $('.block-42').attr('webdmitriev-time') ? $('.block-42').attr('webdmitriev-time') : '00:01';
+  if (document.querySelector('.block-34 [event-time]')) {
+    const eventTitle = document.querySelector('.block-34 h1').textContent || 'No title';
+    const eventTime = document.querySelector('.block-34 [event-time]').getAttribute('event-time') || '00:01';
+    const eventDay = document.querySelector('.block-34 [event-day]').getAttribute('event-day') || '01';
+    const eventMonth = document.querySelector('.block-34 [event-month]').getAttribute('event-month') || '1';
 
-    let eventsDataAll = { 'title': eventsDataTitle, 'day': eventsDataDay, 'mounth': eventsDataMounth, 'mounthnum': eventsDataMounthNum, 'time': eventsDataTime }
+    let eventsDataAll = { 'title': eventTitle, 'day': eventDay, 'mounth': months[parseInt(eventMonth) - 1], 'mounthnum': eventMonth, 'time': eventTime }
 
     localStorage.setItem('eventsData', JSON.stringify(eventsDataAll));
   }
-  // // block event (end)
+  // block event (end)
 
   // recaptcha hide (start)
   setInterval(() => { $('.grecaptcha-badge').parent().hide() }, 1200);

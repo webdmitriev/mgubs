@@ -31,7 +31,7 @@ const Save = ({ attributes }) => {
 
   return (
     <div {...blockProps}>
-      {date && (<div event-time={time || '00:00'} event-day={day} event-month={month} event-year={year} />)}
+      {date && (<div event-time={time || '00:01'} event-day={day} event-month={month} event-year={year} />)}
 
       {imageId !== 0 && (
         <div className="block-bg"><Picture data={imageData} /></div>

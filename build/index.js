@@ -17553,7 +17553,7 @@ const Save = ({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    "event-time": time || '00:00',
+    "event-time": time || '00:01',
     "event-day": day,
     "event-month": month,
     "event-year": year
