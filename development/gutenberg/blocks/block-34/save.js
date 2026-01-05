@@ -1,33 +1,25 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Picture from '../../components/picture';
 
+import HexToRgba from '../../extends/hex-to-rgba';
+
 const Save = ({ attributes }) => {
   const {
     anchor, bgc, title, date, time, buttonText, buttonLink,
-    second_title, description,
-    imageData, rgba
+    isContent, second_title, description, items,
+    imageData, imageId, rgba
   } = attributes;
 
-  function hexToRgba(hex, alpha = 1) {
-    if (!hex) return null;
+  // Разделяем дату на составляющие
+  const [year, month, day] = date?.split('-').map(Number);
 
-    let cleanHex = hex.replace('#', '');
+  // Форматируем дату по-русски
+  const months = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+  ];
 
-    // поддержка короткого HEX (#fff)
-    if (cleanHex.length === 3) {
-      cleanHex = cleanHex
-        .split('')
-        .map(c => c + c)
-        .join('');
-    }
-
-    const r = parseInt(cleanHex.substring(0, 2), 16);
-    const g = parseInt(cleanHex.substring(2, 4), 16);
-    const b = parseInt(cleanHex.substring(4, 6), 16);
-
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-
+  const monthName = months[parseInt(month) - 1];
 
   const blockProps = useBlockProps.save({
     className: 'block-standard block-34',
@@ -39,7 +31,9 @@ const Save = ({ attributes }) => {
 
   return (
     <div {...blockProps}>
-      {imageData && (
+      {date && (<div event-time={time || '00:00'} event-day={day} event-month={month} event-year={year} />)}
+
+      {imageId !== 0 && (
         <div className="block-bg"><Picture data={imageData} /></div>
       )}
 
@@ -48,8 +42,8 @@ const Save = ({ attributes }) => {
           <div className="block-gradient"></div>
           <style>
             {`
-              .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(270deg, ${hexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }
-              @media (max-width: 991px) { .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(0deg, ${hexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }}
+              .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(270deg, ${HexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }
+              @media (max-width: 991px) { .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(0deg, ${HexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }}
             `}
           </style>
         </>
@@ -64,26 +58,25 @@ const Save = ({ attributes }) => {
               className="h1"
             />
           )}
-          <div className="date-data df-sp-fe">
-            {date && (
-              <RichText.Content
-                tagName="div"
-                value={date}
-                className="descr"
-              />
-            )}
-            <div className="date-data__day">28</div>
-            <div className="date-data__content">
-              <div className="date-data__month">декабрь</div>
-              {time && (
-                <RichText.Content
-                  tagName="div"
-                  value={time}
-                  className="date-data__time"
-                />
+          {date && (
+            <div className="date-data df-sp-fe">
+              {day && (
+                <div className="date-data__day">{day}</div>
               )}
+              <div className="date-data__content">
+                {monthName && (
+                  <div className="date-data__month">{monthName}</div>
+                )}
+                {time && (
+                  <RichText.Content
+                    tagName="div"
+                    value={time}
+                    className="date-data__time"
+                  />
+                )}
+              </div>
             </div>
-          </div>
+          )}
           {buttonText && (
             buttonLink ? (
               <a href={buttonLink} className="btn btn-white">{buttonText}</a>
@@ -93,32 +86,52 @@ const Save = ({ attributes }) => {
           )}
         </div>
 
-        <div className="content-items" style="display: none;">
-          <div className="content-item df-sp-ce">
-            <img decoding="async" loading="lazy" src="https://mgubs.ru/wp-content/uploads/2023/06/icon-3-3.svg" alt="MGU" />
-            <div className="content-item__data">
-              <div className="content-item__label descr">label</div>
-              <div className="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, itaque!</div>
+        {isContent ? (
+          second_title || description ? (
+            <div class="content-description">
+              {second_title && (
+                <RichText.Content
+                  tagName="h2"
+                  value={second_title}
+                  className="h2"
+                />
+              )}
+              {description && (
+                <RichText.Content
+                  tagName="div"
+                  value={description}
+                  className="descr"
+                />
+              )}
             </div>
-          </div>
-        </div>
-
-        <div class="content-description">
-          {second_title && (
-            <RichText.Content
-              tagName="h2"
-              value={second_title}
-              className="h2"
-            />
-          )}
-          {description && (
-            <RichText.Content
-              tagName="div"
-              value={description}
-              className="descr"
-            />
-          )}
-        </div>
+          ) : ('')
+        ) : (
+          items.length > 0 && (
+            <div className="content-items">
+              {items.map((item, index) => (
+                <div key={index} className="content-item df-sp-ce">
+                  <Picture data={item.image} />
+                  <div className="content-item__data" style={`${imageData ? '' : 'max-width: 100%'}`}>
+                    {item.label && (
+                      <RichText.Content
+                        tagName="div"
+                        value={item.label}
+                        className="content-item__label descr"
+                      />
+                    )}
+                    {item.content && (
+                      <RichText.Content
+                        tagName="div"
+                        value={item.content}
+                        className="descr"
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )
+        )}
       </div>
     </div>
   );

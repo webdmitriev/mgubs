@@ -16906,6 +16906,10 @@ __webpack_require__.r(__webpack_exports__);
     type: 'string',
     default: ''
   },
+  isContent: {
+    type: 'boolean',
+    default: true
+  },
   second_title: {
     type: 'string',
     default: ''
@@ -17174,6 +17178,7 @@ const Edit = ({
     time,
     buttonText,
     buttonLink,
+    isContent,
     second_title,
     description,
     items,
@@ -17256,9 +17261,14 @@ const Edit = ({
     className: "advanced-block-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-text"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
-    align: "flex-start"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
   }, "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
@@ -17302,11 +17312,26 @@ const Edit = ({
       buttonLink: value
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('URL...', 'theme')
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       height: 24
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u041A\u0430\u043A\u043E\u0439 \u043A\u043E\u043D\u0442\u0435\u043D\u0442 \u0441\u043F\u0440\u0430\u0432\u0430?"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: isContent ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Описание', 'theme') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Пункты', 'theme'),
+    checked: isContent,
+    onChange: value => setAttributes({
+      isContent: value
+    })
+  }))), isContent ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
   }, "\u0412\u0442\u043E\u0440\u043E\u0439 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
@@ -17330,11 +17355,14 @@ const Edit = ({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Описание...', 'theme'),
     allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
-      height: 24
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teachers-block-grid contacts-items numerations-items numerations-items-02"
   }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
@@ -17358,7 +17386,11 @@ const Edit = ({
   }, "\u27A1\uFE0F")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     isDestructive: true,
     onClick: () => itemsList.remove(index)
-  }, "\u274C")), itemsList.renderBlockThirtyFour(item, index)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  }, "\u274C")), itemsList.renderBlockThirtyFour(item, index)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      height: 8
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => itemsList.add({
       image: '',
       label: '',
@@ -17371,7 +17403,16 @@ const Edit = ({
       textAlign: 'center',
       border: '1px solid rgba(0, 124, 186, 0.5)'
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('+ Добавить элемент', 'theme')))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'block',
+      width: '100%',
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
     align: "flex-start"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
     onSelect: onSelectImage,
@@ -17416,7 +17457,7 @@ const Edit = ({
     onChange: val => setAttributes({
       rgba: val
     })
-  })))))));
+  }))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -17471,6 +17512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_picture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/picture */ "./development/gutenberg/components/picture.js");
+/* harmony import */ var _extends_hex_to_rgba__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../extends/hex-to-rgba */ "./development/gutenberg/extends/hex-to-rgba.js");
+
 
 
 
@@ -17485,24 +17528,21 @@ const Save = ({
     time,
     buttonText,
     buttonLink,
+    isContent,
     second_title,
     description,
+    items,
     imageData,
+    imageId,
     rgba
   } = attributes;
-  function hexToRgba(hex, alpha = 1) {
-    if (!hex) return null;
-    let cleanHex = hex.replace('#', '');
 
-    // поддержка короткого HEX (#fff)
-    if (cleanHex.length === 3) {
-      cleanHex = cleanHex.split('').map(c => c + c).join('');
-    }
-    const r = parseInt(cleanHex.substring(0, 2), 16);
-    const g = parseInt(cleanHex.substring(2, 4), 16);
-    const b = parseInt(cleanHex.substring(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
+  // Разделяем дату на составляющие
+  const [year, month, day] = date?.split('-').map(Number);
+
+  // Форматируем дату по-русски
+  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  const monthName = months[parseInt(month) - 1];
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: 'block-standard block-34',
     id: anchor,
@@ -17512,15 +17552,20 @@ const Save = ({
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, imageData && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    "event-time": time || '00:00',
+    "event-day": day,
+    "event-month": month,
+    "event-year": year
+  }), imageId !== 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block-bg"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: imageData
   })), rgba && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block-gradient"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-              .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(270deg, ${hexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }
-              @media (max-width: 991px) { .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(0deg, ${hexToRgba(rgba)} 82%, rgba(0,0,0,0) 100%); }}
+              .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(270deg, ${(0,_extends_hex_to_rgba__WEBPACK_IMPORTED_MODULE_3__["default"])(rgba)} 82%, rgba(0,0,0,0) 100%); }
+              @media (max-width: 991px) { .wp-block-theme-block-34.block-34 .block-gradient { background: linear-gradient(0deg, ${(0,_extends_hex_to_rgba__WEBPACK_IMPORTED_MODULE_3__["default"])(rgba)} 82%, rgba(0,0,0,0) 100%); }}
             `)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container df-sp-fs"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -17529,19 +17574,15 @@ const Save = ({
     tagName: "h1",
     value: title,
     className: "h1"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "date-data df-sp-fe"
-  }, date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "div",
-    value: date,
-    className: "descr"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, day && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "date-data__day"
-  }, "28"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "date-data__content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, monthName && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "date-data__month"
-  }, "\u0434\u0435\u043A\u0430\u0431\u0440\u044C"), time && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+  }, monthName), time && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "div",
     value: time,
     className: "date-data__time"
@@ -17550,23 +17591,7 @@ const Save = ({
     className: "btn btn-white"
   }, buttonText) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "btn btn-white btn-show-popup"
-  }, buttonText))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "content-items",
-    style: "display: none;"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "content-item df-sp-ce"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    decoding: "async",
-    loading: "lazy",
-    src: "https://mgubs.ru/wp-content/uploads/2023/06/icon-3-3.svg",
-    alt: "MGU"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "content-item__data"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "content-item__label descr"
-  }, "label"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "descr"
-  }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, itaque!")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, buttonText))), isContent ? second_title || description ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "content-description"
   }, second_title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h2",
@@ -17576,7 +17601,25 @@ const Save = ({
     tagName: "div",
     value: description,
     className: "descr"
-  }))));
+  })) : '' : items.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "content-items"
+  }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
+    className: "content-item df-sp-ce"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    data: item.image
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "content-item__data",
+    style: `${imageData ? '' : 'max-width: 100%'}`
+  }, item.label && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: item.label,
+    className: "content-item__label descr"
+  }), item.content && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: item.content,
+    className: "descr"
+  })))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
@@ -18365,6 +18408,33 @@ const Picture = ({
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Picture);
+
+/***/ }),
+
+/***/ "./development/gutenberg/extends/hex-to-rgba.js":
+/*!******************************************************!*\
+  !*** ./development/gutenberg/extends/hex-to-rgba.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const HexToRgba = (hex, alpha = 1) => {
+  if (!hex) return null;
+  let cleanHex = hex.replace('#', '');
+
+  // поддержка короткого HEX (#fff)
+  if (cleanHex.length === 3) {
+    cleanHex = cleanHex.split('').map(c => c + c).join('');
+  }
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HexToRgba);
 
 /***/ }),
 

@@ -8,6 +8,8 @@ export default {
   buttonText: { type: 'string', default: '' },
   buttonLink: { type: 'string', default: '' },
 
+  isContent: { type: 'boolean', default: true },
+
   second_title: { type: 'string', default: '' },
   description: { type: 'string', default: '' },
 

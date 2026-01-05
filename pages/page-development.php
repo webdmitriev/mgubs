@@ -102,61 +102,6 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-34">
-  <div class="block-bg">
-    <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/11/event-universiade-vshb.jpg" alt="MGU" />
-  </div>
-
-  <div class="block-gradient"></div>
-  <style>
-    .block-34 .block-gradient { background: linear-gradient(270deg, rgba(207, 133, 0, 1) 82%, rgba(0, 0, 0, 0) 100%); }
-    @media (max-width: 991px) { .block-34 .block-gradient { background: linear-gradient(0deg, rgba(207, 133, 0, 1) 82%, rgba(0, 0, 0, 0) 100%); } }
-  </style>
-
-  <div class="container df-sp-fs">
-    <div class="content-title">
-      <h1 class="h1">Online День открытых дверей <br/>Высшей школы бизнеса МГУ</h1>
-      <div class="date-data df-sp-fe">
-        <div class="date-data__day">28</div>
-        <div class="date-data__content">
-          <div class="date-data__month">декабрь</div>
-          <div class="date-data__time">14:30</div>
-        </div>
-      </div>
-      <a href="#" class="btn btn-white">Регистрация</a>
-    </div>
-
-    <div class="content-items" style="display: none;">
-      <div class="content-item df-sp-ce">
-        <img decoding="async" loading="lazy" src="https://mgubs.ru/wp-content/uploads/2023/06/icon-3-3.svg" alt="MGU" />
-        <div class="content-item__data">
-          <div class="content-item__label descr">label</div>
-          <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, itaque!</div>
-        </div>
-      </div>
-      <div class="content-item df-sp-ce">
-        <img decoding="async" loading="lazy" src="https://mgubs.ru/wp-content/uploads/2023/06/icon-3-3.svg" alt="MGU" />
-        <div class="content-item__data">
-          <div class="content-item__label descr">label</div>
-          <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, itaque!</div>
-        </div>
-      </div>
-      <div class="content-item df-sp-ce">
-        <img decoding="async" loading="lazy" src="https://mgubs.ru/wp-content/uploads/2023/06/icon-3-3.svg" alt="MGU" />
-        <div class="content-item__data">
-          <div class="content-item__label descr">label</div>
-          <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, itaque!</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-description">
-      <h2 class="h2">Предпринимательство <br/>и управление бизнесом</h2>
-      <div class="descr">Универсиада – интеллектуальное состязание студентов, нацеленных на развитие своей профессиональной карьеры в качестве успешных менеджеров или предпринимателей <br/><br/>Победители и призеры Универсиады имеют возможность поступления в магистратуру ВШБ МГУ без экзаменов</div>
-    </div>
-  </div>
-</div>
-
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
