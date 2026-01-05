@@ -439,5 +439,17 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-35">
+  <div class="bg-content">
+    <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/07/grants.jpg" alt="MGU" />
+  </div>
+  <div class="container">
+    <div class="h1">Грантовый конкурс</div>
+    <div class="descr bold">на обучение в магистратуре</div>
+    <div class="descr">Высшая школа бизнеса МГУ совместно с компаниями “Ингосстрах”, “ЦЕМРОС” и при поддержке фонда “Вольное дело” предоставляет уникальную возможность трудоустройства и бесплатного получения бизнес-образования.</div>
+    <a href="#" class="link link-white">Подробнее</a>
+  </div>
+</div>
+
 <?php
 get_footer();
