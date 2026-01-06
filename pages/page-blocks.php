@@ -570,5 +570,12 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-39">
+  <div class="container">
+    <h1 class="h1">Контакты</h1>
+    <h3 class="h3">Высшая школа бизнеса МГУ</h3>
+  </div>
+</div>
+
 <?php
 get_footer();
