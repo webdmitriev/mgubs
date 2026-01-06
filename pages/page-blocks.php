@@ -553,5 +553,22 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-38">
+  <div class="container">
+    <div class="block-content">
+      <h2 class="h2">title</h2>
+      <div class="block-content__image">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/05/school_main_basement.jpg" alt="MGU" />
+      </div>
+    </div>
+    <div class="block-content">
+      <h2 class="h2">title</h2>
+      <div class="block-content__image">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/05/basement2.svg" alt="MGU" />
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();
