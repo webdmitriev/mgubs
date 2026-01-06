@@ -290,6 +290,9 @@
         }
       }
     }
+    &.numerations-items-01 {
+      grid-template-columns: 1fr;
+    }
     &.numerations-items-02 {
       grid-template-columns: 1fr 1fr;
     }

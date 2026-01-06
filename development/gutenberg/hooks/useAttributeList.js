@@ -1312,6 +1312,43 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // ------------------------------------
+  // ✍️ Рендер для renderBlockThirtySeven
+  // ------------------------------------
+  const renderBlockThirtySeven = (item, index) => {
+    const title = `title`;
+    const descr = `descr`;
+
+    return (
+      <>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Заголовок</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст...', 'theme')}
+              value={item[title]}
+              onChange={(value) => update(index, title, value)}
+            />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <div style={{ height: 24 }} />
+            <label className="my-rich-text__label">Описание</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст...', 'theme')}
+              value={item[descr]}
+              onChange={(value) => update(index, descr, value)}
+            />
+          </FlexBlock>
+        </Flex>
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
@@ -1319,6 +1356,7 @@ export function useAttributeList(attributes, setAttributes, key) {
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
     renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty,
-    renderBlockThirtyTwo, renderBlockThirtyFour, renderBlockThirtySix, renderBlockThirtySixSecond, renderBlockThirtySixThird
+    renderBlockThirtyTwo, renderBlockThirtyFour, renderBlockThirtySix, renderBlockThirtySixSecond, renderBlockThirtySixThird,
+    renderBlockThirtySeven
   };
 }
