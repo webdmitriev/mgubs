@@ -32,6 +32,11 @@ function theme_register_block_categories( $categories, $context ) {
         'title' => __( 'Наполненные блоки', 'theme' ),
         'icon'  => 'layout',
       ],
+      [
+        'slug'  => 'contacts-blocks',
+        'title' => __( 'Контактные блоки', 'theme' ),
+        'icon'  => 'layout',
+      ],
     ]
   );
 }
@@ -75,6 +80,7 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-33',
     'theme/block-34',
     'theme/block-35',
+    'theme/block-36',
 
     'core/paragraph',
     'core/list',

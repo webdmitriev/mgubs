@@ -45,7 +45,6 @@ add_filter('image_size_names_choose', function () {
  * 4. Генерируем JPG + WebP для нужных разрешений
  */
 add_filter('wp_generate_attachment_metadata', function ($meta, $attachment_id) {
-
   $file = get_attached_file($attachment_id);
   if (!file_exists($file)) return $meta;
 
@@ -55,23 +54,26 @@ add_filter('wp_generate_attachment_metadata', function ($meta, $attachment_id) {
   $sizes = [480, 768, 1280, 1920];
 
   foreach ($sizes as $size) {
-    // JPG
-    $jpg = wp_get_image_editor($file);
-    if (!is_wp_error($jpg)) {
-      $jpg->resize($size, null);
-      $jpg->save(str_replace(".{$ext}", "-{$size}.{$ext}", $file));
+    // Resize и сохраняем исходный формат (JPG или PNG)
+    $editor = wp_get_image_editor($file);
+    if (!is_wp_error($editor)) {
+      $editor->resize($size, null, false);
+      $editor->save(str_replace(".{$ext}", "-{$size}.{$ext}", $file));
     }
 
-    // WebP
-    $webp = wp_get_image_editor($file);
-    if (!is_wp_error($webp)) {
-      $webp->resize($size, null);
-      $webp->save(str_replace(".{$ext}", "-{$size}.webp", $file), 'image/webp');
+    // WebP — только для JPG/JPEG
+    if (in_array($ext, ['jpg', 'jpeg'])) {
+      $webp = wp_get_image_editor($file);
+      if (!is_wp_error($webp)) {
+        $webp->resize($size, null, false);
+        $webp->save(str_replace(".{$ext}", "-{$size}.webp", $file), 'image/webp');
+      }
     }
   }
 
   return $meta;
 }, 20, 2);
+
 
 /**
  * 5. responsive-данные для Gutenberg

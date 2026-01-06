@@ -1130,6 +1130,188 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // -----------------------------------
+  // ✍️ Рендер для renderBlockThirtySix
+  // -----------------------------------
+  const renderBlockThirtySix = (item, index) => {
+    const image = `image`;
+    const label = `label`;
+
+    return (
+      <Flex align="flex-start" gap="8">
+        <div style={{ display: 'block', width: '80px' }}>
+          <MediaUpload
+            onSelect={(media) =>
+              update(index, image, {
+                url: media.url,
+                alt: media.alt || '',
+                responsive: media.responsive || {
+                  webp: '',
+                  jpg: '',
+                  default: media.url,
+                }
+              })
+            }
+            allowedTypes={['image']}
+            value={item[image]?.id}
+            render={({ open }) => (
+              <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+                {item[image]?.url ? (
+                  <div className="repeater-image-preview">
+                    <img
+                      src={item[image].url}
+                      alt={item[image].alt || ''}
+                      style={{
+                        aspectRatio: '1 / 1',
+                        width: '100%',
+                        height: 'inherit',
+                        objectFit: 'contain',
+                      }}
+                    />
+                    <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                      <Button onClick={open} variant="secondary" size="small">
+                        ✍️ {__(' ', 'theme')}
+                      </Button>
+                      <Button
+                        isDestructive
+                        onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                        variant="secondary"
+                        size="small"
+                      >
+                        ❌ {__(' ', 'theme')}
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <Button onClick={open} variant="primary" size="small">
+                    {__('Иконка', 'theme')}
+                  </Button>
+                )}
+              </div>
+            )}
+          />
+        </div>
+        <FlexBlock>
+          <label className="my-rich-text__label">Текст</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[label]}
+            onChange={(value) => update(index, label, value)}
+          />
+        </FlexBlock>
+      </Flex>
+    )
+  };
+
+
+  // ----------------------------------------
+  // ✍️ Рендер для renderBlockThirtySixSecond
+  // ----------------------------------------
+  const renderBlockThirtySixSecond = (item, index) => {
+    const image = `image`;
+    const label = `label`;
+
+    return (
+      <Flex align="flex-start" gap="8">
+        <div style={{ display: 'block', width: '80px' }}>
+          <MediaUpload
+            onSelect={(media) =>
+              update(index, image, {
+                url: media.url,
+                alt: media.alt || '',
+                responsive: media.responsive || {
+                  webp: '',
+                  jpg: '',
+                  default: media.url,
+                }
+              })
+            }
+            allowedTypes={['image']}
+            value={item[image]?.id}
+            render={({ open }) => (
+              <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+                {item[image]?.url ? (
+                  <div className="repeater-image-preview">
+                    <img
+                      src={item[image].url}
+                      alt={item[image].alt || ''}
+                      style={{
+                        aspectRatio: '1 / 1',
+                        width: '100%',
+                        height: 'inherit',
+                        objectFit: 'contain',
+                      }}
+                    />
+                    <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                      <Button onClick={open} variant="secondary" size="small">
+                        ✍️ {__(' ', 'theme')}
+                      </Button>
+                      <Button
+                        isDestructive
+                        onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                        variant="secondary"
+                        size="small"
+                      >
+                        ❌ {__(' ', 'theme')}
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <Button onClick={open} variant="primary" size="small">
+                    {__('Иконка', 'theme')}
+                  </Button>
+                )}
+              </div>
+            )}
+          />
+        </div>
+        <FlexBlock>
+          <label className="my-rich-text__label">Текст</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[label]}
+            onChange={(value) => update(index, label, value)}
+          />
+        </FlexBlock>
+      </Flex>
+    )
+  };
+
+
+  // ----------------------------------------
+  // ✍️ Рендер для renderBlockThirtySixThird
+  // ----------------------------------------
+  const renderBlockThirtySixThird = (item, index) => {
+    const num = `num`;
+    const label = `label`;
+
+    return (
+      <Flex align="flex-start" gap="8">
+        <div style={{ display: 'block', width: 120 }}>
+          <label className="my-rich-text__label">Номер</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Номер', 'theme')}
+            value={item[num]}
+            onChange={(value) => update(index, num, value)}
+          />
+        </div>
+        <FlexBlock>
+          <label className="my-rich-text__label">Текст</label>
+          <RichText
+            style={{ textAlign: 'left' }}
+            placeholder={__('Текст', 'theme')}
+            value={item[label]}
+            onChange={(value) => update(index, label, value)}
+          />
+        </FlexBlock>
+      </Flex>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
@@ -1137,6 +1319,6 @@ export function useAttributeList(attributes, setAttributes, key) {
     renderTextareaToRichText, renderTextRichToRich, renderBlockSeventeen,
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
     renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty,
-    renderBlockThirtyTwo, renderBlockThirtyFour
+    renderBlockThirtyTwo, renderBlockThirtyFour, renderBlockThirtySix, renderBlockThirtySixSecond, renderBlockThirtySixThird
   };
 }
