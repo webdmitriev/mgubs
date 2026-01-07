@@ -665,5 +665,21 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-42">
+  <div class="container">
+    <h2 class="h2">Title</h2>
+    <div class="block-items">
+      <div class="block-item">
+        <div class="block-item__image">
+          <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/02/obi-logo.svg" alt="MGU" />
+        </div>
+        <h3 class="h3">Title</h3>
+        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, sit. Similique, provident.</div>
+        <button class="btn btn-orange btn-show-popup">Подробнее</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();

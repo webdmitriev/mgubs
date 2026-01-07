@@ -1349,6 +1349,127 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+
+  // ----------------------------------------
+  // ✍️ Рендер для renderBlockFortyTwo
+  // ----------------------------------------
+  const renderBlockFortyTwo = (item, index) => {
+    const image = `image`;
+    const title = `title`;
+    const descr = `descr`;
+    const buttonText = `buttonText`;
+    const buttonLink = `buttonLink`;
+
+    return (
+      <>
+        <Flex>
+          <FlexBlock>
+            <MediaUpload
+              onSelect={(media) =>
+                update(index, image, {
+                  url: media.url,
+                  alt: media.alt || '',
+                  responsive: media.responsive || {
+                    webp: '',
+                    jpg: '',
+                    default: media.url,
+                  }
+                })
+              }
+              allowedTypes={['image']}
+              value={item[image]?.id}
+              render={({ open }) => (
+                <div className="repeater-image" style={{ display: 'block', width: '100%' }}>
+                  {item[image]?.url ? (
+                    <div className="repeater-image-preview">
+                      <img
+                        src={item[image].url}
+                        alt={item[image].alt || ''}
+                        style={{
+                          aspectRatio: '16 / 9',
+                          width: '100%',
+                          height: 'inherit',
+                          objectFit: 'contain',
+                        }}
+                      />
+                      <div className="repeater-image-controls" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', width: '100%' }}>
+                        <div style={{ width: '100%', height: 8 }} />
+                        <Button onClick={open} variant="secondary" size="small">
+                          ✍️ {__(' ', 'theme')}
+                        </Button>
+                        <Button
+                          isDestructive
+                          onClick={() => update(index, image, { id: 0, url: '', alt: '' })}
+                          variant="secondary"
+                          size="small"
+                        >
+                          ❌ {__(' ', 'theme')}
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <Button onClick={open} variant="primary" size="small">
+                      {__('Картинка / Иконка', 'theme')}
+                    </Button>
+                  )}
+                </div>
+              )}
+            />
+            <div style={{ height: 24 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Заголовок</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[title]}
+              onChange={(value) => update(index, title, value)}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Описание</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[descr]}
+              onChange={(value) => update(index, descr, value)}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - текст</label>
+            <RichText
+              tagName="div"
+              value={item[buttonText]}
+              onChange={(value) => update(index, buttonText, value)}
+              placeholder={__('Текст...', 'theme')}
+              allowedFormats={[]}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - ссылка</label>
+            <URLInput
+              value={item[buttonLink]}
+              onChange={(value) => update(index, buttonLink, value)}
+              placeholder={__('URL...', 'theme')}
+            />
+          </FlexBlock>
+        </Flex>
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
@@ -1357,6 +1478,6 @@ export function useAttributeList(attributes, setAttributes, key) {
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
     renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty,
     renderBlockThirtyTwo, renderBlockThirtyFour, renderBlockThirtySix, renderBlockThirtySixSecond, renderBlockThirtySixThird,
-    renderBlockThirtySeven
+    renderBlockThirtySeven, renderBlockFortyTwo
   };
 }
