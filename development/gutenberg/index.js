@@ -59,3 +59,4 @@ import './blocks/block-39/index.js';
 import './blocks/block-40/index.js';
 import './blocks/block-41/index.js';
 import './blocks/block-42/index.js';
+import './blocks/block-43/index.js';

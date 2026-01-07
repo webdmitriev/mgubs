@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('eventsData', JSON.stringify(eventsDataAll));
   }
 
-  if (document.querySelector('.block-43')) {
+  if (document.querySelector('.block-43') && document.querySelector('.block-43 .content-date')) {
     let eventsDataThanksAll = JSON.parse(localStorage.getItem('eventsData'));
     const title = eventsDataThanksAll["title"].split(' ').join('+');
     const day = eventsDataThanksAll["day"];
