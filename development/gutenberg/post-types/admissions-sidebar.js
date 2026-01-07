@@ -67,13 +67,13 @@ const AdmissionsSidebar = () => {
       <PluginSidebar name="allevents-sidebar" title="Настройки события" icon="admin-post">
         <PanelBody title="Основные поля" initialOpen={true}>
 
-          <TextareaControl
+          {/* <TextareaControl
             label="Краткое описание"
             placeholder="Краткое описание"
             value={postMeta.custom_excerpt || ''}
             onChange={(val) => updateMeta('custom_excerpt', val)}
             rows={12}
-          />
+          /> */}
 
           {/* Загрузка файла */}
           <div style={{ marginTop: 24 }}>

@@ -102,7 +102,7 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-40">
+<div class="block-standard block-40" style="display: none;">
   <div class="container">
     <div class="block-content">
       <h3 class="h3">Конкурсные списки абитуриентов магистратуры</h3>
