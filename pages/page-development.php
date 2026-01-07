@@ -102,6 +102,32 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-43">
+  <div class="bg-content">
+    <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2023/05/bg-1920.3.jpg" alt="MGU" />
+  </div>
+  <div class="container df-sp-st">
+    <div class="block-content">
+      <h1 class="h1">Title</h1>
+      <div class="divider"></div>
+      <div class="descr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero officia facilis exercitationem?</div>
+      <button class="btn btn-white btn-show-popup">Подробнее</button>
+    </div>
+    <div class="block-date">
+      <div class="divider"></div>
+      <h2 class="h2">Начало</h2>
+      <div class="content-date df-sp-ce">
+        <div class="block-date__day">01</div>
+        <div class="block-date__content">
+          <h2 class="h2 block-date__month">Января</h2>
+          <div class="descr block-date__time">00:01</div>
+        </div>
+      </div>
+      <a href="#" target="_blank" rel="noopener noreferrer">Добавьте напоминание в календарь</a>
+    </div>
+  </div>
+</div>
+
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
