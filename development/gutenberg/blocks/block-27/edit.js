@@ -5,6 +5,8 @@ import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-27.jpg';
 
+import PictureBgEdit from '../../components/PictureBgEdit';
+
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
@@ -46,6 +48,38 @@ const Edit = ({ attributes, setAttributes }) => {
           default: '',
         }
       }
+    });
+  };
+
+  const bgSizes = [1920];
+  // Handler - bg
+  const getOnSelectBg = (size) => (media) => {
+    setAttributes({
+      [`bg${size}Id`]: media.id,
+      [`bg${size}Data`]: {
+        url: media.url,
+        alt: media.alt || '',
+        responsive: media.responsive || {
+          webp: '',
+          jpg: '',
+          default: media.url,
+        },
+      },
+    });
+  };
+
+  const getOnRemoveBg = (size) => () => {
+    setAttributes({
+      [`bg${size}Id`]: 0,
+      [`bg${size}Data`]: {
+        url: '',
+        alt: '',
+        responsive: {
+          webp: '',
+          jpg: '',
+          default: '',
+        },
+      },
     });
   };
 
@@ -183,9 +217,20 @@ const Edit = ({ attributes, setAttributes }) => {
                 </div>
               </div>
 
-              <div style={{ height: '24px' }} />
+              <div style={{ display: 'block', width: '100%', height: 2 }} />
 
-
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+                {bgSizes.map((size) => (
+                  <PictureBgEdit
+                    key={size}
+                    label={`Фон ${size}px`}
+                    imageId={attributes[`bg${size}Id`]}
+                    imageData={attributes[`bg${size}Data`]}
+                    onSelect={getOnSelectBg(size)}
+                    onRemove={getOnRemoveBg(size)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
