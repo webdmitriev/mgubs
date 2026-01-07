@@ -624,5 +624,46 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-41">
+  <div class="container">
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+    <a href="#" class="block-item">
+      <div class="block-item__bg">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/otzyvy-avrorskaya.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Ален Акчурин, Waseda University, Япония</h3>
+    </a>
+  </div>
+</div>
+
 <?php
 get_footer();

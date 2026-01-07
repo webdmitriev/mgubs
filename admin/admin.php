@@ -25,6 +25,7 @@ require get_template_directory() . '/admin/helpers/post-types/teachers/meta-fiel
 require get_template_directory() . '/admin/helpers/post-types/teachers/post-render.php';
 
 require get_template_directory() . '/admin/helpers/post-types/success/post-success.php';
+require get_template_directory() . '/admin/helpers/post-types/success/post-render.php';
 
 require get_template_directory() . '/admin/helpers/post-types/schoolhistory/post-schoolhistory.php';
 require get_template_directory() . '/admin/helpers/post-types/schoolhistory/meta-fields.php';
