@@ -311,6 +311,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     localStorage.setItem('eventsData', JSON.stringify(eventsDataAll));
   }
+
+  if (document.querySelector('.block-43')) {
+    let eventsDataThanksAll = JSON.parse(localStorage.getItem('eventsData'));
+    const title = eventsDataThanksAll["title"].split(' ').join('+');
+    const day = eventsDataThanksAll["day"];
+    const month = eventsDataThanksAll["mounth"];
+    const monthNum = eventsDataThanksAll["mounthnum"];
+    const time = eventsDataThanksAll["time"];
+
+    document.querySelector('.block-43 .content-date .block-date__day').textContent = day;
+    document.querySelector('.block-43 .content-date .block-date__month').textContent = month;
+    document.querySelector('.block-43 .content-date .block-date__time').textContent = time;
+    document.querySelector('.block-43 .block-date a').setAttribute('href', `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=2024${monthNum}${day}T${time.substring(0, 2)}0000/2023${monthNum}${day}T235900`);
+  }
   // block event (end)
 
   // recaptcha hide (start)

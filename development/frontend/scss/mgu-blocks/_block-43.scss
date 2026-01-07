@@ -58,7 +58,7 @@
       width: 100%;
       .block-date__day {
         width: 100%;
-        max-width: 80px;
+        max-width: 88px;
         font-weight: 600;
         font-size: 80px;
         line-height: 1;
@@ -67,7 +67,7 @@
       }
       .block-date__content {
         width: 100%;
-        max-width: calc(100% - 88px);
+        max-width: calc(100% - 100px);
         .h2 {
           margin-bottom: 0;
         }
