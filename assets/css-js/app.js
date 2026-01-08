@@ -355,8 +355,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // **********************
-  // block-48 + all buttons
+  // ******************************* start
+  // *************************************
+  // block-48 + all buttons + cf7 redirect
   document.querySelectorAll('a.link[href^="#"], a.btn[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const hash = link.getAttribute('href');
@@ -386,6 +387,20 @@ document.addEventListener('DOMContentLoaded', function () {
       body.classList.remove('overflow');
     });
   });
+
+  document.addEventListener('wpcf7mailsent', function (event) {
+    const form = event.target;
+    const popup = form.closest('[data-popup-form]');
+    if (!popup) return;
+
+    const redirectUrl = popup.getAttribute('redirect');
+    if (!redirectUrl) return;
+    window.location.href = redirectUrl;
+  });
+  // block-48 + all buttons + cf7 redirect
+  // *************************************
+  // ********************************* end
+
 
 
   // recaptcha hide (start)

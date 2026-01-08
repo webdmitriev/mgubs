@@ -2,12 +2,13 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 
 const Save = ({ attributes }) => {
-  const { anchor, dataFormId, cf7Shortcode } = attributes;
+  const { anchor, dataFormId, cf7Shortcode, redirect } = attributes;
 
   const blockProps = useBlockProps.save({
     className: `block-standard block-48`,
     id: anchor,
-    "data-popup-form": dataFormId
+    "data-popup-form": dataFormId,
+    redirect: redirect ? redirect : null
   });
 
   return (

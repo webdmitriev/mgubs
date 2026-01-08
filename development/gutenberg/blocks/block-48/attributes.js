@@ -6,6 +6,8 @@ const attributes = {
 
   cf7FormId: { type: "string", default: "" },
   cf7Shortcode: { type: "string", default: "" },
+
+  redirect: { type: 'string', default: '' }
 };
 
 export default attributes;

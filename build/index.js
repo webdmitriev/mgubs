@@ -24247,6 +24247,10 @@ const attributes = {
   cf7Shortcode: {
     type: "string",
     default: ""
+  },
+  redirect: {
+    type: 'string',
+    default: ''
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -24348,7 +24352,8 @@ const Edit = ({
   setAttributes
 }) => {
   const {
-    dataFormId
+    dataFormId,
+    redirect
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const [copied, setCopied] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
@@ -24402,11 +24407,21 @@ const Edit = ({
     }
   }), isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "advanced-block-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'block',
+      width: '100%',
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
     direction: "column",
     gap: 2
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Popup ID"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
     align: "center",
+    justify: "flex-start",
     gap: 2
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
     style: {
@@ -24423,16 +24438,42 @@ const Edit = ({
     style: {
       opacity: 0.7
     }
-  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439 \u044D\u0442\u043E\u0442 ID \u0432 data-popup-show")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439 \u044D\u0442\u043E\u0442 ID \u0432 \u0441\u0441\u044B\u043B\u043A\u0430\u0445 \u0438\u043B\u0438 \u043A\u043D\u043E\u043F\u043A\u0430\u0445, \u0447\u0442\u043E\u0431\u044B \u043E\u0442\u043A\u0440\u044B\u0442\u044C popup \u0444\u043E\u0440\u043C\u0443."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       height: 24
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'block',
+      width: '100%',
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
     direction: ['column', 'row']
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CF7FormSelector__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
-  })))))));
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'block',
+      width: '100%',
+      padding: 12,
+      backgroundColor: 'rgba(0,124,186,.25)',
+      borderRadius: 12,
+      border: '2px dashed #333'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u0420\u0435\u0434\u0438\u0440\u0435\u043A\u0442 \u0434\u043B\u044F \u0444\u043E\u0440\u043C\u044B:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.URLInput, {
+    value: redirect,
+    onChange: value => setAttributes({
+      redirect: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('URL...', 'theme')
+  }))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -24497,12 +24538,14 @@ const Save = ({
   const {
     anchor,
     dataFormId,
-    cf7Shortcode
+    cf7Shortcode,
+    redirect
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `block-standard block-48`,
     id: anchor,
-    "data-popup-form": dataFormId
+    "data-popup-form": dataFormId,
+    redirect: redirect ? redirect : null
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
