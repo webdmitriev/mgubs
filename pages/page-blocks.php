@@ -822,5 +822,62 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-49">
+  <div class="container">
+    <div class="block-content">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi odio vel molestias cupiditate voluptate obcaecati, voluptatibus explicabo rerum. Magnam fugit ad atque ullam officia? Amet esse aspernatur sapiente, accusantium, ducimus voluptate beatae, officiis cupiditate molestiae adipisci perferendis totam. Id impedit culpa ipsum. Eaque ipsa delectus quia iusto id aliquid fugit obcaecati magni aperiam corrupti voluptatibus beatae quo blanditiis atque aut corporis itaque, libero dignissimos neque maxime velit optio cum consequuntur expedita. Dolore quae soluta vero animi vitae, unde similique porro vel ratione, sapiente ab quod officia blanditiis quis aliquid, omnis in corporis. Voluptates impedit beatae ullam nostrum a facilis sint! Tempora temporibus, ex laborum saepe dolorum culpa doloribus. Nostrum necessitatibus possimus quibusdam sapiente, unde quas iure fuga, pariatur sint obcaecati officiis, eaque nam? Magni tenetur corporis sequi modi beatae provident atque ipsum eius natus neque incidunt quisquam praesentium, alias iusto asperiores voluptates aliquid suscipit, eos numquam? Minus quae quo ipsum cumque quis, dolores aliquid provident officia maxime a omnis. Tenetur maxime, odit nesciunt ullam repellat eveniet asperiores non illum repudiandae iure magni nostrum voluptatum aliquid hic ipsam quam et vitae! Ullam ad omnis et, nulla, obcaecati ipsam ut voluptatum sequi sunt ipsum alias provident rem quam similique non quisquam excepturi.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-50">
+  <div class="container">
+    <div class="block-content">
+      <div class="blockquote">
+        <div class="blockquote-icon">
+          <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_6224_1708)">
+              <path d="M11.4851 0V5.24255C7.72548 5.62837 5.84569 7.87518 5.84569 11.983V12.5957H11.4851V24H0V13.4128C0 7.98865 1.00867 4.40284 3.026 2.65532C5.06627 0.885106 7.88595 0 11.4851 0ZM29.0909 0V5.24255C25.3313 5.62837 23.4515 7.87518 23.4515 11.983V12.5957H29.0909V24H17.6058V13.4128C17.6058 7.98865 18.6145 4.40284 20.6319 2.65532C22.6721 0.885106 25.4918 0 29.0909 0Z" fill="var(--accent-color)"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_6224_1708">
+                <rect width="30" height="24" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur eum consectetur, maxime, quos repellendus sint, eius facere officia perferendis nisi rerum soluta possimus! Iure ipsa similique rerum magni officiis alias minima tempore eveniet incidunt tempora fugit minus nesciunt perspiciatis quibusdam optio quasi, illo vitae unde ad laborum labore obcaecati quam?</div>
+        <div class="descr signature">Иван Иванов</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-51">
+  <div class="container">
+    <div class="block-content image-3fr">
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+      <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    </div>
+  </div>
+</div>
+
+<div class="block-standard block-52">
+  <div class="container">
+    <div class="block-content">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-play" data-video="c08e1819ea06326802310c2f2dbf40ca"></button>
+      <div class="block-iframe"></div>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();

@@ -331,28 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ********
   // block-47
   if (document.querySelector('.block-47')) {
-    document.querySelectorAll('.block-47').forEach(block => {
-      block.addEventListener('click', function (e) {
-        const playButton = e.target.closest('.block-play');
-        if (!playButton) return;
-
-        const dataVideo = playButton.dataset.video;
-        const iframeContainer = block.querySelector('.block-iframe');
-
-        iframeContainer.classList.add('active');
-        iframeContainer.innerHTML = '';
-
-        const iframe = document.createElement('iframe');
-        iframe.width = '840';
-        iframe.height = '472';
-        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-        iframe.allowFullscreen = true;
-
-        iframe.src = `https://rutube.ru/play/embed/${dataVideo}/?autoplay=1&muted=1&controls=1`;
-
-        iframeContainer.appendChild(iframe);
-      });
-    });
+    openVideoRutube('.block-47')
   }
 
   // ******************************* start
@@ -400,12 +379,42 @@ document.addEventListener('DOMContentLoaded', function () {
   // *************************************
   // ********************************* end
 
+  // ********
+  // block-52
+  if (document.querySelector('.block-52')) {
+    openVideoRutube('.block-52')
+  }
 
 
   // recaptcha hide (start)
   setInterval(() => { $('.grecaptcha-badge').parent().hide() }, 1200);
   // recaptcha hide (end)
 
+  // Rutube video open function
+  function openVideoRutube(el) {
+    document.querySelectorAll(el).forEach(block => {
+      block.addEventListener('click', function (e) {
+        const playButton = e.target.closest('.block-play');
+        if (!playButton) return;
+
+        const dataVideo = playButton.dataset.video;
+        const iframeContainer = block.querySelector('.block-iframe');
+
+        iframeContainer.classList.add('active');
+        iframeContainer.innerHTML = '';
+
+        const iframe = document.createElement('iframe');
+        iframe.width = '840';
+        iframe.height = '472';
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+
+        iframe.src = `https://rutube.ru/play/embed/${dataVideo}/?autoplay=1&muted=1&controls=1`;
+
+        iframeContainer.appendChild(iframe);
+      });
+    });
+  }
 
   // Находим все honeypot поля
   // console.log('www');

@@ -37,6 +37,11 @@ function theme_register_block_categories( $categories, $context ) {
         'title' => __( 'Контактные блоки', 'theme' ),
         'icon'  => 'layout',
       ],
+      [
+        'slug'  => 'news-blocks',
+        'title' => __( 'Новости блоки', 'theme' ),
+        'icon'  => 'layout',
+      ],
     ]
   );
 }
@@ -93,6 +98,10 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-46',
     'theme/block-47',
     'theme/block-48',
+    'theme/block-49',
+    'theme/block-50',
+    'theme/block-51',
+    'theme/block-52',
 
     'core/paragraph',
     'core/list',

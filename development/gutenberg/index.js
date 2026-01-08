@@ -65,3 +65,7 @@ import './blocks/block-45/index.js';
 import './blocks/block-46/index.js';
 import './blocks/block-47/index.js';
 import './blocks/block-48/index.js';
+import './blocks/block-49/index.js';
+import './blocks/block-50/index.js';
+import './blocks/block-51/index.js';
+import './blocks/block-52/index.js';
