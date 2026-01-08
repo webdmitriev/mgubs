@@ -102,6 +102,19 @@ the_content();
   </div>
 </div>
 
+<div class="block-standard block-46">
+  <div class="container image-4fr">
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+  </div>
+</div>
+
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
