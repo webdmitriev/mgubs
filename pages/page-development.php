@@ -102,17 +102,6 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-47">
-  <div class="container">
-    <div class="block-content">
-      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
-      <div class="block-shadow" style="background-color: rgba(0,0,0,0.3);"></div>
-      <button class="block-play" data-video="c08e1819ea06326802310c2f2dbf40ca"></button>
-      <div class="block-iframe"></div>
-    </div>
-  </div>
-</div>
-
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>
 <?php // echo do_shortcode('[featured_posts]'); ?>
