@@ -1,0 +1,134 @@
+.block-49,
+.block-50,
+.block-51,
+.block-52 {
+  .block-content {
+    max-width: 740px;
+    margin-bottom: 24px;
+  }
+}
+
+.block-50 {
+  .blockquote {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 24px;
+    background-color: var(--white-color);
+    .blockquote-icon {
+      display: block;
+      width: 30px;
+      height: 24px;
+      margin-bottom: 16px;
+      svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .descr {
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .signature {
+      margin-bottom: 0;
+      color: var(--accent-color);
+    }
+  }
+}
+
+.block-51 {
+  .block-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    column-gap: 16px;
+    width: 100%;
+    &.image-2fr {
+      grid-template-columns: 1fr 1fr;
+    }
+    &.image-3fr {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  .block-image {
+    display: block;
+    width: 100%;
+    height: inherit;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.block-52 {
+  .block-content {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: inherit;
+    img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+    }
+    .block-shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      z-index: 5;
+    }
+    .block-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 84px;
+      height: 84px;
+      background: url("../img/icons/icon-play-white.svg") center / contain no-repeat;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 8;
+    }
+    .block-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      &.active {
+        background-color: var(--black-color);
+        z-index: 20;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .block-51 .block-content.image-3fr {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+  .block-51 .block-content.image-2fr,
+  .block-51 .block-content.image-3fr {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 400px) {
+}

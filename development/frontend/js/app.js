@@ -267,7 +267,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-
   document.querySelectorAll('.block-close').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
