@@ -736,5 +736,60 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-45">
+  <div class="container">
+    <div class="block-item">
+      <div class="block-item__icon">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/12/event1712-icon4.svg" alt="MGU" />
+      </div>
+      <div class="block-item__avatar">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/prepodavatel-alpaslan.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Oleg Dmitriev</h3>
+      <div class="descr">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, nostrum hic voluptatum dolorem laboriosam obcaecati facilis repellendus, voluptatibus, dolores magni maxime voluptates voluptatem cumque impedit doloremque ea laborum. Natus tempore aliquid aliquam, repudiandae molestias sunt fugit qui culpa cum quaerat?</div>
+    </div>
+    <div class="block-item">
+      <div class="block-item__icon">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/12/event1712-icon4.svg" alt="MGU" />
+      </div>
+      <div class="block-item__avatar">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/prepodavatel-alpaslan.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Oleg Dmitriev</h3>
+      <div class="descr">Eum, nostrum hic voluptatum dolorem laboriosam obcaecati facilis repellendus, voluptatibus, dolores magni maxime voluptates voluptatem cumque impedit doloremque ea laborum. Natus tempore aliquid aliquam, repudiandae molestias sunt fugit qui culpa cum quaerat?</div>
+    </div>
+    <div class="block-item">
+      <div class="block-item__icon">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/12/event1712-icon4.svg" alt="MGU" />
+      </div>
+      <div class="block-item__avatar">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/prepodavatel-alpaslan.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Oleg Dmitriev</h3>
+      <div class="descr">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, nostrum hic voluptatum dolorem laboriosam obcaecati facilis repellendus, voluptatibus, dolores magni maxime voluptates voluptatem cumque impedit doloremque ea laborum. Natus tempore aliquid aliquam, repudiandae molestias sunt fugit qui culpa cum quaerat?</div>
+    </div>
+    <div class="block-item">
+      <div class="block-item__icon">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/12/event1712-icon4.svg" alt="MGU" />
+      </div>
+      <div class="block-item__avatar">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/prepodavatel-alpaslan.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Oleg Dmitriev</h3>
+      <div class="descr">Eum, nostrum hic voluptatum dolorem laboriosam obcaecati facilis repellendus, voluptatibus, dolores magni maxime voluptates voluptatem cumque impedit doloremque ea laborum. Natus tempore aliquid aliquam, repudiandae molestias sunt fugit qui culpa cum quaerat?</div>
+    </div>
+    <div class="block-item">
+      <div class="block-item__icon">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2024/12/event1712-icon4.svg" alt="MGU" />
+      </div>
+      <div class="block-item__avatar">
+        <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/prepodavatel-alpaslan.jpg" alt="MGU" />
+      </div>
+      <h3 class="h3">Oleg Dmitriev</h3>
+      <div class="descr">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, nostrum hic voluptatum dolorem laboriosam obcaecati facilis repellendus, voluptatibus, dolores magni maxime voluptates voluptatem cumque impedit doloremque ea laborum. Natus tempore aliquid aliquam, repudiandae molestias sunt fugit qui culpa cum quaerat?</div>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();

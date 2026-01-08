@@ -1,13 +1,11 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Picture from '../../components/picture';
 
-import HexToRgba from '../../extends/hex-to-rgba';
-
 const Save = ({ attributes }) => {
   const { anchor, bgc, items } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: 'block-standard block-44',
+    className: 'block-standard block-45',
     id: anchor,
     style: {
       backgroundColor: bgc || 'transparent',
@@ -19,19 +17,24 @@ const Save = ({ attributes }) => {
       <div className="container">
         {items.map((item, index) => (
           <div key={index} className="block-item">
-            {item.content && (
+            <div className="block-item__icon"><Picture data={item.icon} /></div>
+            <div className="block-item__avatar"><Picture data={item.image} /></div>
+            {item.name && (
+              <RichText.Content
+                tagName="h3"
+                value={item.name}
+                className="h3"
+              />
+            )}
+            {item.descr && (
               <RichText.Content
                 tagName="div"
-                value={item.content}
+                value={item.descr}
                 className="descr"
               />
             )}
-            {item.buttonText && (
-              <a href={item.buttonLink || '#'} class="link">{item.buttonText}</a>
-            )}
           </div>
         ))}
-
       </div>
     </div>
   );
