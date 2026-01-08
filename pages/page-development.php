@@ -101,13 +101,7 @@ the_content();
     </div>
   </div>
 </div>
-
-<div class="block-standard block-48">
-  <div class="block-close"></div>
-  <div class="block-content scroll-line-none">
-    <?php echo do_shortcode('[contact-form-7 id="ae27f89" title="For popup"]'); ?>
-  </div>
-</div>
+<a href="#uYjwDpFC" class="btn btn-orange">dwehd wbyudiew vuybw</a>
 
 
 <?php // echo do_shortcode('[contact-form-7 id="d65f8de" title="Контактная форма 1"]'); ?>

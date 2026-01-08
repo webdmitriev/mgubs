@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.popup').forEach(popup => popup.style.display = 'none');
     document.querySelector('.overlay').classList.remove('active');
     document.querySelector('body').classList.remove('overflow');
+    document.querySelectorAll("[data-popup-form]").forEach(popup => popup.classList.remove('is-active'));
   }
 
   // block event (start)
@@ -243,6 +244,38 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // **********************
+  // block-48 + all buttons
+  document.querySelectorAll('a.link[href^="#"], a.btn[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const hash = link.getAttribute('href');
+
+      if (!hash || hash === '#') return;
+
+      const key = hash.slice(1);
+      const popup = document.querySelector(`[data-popup-form="${key}"]`);
+
+      if (!popup) return;
+
+      e.preventDefault();
+
+      popup.classList.add('is-active');
+      overlay?.classList.add('active');
+      body.classList.add('overflow');
+    });
+  });
+
+
+  document.querySelectorAll('.block-close').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const popup = btn.closest('[data-popup-form]');
+      popup?.classList.remove('is-active');
+      overlay.classList.remove('active');
+      body.classList.remove('overflow');
+    });
+  });
 
 
   // recaptcha hide (start)
