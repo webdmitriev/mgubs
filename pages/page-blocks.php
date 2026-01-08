@@ -707,5 +707,34 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-44">
+  <div class="container">
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+    <div class="block-item">
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe odit nostrum aut doloribus voluptatum unde numquam.</div>
+      <a href="#" class="link">Подробнее</a>
+    </div>
+  </div>
+</div>
+
 <?php
 get_footer();

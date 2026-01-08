@@ -1350,7 +1350,6 @@ export function useAttributeList(attributes, setAttributes, key) {
   };
 
 
-
   // ----------------------------------------
   // ✍️ Рендер для renderBlockFortyTwo
   // ----------------------------------------
@@ -1470,6 +1469,56 @@ export function useAttributeList(attributes, setAttributes, key) {
     )
   };
 
+
+  // ----------------------------------------
+  // ✍️ Рендер для renderBlockFortyFour
+  // ----------------------------------------
+  const renderBlockFortyFour = (item, index) => {
+    const content = `content`;
+    const buttonText = `buttonText`;
+    const buttonLink = `buttonLink`;
+
+    return (
+      <>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Описание</label>
+            <RichText
+              style={{ textAlign: 'left' }}
+              placeholder={__('Текст', 'theme')}
+              value={item[content]}
+              onChange={(value) => update(index, content, value)}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - текст</label>
+            <RichText
+              tagName="div"
+              value={item[buttonText]}
+              onChange={(value) => update(index, buttonText, value)}
+              placeholder={__('Текст...', 'theme')}
+              allowedFormats={[]}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - ссылка</label>
+            <URLInput
+              value={item[buttonLink]}
+              onChange={(value) => update(index, buttonLink, value)}
+              placeholder={__('URL...', 'theme')}
+            />
+          </FlexBlock>
+        </Flex>
+      </>
+    )
+  };
+
   return {
     list, add, remove, update, moveUp, moveDown, setList,
     renderSelectTextareaControl, renderTextareaToTextarea,
@@ -1478,6 +1527,6 @@ export function useAttributeList(attributes, setAttributes, key) {
     renderBlockNineteen, renderBlockTwenty, renderBlockTwentyOne, renderBlockTwentyTree,
     renderBlockTwentyFine, renderBlockNews, renderBlockTwentyNine, renderBlockThirty,
     renderBlockThirtyTwo, renderBlockThirtyFour, renderBlockThirtySix, renderBlockThirtySixSecond, renderBlockThirtySixThird,
-    renderBlockThirtySeven, renderBlockFortyTwo
+    renderBlockThirtySeven, renderBlockFortyTwo, renderBlockFortyFour
   };
 }
