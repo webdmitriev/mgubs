@@ -791,5 +791,18 @@ get_header();
   </div>
 </div>
 
+<div class="block-standard block-46">
+  <div class="container image-4fr">
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+  </div>
+</div>
+
 <?php
 get_footer();

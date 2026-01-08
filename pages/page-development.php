@@ -102,16 +102,14 @@ the_content();
   </div>
 </div>
 
-<div class="block-standard block-46">
-  <div class="container image-4fr">
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
-    <div class="block-image"><img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/12/news04122025-9.jpg" alt="" /></div>
+<div class="block-standard block-47">
+  <div class="container">
+    <div class="block-content">
+      <img decoding="async" src="https://mgubs.ru/wp-content/uploads/2025/05/bogdan-krasnov-scaled.jpg" alt="MGU" />
+      <div class="block-shadow" style="background-color: rgba(0,0,0,0.3);"></div>
+      <button class="block-play" data-video="c08e1819ea06326802310c2f2dbf40ca"></button>
+      <div class="block-iframe"></div>
+    </div>
   </div>
 </div>
 
