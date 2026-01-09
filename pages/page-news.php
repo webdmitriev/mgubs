@@ -44,13 +44,13 @@ $categories = get_categories( [
 
 <!-- Post Section (start) -->
 <section class="articles pos-r w-100p pt-24 pb-24">
-  <div class="container-rubber">
+  <div class="container">
     <?php
       $arg_cat = array(
         'orderby'      => 'name',
         'order'        => 'ASC',
         'hide_empty'   => 1,
-        'exclude'      => '',
+        'exclude'      => array(1),
         'include'      => '',
       );
       $categor = get_categories( $arg_cat );
@@ -63,28 +63,23 @@ $categories = get_categories( [
         $query = new WP_Query($arg_posts);
 
         if ($query->have_posts() ) : ?>
-          <div class="pos-r d-block w-100p mb-24" id="<?= $cat->slug; ?>"><h2 class="h2 d-block w-100p"><span><?= $cat->name; ?></span><div class="wrap-title__line" style="background-color: #ff762f"></div></h2></div>
-          <div class="articles-items df-fs-st gap-24 w-100p mb-24">
+          <div class="block-title" id="<?= $cat->slug; ?>" style="margin-bottom: 16px;"><h2 class="h2 underline"><?= $cat->name; ?></h2></div>
+          <div class="article-posts">
             <?php while ( $query->have_posts() ) : $query->the_post();
               $id = get_the_ID();
 
-              echo get_the_title($id);
-
-              // get_template_part( 'old-template/blocks/articles/post', null,
-              //   array(
-              //     'tags' => get_the_tags( $id ),
-              //     'title' => get_the_title($id),
-              //     'logotype' => $url.'/assets/img/item-image-logo-news1.svg',
-              //     'logo_boolean' => get_field( 'post_event_logotype', $id ),
-              //     'logo_boolean_270' => get_field( 'post_event_logotype_270', $id ),
-              //     'image' => has_post_thumbnail($id) ? get_the_post_thumbnail_url($id) : get_template_directory_uri().'/old-template/blocks/image/default-image.png',
-              //     'link' => get_permalink($id),
-              //     'day' => get_field( 'post_event_day', $id ),
-              //     'month' => get_field( 'post_event_month', $id ),
-              //     'year' => get_field( 'post_event_year', $id ),
-              //     'descr' => get_field( 'post_event_descr', $id )
-              //   )
-              // );
+              get_template_part( 'inc/post', null,
+                array(
+                  'id'                  => get_the_ID(),
+                  'tags'                => get_the_tags($id),
+                  'title'               => get_the_title($id),
+                  'is_logotype'         => get_post_meta(get_the_ID(), 'is_logotype', true),
+                  'is_logotype_special' => get_post_meta(get_the_ID(), 'is_logotype_special', true),
+                  'image'               => get_post_thumbnail_id($id),
+                  'link'                => get_permalink($id),
+                  'date'                => format_date_russian(get_post_meta(get_the_ID(), 'date_start', true))
+                )
+              );
 
             endwhile; wp_reset_postdata(); ?>
           </div>

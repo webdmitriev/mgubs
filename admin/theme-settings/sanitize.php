@@ -43,6 +43,16 @@ function theme_settings_sanitize($input) {
     $sanitized_input['site_logo'] = intval($input['site_logo']);
   }
 
+  // Логотип
+  if (isset($input['is_logotype'])) {
+    $sanitized_input['is_logotype'] = intval($input['is_logotype']);
+  }
+
+  // Логотип
+  if (isset($input['is_logotype_special'])) {
+    $sanitized_input['is_logotype_special'] = intval($input['is_logotype_special']);
+  }
+
 
   // Яндекс.Метрика
   if (isset($input['yandex_metric'])) {

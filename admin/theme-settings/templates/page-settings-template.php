@@ -96,6 +96,50 @@ if (!defined('ABSPATH')) exit;
 
     <hr />
 
+    <h2>Дефолтные логотипы для новостей</h2>
+    <div class="block-full">
+      <?php
+        $options = get_option('theme_settings');
+        $is_logotype = $options['is_logotype'] ?? '';
+        $is_logotype_url = $is_logotype ? wp_get_attachment_url($is_logotype) : '';
+      ?>
+
+      <div style="margin-bottom: 10px;">
+        <?php if ($is_logotype_url): ?>
+          <img id="is_logotype_preview" src="<?php echo esc_url($is_logotype_url); ?>" alt="Логотип" style="width:60px;height:60px;">
+        <?php else: ?>
+          <img id="is_logotype_preview" src="" alt="Логотип" style="width:60px;height:60px;display:none;">
+        <?php endif; ?>
+      </div>
+
+      <input type="hidden" name="theme_settings[is_logotype]" id="is_logotype" value="<?php echo esc_attr($is_logotype); ?>">
+
+      <button type="button" class="button" id="is_logotype_upload_button">Логотип 01</button>
+      <button type="button" class="button" id="is_logotype_remove_button">Удалить</button>
+    </div>
+    <div class="block-full">
+      <?php
+        $options = get_option('theme_settings');
+        $is_logotype_special = $options['is_logotype_special'] ?? '';
+        $is_logotype_special_url = $is_logotype_special ? wp_get_attachment_url($is_logotype_special) : '';
+      ?>
+
+      <div style="margin-bottom: 10px;">
+        <?php if ($is_logotype_special_url): ?>
+          <img id="is_logotype_special_preview" src="<?php echo esc_url($is_logotype_special_url); ?>" alt="Логотип" style="width:60px;height:60px;">
+        <?php else: ?>
+          <img id="is_logotype_special_preview" src="" alt="Логотип" style="width:60px;height:60px;display:none;">
+        <?php endif; ?>
+      </div>
+
+      <input type="hidden" name="theme_settings[is_logotype_special]" id="is_logotype_special" value="<?php echo esc_attr($is_logotype_special); ?>">
+
+      <button type="button" class="button" id="is_logotype_special_upload_button">Логотип 02</button>
+      <button type="button" class="button" id="is_logotype_special_remove_button">Удалить</button>
+    </div>
+
+    <hr />
+
 
     <?php submit_button(); ?>
   </form>
