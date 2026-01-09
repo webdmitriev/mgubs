@@ -275,6 +275,14 @@ document.addEventListener('DOMContentLoaded', function () {
     openVideoRutube('.block-52')
   }
 
+  // ***************
+  // Anchor Scroller
+  new AnchorScroller({
+    linkClass: 'ancLinks',
+    offset: 180,
+    duration: 1100
+  });
+
 
   // recaptcha hide (start)
   setInterval(() => { $('.grecaptcha-badge').parent().hide() }, 1200);
