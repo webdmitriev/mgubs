@@ -7,7 +7,7 @@ import {
 import { Button, ToggleControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import blockImage from '../../../../admin/assets/img/blocks/block-01.jpg';
+import blockImage from '../../../../admin/assets/img/blocks/block-34.jpg';
 
 import colors from '../../utils/default-colors.js';
 import ColorSelect from '../../components/ColorSelect';

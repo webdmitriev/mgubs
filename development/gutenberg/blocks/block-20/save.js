@@ -53,8 +53,8 @@ const Save = ({ attributes }) => {
                   className="descr"
                 />
               )}
-              {item.isButton && (
-                <button className="btn btn-orange">Оставить заявку</button>
+              {item.buttonText && (
+                <a href={item.buttonLink} className="btn btn-orange">{item.buttonText}</a>
               )}
             </div>
           ))}

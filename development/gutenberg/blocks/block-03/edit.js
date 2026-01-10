@@ -19,7 +19,7 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  const bgSizes = [1920, 991, 576];
+  const bgSizes = [1920, 991];
 
   // Handler - bg
   const getOnSelectBg = (size) => (media) => {
@@ -95,7 +95,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 </>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: '16px', columnGap: '16px', width: '100%' }}>
                 {bgSizes.map((size) => (
                   <PictureBgEdit
                     key={size}

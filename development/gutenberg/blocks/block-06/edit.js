@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
-import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls, URLInput } from '@wordpress/block-editor';
+import { ToggleControl, Flex, FlexBlock } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-06.jpg';
@@ -10,7 +10,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { title, subTitle, buttonText, buttonOption, buttonId } = attributes;
+  const { title, subTitle, buttonText, buttonLink } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -79,24 +79,14 @@ const Edit = ({ attributes, setAttributes }) => {
                       allowedFormats={[]}
                     />
                   </FlexBlock>
-                  <FlexBlock>
-                    <label className="my-rich-text__label">ID Popup:</label>
-                    <RichText
-                      tagName="div"
-                      value={buttonId}
-                      onChange={(value) => setAttributes({ buttonId: value })}
-                      placeholder={__('ID...', 'theme')}
-                      allowedFormats={[]}
+                  <FlexBlock className="advanced-block-button">
+                    <label className="my-rich-text__label">Кнопка - ссылка</label>
+                    <URLInput
+                      value={buttonLink}
+                      onChange={(value) => setAttributes({ buttonLink: value })}
+                      placeholder={__('Введите название страницы или url', 'theme')}
                     />
                   </FlexBlock>
-                  <FlexItem>
-                    <label className="my-rich-text__label">Кнопка:</label>
-                    <ToggleControl
-                      label={buttonOption ? __('Скролла', 'theme') : __('Popup', 'theme')}
-                      checked={buttonOption}
-                      onChange={(value) => setAttributes({ buttonOption: value })}
-                    />
-                  </FlexItem>
                 </Flex>
               </div>
             </div>

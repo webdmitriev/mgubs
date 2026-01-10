@@ -119,7 +119,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 ))}
               </div>
               <Button
-                onClick={() => itemsList.add({ title: '', sum: '', content: '' })}
+                onClick={() => itemsList.add({ title: '', sum: '', content: '', buttonText: '', buttonLink: '' })}
                 className="add-repeater-item"
                 style={{ display: 'block', width: '100%', textAlign: 'center', border: '1px solid rgba(0, 124, 186, 0.5)' }}
               >

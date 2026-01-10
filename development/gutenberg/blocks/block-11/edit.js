@@ -116,7 +116,7 @@ const Edit = ({ attributes, setAttributes }) => {
               <Flex direction={['column', 'row']} align="flex-start">
                 <FlexBlock>
                   <>
-                    <span>{__('Заголовок', 'theme')}</span>
+                    <label className="my-rich-text__label">Заголовок</label>
                     <RichText
                       tagName="div"
                       value={title}
@@ -126,7 +126,7 @@ const Edit = ({ attributes, setAttributes }) => {
                     />
                   </>
                   <>
-                    <span>{__('Подзаголовок 1', 'theme')}</span>
+                    <label className="my-rich-text__label">Подзаголовок 1</label>
                     <RichText
                       tagName="div"
                       value={subTitleOne}
@@ -187,7 +187,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
               <Flex direction={['column', 'row']}>
                 <FlexBlock>
-                  <span>{__('Подзаголовок 2', 'theme')}</span>
+                  <label className="my-rich-text__label">Подзаголовок 2</label>
                   <RichText
                     tagName="div"
                     value={subTitleTwo}
@@ -200,7 +200,7 @@ const Edit = ({ attributes, setAttributes }) => {
 
               <Flex direction={['column', 'row']}>
                 <FlexBlock>
-                  <span>{__('Описание', 'theme')}</span>
+                  <label className="my-rich-text__label">Описание</label>
                   <RichText
                     tagName="div"
                     value={descr}

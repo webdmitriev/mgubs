@@ -28,23 +28,22 @@ const Save = ({ attributes }) => {
 
       <div className="container df-sp-st">
         <div className="block-left">
-          <RichText.Content
-            tagName="h1"
-            value={title}
-            className="h1"
-          />
-          <RichText.Content
-            tagName="div"
-            style={{ marginTop: 16 }}
-            value={subTitle}
-            className="descr"
-          />
+          {title && (
+            <RichText.Content
+              tagName="h1"
+              value={title}
+              className="h1"
+            />
+          )}
+          {subTitle && (
+            <RichText.Content
+              tagName="div"
+              value={subTitle}
+              className="descr"
+            />
+          )}
           {buttonText && (
-            buttonLink ? (
-              <a href={buttonLink} className="btn btn-white">{buttonText}</a>
-            ) : (
-              <button className="btn btn-white btn-show-popup">{buttonText}</button>
-            )
+            <a href={buttonLink} className="btn btn-white">{buttonText}</a>
           )}
         </div>
 
@@ -53,17 +52,21 @@ const Save = ({ attributes }) => {
         )}
 
         <div className="block-right">
-          <RichText.Content
-            tagName="h2"
-            value={second_title}
-            className="h2"
-          />
+          {second_title && (
+            <RichText.Content
+              tagName="h2"
+              value={second_title}
+              className="h2"
+            />
+          )}
 
-          <RichText.Content
-            tagName="p"
-            value={description}
-            className="descr"
-          />
+          {description && (
+            <RichText.Content
+              tagName="p"
+              value={description}
+              className="descr"
+            />
+          )}
 
           <Picture data={imageData} className="block-01-image" />
         </div>

@@ -33,11 +33,7 @@ const Save = ({ attributes }) => {
           />
         )}
         {buttonText && (
-          buttonLink ? (
-            <a href={buttonLink} className="btn btn-white">{buttonText}</a>
-          ) : (
-            <button className="btn btn-white btn-show-popup">{buttonText}</button>
-          )
+          <a href={buttonLink} className="btn btn-white">{buttonText}</a>
         )}
       </div>
     </div>

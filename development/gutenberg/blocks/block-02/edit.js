@@ -79,6 +79,8 @@ const Edit = ({ attributes, setAttributes }) => {
                   )}
                 </div>
 
+                <div style={{ height: 24 }} />
+
                 <div className="advanced-block-buttons">
                   <div className="advanced-block-button">
                     <label className="my-rich-text__label">Кнопка - текст</label>

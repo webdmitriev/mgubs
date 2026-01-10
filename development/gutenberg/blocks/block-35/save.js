@@ -42,8 +42,8 @@ const Save = ({ attributes }) => {
             className="descr"
           />
         )}
-        {buttonLink && (
-          <a href={buttonLink} className="link link-white">{buttonText || 'Подробнее'}</a>
+        {buttonText && (
+          <a href={buttonLink} className="link link-white">{buttonText}</a>
         )}
       </div>
     </div>

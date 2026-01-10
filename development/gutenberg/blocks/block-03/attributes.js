@@ -27,19 +27,5 @@ export default {
         default: '',
       }
     }
-  },
-
-  bg576Id: { type: 'number', default: 0 },
-  bg576Data: {
-    type: 'object',
-    default: {
-      url: '',
-      alt: '',
-      responsive: {
-        webp: '',
-        jpg: '',
-        default: '',
-      }
-    }
-  },
+  }
 };

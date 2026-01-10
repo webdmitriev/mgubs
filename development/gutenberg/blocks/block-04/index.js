@@ -4,7 +4,7 @@ import save from './save';
 import attributes from './attributes';
 
 registerBlockType('theme/block-04', {
-  title: 'Новости (с настроек)',
+  title: 'Новости',
   category: 'pages-blocks',
   icon: 'admin-customizer',
   description: ' ',
@@ -13,7 +13,7 @@ registerBlockType('theme/block-04', {
   save,
   example: {
     attributes: {
-      title: 'Новости (с настроек)',
+      title: 'Новости',
     },
   },
 });

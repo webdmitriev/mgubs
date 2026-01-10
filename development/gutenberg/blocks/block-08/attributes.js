@@ -16,7 +16,7 @@ const attributes = {
   },
   linkText: {
     type: 'string',
-    default: 'View All Teachers',
+    default: '',
   },
   linkURL: {
     type: 'string',

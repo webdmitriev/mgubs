@@ -455,18 +455,26 @@ export function useAttributeList(attributes, setAttributes, key) {
     const title = `title`;
     const sum = `sum`;
     const content = `content`;
-    const isButton = 'isButton';
+    const buttonText = `buttonText`;
+    const buttonLink = `buttonLink`;
 
     return (
       <>
-        <div style={{ display: 'flex', flex: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: '16px', width: '100%' }}>
-          <div style={{ width: '30%' }}>
+        <Flex>
+          <FlexBlock>
             <RichText
               style={{ textAlign: 'left' }}
               placeholder={__('Заголовок', 'theme')}
               value={item[title]}
               onChange={(value) => update(index, title, value)}
             />
+          </FlexBlock>
+        </Flex>
+
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
             <TextareaControl
               style={{ textAlign: 'left' }}
               placeholder={__('Число', 'theme')}
@@ -474,29 +482,49 @@ export function useAttributeList(attributes, setAttributes, key) {
               onChange={(value) => update(index, sum, value)}
               rows={1}
             />
-          </div>
+          </FlexBlock>
+        </Flex>
 
-          <div style={{
-            width: 'calc(70% - 18px)',
-            textAlign: 'left',
-            minHeight: '100px'
-          }}>
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
             <RichText
               style={{ textAlign: 'left' }}
               placeholder={__('Описание', 'theme')}
               value={item[content]}
               onChange={(value) => update(index, content, value)}
             />
-          </div>
-        </div>
+          </FlexBlock>
+        </Flex>
 
-        <div style={{ width: '100%' }}>
-          <ToggleControl
-            label={!item[isButton] ? __('Кнопка убрана ❌', 'theme') : __('Кнопка показано ✅', 'theme')}
-            checked={item[isButton]}
-            onChange={(value) => update(index, isButton, value)}
-          />
-        </div>
+        <div style={{ height: 12 }} />
+
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - текст</label>
+            <RichText
+              tagName="div"
+              style={{ textAlign: 'left' }}
+              value={item[buttonText]}
+              onChange={(value) => update(index, buttonText, value)}
+              placeholder={__('Текст...', 'theme')}
+              allowedFormats={[]}
+            />
+            <div style={{ height: 2 }} />
+          </FlexBlock>
+        </Flex>
+
+        <Flex>
+          <FlexBlock>
+            <label className="my-rich-text__label">Кнопка - ссылка</label>
+            <URLInput
+              value={item[buttonLink]}
+              onChange={(value) => update(index, buttonLink, value)}
+              placeholder={__('URL...', 'theme')}
+            />
+          </FlexBlock>
+        </Flex>
       </>
     )
   };

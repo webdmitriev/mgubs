@@ -6,15 +6,7 @@ const attributes = {
 
   items: {
     type: 'array',
-    default: [{
-      title: '',
-      sum: '',
-      content: '',
-      isButton: {
-        type: 'boolean',
-        default: true
-      }
-    }]
+    default: []
   },
 
   bg1920Id: { type: 'number', default: 0 },

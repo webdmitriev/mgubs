@@ -43,11 +43,7 @@ const Save = ({ attributes }) => {
         )}
 
         {/* Кнопка */}
-        {buttonText && (
-          <a href={buttonLink} className="btn btn-white">
-            {buttonText}
-          </a>
-        )}
+        {buttonText && (<a href={buttonLink} className="btn btn-white">{buttonText}</a>)}
       </div>
     </div>
   );
