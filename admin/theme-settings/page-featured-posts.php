@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) exit;
 function theme_featured_posts_page_content() {
   $selected = get_option('theme_featured_posts', []);
 
-  // Получаем все посты
+  // Все посты для поиска
   $all_posts = get_posts([
     'post_type' => 'post',
     'posts_per_page' => -1,
@@ -13,48 +13,41 @@ function theme_featured_posts_page_content() {
   ]);
 ?>
 <div class="wrap">
-  <h1>Новостные посты</h1>
+  <h1>Выбранные новостные посты</h1>
 
   <form method="post" action="options.php">
     <?php settings_fields('theme_featured_posts_group'); ?>
 
-    <div class="columns-wrapper">
-      <!-- Left Column -->
-      <div class="posts-column">
-        <h2>Все новости</h2>
-        <div class="posts-column__items">
-          <?php foreach ($all_posts as $post): if (!in_array($post->ID, $selected)):
-            $thumb = get_the_post_thumbnail_url($post->ID, 'thumbnail');
-            if (!$thumb) { $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg'; }
-          ?>
-            <div class="post-item" data-id="<?php echo $post->ID; ?>" data-thumb="<?php echo $thumb; ?>">
-              <img src="<?php echo $thumb; ?>" class="post-thumb">
-              <span class="post-title"><?php echo esc_html($post->post_title); ?></span>
-            </div>
-          <?php endif; endforeach; ?>
-        </div>
-      </div>
+    <!-- Поиск -->
+    <div class="featured-search">
+      <input
+        type="text"
+        id="post-search"
+        placeholder="Начните вводить название поста…"
+        autocomplete="off"
+      >
+      <div id="search-results"></div>
+    </div>
 
-      <!-- Right Column -->
-      <div class="posts-column" id="selected-posts">
-        <h2>Выбранные новости</h2>
-        <div class="posts-column__items">
-          <?php foreach ($selected as $id):
-            $thumb = get_the_post_thumbnail_url($id, 'thumbnail');
-            if (!$thumb) { $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg'; }
-          ?>
-            <div class="post-item" data-id="<?php echo $id; ?>" data-thumb="<?php echo $thumb; ?>">
-              <img src="<?php echo $thumb; ?>" class="post-thumb">
-              <span class="post-title"><?php echo get_the_title($id); ?></span>
+    <!-- Выбранные посты -->
+    <div class="featured-selected">
+      <?php foreach ($selected as $id):
+        $thumb = get_the_post_thumbnail_url($id, 'thumbnail');
+        if (!$thumb) {
+          $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg';
+        }
+      ?>
+        <div class="post-item" data-id="<?php echo $id; ?>">
+          <img src="<?php echo esc_url($thumb); ?>">
+          <span class="post-title"><?php echo esc_html(get_the_title($id)); ?></span>
 
-              <span class="move-btn" data-dir="up"></span>
-              <span class="move-btn" data-dir="down"></span>
-              <span class="remove-btn"></span>
-              <input type="hidden" name="theme_featured_posts[]" value="<?php echo $id; ?>">
-            </div>
-          <?php endforeach; ?>
+          <span class="move-btn" data-dir="up"></span>
+          <span class="move-btn" data-dir="down"></span>
+          <span class="remove-btn"></span>
+
+          <input type="hidden" name="theme_featured_posts[]" value="<?php echo $id; ?>">
         </div>
-      </div>
+      <?php endforeach; ?>
     </div>
 
     <?php submit_button(); ?>
@@ -62,169 +55,171 @@ function theme_featured_posts_page_content() {
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 
-    function createSelectedPost(id, title, thumb) {
-      const div = document.createElement('div');
-      div.className = 'post-item';
-      div.dataset.id = id;
-      div.dataset.thumb = thumb;
+  const allPosts = <?php
+    echo json_encode(array_map(fn($p) => [
+      'id'    => $p->ID,
+      'title' => $p->post_title,
+      'thumb' => get_the_post_thumbnail_url($p->ID, 'thumbnail')
+        ?: get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg'
+    ], $all_posts));
+  ?>;
 
-      div.innerHTML = `
-        <img src="${thumb}" class="post-thumb">
-        <span class="post-title">${title}</span>
-        <span class="move-btn" data-dir="up"></span>
-        <span class="move-btn" data-dir="down"></span>
-        <span class="remove-btn"></span>
-        <input type="hidden" name="theme_featured_posts[]" value="${id}">
-      `;
+  const searchInput   = document.getElementById('post-search');
+  const resultsBox   = document.getElementById('search-results');
+  const selectedWrap = document.querySelector('.featured-selected');
 
-      return div;
-    }
+  function getSelectedIds() {
+    return [...selectedWrap.querySelectorAll('input')]
+      .map(i => i.value);
+  }
 
-    // Клик по посту в левом списке → перенос в правый
-    document.querySelectorAll('.columns-wrapper .posts-column:first-child .post-item')
-      .forEach(item => {
-        item.addEventListener('click', function () {
-          const id = this.dataset.id;
-          const title = this.querySelector('.post-title').textContent.trim();
-          console.log(title);
-          const thumb = this.dataset.thumb;
+  function createSelectedPost(post) {
+    const div = document.createElement('div');
+    div.className = 'post-item';
+    div.dataset.id = post.id;
 
-          const selected = document.getElementById('selected-posts');
-          const newItem = createSelectedPost(id, title, thumb);
+    div.innerHTML = `
+      <img src="${post.thumb}">
+      <span class="post-title">${post.title}</span>
+      <span class="move-btn" data-dir="up"></span>
+      <span class="move-btn" data-dir="down"></span>
+      <span class="remove-btn"></span>
+      <input type="hidden" name="theme_featured_posts[]" value="${post.id}">
+    `;
 
-          selected.appendChild(newItem);
-          this.remove();
-          attachEvents();
-        });
-      });
+    attachItemEvents(div);
+    return div;
+  }
 
-    function attachEvents() {
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    resultsBox.innerHTML = '';
 
-      // Удаление
-      document.querySelectorAll('#selected-posts .remove-btn').forEach(btn => {
-        btn.onclick = function () {
-          const item = this.closest('.post-item');
+    if (query.length < 2) return;
 
-          const leftColumn = document.querySelector('.columns-wrapper .posts-column:first-child .posts-column__items');
-          const title = item.querySelector('.post-title').textContent.trim();
-          const thumb = item.dataset.thumb;
+    const selectedIds = getSelectedIds();
 
-          // Создаём новый элемент для левой колонки
-          const newItem = document.createElement('div');
-          newItem.className = 'post-item';
-          newItem.dataset.id = item.dataset.id;
-          newItem.dataset.thumb = thumb;
+    allPosts
+      .filter(p =>
+        p.title.toLowerCase().includes(query) &&
+        !selectedIds.includes(String(p.id))
+      )
+      .slice(0, 10)
+      .forEach(post => {
+        const item = document.createElement('div');
+        item.className = 'search-item';
+        item.textContent = post.title;
 
-          // Внутренний HTML
-          newItem.innerHTML = `
-            ${thumb ? `<img src="${thumb}" class="thumb">` : ''}
-            <span class="post-title">${title}</span>
-          `;
-
-          leftColumn.appendChild(newItem);
-
-          // Удаляем элемент из выбранных
-          item.remove();
-
-          // Повторно навешиваем события (клик на переноса/удаление и т.д.)
-          attachEvents();
+        item.onclick = () => {
+          selectedWrap.appendChild(createSelectedPost(post));
+          searchInput.value = '';
+          resultsBox.innerHTML = '';
         };
+
+        resultsBox.appendChild(item);
       });
-
-      // Перемещение
-      document.querySelectorAll('#selected-posts .move-btn').forEach(btn => {
-        btn.onclick = function () {
-          const item = this.closest('.post-item');
-          const dir = this.dataset.dir;
-
-          if (dir === 'up' && item.previousElementSibling) {
-            item.parentNode.insertBefore(item, item.previousElementSibling);
-          }
-
-          if (dir === 'down' && item.nextElementSibling) {
-            item.parentNode.insertBefore(item.nextElementSibling, item);
-          }
-        };
-      });
-    }
-
-    attachEvents();
   });
+
+  function attachItemEvents(item) {
+
+    item.querySelector('.remove-btn').onclick = () => item.remove();
+
+    item.querySelectorAll('.move-btn').forEach(btn => {
+      btn.onclick = () => {
+        const dir = btn.dataset.dir;
+        if (dir === 'up' && item.previousElementSibling) {
+          item.parentNode.insertBefore(item, item.previousElementSibling);
+        }
+        if (dir === 'down' && item.nextElementSibling) {
+          item.parentNode.insertBefore(item.nextElementSibling, item);
+        }
+      };
+    });
+  }
+
+  document.querySelectorAll('.featured-selected .post-item')
+    .forEach(attachItemEvents);
+});
 </script>
 
-
 <style>
-  .columns-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: flex-start;
-    align-items: stretch;
-    gap: 40px;
-    width: 100%;
-    margin-top: 20px;
-    box-sizing: border-box;
-    * {
-          box-sizing: border-box;
-    }
-  }
-  .posts-column {
-    width: 100%;
-    max-width: calc(50% - 22px);
-    padding: 20px;
-    border: 1px solid #ccc;
-    background: #fff;
-    min-height: 400px;
-  }
-  .post-item {
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: flex-start;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .post-item:hover {
-    background: #f5f5f5;
-  }
-  .post-item img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    margin-right: 10px;
-    vertical-align: middle;
-    border-radius: 4px;
-  }
-  .post-item .post-title {
-    display: block;
-    width: 100%;
-    max-width: calc(100% - 169px);
-  }
-  .post-item .move-btn, .post-item .remove-btn {
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: center;
-    align-items: center;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-  }
-  .post-item .move-btn[data-dir="up"] {
-    background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-arrow.svg') center / contain no-repeat;
-  }
-  .post-item .move-btn[data-dir="down"] {
-    background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-arrow.svg') center / contain no-repeat;
-    transform: rotate(180deg);
-  }
-  .post-item .remove-btn {
-    background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-close.svg') center / contain no-repeat;
-  }
+.featured-search {
+  position: relative;
+  max-width: 800px;
+  margin-bottom: 30px;
+}
+
+#post-search {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 10;
+}
+
+.search-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: #f0f0f0;
+}
+
+.featured-selected {
+  max-width: 800px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.post-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.post-title {
+  flex: 1;
+}
+
+.move-btn,
+.remove-btn {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.move-btn[data-dir="up"] {
+  background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-arrow.svg') center/contain no-repeat;
+}
+
+.move-btn[data-dir="down"] {
+  background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-arrow.svg') center/contain no-repeat;
+  transform: rotate(180deg);
+}
+
+.remove-btn {
+  background: url('<?php echo get_template_directory_uri(); ?>/admin/assets/img/icons/admin-close.svg') center/contain no-repeat;
+}
 </style>
 
-<?php
-}
+<?php } ?>
