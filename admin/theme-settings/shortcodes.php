@@ -65,6 +65,8 @@ function theme_featured_posts_shortcode($atts) {
   <div class="article-posts">
     <?php foreach ($posts as $post):
       $thumb = get_the_post_thumbnail_url($post->ID, 'medium');
+      $is_logotype = get_post_meta($post->ID, 'is_logotype', true) || false;
+      $is_logotype_special = get_post_meta($post->ID, 'is_logotype_special', true) || false;
       $descr = get_post_meta($post->ID, 'custom_excerpt', true);
       $date_info = format_date_russian(get_post_meta($post->ID, 'date_start', true));
       ?>
@@ -72,13 +74,16 @@ function theme_featured_posts_shortcode($atts) {
         <?php
           if (!$thumb) {
             $thumb = get_template_directory_uri() . '/assets/img/default/logotype-mgubs.svg';
-            echo '<img src="' . esc_url($thumb) . '" alt="" class="article-news__img" />';
+            echo '<img src="' . esc_url($thumb) . '" alt="MGUBS" class="article-news__img" />';
           } else {
             echo theme_get_responsive_thumbnail($post->ID, 'full', [
               'class' => 'article-news__img'
             ]);
           }
         ?>
+
+        <?php if($is_logotype) { echo '<img src="'.get_is_logotype().'" class="article-news__icon" />'; } ?>
+        <?php if($is_logotype_special) { echo '<img src="'.get_is_logotype_special().'" class="article-news__icon" />'; } ?>
 
         <?php if ($descr): ?>
           <p class="descr article-news__descr"><?php echo esc_html(wp_trim_words($descr, 40)); ?></p>
