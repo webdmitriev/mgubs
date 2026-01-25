@@ -5,18 +5,12 @@ import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-31.jpg';
 
-import { usePostTypeSelector } from '../../post-type-selector/usePostTypeSelector';
-import PostTypeSelectorModal from '../../post-type-selector/PostTypeSelectorModal';
-import { useAttributeList } from '../../hooks/useAttributeList';
-
 import VideoHelpPanel from './controls/VideoHelpPanel';
 import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const {
-    teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData
-  } = attributes;
+  const { teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData, teachers } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -24,7 +18,9 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
-  const teachers = useAttributeList(attributes, setAttributes, 'teachers');
+  const updateTeachers = (newTeachers) => {
+    setAttributes({ teachers: newTeachers });
+  };
 
   // Handler - teacher
   const onSelectImage = (media) => {
@@ -57,6 +53,49 @@ const Edit = ({ attributes, setAttributes }) => {
     });
   };
 
+  // teachers block props
+  const addTeacherBlock = () => {
+    updateTeachers([
+      ...teachers,
+      { title: '', items: [] }
+    ]);
+  };
+
+  const removeTeacherBlock = (blockIndex) => {
+    const newTeachers = [...teachers];
+    newTeachers.splice(blockIndex, 1);
+    updateTeachers(newTeachers);
+  };
+
+  const addTeacher = (blockIndex) => {
+    const newTeachers = [...teachers];
+    newTeachers[blockIndex].items.push({
+      name: '',
+      imageId: 0,
+      imageData: {}
+    });
+    updateTeachers(newTeachers);
+  };
+
+  const removeTeacher = (blockIndex, index) => {
+    const newTeachers = [...teachers];
+    newTeachers[blockIndex].items.splice(index, 1);
+    updateTeachers(newTeachers);
+  };
+
+  const moveTeacher = (blockIndex, index, direction) => {
+    const items = [...teachers[blockIndex].items];
+    const newIndex = index + direction;
+
+    if (newIndex < 0 || newIndex >= items.length) return;
+
+    [items[index], items[newIndex]] = [items[newIndex], items[index]];
+
+    const newTeachers = [...teachers];
+    newTeachers[blockIndex].items = items;
+    updateTeachers(newTeachers);
+  };
+
   const blockProps = useBlockProps({
     className: 'block-style mgu-advantages'
   });
@@ -87,7 +126,7 @@ const Edit = ({ attributes, setAttributes }) => {
           {isPreview && (
             <div className="advanced-block-content" style={{ alignItems: "flex-start", alignContent: 'flex-start' }}>
 
-              <h3 style={{ width: '100%', margin: '0' }}>Заглавный преподаватель:</h3>
+              <h3 style={{ width: '100%', margin: '0' }}>Преподаватель:</h3>
               <div style={{ width: '100%', padding: '12px', border: '2px dashed rgba(0,124,186,.25)', borderRadius: '4px' }}>
                 <Flex align="flex-start">
                   <FlexBlock>
@@ -171,30 +210,149 @@ const Edit = ({ attributes, setAttributes }) => {
 
               <div style={{ display: 'block', width: '100%', height: '2px' }}></div>
 
-              <h3 style={{ width: '100%', margin: '0' }}>Остальные преподаватели:</h3>
-              <div style={{ width: '100%', padding: '12px', border: '2px dashed rgba(0,124,186,.25)', borderRadius: '4px' }}>
-                <div className="teachers-block-grid contacts-items numerations-items numerations-items-02">
-                  {teachers.list.map((item, index) => (
-                    <div key={index} className="repeater-item">
-                      <Button onClick={() => teachers.moveUp(index)}>⬆</Button>
-                      <Button onClick={() => teachers.moveDown(index)}>⬇</Button>
-                      <Button isDestructive onClick={() => teachers.remove(index)}>❌</Button>
-
-                      <TeacherRepeaterItem
-                        item={item}
-                        index={index}
-                        onChange={teachers.update}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div style={{ height: 12 }} />
-                <Button
-                  onClick={() => teachers.add({ selectedIds: [] })}
+              <h3 style={{ width: '100%', margin: '0' }}>Преподаватели:</h3>
+              {teachers.map((block, blockIndex) => (
+                <div
+                  key={blockIndex}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    marginBottom: 16,
+                    padding: 12,
+                    border: '2px solid rgba(0,124,186,.3)',
+                    borderRadius: 6
+                  }}
                 >
-                  + Добавить элемент
-                </Button>
-              </div>
+                  <Flex align="center">
+                    <FlexBlock>
+                      <label className="my-rich-text__label">Заголовок блока</label>
+                      <RichText
+                        tagName="div"
+                        value={block.title}
+                        onChange={(value) => {
+                          const newTeachers = [...teachers];
+                          newTeachers[blockIndex].title = value;
+                          updateTeachers(newTeachers);
+                        }}
+                        placeholder="Например: Основной состав"
+                        allowedFormats={[]}
+                      />
+                    </FlexBlock>
+
+                    <Button
+                      isDestructive
+                      variant="tertiary"
+                      onClick={() => removeTeacherBlock(blockIndex)}
+                    >
+                      🗑
+                    </Button>
+                  </Flex>
+
+                  {/* преподаватели */}
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr 1fr 1fr',
+                      columnGap: 8,
+                      rowGap: 8,
+                      marginTop: 12,
+                      padding: 8,
+                      border: '1px dashed rgba(0,0,0,.15)',
+                      borderRadius: 4
+                    }}
+                  >
+                    {block.items.map((teacher, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          display: 'block',
+                          padding: 8,
+                          border: '1px dashed rgba(0,0,0,.5)',
+                          borderRadius: 4
+                        }}
+                      >
+                        <div>
+                          <Flex justify="flex-end" gap="8px">
+                            <Button size="small" onClick={() => moveTeacher(blockIndex, index, -1)}>⬅️</Button>
+                            <Button size="small" onClick={() => moveTeacher(blockIndex, index, 1)}>➡️</Button>
+                            <Button
+                              size="small"
+                              isDestructive
+                              onClick={() => removeTeacher(blockIndex, index)}
+                            >
+                              🗑
+                            </Button>
+                          </Flex>
+                          <div style={{ height: 12 }} />
+                          <Flex>
+                            <FlexBlock>
+                              <MediaUploadCheck>
+                                <MediaUpload
+                                  allowedTypes={['image']}
+                                  value={teacher.imageId}
+                                  onSelect={(media) => {
+                                    const newTeachers = [...teachers];
+                                    newTeachers[blockIndex].items[index].imageId = media.id;
+                                    newTeachers[blockIndex].items[index].imageData = {
+                                      url: media.url,
+                                      alt: media.alt || ''
+                                    };
+                                    updateTeachers(newTeachers);
+                                  }}
+                                  render={({ open }) => (
+                                    <>
+                                      {teacher.imageData?.url ? (
+                                        <img
+                                          src={teacher.imageData.url}
+                                          style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 6 }}
+                                          onClick={open}
+                                        />
+                                      ) : (
+                                        <Button onClick={open} variant="secondary">
+                                          📷 Фото
+                                        </Button>
+                                      )}
+                                    </>
+                                  )}
+                                />
+                              </MediaUploadCheck>
+                            </FlexBlock>
+                          </Flex>
+                          <div style={{ height: 12 }} />
+                          <Flex>
+                            <FlexBlock>
+                              <label className="my-rich-text__label">Имя</label>
+                              <RichText
+                                tagName="div"
+                                value={teacher.name}
+                                onChange={(value) => {
+                                  const newTeachers = [...teachers];
+                                  newTeachers[blockIndex].items[index].name = value;
+                                  updateTeachers(newTeachers);
+                                }}
+                                placeholder="Имя преподавателя"
+                                allowedFormats={[]}
+                              />
+                            </FlexBlock>
+                          </Flex>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    style={{ marginTop: 8 }}
+                    variant="secondary"
+                    onClick={() => addTeacher(blockIndex)}
+                  >
+                    + Добавить преподавателя
+                  </Button>
+                </div>
+              ))}
+
+              <Button variant="primary" onClick={addTeacherBlock}>
+                + Добавить блок
+              </Button>
             </div>
           )}
         </div>
@@ -204,61 +362,3 @@ const Edit = ({ attributes, setAttributes }) => {
 };
 
 export default Edit;
-
-const TeacherRepeaterItem = ({ item, index, onChange }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const selector = usePostTypeSelector({
-    postType: 'teachers',
-    selectedIds: item.selectedIds || [],
-  });
-
-  const addTeacher = (id) => {
-    onChange(index, {
-      selectedIds: [...item.selectedIds || [], id],
-    });
-    setIsOpen(false);
-  };
-
-  return (
-    <>
-      <PostTypeSelectorModal
-        title="Добавить преподавателя"
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        results={selector.searchResults}
-        onSelect={addTeacher}
-      />
-
-      {selector.items.length === 0 ? (
-        <div className="empty">
-          Нажмите «Выбрать преподавателя»
-        </div>
-      ) : (
-        <div className="grid">
-          {selector.items.map((teacher) => (
-            <div key={teacher.id}>
-              {teacher.name}
-              <Button
-                isSmall
-                isDestructive
-                onClick={() =>
-                  onChange(index, {
-                    selectedIds: item.selectedIds.filter(id => id !== teacher.id),
-                  })
-                }
-              >
-                ✕
-              </Button>
-            </div>
-          ))}
-
-        </div>
-      )}
-
-      <Button isPrimary onClick={() => setIsOpen(true)}>
-        Выбрать преподавателя
-      </Button>
-    </>
-  );
-};

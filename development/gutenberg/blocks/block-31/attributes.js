@@ -10,16 +10,12 @@ const attributes = {
 
   teachers: {
     type: 'array',
-    default: [],
-    items: {
-      type: 'object',
-      properties: {
-        selectedIds: {
-          type: 'array',
-          default: [],
-        },
-      },
-    },
+    default: [
+      {
+        title: '',
+        items: []
+      }
+    ]
   },
 };
 
