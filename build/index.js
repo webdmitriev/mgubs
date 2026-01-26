@@ -16552,6 +16552,8 @@ const Edit = ({
     const newTeachers = [...teachers];
     newTeachers[blockIndex].items.push({
       name: '',
+      role: '',
+      descr: '',
       imageId: 0,
       imageData: {}
     });
@@ -16731,7 +16733,7 @@ const Edit = ({
   }, "\uD83D\uDDD1")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       columnGap: 8,
       rowGap: 8,
       marginTop: 12,
@@ -16789,7 +16791,10 @@ const Edit = ({
       onClick: open
     }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: open,
-      variant: "secondary"
+      variant: "secondary",
+      style: {
+        width: 'stretch'
+      }
     }, "\uD83D\uDCF7 \u0424\u043E\u0442\u043E"))
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
@@ -16806,6 +16811,30 @@ const Edit = ({
       updateTeachers(newTeachers);
     },
     placeholder: "\u0418\u043C\u044F \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
+    allowedFormats: []
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u0420\u043E\u043B\u044C"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    value: teacher.role,
+    onChange: value => {
+      const newTeachers = [...teachers];
+      newTeachers[blockIndex].items[index].role = value;
+      updateTeachers(newTeachers);
+    },
+    placeholder: "\u0420\u043E\u043B\u044C \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
+    allowedFormats: []
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "my-rich-text__label"
+  }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    value: teacher.descr,
+    onChange: value => {
+      const newTeachers = [...teachers];
+      newTeachers[blockIndex].items[index].descr = value;
+      updateTeachers(newTeachers);
+    },
+    placeholder: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
     allowedFormats: []
   }))))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     style: {
@@ -16941,25 +16970,27 @@ const Save = ({
   }, item.items.map((el, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
     className: "teacher-article"
-  }, el.imageId !== 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, el.imageId !== 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: el.imageData,
-    className: "teacher-image"
-  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw==",
-    alt: "MGUBS",
     className: "teacher-image"
   }), el.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "div",
     value: el.name,
     className: "teacher-title"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), el.role && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: el.role,
     className: "teacher-descr"
-  }, "descr"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), el.descr && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    tagName: "div",
+    value: el.descr,
     className: "teacher-description",
-    style: "display: none;"
-  }, "descr"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'none'
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "teacher-link"
-  }, "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435")))))));
+  }, "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435"))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 

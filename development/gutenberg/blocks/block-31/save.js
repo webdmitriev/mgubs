@@ -63,10 +63,8 @@ const Save = ({ attributes }) => {
           <div className="container">
             {item.items.map((el, index) => (
               <div key={index} className="teacher-article">
-                {el.imageId !== 0 ? (
+                {el.imageId !== 0 && (
                   <Picture data={el.imageData} className="teacher-image" />
-                ) : (
-                  <img src="data:image/gif;base64,R0lGODlhBwAFAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAUAAAIFjI+puwUAOw==" alt="MGUBS" className="teacher-image" />
                 )}
                 {el.name && (
                   <RichText.Content
@@ -75,9 +73,24 @@ const Save = ({ attributes }) => {
                     className="teacher-title"
                   />
                 )}
-                <div className="teacher-descr">descr</div>
-                <div className="teacher-description" style="display: none;">descr</div>
-                <div className="teacher-link">Подробнее</div>
+                {el.role && (
+                  <RichText.Content
+                    tagName="div"
+                    value={el.role}
+                    className="teacher-descr"
+                  />
+                )}
+                {el.descr && (
+                  <>
+                    <RichText.Content
+                      tagName="div"
+                      value={el.descr}
+                      className="teacher-description"
+                      style={{ display: 'none' }}
+                    />
+                    <div className="teacher-link">Подробнее</div>
+                  </>
+                )}
               </div>
             ))}
           </div>

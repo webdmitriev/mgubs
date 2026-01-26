@@ -71,6 +71,8 @@ const Edit = ({ attributes, setAttributes }) => {
     const newTeachers = [...teachers];
     newTeachers[blockIndex].items.push({
       name: '',
+      role: '',
+      descr: '',
       imageId: 0,
       imageData: {}
     });
@@ -252,7 +254,7 @@ const Edit = ({ attributes, setAttributes }) => {
                   <div
                     style={{
                       display: 'grid',
-                      gridTemplateColumns: '1fr 1fr 1fr 1fr',
+                      gridTemplateColumns: '1fr 1fr 1fr',
                       columnGap: 8,
                       rowGap: 8,
                       marginTop: 12,
@@ -308,7 +310,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                           onClick={open}
                                         />
                                       ) : (
-                                        <Button onClick={open} variant="secondary">
+                                        <Button onClick={open} variant="secondary" style={{ width: 'stretch' }}>
                                           📷 Фото
                                         </Button>
                                       )}
@@ -331,6 +333,38 @@ const Edit = ({ attributes, setAttributes }) => {
                                   updateTeachers(newTeachers);
                                 }}
                                 placeholder="Имя преподавателя"
+                                allowedFormats={[]}
+                              />
+                            </FlexBlock>
+                          </Flex>
+                          <Flex>
+                            <FlexBlock>
+                              <label className="my-rich-text__label">Роль</label>
+                              <RichText
+                                tagName="div"
+                                value={teacher.role}
+                                onChange={(value) => {
+                                  const newTeachers = [...teachers];
+                                  newTeachers[blockIndex].items[index].role = value;
+                                  updateTeachers(newTeachers);
+                                }}
+                                placeholder="Роль преподавателя"
+                                allowedFormats={[]}
+                              />
+                            </FlexBlock>
+                          </Flex>
+                          <Flex>
+                            <FlexBlock>
+                              <label className="my-rich-text__label">Описание</label>
+                              <RichText
+                                tagName="div"
+                                value={teacher.descr}
+                                onChange={(value) => {
+                                  const newTeachers = [...teachers];
+                                  newTeachers[blockIndex].items[index].descr = value;
+                                  updateTeachers(newTeachers);
+                                }}
+                                placeholder="Описание преподавателя"
                                 allowedFormats={[]}
                               />
                             </FlexBlock>
