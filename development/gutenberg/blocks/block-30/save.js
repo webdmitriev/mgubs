@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
   return (
     <div {...blockProps}>
       {title && (
-        <div class="container">
+        <div className="container">
           <RichText.Content
             tagName="h2"
             value={title}
