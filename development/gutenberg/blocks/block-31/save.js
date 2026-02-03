@@ -4,9 +4,15 @@ import Picture from '../../components/picture';
 const Save = ({ attributes }) => {
   const {
     anchor, bgc,
-    teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData,
-    teachers
+    teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData
   } = attributes;
+
+  let teachers = [];
+  try {
+    teachers = JSON.parse(attributes.teachers || '[]');
+  } catch (e) {
+    teachers = [];
+  }
 
   const blockProps = useBlockProps.save({
     className: `block-standard block-31 block-08`,
@@ -61,7 +67,7 @@ const Save = ({ attributes }) => {
             />
           )}
           <div className="container">
-            {item.items.map((el, index) => (
+            {item.items?.map((el, index) => (
               <div key={index} className="teacher-article">
                 {el.imageId !== 0 && (
                   <Picture data={el.imageData} className="teacher-image" />

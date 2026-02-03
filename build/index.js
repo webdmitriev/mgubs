@@ -16261,11 +16261,8 @@ const attributes = {
     default: {}
   },
   teachers: {
-    type: 'array',
-    default: [{
-      title: '',
-      items: []
-    }]
+    type: 'string',
+    default: '[]'
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -16493,16 +16490,16 @@ const Edit = ({
     teacherPosition,
     teacherDescr,
     teacherImageId,
-    teacherImageData,
-    teachers
+    teacherImageData
   } = attributes;
   const [isPreview, setIsPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
+  const teachers = JSON.parse(attributes.teachers || '[]');
   const updateTeachers = newTeachers => {
     setAttributes({
-      teachers: newTeachers
+      teachers: JSON.stringify(newTeachers)
     });
   };
 
@@ -16549,19 +16546,23 @@ const Edit = ({
     updateTeachers(newTeachers);
   };
   const addTeacher = blockIndex => {
-    const newTeachers = [...teachers];
-    newTeachers[blockIndex].items.push({
-      name: '',
-      role: '',
-      descr: '',
-      imageId: 0,
-      imageData: {}
+    const newTeachers = teachers.map((block, idx) => idx !== blockIndex ? block : {
+      ...block,
+      items: [...block.items, {
+        name: '',
+        role: '',
+        descr: '',
+        imageId: 0,
+        imageData: {}
+      }]
     });
     updateTeachers(newTeachers);
   };
   const removeTeacher = (blockIndex, index) => {
-    const newTeachers = [...teachers];
-    newTeachers[blockIndex].items.splice(index, 1);
+    const newTeachers = teachers.map((block, bIdx) => bIdx !== blockIndex ? block : {
+      ...block,
+      items: block.items.filter((_, i) => i !== index)
+    });
     updateTeachers(newTeachers);
   };
   const moveTeacher = (blockIndex, index, direction) => {
@@ -16571,6 +16572,37 @@ const Edit = ({
     [items[index], items[newIndex]] = [items[newIndex], items[index]];
     const newTeachers = [...teachers];
     newTeachers[blockIndex].items = items;
+    updateTeachers(newTeachers);
+  };
+  const updateBlockTitle = (blockIndex, value) => {
+    const newTeachers = teachers.map((block, idx) => idx !== blockIndex ? block : {
+      ...block,
+      title: value
+    });
+    updateTeachers(newTeachers);
+  };
+  const updateTeacherField = (blockIndex, index, field, value) => {
+    const newTeachers = teachers.map((block, bIdx) => bIdx !== blockIndex ? block : {
+      ...block,
+      items: block.items.map((item, iIdx) => iIdx !== index ? item : {
+        ...item,
+        [field]: value
+      })
+    });
+    updateTeachers(newTeachers);
+  };
+  const updateTeacherImage = (blockIndex, index, media) => {
+    const newTeachers = teachers.map((block, bIdx) => bIdx !== blockIndex ? block : {
+      ...block,
+      items: block.items.map((item, iIdx) => iIdx !== index ? item : {
+        ...item,
+        imageId: media.id,
+        imageData: {
+          url: media.url,
+          alt: media.alt || ''
+        }
+      })
+    });
     updateTeachers(newTeachers);
   };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
@@ -16719,11 +16751,7 @@ const Edit = ({
   }, "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0431\u043B\u043E\u043A\u0430"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
     value: block.title,
-    onChange: value => {
-      const newTeachers = [...teachers];
-      newTeachers[blockIndex].title = value;
-      updateTeachers(newTeachers);
-    },
+    onChange: value => updateBlockTitle(blockIndex, value),
     placeholder: "\u041D\u0430\u043F\u0440\u0438\u043C\u0435\u0440: \u041E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0441\u043E\u0441\u0442\u0430\u0432",
     allowedFormats: []
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
@@ -16770,13 +16798,7 @@ const Edit = ({
     allowedTypes: ['image'],
     value: teacher.imageId,
     onSelect: media => {
-      const newTeachers = [...teachers];
-      newTeachers[blockIndex].items[index].imageId = media.id;
-      newTeachers[blockIndex].items[index].imageData = {
-        url: media.url,
-        alt: media.alt || ''
-      };
-      updateTeachers(newTeachers);
+      updateTeacherImage(blockIndex, index, media);
     },
     render: ({
       open
@@ -16806,9 +16828,7 @@ const Edit = ({
     tagName: "div",
     value: teacher.name,
     onChange: value => {
-      const newTeachers = [...teachers];
-      newTeachers[blockIndex].items[index].name = value;
-      updateTeachers(newTeachers);
+      updateTeacherField(blockIndex, index, 'name', value);
     },
     placeholder: "\u0418\u043C\u044F \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
     allowedFormats: []
@@ -16818,9 +16838,7 @@ const Edit = ({
     tagName: "div",
     value: teacher.role,
     onChange: value => {
-      const newTeachers = [...teachers];
-      newTeachers[blockIndex].items[index].role = value;
-      updateTeachers(newTeachers);
+      updateTeacherField(blockIndex, index, 'role', value);
     },
     placeholder: "\u0420\u043E\u043B\u044C \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
     allowedFormats: []
@@ -16830,9 +16848,7 @@ const Edit = ({
     tagName: "div",
     value: teacher.descr,
     onChange: value => {
-      const newTeachers = [...teachers];
-      newTeachers[blockIndex].items[index].descr = value;
-      updateTeachers(newTeachers);
+      updateTeacherField(blockIndex, index, 'descr', value);
     },
     placeholder: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u044F",
     allowedFormats: []
@@ -16920,9 +16936,14 @@ const Save = ({
     teacherPosition,
     teacherDescr,
     teacherImageId,
-    teacherImageData,
-    teachers
+    teacherImageData
   } = attributes;
+  let teachers = [];
+  try {
+    teachers = JSON.parse(attributes.teachers || '[]');
+  } catch (e) {
+    teachers = [];
+  }
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `block-standard block-31 block-08`,
     id: anchor,
@@ -16967,7 +16988,7 @@ const Save = ({
     className: "h3"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container"
-  }, item.items.map((el, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, item.items?.map((el, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
     className: "teacher-article"
   }, el.imageId !== 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_picture__WEBPACK_IMPORTED_MODULE_2__["default"], {

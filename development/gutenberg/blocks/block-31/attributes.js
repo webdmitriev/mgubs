@@ -9,13 +9,8 @@ const attributes = {
   teacherImageData: { type: 'object', default: {} },
 
   teachers: {
-    type: 'array',
-    default: [
-      {
-        title: '',
-        items: []
-      }
-    ]
+    type: 'string',
+    default: '[]'
   },
 };
 

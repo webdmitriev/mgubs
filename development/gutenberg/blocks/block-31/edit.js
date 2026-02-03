@@ -10,7 +10,7 @@ import ContentPanel from './controls/ContentPanel';
 import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
-  const { teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData, teachers } = attributes;
+  const { teacherName, teacherPosition, teacherDescr, teacherImageId, teacherImageData } = attributes;
 
   const [isPreview, setIsPreview] = useState(false);
 
@@ -18,8 +18,12 @@ const Edit = ({ attributes, setAttributes }) => {
     setIsPreview(!isPreview);
   };
 
+  const teachers = JSON.parse(attributes.teachers || '[]');
+
   const updateTeachers = (newTeachers) => {
-    setAttributes({ teachers: newTeachers });
+    setAttributes({
+      teachers: JSON.stringify(newTeachers)
+    });
   };
 
   // Handler - teacher
@@ -68,20 +72,37 @@ const Edit = ({ attributes, setAttributes }) => {
   };
 
   const addTeacher = (blockIndex) => {
-    const newTeachers = [...teachers];
-    newTeachers[blockIndex].items.push({
-      name: '',
-      role: '',
-      descr: '',
-      imageId: 0,
-      imageData: {}
-    });
+    const newTeachers = teachers.map((block, idx) =>
+      idx !== blockIndex
+        ? block
+        : {
+          ...block,
+          items: [
+            ...block.items,
+            {
+              name: '',
+              role: '',
+              descr: '',
+              imageId: 0,
+              imageData: {},
+            },
+          ],
+        }
+    );
+
     updateTeachers(newTeachers);
   };
 
   const removeTeacher = (blockIndex, index) => {
-    const newTeachers = [...teachers];
-    newTeachers[blockIndex].items.splice(index, 1);
+    const newTeachers = teachers.map((block, bIdx) =>
+      bIdx !== blockIndex
+        ? block
+        : {
+          ...block,
+          items: block.items.filter((_, i) => i !== index),
+        }
+    );
+
     updateTeachers(newTeachers);
   };
 
@@ -97,6 +118,55 @@ const Edit = ({ attributes, setAttributes }) => {
     newTeachers[blockIndex].items = items;
     updateTeachers(newTeachers);
   };
+
+  const updateBlockTitle = (blockIndex, value) => {
+    const newTeachers = teachers.map((block, idx) =>
+      idx !== blockIndex ? block : { ...block, title: value }
+    );
+
+    updateTeachers(newTeachers);
+  };
+
+  const updateTeacherField = (blockIndex, index, field, value) => {
+    const newTeachers = teachers.map((block, bIdx) =>
+      bIdx !== blockIndex
+        ? block
+        : {
+          ...block,
+          items: block.items.map((item, iIdx) =>
+            iIdx !== index ? item : { ...item, [field]: value }
+          ),
+        }
+    );
+
+    updateTeachers(newTeachers);
+  };
+
+  const updateTeacherImage = (blockIndex, index, media) => {
+    const newTeachers = teachers.map((block, bIdx) =>
+      bIdx !== blockIndex
+        ? block
+        : {
+          ...block,
+          items: block.items.map((item, iIdx) =>
+            iIdx !== index
+              ? item
+              : {
+                ...item,
+                imageId: media.id,
+                imageData: {
+                  url: media.url,
+                  alt: media.alt || '',
+                },
+              }
+          ),
+        }
+    );
+
+    updateTeachers(newTeachers);
+  };
+
+
 
   const blockProps = useBlockProps({
     className: 'block-style mgu-advantages'
@@ -231,11 +301,7 @@ const Edit = ({ attributes, setAttributes }) => {
                       <RichText
                         tagName="div"
                         value={block.title}
-                        onChange={(value) => {
-                          const newTeachers = [...teachers];
-                          newTeachers[blockIndex].title = value;
-                          updateTeachers(newTeachers);
-                        }}
+                        onChange={(value) => updateBlockTitle(blockIndex, value)}
                         placeholder="Например: Основной состав"
                         allowedFormats={[]}
                       />
@@ -293,13 +359,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                   allowedTypes={['image']}
                                   value={teacher.imageId}
                                   onSelect={(media) => {
-                                    const newTeachers = [...teachers];
-                                    newTeachers[blockIndex].items[index].imageId = media.id;
-                                    newTeachers[blockIndex].items[index].imageData = {
-                                      url: media.url,
-                                      alt: media.alt || ''
-                                    };
-                                    updateTeachers(newTeachers);
+                                    updateTeacherImage(blockIndex, index, media)
                                   }}
                                   render={({ open }) => (
                                     <>
@@ -328,9 +388,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                 tagName="div"
                                 value={teacher.name}
                                 onChange={(value) => {
-                                  const newTeachers = [...teachers];
-                                  newTeachers[blockIndex].items[index].name = value;
-                                  updateTeachers(newTeachers);
+                                  updateTeacherField(blockIndex, index, 'name', value)
                                 }}
                                 placeholder="Имя преподавателя"
                                 allowedFormats={[]}
@@ -344,9 +402,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                 tagName="div"
                                 value={teacher.role}
                                 onChange={(value) => {
-                                  const newTeachers = [...teachers];
-                                  newTeachers[blockIndex].items[index].role = value;
-                                  updateTeachers(newTeachers);
+                                  updateTeacherField(blockIndex, index, 'role', value)
                                 }}
                                 placeholder="Роль преподавателя"
                                 allowedFormats={[]}
@@ -360,9 +416,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                 tagName="div"
                                 value={teacher.descr}
                                 onChange={(value) => {
-                                  const newTeachers = [...teachers];
-                                  newTeachers[blockIndex].items[index].descr = value;
-                                  updateTeachers(newTeachers);
+                                  updateTeacherField(blockIndex, index, 'descr', value)
                                 }}
                                 placeholder="Описание преподавателя"
                                 allowedFormats={[]}
