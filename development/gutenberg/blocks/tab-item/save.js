@@ -1,17 +1,18 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
-const Save = ({ attributes }) => {
-  const { activeTab } = attributes;
+export default function save({ attributes }) {
+  const { title } = attributes;
+
   const blockProps = useBlockProps.save({
-    className: 'custom-tabs-block',
-    'data-active-tab': activeTab || 0
+    className: 'tab-panel-item',
+    'data-tab-title': title || '' // Заголовок для фронтенд скрипта
   });
 
   return (
     <div {...blockProps}>
-      <InnerBlocks.Content />
+      <div className="tab-panel-content">
+        <InnerBlocks.Content />
+      </div>
     </div>
   );
 }
-
-export default Save;

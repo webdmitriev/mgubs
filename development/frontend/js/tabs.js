@@ -1,28 +1,34 @@
-// Если нужно динамическое переключение на фронтенде
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const tabBlocks = document.querySelectorAll('.custom-tabs-block');
 
-  tabBlocks.forEach(block => {
-    const buttons = block.querySelectorAll('.tab-button');
-    const tabs = block.querySelectorAll('.tab-panel-item');
+  tabBlocks.forEach(wrapper => {
+    const navContainer = wrapper.querySelector('.tabs-nav-container');
+    const panels = wrapper.querySelectorAll('.tab-panel-item');
 
-    buttons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        // Убираем активный класс у всех кнопок
-        buttons.forEach(btn => btn.classList.remove('is-active'));
-        // Добавляем активный класс текущей кнопке
-        button.classList.add('is-active');
+    // Очищаем навигацию на случай повторного рендера
+    navContainer.innerHTML = '';
 
-        // Скрываем все вкладки
-        tabs.forEach(tab => tab.style.display = 'none');
-        // Показываем нужную вкладку
-        if (tabs[index]) {
-          tabs[index].style.display = 'block';
-        }
+    panels.forEach((panel, index) => {
+      const title = panel.getAttribute('data-tab-title') || `Tab ${index + 1}`;
+      const btn = document.createElement('button');
+      btn.textContent = title;
+      btn.classList.add('tab-nav-button');
+      if (index === 0) {
+        btn.classList.add('is-active');
+        panel.classList.add('is-active');
+      }
 
-        // Обновляем data-атрибут
-        block.setAttribute('data-active-tab', index);
+      btn.addEventListener('click', () => {
+        // Убираем активный класс у всех
+        wrapper.querySelectorAll('.tab-nav-button').forEach(b => b.classList.remove('is-active'));
+        panels.forEach(p => p.classList.remove('is-active'));
+
+        // Добавляем текущему
+        btn.classList.add('is-active');
+        panel.classList.add('is-active');
       });
+
+      navContainer.appendChild(btn);
     });
   });
 });

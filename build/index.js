@@ -27322,40 +27322,75 @@ const Save = ({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-
-const Edit = ({
+function Edit({
   attributes,
-  setAttributes
-}) => {
+  setAttributes,
+  clientId
+}) {
   const {
-    title = ''
+    title
   } = attributes;
+
+  // Определяем, является ли эта вкладка активной, глядя на родителя
+  const isActive = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    const {
+      getBlockRootClientId,
+      getBlockAttributes,
+      getBlockIndex
+    } = select('core/block-editor');
+    const rootId = getBlockRootClientId(clientId);
+    if (!rootId) return false;
+    const parentAttributes = getBlockAttributes(rootId);
+    const myIndex = getBlockIndex(clientId, rootId);
+    return parentAttributes?.activeTab === myIndex;
+  }, [clientId]);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'tab-panel-item'
+    className: 'tab-panel-item',
+    'data-active': isActive ? 'true' : 'false',
+    // Для CSS родителя
+    style: {
+      padding: '20px',
+      border: '1px solid #ddd',
+      background: '#fff',
+      display: isActive ? 'block' : 'none' // Дополнительная страховка
+    }
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)({
-    className: 'tab-inside-content'
+    className: 'tab-content'
+  }, {
+    template: [['core/paragraph', {
+      placeholder: 'Контент вкладки...'
+    }]]
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A: ", title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      borderBottom: '1px solid #eee',
+      marginBottom: '15px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h4",
+    value: title,
+    onChange: val => setAttributes({
+      title: val
+    }),
+    placeholder: "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0432\u043A\u043B\u0430\u0434\u043A\u0438..."
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps
   }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+}
 
 /***/ }),
 
@@ -27405,7 +27440,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -27413,21 +27448,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const Save = ({
+function save({
   attributes
-}) => {
+}) {
   const {
-    activeTab
+    title
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'custom-tabs-block',
-    'data-active-tab': activeTab || 0
+    className: 'tab-panel-item',
+    'data-tab-title': title || '' // Заголовок для фронтенд скрипта
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "tab-panel-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
+}
 
 /***/ }),
 
@@ -27438,9 +27474,13 @@ const Save = ({
 /***/ (() => {
 
 const tabAttributes = {
-  title: {
-    type: 'string',
-    default: 'Новая вкладка'
+  activeTab: {
+    type: 'number',
+    default: 0
+  },
+  tabsData: {
+    type: 'array',
+    default: []
   }
 };
 
@@ -27465,11 +27505,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__);
-
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -27486,153 +27523,91 @@ function Edit({
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'custom-tabs-block'
   });
+
+  // Получаем функции для управления блоками
   const {
     insertBlock,
     removeBlock
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)('core/block-editor');
 
-  // Получаем данные о дочерних блоках
-  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
-    const {
-      getBlock
-    } = select('core/block-editor');
-    const block = getBlock(clientId);
-    return block ? block.innerBlocks : [];
-  }, [clientId]);
-
-  // Состояние для отслеживания изменений
-  const [tabsData, setTabsData] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
-
-  // Обновляем данные вкладок при изменении innerBlocks
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    const newTabsData = innerBlocks.map((block, index) => ({
-      id: block.clientId,
-      title: block.attributes?.title || `Вкладка ${index + 1}`,
-      index: index,
-      isActive: activeTab === index
-    }));
-    setTabsData(newTabsData);
-  }, [innerBlocks, activeTab]);
-
-  // Добавляем новую вкладку
+  // Получаем реальные данные дочерних блоков напрямую из стора
+  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => select('core/block-editor').getBlock(clientId)?.innerBlocks || [], [clientId]);
   const addNewTab = () => {
-    const newTabIndex = innerBlocks.length;
-    const newTabBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__.createBlock)('my-plugin/tab', {
-      title: `Вкладка ${newTabIndex + 1}`
+    const newIndex = innerBlocks.length;
+    const newTabBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)('my-plugin/tab', {
+      title: `Вкладка ${newIndex + 1}`
     });
-    insertBlock(newTabBlock, newTabIndex, clientId, false);
-
-    // Устанавливаем новую вкладку как активную
-    setTimeout(() => {
-      setAttributes({
-        activeTab: newTabIndex
-      });
-    }, 50);
+    insertBlock(newTabBlock, newIndex, clientId);
+    setAttributes({
+      activeTab: newIndex
+    });
   };
-
-  // Удаляем вкладку
-  const deleteTab = index => {
-    if (innerBlocks.length <= 1 || !innerBlocks[index]) return;
-    removeBlock(innerBlocks[index].clientId, false);
-
-    // Обновляем активную вкладку
-    if (activeTab === index) {
-      const newActiveTab = Math.max(0, index - 1);
-      setAttributes({
-        activeTab: newActiveTab
-      });
-    } else if (activeTab > index) {
+  const deleteTab = (index, tabClientId) => {
+    if (innerBlocks.length <= 1) return;
+    removeBlock(tabClientId);
+    if (activeTab >= index && activeTab > 0) {
       setAttributes({
         activeTab: activeTab - 1
       });
     }
   };
-
-  // Убедимся, что activeTab всегда валидный
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    if (innerBlocks.length > 0 && activeTab >= innerBlocks.length) {
-      const newActiveTab = Math.max(0, innerBlocks.length - 1);
-      setAttributes({
-        activeTab: newActiveTab
-      });
-    }
-  }, [innerBlocks.length, activeTab]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u043A\u043B\u0430\u0434\u043E\u043A",
-    initialOpen: true
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      marginBottom: '16px'
-    }
+    title: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0432\u043A\u043B\u0430\u0434\u043A\u0430\u043C\u0438"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     variant: "primary",
     onClick: addNewTab,
+    isBusy: false,
     style: {
       width: '100%'
     }
-  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432\u043A\u043B\u0430\u0434\u043A\u0443")), tabsData.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "\u0421\u043F\u0438\u0441\u043E\u043A \u0432\u043A\u043B\u0430\u0434\u043E\u043A (", tabsData.length, "):"), tabsData.map((tab, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: tab.id || index,
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginTop: '8px',
-      padding: '8px',
-      backgroundColor: tab.isActive ? '#e0f0ff' : '#f0f0f0',
-      borderRadius: '4px',
-      border: tab.isActive ? '1px solid #007cba' : '1px solid transparent'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, tab.title || `Вкладка ${index + 1}`), tabsData.length > 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    variant: "secondary",
-    isDestructive: true,
-    isSmall: true,
-    onClick: () => deleteTab(index)
-  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432\u043A\u043B\u0430\u0434\u043A\u0443"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "tabs-navigation",
     style: {
       display: 'flex',
-      flexWrap: 'wrap',
       gap: '8px',
-      marginBottom: '20px',
-      paddingBottom: '10px',
-      borderBottom: '2px solid #ddd'
+      marginBottom: '20px'
     }
-  }, tabsData.map((tab, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    key: tab.id || index,
+  }, innerBlocks.map((block, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: block.clientId,
+    style: {
+      position: 'relative'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
-    className: `tab-button ${activeTab === index ? 'is-active' : ''}`,
-    onClick: () => {
-      setAttributes({
-        activeTab: index
-      });
-    },
+    onClick: () => setAttributes({
+      activeTab: index
+    }),
     style: {
       padding: '8px 16px',
-      border: 'none',
       background: activeTab === index ? '#007cba' : '#f0f0f0',
       color: activeTab === index ? 'white' : '#333',
+      border: 'none',
       borderRadius: '4px',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      fontSize: '14px',
-      fontWeight: '500',
-      minWidth: '100px'
+      cursor: 'pointer'
     }
-  }, tab.title || `Вкладка ${index + 1}`)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    variant: "secondary",
-    isSmall: true,
-    onClick: addNewTab,
+  }, block.attributes.title || `Вкладка ${index + 1}`), innerBlocks.length > 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: () => deleteTab(index, block.clientId),
     style: {
-      marginLeft: 'auto',
-      alignSelf: 'center'
+      position: 'absolute',
+      top: '-5px',
+      right: '-5px',
+      background: 'red',
+      color: 'white',
+      border: 'none',
+      borderRadius: '50%',
+      width: '15px',
+      height: '15px',
+      fontSize: '10px'
     }
-  }, "+ \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "\xD7")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "tabs-content-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
+                        .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
+                        .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
+                    `), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
     allowedBlocks: ['my-plugin/tab'],
-    templateLock: false,
     renderAppender: false
   })));
 }
@@ -27682,7 +27657,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -27690,21 +27665,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const Save = ({
-  attributes
-}) => {
-  const {
-    title
-  } = attributes;
+function save() {
+  // Мы не деструктурируем activeTab, чтобы не привязывать к нему HTML
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'tab-panel-item',
-    'data-tab-title': title || ''
+    className: 'custom-tabs-block'
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "tabs-nav-container"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "tabs-content-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
+}
 
 /***/ }),
 

@@ -1,6 +1,10 @@
 const tabAttributes = {
-  title: {
-    type: 'string',
-    default: 'Новая вкладка'
+  activeTab: {
+    type: 'number',
+    default: 0
+  },
+  tabsData: {
+    type: 'array',
+    default: []
   }
 };

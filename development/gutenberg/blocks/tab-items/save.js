@@ -1,17 +1,22 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
-const Save = ({ attributes }) => {
-  const { title } = attributes;
+export default function save() {
+  // Мы не деструктурируем activeTab, чтобы не привязывать к нему HTML
   const blockProps = useBlockProps.save({
-    className: 'tab-panel-item',
-    'data-tab-title': title || ''
+    className: 'custom-tabs-block'
   });
 
   return (
     <div {...blockProps}>
-      <InnerBlocks.Content />
+      {/* Контейнер для кнопок, которые создаст JS */}
+      <div className="tabs-nav-container"></div>
+
+      <div className="tabs-content-container">
+        {/* Важно: InnerBlocks.Content должен быть единственным 
+                   содержимым внутри своего контейнера без лишних пробелов 
+                */}
+        <InnerBlocks.Content />
+      </div>
     </div>
   );
 }
-
-export default Save;
