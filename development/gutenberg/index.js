@@ -69,3 +69,6 @@ import './blocks/block-49/index.js';
 import './blocks/block-50/index.js';
 import './blocks/block-51/index.js';
 import './blocks/block-52/index.js';
+// import './blocks/block-53/index.js';
+import './blocks/tab-item/index.js';
+import './blocks/tab-items/index.js';

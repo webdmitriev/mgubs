@@ -343,3 +343,80 @@
   max-width: 100%;
   min-width: max-content;
 }
+
+//
+/* Общие стили для редактора и фронтенда */
+.custom-tabs-block {
+  margin: 20px 0;
+}
+
+.tabs-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab-button:hover {
+  background: #e0e0e0;
+}
+
+.tab-button.is-active {
+  background: #007cba;
+  color: white;
+}
+
+.tab-content-wrapper {
+  position: relative;
+}
+
+.tab-panel-item {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стили только для фронтенда */
+.custom-tabs-block .tab-panel-item {
+  display: none;
+}
+
+.custom-tabs-block .tab-panel-item:first-child {
+  display: block;
+}
+
+/* Стили для JavaScript управления на фронтенде */
+.custom-tabs-block[data-active-tab] .tab-panel-item {
+  display: none;
+}
+
+.custom-tabs-block[data-active-tab="0"] .tab-panel-item:nth-child(1),
+.custom-tabs-block[data-active-tab="1"] .tab-panel-item:nth-child(2),
+.custom-tabs-block[data-active-tab="2"] .tab-panel-item:nth-child(3),
+.custom-tabs-block[data-active-tab="3"] .tab-panel-item:nth-child(4),
+.custom-tabs-block[data-active-tab="4"] .tab-panel-item:nth-child(5) {
+  display: block;
+}

@@ -3803,3 +3803,41 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
 })
+
+/* tabs.js */
+// Фронтенд функциональность для табов
+document.addEventListener('DOMContentLoaded', function () {
+  const tabsBlocks = document.querySelectorAll('.gutenberg-tabs-block');
+  if (tabsBlocks) {
+    tabsBlocks.forEach(block => {
+      const tabButtons = block.querySelectorAll('.gutenberg-tabs-tab-title');
+      const tabPanes = block.querySelectorAll('.gutenberg-tabs-pane');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const tabIndex = this.getAttribute('data-tab-index');
+          const blockId = this.closest('.gutenberg-tabs-block').id;
+
+          // Обновляем активную кнопку
+          tabButtons.forEach(btn => btn.classList.remove('is-active'));
+          this.classList.add('is-active');
+
+          // Обновляем активную панель
+          tabPanes.forEach(pane => {
+            pane.classList.remove('is-active');
+            pane.style.display = 'none';
+          });
+
+          const activePane = block.querySelector(`#${blockId}-tab-${tabIndex}`);
+          if (activePane) {
+            activePane.classList.add('is-active');
+            activePane.style.display = 'block';
+          }
+        });
+      });
+    });
+  }
+
+});

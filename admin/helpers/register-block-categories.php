@@ -103,6 +103,11 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'theme/block-51',
     'theme/block-52',
 
+    'my-plugin/tab',
+    'my-plugin/tabs',
+
+    // 'gutena/tabs',
+
     'core/paragraph',
     'core/list',
     'core/list-item',
@@ -110,5 +115,6 @@ function theme_allowed_blocks( $allowed_blocks, $editor_context ) {
     'core/table',
     'core/code',
     'core/spacer',
+    'core/group',
   ];
 }
