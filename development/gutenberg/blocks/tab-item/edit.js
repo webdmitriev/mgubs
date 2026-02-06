@@ -34,8 +34,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
   return (
     <div {...blockProps}>
       <div style={{ borderBottom: '1px solid #eee', marginBottom: '15px' }}>
+        <div style={{ marginBottom: 4, color: 'gray' }}>Название вкладки:</div>
         <RichText
-          tagName="h4"
+          tagName="div"
+          className="tab-title"
           value={title}
           onChange={(val) => setAttributes({ title: val })}
           placeholder="Заголовок вкладки..."

@@ -46,14 +46,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
       {/* Навигация */}
       <div className="tabs-navigation" style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
-        {innerBlocks.map((block, index) => (
+        {innerBlocks?.map((block, index) => (
           <div key={block.clientId} style={{ position: 'relative' }}>
             <button
               type="button"
               onClick={() => setAttributes({ activeTab: index })}
               style={{
                 padding: '8px 16px',
-                background: activeTab === index ? '#007cba' : '#f0f0f0',
+                background: activeTab === index ? '#ff762f' : '#f0f0f0',
                 color: activeTab === index ? 'white' : '#333',
                 border: 'none',
                 borderRadius: '4px',
@@ -68,7 +68,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 style={{
                   position: 'absolute', top: '-5px', right: '-5px',
                   background: 'red', color: 'white', border: 'none',
-                  borderRadius: '50%', width: '15px', height: '15px', fontSize: '10px'
+                  borderRadius: '50%', width: '15px', height: '15px', fontSize: '10px', lineHeight: '15px'
                 }}
               >
                 ×
@@ -82,9 +82,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
       <div className="tabs-content-wrapper">
         <style>
           {`
-                        .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
-                        .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
-                    `}
+              .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
+              .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
+          `}
         </style>
         <InnerBlocks
           allowedBlocks={['my-plugin/tab']}

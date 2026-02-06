@@ -420,3 +420,25 @@
 .custom-tabs-block[data-active-tab="4"] .tab-panel-item:nth-child(5) {
   display: block;
 }
+
+.custom-tabs-block {
+  padding: 12px;
+  background-color: #f8f3f0;
+  border: 2px solid #ff762f;
+  border-radius: 8px;
+  .tab-content.block-editor-block-list__layout {
+    padding: 4px;
+    border: 1px dashed #212121;
+    border-radius: 8px;
+  }
+}
+
+.tab-panel-item {
+  .tab-title {
+    display: block;
+    width: 100%;
+    padding: 4px 12px;
+    border: 1px dashed #212121;
+    border-radius: 4px;
+  }
+}

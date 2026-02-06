@@ -27380,8 +27380,14 @@ function Edit({
       borderBottom: '1px solid #eee',
       marginBottom: '15px'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-    tagName: "h4",
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginBottom: 4,
+      color: 'gray'
+    }
+  }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0432\u043A\u043B\u0430\u0434\u043A\u0438:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "tab-title",
     value: title,
     onChange: val => setAttributes({
       title: val
@@ -27569,7 +27575,7 @@ function Edit({
       gap: '8px',
       marginBottom: '20px'
     }
-  }, innerBlocks.map((block, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, innerBlocks?.map((block, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: block.clientId,
     style: {
       position: 'relative'
@@ -27581,7 +27587,7 @@ function Edit({
     }),
     style: {
       padding: '8px 16px',
-      background: activeTab === index ? '#007cba' : '#f0f0f0',
+      background: activeTab === index ? '#ff762f' : '#f0f0f0',
       color: activeTab === index ? 'white' : '#333',
       border: 'none',
       borderRadius: '4px',
@@ -27599,14 +27605,15 @@ function Edit({
       borderRadius: '50%',
       width: '15px',
       height: '15px',
-      fontSize: '10px'
+      fontSize: '10px',
+      lineHeight: '15px'
     }
   }, "\xD7")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "tabs-content-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-                        .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
-                        .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
-                    `), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+              .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
+              .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
+          `), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
     allowedBlocks: ['my-plugin/tab'],
     renderAppender: false
   })));
