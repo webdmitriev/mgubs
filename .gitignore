@@ -1,3 +1,23 @@
-/node_modules
-/admin/instructions
-text.txt
+# Ignore node_modules
+node_modules/
+
+# Text files
+*.txt
+
+# VSCode settings
+.vscode/
+
+# Image development files
+development/frontend/img/
+
+# Instructions files
+admin/instructions
+
+# macOS
+.DS_Store
+
+# ENV files
+.env
+
+# Hide deploy.js
+deploy.js

@@ -19,7 +19,10 @@
     "fonts:watch": "nodemon --watch development/frontend/fonts --exec \"npm run fonts\"",
     "frontend": "npm-run-all --parallel scss:watch js:watch",
     "frontend:live": "npm-run-all --parallel scss:watch js:watch fonts:watch images:watch browser-sync",
-    "browser-sync": "node browser-sync.js"
+    "browser-sync": "node browser-sync.js",
+
+    "deploy": "node deploy.js",
+    "push": "git add . && git commit -m \"deploy\" && git push"
   },
   "devDependencies": {
     "@wordpress/icons": "^11.2.0",
