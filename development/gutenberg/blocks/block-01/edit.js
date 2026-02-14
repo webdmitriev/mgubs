@@ -4,7 +4,7 @@ import {
   InspectorControls, MediaUpload, MediaUploadCheck,
   URLInput
 } from '@wordpress/block-editor';
-import { Button, ToggleControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
+import { Button, ToggleControl, Flex, FlexBlock, FlexItem, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import blockImage from '../../../../admin/assets/img/blocks/block-01.jpg';
@@ -17,7 +17,7 @@ import BgAnchorPanel from './controls/BgAnchorPanel';
 
 const Edit = ({ attributes, setAttributes }) => {
   const {
-    title, subTitle, buttonText, buttonLink,
+    tagTitle, title, subTitle, buttonText, buttonLink,
     isBlockLine, second_title, description,
     imageData, imageId } = attributes;
 
@@ -123,7 +123,7 @@ const Edit = ({ attributes, setAttributes }) => {
               <div className="advanced-block-text">
                 <Flex>
                   <FlexBlock>
-                    <label className="my-rich-text__label">Заголовок</label>
+                    <label className="my-rich-text__label">Заголовок!</label>
                     <RichText
                       tagName="div"
                       label="Заголовок"

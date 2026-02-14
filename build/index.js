@@ -1088,6 +1088,7 @@ const Edit = ({
   setAttributes
 }) => {
   const {
+    tagTitle,
     title,
     subTitle,
     buttonText,
@@ -1198,7 +1199,7 @@ const Edit = ({
     className: "advanced-block-text"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "my-rich-text__label"
-  }, "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A!"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
     label: "\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A",
     value: title,
@@ -27460,13 +27461,25 @@ function save({
   const {
     title
   } = attributes;
+
+  // Оставляем только <br> теги, остальные удаляем
+  const sanitizeTitle = html => {
+    if (!html) return '';
+    // Сохраняем <br>, удаляем всё остальное
+    return html.replace(/<(?!br\s*\/?)[^>]+>/gi, '') // Удаляем все теги кроме <br>
+    .replace(/<br\s*\/?>/gi, '<br />'); // Нормализуем <br> теги
+  };
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'tab-panel-item',
-    'data-tab-title': title || '' // Заголовок для фронтенд скрипта
+    className: 'tab-panel-item'
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "tab-panel-title",
+    dangerouslySetInnerHTML: {
+      __html: sanitizeTitle(title)
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "tab-panel-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
 }
@@ -27557,6 +27570,12 @@ function Edit({
       });
     }
   };
+  function dwmeo() {
+    innerBlocks?.map((block, index) => {
+      console.log(block.attributes);
+    });
+  }
+  dwmeo();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
@@ -27587,13 +27606,16 @@ function Edit({
     }),
     style: {
       padding: '8px 16px',
-      background: activeTab === index ? '#ff762f' : '#f0f0f0',
+      textAlign: 'left',
       color: activeTab === index ? 'white' : '#333',
+      background: activeTab === index ? '#ff762f' : '#f0f0f0',
       border: 'none',
       borderRadius: '4px',
       cursor: 'pointer'
     }
-  }, block.attributes.title || `Вкладка ${index + 1}`), innerBlocks.length > 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+    value: block.attributes.title || `Вкладка ${index + 1}`
+  })), innerBlocks.length > 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: () => deleteTab(index, block.clientId),
     style: {
       position: 'absolute',
@@ -27611,8 +27633,8 @@ function Edit({
   }, "\xD7")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "tabs-content-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
-              .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
-              .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
+            .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
+            .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
           `), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
     allowedBlocks: ['my-plugin/tab'],
     renderAppender: false

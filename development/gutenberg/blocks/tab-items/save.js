@@ -12,9 +12,6 @@ export default function save() {
       <div className="tabs-nav-container"></div>
 
       <div className="tabs-content-container">
-        {/* Важно: InnerBlocks.Content должен быть единственным 
-                   содержимым внутри своего контейнера без лишних пробелов 
-                */}
         <InnerBlocks.Content />
       </div>
     </div>

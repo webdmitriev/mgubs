@@ -1,5 +1,5 @@
 import { useSelect, useDispatch } from '@wordpress/data';
-import { useBlockProps, InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, Button } from '@wordpress/components';
 import { createBlock } from '@wordpress/blocks';
 
@@ -34,6 +34,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     }
   };
 
+  function dwmeo() {
+    innerBlocks?.map((block, index) => {
+      console.log(block.attributes)
+    })
+  }
+
+  dwmeo()
+
   return (
     <div {...blockProps}>
       <InspectorControls>
@@ -53,14 +61,15 @@ export default function Edit({ attributes, setAttributes, clientId }) {
               onClick={() => setAttributes({ activeTab: index })}
               style={{
                 padding: '8px 16px',
-                background: activeTab === index ? '#ff762f' : '#f0f0f0',
+                textAlign: 'left',
                 color: activeTab === index ? 'white' : '#333',
+                background: activeTab === index ? '#ff762f' : '#f0f0f0',
                 border: 'none',
                 borderRadius: '4px',
                 cursor: 'pointer'
               }}
             >
-              {block.attributes.title || `Вкладка ${index + 1}`}
+              <RichText.Content value={block.attributes.title || `Вкладка ${index + 1}`} />
             </button>
             {innerBlocks.length > 1 && (
               <button
@@ -82,8 +91,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
       <div className="tabs-content-wrapper">
         <style>
           {`
-              .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
-              .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
+            .custom-tabs-block .wp-block-my-plugin-tab { display: none !important; }
+            .custom-tabs-block .wp-block-my-plugin-tab[data-active="true"] { display: block !important; }
           `}
         </style>
         <InnerBlocks

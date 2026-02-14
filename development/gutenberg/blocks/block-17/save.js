@@ -24,7 +24,6 @@ const Save = ({ attributes }) => {
           <Picture key={index} data={item.imageData} className="slider-item" />
         ))}
       </div>
-
     </div>
   );
 };

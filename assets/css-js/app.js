@@ -3816,9 +3816,9 @@ document.addEventListener('DOMContentLoaded', () => {
     navContainer.innerHTML = '';
 
     panels.forEach((panel, index) => {
-      const title = panel.getAttribute('data-tab-title') || `Tab ${index + 1}`;
+      const title = panel.querySelector('.tab-panel-title').innerHTML || `Tab ${index + 1}`;
       const btn = document.createElement('button');
-      btn.textContent = title;
+      btn.innerHTML = title;
       btn.classList.add('tab-nav-button');
       if (index === 0) {
         btn.classList.add('is-active');
