@@ -3996,7 +3996,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const popupPopupClose = popupTeacher.querySelector('.popup-close');
   const teacher = document.querySelectorAll('.teacher-article');
 
-  teacher.forEach((el, idx) => {
+  teacher?.forEach((el, idx) => {
     el.querySelector('.teacher-link')?.addEventListener('click', function (e) {
       popupTeacherTitle.innerHTML = e.currentTarget.parentElement.querySelector('.teacher-title').textContent;
       popupTeacherDescr.innerHTML = e.currentTarget.parentElement.querySelector('.teacher-description').innerHTML;
@@ -4007,7 +4007,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  popupPopupClose.addEventListener('click', () => {
+  popupPopupClose?.addEventListener('click', () => {
     popupTeacher.style.display = 'none';
     body.classList.remove('overflow');
     overlay.classList.remove('active');
