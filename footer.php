@@ -142,6 +142,7 @@ $footer_program = $options['footer_edu_program'] ?? '';
 				<div class="descr"></div>
 			</div>
 		</div>
+
 	</div><!-- #app -->
 
 <?php wp_footer(); ?>
