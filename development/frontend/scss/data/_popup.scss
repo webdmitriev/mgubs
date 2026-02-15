@@ -25,3 +25,57 @@
     border: none;
   }
 }
+
+.popup-teacher {
+  aspect-ratio: 16 / 9;
+  top: 50%;
+  left: 50%;
+  width: 580px;
+  max-width: 90%;
+  height: auto;
+  background-color: var(--white-color);
+  border: 24px solid var(--white-color);
+  border-radius: 16px;
+  transform: translate(-50%, -50%);
+  .popup-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    background-color: var(--white-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 84px;
+    cursor: pointer;
+    z-index: 8;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 70%;
+      height: 3px;
+      background-color: var(--accent-color);
+      z-index: 2;
+    }
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  .popup-content {
+    width: 100%;
+    height: auto;
+    max-height: 540px;
+    overflow-y: scroll;
+  }
+  .popup-title {
+    max-width: calc(100% - 40px);
+    margin-bottom: 16px;
+  }
+}

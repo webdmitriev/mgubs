@@ -134,6 +134,14 @@ $footer_program = $options['footer_edu_program'] ?? '';
 		</div>
 
 		<div class="popup popup-video" style="display: none;"></div>
+
+		<div class="popup popup-teacher" style="display: none;">
+			<div class="popup-close"></div>
+			<div class="popup-content scroll-line-none">
+				<h3 class="h3 popup-title"></h3>
+				<div class="descr"></div>
+			</div>
+		</div>
 	</div><!-- #app -->
 
 <?php wp_footer(); ?>
