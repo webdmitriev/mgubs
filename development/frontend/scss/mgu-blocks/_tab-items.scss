@@ -2,6 +2,7 @@
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--indent);
+  background-color: var(--bgc-color);
   .tab-panel-item {
     display: none;
     &.is-active {
@@ -13,6 +14,22 @@
     position: relative;
     width: 100%;
     margin-bottom: 24px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      display: block;
+      width: 1920px;
+      height: 100%;
+      background-color: var(--white-color);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .tabs-nav-wrapper {
+      position: relative;
+      z-index: 5;
+    }
     .tab-arrow-prev,
     .tab-arrow-next {
       position: absolute;
@@ -20,21 +37,34 @@
       width: 80px;
       height: 100%;
       z-index: 10;
-      &::before {
-        content: "";
+      &:before {
         position: absolute;
         top: 0;
         left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, #fefefe 65%, rgba(255, 255, 255, 0) 100%);
+        font-size: 34px;
+        line-height: 0.8;
+        color: var(--black-color);
       }
     }
     .tab-arrow-prev {
       left: -80px;
+      &:before {
+        content: "‹";
+        background: linear-gradient(-90deg, #fefefe 65%, rgba(255, 255, 255, 0) 100%);
+      }
     }
     .tab-arrow-next {
       right: -80px;
+      &:before {
+        content: "›";
+        background: linear-gradient(90deg, #fefefe 65%, rgba(255, 255, 255, 0) 100%);
+      }
     }
     .tab-nav-button {
       padding: 10px 24px;
@@ -69,4 +99,28 @@
 
 .wp-block-my-plugin-tabs .tabs-nav-wrapper::-webkit-scrollbar {
   display: none; /* Скрываем скроллбар для Chrome/Safari */
+}
+
+@media (max-width: 1366px) {
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container {
+    padding-inline: 80px;
+  }
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container .tab-arrow-prev {
+    left: 0;
+  }
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container .tab-arrow-next {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container {
+    padding-inline: 60px;
+  }
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container .tab-arrow-prev {
+    left: -20px;
+  }
+  .wp-block-my-plugin-tabs.custom-tabs-block .tabs-nav-container .tab-arrow-next {
+    right: -20px;
+  }
 }

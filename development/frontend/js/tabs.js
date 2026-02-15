@@ -79,12 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
           // Создаем стрелки
           const arrowPrev = document.createElement('button');
           arrowPrev.classList.add('tab-arrow-prev');
-          arrowPrev.innerHTML = '‹'; // или можно использовать иконку
+          arrowPrev.innerHTML = ''; // или можно использовать иконку
           arrowPrev.setAttribute('aria-label', 'Previous tabs');
 
           const arrowNext = document.createElement('button');
           arrowNext.classList.add('tab-arrow-next');
-          arrowNext.innerHTML = '›'; // или можно использовать иконку
+          arrowNext.innerHTML = ''; // или можно использовать иконку
           arrowNext.setAttribute('aria-label', 'Next tabs');
 
           // Добавляем стрелки в контейнер
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
           };
 
           // Функции для скролла
-          const scrollAmount = 200; // Можно настроить
+          const scrollAmount = 300; // Можно настроить
 
           const scrollPrev = () => {
             tabsWrapper.scrollBy({
