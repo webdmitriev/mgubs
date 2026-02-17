@@ -119,3 +119,9 @@ require_once get_template_directory() . '/admin/helpers/register-block-categorie
  * Register Gutenberg blocks and assets
  */
 require_once get_template_directory() . '/admin/helpers/include-custom-gutenberg-blocks.php';
+
+
+/**
+ * Custom User
+ */
+require_once get_template_directory() . '/admin/helpers/custom-limited-user.php';
